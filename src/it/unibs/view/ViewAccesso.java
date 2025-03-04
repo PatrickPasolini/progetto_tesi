@@ -119,6 +119,9 @@ public class ViewAccesso extends JPanel {
         btnAccedi.setFont(new Font("Tahoma", Font.BOLD, 20));
         btnAccedi.setBounds(contentWidth / 2 - 170, 350, 340, 60);
         btnAccedi.setForeground(Color.WHITE);
+        if (btnAccediListener != null) {
+            btnAccedi.addActionListener(btnAccediListener); // Riaggiungiamo il listener
+        }
         contentPanel.add(btnAccedi);
       
         JSeparator line = new JSeparator();
@@ -137,6 +140,8 @@ public class ViewAccesso extends JPanel {
         revalidate();
         repaint();
     }
+    
+    
     public void setAccessoFallito() {
     	this.accessoFallito=true;
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
@@ -147,11 +152,15 @@ public class ViewAccesso extends JPanel {
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
    
-    
+    private ActionListener btnAccediListener;//da salvare fuori dal metodo perche' perderei il riferimento ridisegnando il contentPanel
     
     public void setButtonListeners(ActionListener accediListener) {
-    	btnAccedi.addActionListener(accediListener);
+        this.btnAccediListener = accediListener; // Salviamo il listener
+        if (btnAccedi != null) {
+            btnAccedi.addActionListener(accediListener); // Se il pulsante esiste già, lo riaggiungiamo
+        }
     }
+
     public String getUsername() {
     	return userField.getText();
     }
