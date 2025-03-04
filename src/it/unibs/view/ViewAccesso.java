@@ -6,6 +6,7 @@ import it.unibs.view.atomicElements.*;
 import it.unibs.view.atomicElements.Button;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -15,6 +16,7 @@ public class ViewAccesso extends JPanel {
     private String typeUser;
     private TextFieldWhitPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
+    private Button btnAccedi;
     private boolean accessoFallito=false;
     public ViewAccesso(JFrame frame, String typeUser) {
         this.frame = frame;
@@ -111,8 +113,7 @@ public class ViewAccesso extends JPanel {
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
-        Button btnAccedi = new Button("Accedi", new Color(8, 102, 255));
-        btnAccedi.addActionListener(this::accedi);
+        btnAccedi = new Button("Accedi", new Color(8, 102, 255));
         btnAccedi.setBorder(null);
         btnAccedi.setMargin(new Insets(0, 10, 0, 0));
         btnAccedi.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -138,11 +139,23 @@ public class ViewAccesso extends JPanel {
     }
     public void setAccessoFallito() {
     	this.accessoFallito=true;
+    	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
+    //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
+    public void setAccessoEseguito() {
+    	this.accessoFallito=false;
+    	aggiornaComponenti(frame.getWidth(), frame.getHeight());
+    }
+   
     
-    private void accedi(ActionEvent e) {
-    	String username=userField.getText();
-    	String password=pswField.getText();
-    	System.out.println(username+password);
+    
+    public void setButtonListeners(ActionListener accediListener) {
+    	btnAccedi.addActionListener(accediListener);
+    }
+    public String getUsername() {
+    	return userField.getText();
+    }
+    public String getPassword() {
+    	return pswField.getText();
     }
 }

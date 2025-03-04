@@ -38,33 +38,33 @@ public class ControllerAccesso implements Controller {
 	   
 	   //gestione delle strategy
     }
-
+    
+    ViewAccesso viewAccesso;
 //TODO GESTIRE MEGLIO LE TIPOLOGIE DI ACCESSO, C'É ANCHE RIDONDANZA NEI DUE METODI 
     private void accessoConfiguratore(ActionEvent e) {
-        ViewAccesso viewAccesso = new ViewAccesso(frame,"Configuratore");
+        viewAccesso = new ViewAccesso(frame,"Configuratore");
 		frame.getContentPane().add(viewAccesso);
 		viewAccesso.setLayout(null);
 //		viewAccesso.setButtonListeners();
-		
-		int scelta = 1;//
-        StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
-		
-		if(strategyAccesso != null) {
-			strategyAccesso.eseguiAccesso(modelAccesso, viewAccesso);
-		}
+		viewAccesso.setButtonListeners(this::controlloAccesso);
+
       
+    }
+    private void controlloAccesso(ActionEvent e) {
+    	String username=viewAccesso.getUsername();
+    	String password=viewAccesso.getPassword();
+    	boolean x=modelAccesso.controllaAccesso(username, password);
+    	System.out.println(x);
+    	if(x)
+    		viewAccesso.setAccessoEseguito();
+    	else
+    		viewAccesso.setAccessoFallito();
     }
 
     private void accessoFruitore(ActionEvent e) {
-        ViewAccesso viewAccesso = new ViewAccesso(frame,"Fruitore");
+        viewAccesso = new ViewAccesso(frame,"Fruitore");
 		frame.getContentPane().add(viewAccesso);
 		viewAccesso.setLayout(null);
-		
-		int scelta = 2;//
-        StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
-		
-		if(strategyAccesso != null) {
-			strategyAccesso.eseguiAccesso(modelAccesso, viewAccesso);
-		}
+		viewAccesso.setButtonListeners(this::controlloAccesso);
     }
 }
