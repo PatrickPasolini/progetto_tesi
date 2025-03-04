@@ -37,20 +37,6 @@ public class MainApp {
 		loadPersistenceLogin();
 		inizializzaAccesso();
 	}
-
-	private void startFormAccesso() {
-//		frame = new JFrame();
-//		frame.setBounds(0, 0, 1200, 700);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setResizable(true);
-//		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-//		frame.setMinimumSize(new Dimension(500, 650));
-//		
-//		ViewAccesso viewAccesso = new ViewAccesso(frame);
-//		frame.getContentPane().add(viewAccesso);
-//		viewAccesso.setLayout(null);
-		
-	}
 	
 	private static void loadPersistence() {
 		persistence = (Persistence) JSONParser.loadPersistence(PERSISTENCE, Persistence.class);
@@ -71,7 +57,7 @@ public class MainApp {
 	}
 	
 	private void inizializzaAccesso() {
-		frame = new JFrame();
+    	frame = new JFrame();
 		frame.setBounds(0, 0, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);

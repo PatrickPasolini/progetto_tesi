@@ -11,8 +11,17 @@ import java.awt.event.ComponentEvent;
 
 public class ViewAccesso extends JPanel { 
     private RoundedPanel contentPanel;
+    private JFrame frame;
     
-    public ViewAccesso(JFrame frame) {
+    private String typeUser;
+    private TextFieldWhitPlaceholder userField;
+    private PasswordFieldWithPlaceholder pswField;
+    public ViewAccesso(JFrame frame, String typeUser) {
+        this.frame = frame;
+        this.typeUser = typeUser;
+        
+        frame.getContentPane().removeAll();// Rimuove il contenuto attuale del frame 
+        
         setBackground(SystemColor.windowBorder);
         int w = frame.getWidth();
         int h = frame.getHeight();
@@ -28,7 +37,7 @@ public class ViewAccesso extends JPanel {
         int contentWidth = Math.min(600, w - 100);
         int contentHeight = Math.min(650, h - 100);
         int x = (w - contentWidth) / 2;
-        int y = (h - contentHeight) / 2;
+        int y = (h - contentHeight) / 2-20;
         contentPanel.setBounds(x, y, contentWidth, contentHeight);
         
         add(contentPanel);
@@ -53,18 +62,26 @@ public class ViewAccesso extends JPanel {
                 aggiornaComponenti(w, h);
             }
         });
+        
+        frame.getContentPane().add(this); // Aggiunge la nuova schermata
+        frame.revalidate();
+        frame.repaint();
     }
-    
-    TextFieldWhitPlaceholder userField;
-    PasswordFieldWithPlaceholder pswField;
+    private boolean accessoFallito=false;
+    	
     private void aggiornaComponenti(int w, int h) {
         contentPanel.removeAll();
         
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
+        String txtAccesso;
+        if(accessoFallito) {
+        	   
+        }
+        	
         
-        JLabel lblAccesso = new JLabel("Accesso");
+        JLabel lblAccesso = new JLabel("Accesso "+typeUser);
         lblAccesso.setForeground(new Color(43, 43, 43));
         lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
         Dimension size = lblAccesso.getPreferredSize();
@@ -98,7 +115,7 @@ public class ViewAccesso extends JPanel {
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
-        Button btnNuovoUtente = new Button("Crea nuovo utente", new Color(54, 164, 32));
+        Button btnNuovoUtente = new Button("Crea nuovo "+typeUser, new Color(54, 164, 32));
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
         btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -106,6 +123,7 @@ public class ViewAccesso extends JPanel {
         btnNuovoUtente.setForeground(Color.white);
         contentPanel.add(btnNuovoUtente);
         
+       
         revalidate();
         repaint();
     }
@@ -115,6 +133,4 @@ public class ViewAccesso extends JPanel {
     	String password=pswField.getText();
     	System.out.println(username+password);
     }
-    
-   
 }
