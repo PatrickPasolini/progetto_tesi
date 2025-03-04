@@ -1,0 +1,150 @@
+----------------------------------------------------------
+2024.07.04 at 15:09:12 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di solfeggio, 10 ore]
+	offerta:  [Lezioni di storia della musica, 10 ore]
+----------------------------------------------------------
+2024.07.04 at 15:09:46 - scambio aperto: 
+	Proposta di :fruitore2
+	richiesta:  [Lezioni di chitarra per principianti, 5 ore]
+	offerta:  [Lezioni di solfeggio, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:10:14 - scambio aperto: 
+	Proposta di :fruitore3
+	richiesta:  [Lezioni di storia della musica, 5 ore]
+	offerta:  [Lezioni di chitarra per principianti, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:10:14 - scambio chiuso: 
+	Proposta di :fruitore3
+	richiesta:  [Lezioni di storia della musica, 5 ore]
+	offerta:  [Lezioni di chitarra per principianti, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:10:14 - scambio chiuso: 
+	Proposta di :fruitore2
+	richiesta:  [Lezioni di chitarra per principianti, 5 ore]
+	offerta:  [Lezioni di solfeggio, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:10:14 - scambio chiuso: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di solfeggio, 10 ore]
+	offerta:  [Lezioni di storia della musica, 10 ore]
+----------------------------------------------------------
+2024.07.04 at 15:25:30 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Ripetizioni di Chimica Inorganica, 5 ore]
+	offerta:  [Esercitazioni di Fisica 2, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:25:43 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 2 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 2 ore]
+----------------------------------------------------------
+2024.07.04 at 15:25:58 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Esercitazioni di Fisica 1, 7 ore]
+	offerta:  [Esercitazioni di Fisica 2, 7 ore]
+----------------------------------------------------------
+2024.07.04 at 15:26:10 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Ripetizioni di Programmazione Java, 5 ore]
+	offerta:  [Lezioni di solfeggio, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:26:25 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Ripetizioni di Fisica: Termodinamica, 10 ore]
+	offerta:  [Lezioni di chitarra per principianti, 10 ore]
+----------------------------------------------------------
+2024.07.04 at 15:26:46 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Esercitazioni di Fisica 1, 7 ore]
+	offerta:  [Esercitazioni di Fisica 2, 7 ore]
+----------------------------------------------------------
+2024.07.04 at 15:27:00 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Ripetizioni di Fisica: Termodinamica, 10 ore]
+	offerta:  [Lezioni di chitarra per principianti, 10 ore]
+----------------------------------------------------------
+2024.07.04 at 15:27:25 - scambio aperto: 
+	Proposta di :fruitore2
+	richiesta:  [Ripetizioni di Fisica: Meccanica, 6 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 6 ore]
+----------------------------------------------------------
+2024.07.04 at 15:27:41 - scambio aperto: 
+	Proposta di :fruitore2
+	richiesta:  [Esercitazioni di Fisica 2, 5 ore]
+	offerta:  [Esercitazioni di Fisica 1, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:28:07 - scambio aperto: 
+	Proposta di :fruitore2
+	richiesta:  [Lezioni di pianoforte per principianti, 12 ore]
+	offerta:  [Esercitazioni di Analisi 2, 12 ore]
+----------------------------------------------------------
+2024.07.04 at 15:29:01 - scambio aperto: 
+	Proposta di :fruitore5
+	richiesta:  [Ripetizioni di Fisica: Termodinamica, 8 ore]
+	offerta:  [Esercitazioni di Fisica 1, 8 ore]
+----------------------------------------------------------
+2024.07.04 at 15:29:14 - scambio aperto: 
+	Proposta di :fruitore5
+	richiesta:  [Lezioni di storia della musica, 11 ore]
+	offerta:  [Ripetizioni di Programmazione C, 11 ore]
+----------------------------------------------------------
+2024.07.04 at 15:29:37 - scambio aperto: 
+	Proposta di :fruitore3
+	richiesta:  [Esercitazioni di Fisica 1, 5 ore]
+	offerta:  [Esercitazioni di Fisica 2, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:29:37 - scambio chiuso: 
+	Proposta di :fruitore3
+	richiesta:  [Esercitazioni di Fisica 1, 5 ore]
+	offerta:  [Esercitazioni di Fisica 2, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:29:37 - scambio chiuso: 
+	Proposta di :fruitore2
+	richiesta:  [Esercitazioni di Fisica 2, 5 ore]
+	offerta:  [Esercitazioni di Fisica 1, 5 ore]
+----------------------------------------------------------
+2024.07.04 at 15:29:57 - scambio aperto: 
+	Proposta di :fruitore3
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 4 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 4 ore]
+----------------------------------------------------------
+2024.07.04 at 15:30:45 - scambio aperto: 
+	Proposta di :fruitore4
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 3 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 3 ore]
+----------------------------------------------------------
+2024.07.04 at 15:31:01 - scambio aperto: 
+	Proposta di :fruitore4
+	richiesta:  [Lezioni di chitarra per principianti, 6 ore]
+	offerta:  [Esercitazioni di Analisi 2, 6 ore]
+----------------------------------------------------------
+2024.07.04 at 15:31:40 - scambio aperto: 
+	Proposta di :fruitore5
+	richiesta:  [Ripetizioni di Fisica: Termodinamica, 3 ore]
+	offerta:  [Lezioni di pianoforte di difficolta' media, 3 ore]
+----------------------------------------------------------
+2024.07.04 at 15:31:40 - scambio chiuso: 
+	Proposta di :fruitore5
+	richiesta:  [Ripetizioni di Fisica: Termodinamica, 3 ore]
+	offerta:  [Lezioni di pianoforte di difficolta' media, 3 ore]
+----------------------------------------------------------
+2024.07.04 at 15:31:40 - scambio chiuso: 
+	Proposta di :fruitore4
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 3 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 3 ore]
+----------------------------------------------------------
+2024.07.04 at 15:32:11 - scambio ritirato: 
+	Proposta di :fruitore5
+	richiesta:  [Lezioni di storia della musica, 11 ore]
+	offerta:  [Ripetizioni di Programmazione C, 11 ore]
+----------------------------------------------------------
+2024.07.04 at 15:32:26 - scambio aperto: 
+	Proposta di :fruitore5
+	richiesta:  [Lezioni di pianoforte per principianti, 23 ore]
+	offerta:  [Esercitazioni di Fisica 1, 23 ore]
+----------------------------------------------------------
+2024.07.04 at 15:32:32 - scambio ritirato: 
+	Proposta di :fruitore5
+	richiesta:  [Lezioni di pianoforte per principianti, 23 ore]
+	offerta:  [Esercitazioni di Fisica 1, 23 ore]

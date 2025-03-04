@@ -1,0 +1,3664 @@
+{
+  "comprensori": [
+    {
+      "name": "Bassa Bresciana",
+      "comuni": [
+        "Brandico",
+        "Mairano",
+        "Dello"
+      ]
+    },
+    {
+      "name": "Franciacorta",
+      "comuni": [
+        "Monticelli Brusati",
+        "Provaglio",
+        "Iseo",
+        "Erbusco",
+        "Corte Franca"
+      ]
+    }
+  ],
+  "gerarchie": [
+    {
+      "radice": {
+        "type": "it.unibs.domain.NonFoglia",
+        "data": {
+          "campo": "tipo",
+          "domini": [
+            "teoria",
+            "strumento"
+          ],
+          "childs": [
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "materia",
+                "domini": [
+                  "solfeggio",
+                  "storia della musica"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 383812416,
+                      "nome": "Lezioni di solfeggio",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 728477803,
+                      "nome": "Lezioni di storia della musica",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Lezione di teoria musicale",
+                "descrizione": ""
+              }
+            },
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "strumento",
+                "domini": [
+                  "chitarra",
+                  "pianoforte"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.NonFoglia",
+                    "data": {
+                      "campo": "livello",
+                      "domini": [
+                        "principianti"
+                      ],
+                      "childs": [
+                        {
+                          "type": "it.unibs.domain.Foglia",
+                          "data": {
+                            "id": 393394854,
+                            "nome": "Lezioni di chitarra per principianti",
+                            "descrizione": ""
+                          }
+                        }
+                      ],
+                      "nome": "Lezioni di chitarra",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.NonFoglia",
+                    "data": {
+                      "campo": "livello",
+                      "domini": [
+                        "principianti",
+                        "medio"
+                      ],
+                      "childs": [
+                        {
+                          "type": "it.unibs.domain.Foglia",
+                          "data": {
+                            "id": 88630565,
+                            "nome": "Lezioni di pianoforte per principianti",
+                            "descrizione": ""
+                          }
+                        },
+                        {
+                          "type": "it.unibs.domain.Foglia",
+                          "data": {
+                            "id": 188179425,
+                            "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+                            "descrizione": ""
+                          }
+                        }
+                      ],
+                      "nome": "Lezioni di pianoforte",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Lezioni di uno strumento musicale",
+                "descrizione": ""
+              }
+            }
+          ],
+          "nome": "Lezioni di musica",
+          "descrizione": "radice della gerarchia di default"
+        }
+      },
+      "categorie": [
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "materia",
+            "domini": [
+              "solfeggio",
+              "storia della musica"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 383812416,
+                  "nome": "Lezioni di solfeggio",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 728477803,
+                  "nome": "Lezioni di storia della musica",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Lezione di teoria musicale",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "strumento",
+            "domini": [
+              "chitarra",
+              "pianoforte"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "livello",
+                  "domini": [
+                    "principianti"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 393394854,
+                        "nome": "Lezioni di chitarra per principianti",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Lezioni di chitarra",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "livello",
+                  "domini": [
+                    "principianti",
+                    "medio"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 88630565,
+                        "nome": "Lezioni di pianoforte per principianti",
+                        "descrizione": ""
+                      }
+                    },
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 188179425,
+                        "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Lezioni di pianoforte",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Lezioni di uno strumento musicale",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 383812416,
+            "nome": "Lezioni di solfeggio",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 728477803,
+            "nome": "Lezioni di storia della musica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "livello",
+            "domini": [
+              "principianti"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 393394854,
+                  "nome": "Lezioni di chitarra per principianti",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Lezioni di chitarra",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "livello",
+            "domini": [
+              "principianti",
+              "medio"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 88630565,
+                  "nome": "Lezioni di pianoforte per principianti",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 188179425,
+                  "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Lezioni di pianoforte",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 393394854,
+            "nome": "Lezioni di chitarra per principianti",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 88630565,
+            "nome": "Lezioni di pianoforte per principianti",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 188179425,
+            "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+            "descrizione": ""
+          }
+        }
+      ],
+      "foglie": [
+        {
+          "id": 383812416,
+          "nome": "Lezioni di solfeggio",
+          "descrizione": ""
+        },
+        {
+          "id": 728477803,
+          "nome": "Lezioni di storia della musica",
+          "descrizione": ""
+        },
+        {
+          "id": 393394854,
+          "nome": "Lezioni di chitarra per principianti",
+          "descrizione": ""
+        },
+        {
+          "id": 88630565,
+          "nome": "Lezioni di pianoforte per principianti",
+          "descrizione": ""
+        },
+        {
+          "id": 188179425,
+          "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+          "descrizione": ""
+        }
+      ]
+    },
+    {
+      "radice": {
+        "type": "it.unibs.domain.NonFoglia",
+        "data": {
+          "campo": "Materia",
+          "domini": [
+            "Fisica",
+            "Chimica",
+            "Informatica"
+          ],
+          "childs": [
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "Argomento",
+                "domini": [
+                  "Meccanica",
+                  "Termodinamica"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 248630871,
+                      "nome": "Ripetizioni di Fisica: Meccanica",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": -1999717494,
+                      "nome": "Ripetizioni di Fisica: Termodinamica",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Ripetizioni di Fisica",
+                "descrizione": ""
+              }
+            },
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "Argomento",
+                "domini": [
+                  "Organica",
+                  "Inorganica"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": -1368542348,
+                      "nome": "Ripetizioni di Chimica Organica",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 904520153,
+                      "nome": "Ripetizioni di Chimica Inorganica",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Ripetizioni di Chimica",
+                "descrizione": ""
+              }
+            },
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "Linguaggio",
+                "domini": [
+                  "C",
+                  "Java"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 827751625,
+                      "nome": "Ripetizioni di Programmazione C",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": -1833403286,
+                      "nome": "Ripetizioni di Programmazione Java",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Programmazione",
+                "descrizione": ""
+              }
+            }
+          ],
+          "nome": "Ripetizioni",
+          "descrizione": ""
+        }
+      },
+      "categorie": [
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Materia",
+            "domini": [
+              "Fisica",
+              "Chimica",
+              "Informatica"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "Argomento",
+                  "domini": [
+                    "Meccanica",
+                    "Termodinamica"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 248630871,
+                        "nome": "Ripetizioni di Fisica: Meccanica",
+                        "descrizione": ""
+                      }
+                    },
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": -1999717494,
+                        "nome": "Ripetizioni di Fisica: Termodinamica",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Ripetizioni di Fisica",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "Argomento",
+                  "domini": [
+                    "Organica",
+                    "Inorganica"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": -1368542348,
+                        "nome": "Ripetizioni di Chimica Organica",
+                        "descrizione": ""
+                      }
+                    },
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 904520153,
+                        "nome": "Ripetizioni di Chimica Inorganica",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Ripetizioni di Chimica",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "Linguaggio",
+                  "domini": [
+                    "C",
+                    "Java"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 827751625,
+                        "nome": "Ripetizioni di Programmazione C",
+                        "descrizione": ""
+                      }
+                    },
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": -1833403286,
+                        "nome": "Ripetizioni di Programmazione Java",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Programmazione",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Ripetizioni",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Argomento",
+            "domini": [
+              "Meccanica",
+              "Termodinamica"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 248630871,
+                  "nome": "Ripetizioni di Fisica: Meccanica",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": -1999717494,
+                  "nome": "Ripetizioni di Fisica: Termodinamica",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Ripetizioni di Fisica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Argomento",
+            "domini": [
+              "Organica",
+              "Inorganica"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": -1368542348,
+                  "nome": "Ripetizioni di Chimica Organica",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 904520153,
+                  "nome": "Ripetizioni di Chimica Inorganica",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Ripetizioni di Chimica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Linguaggio",
+            "domini": [
+              "C",
+              "Java"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 827751625,
+                  "nome": "Ripetizioni di Programmazione C",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": -1833403286,
+                  "nome": "Ripetizioni di Programmazione Java",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Programmazione",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 248630871,
+            "nome": "Ripetizioni di Fisica: Meccanica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": -1999717494,
+            "nome": "Ripetizioni di Fisica: Termodinamica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": -1368542348,
+            "nome": "Ripetizioni di Chimica Organica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 904520153,
+            "nome": "Ripetizioni di Chimica Inorganica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 827751625,
+            "nome": "Ripetizioni di Programmazione C",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": -1833403286,
+            "nome": "Ripetizioni di Programmazione Java",
+            "descrizione": ""
+          }
+        }
+      ],
+      "foglie": [
+        {
+          "id": 248630871,
+          "nome": "Ripetizioni di Fisica: Meccanica",
+          "descrizione": ""
+        },
+        {
+          "id": -1999717494,
+          "nome": "Ripetizioni di Fisica: Termodinamica",
+          "descrizione": ""
+        },
+        {
+          "id": -1368542348,
+          "nome": "Ripetizioni di Chimica Organica",
+          "descrizione": ""
+        },
+        {
+          "id": 904520153,
+          "nome": "Ripetizioni di Chimica Inorganica",
+          "descrizione": ""
+        },
+        {
+          "id": 827751625,
+          "nome": "Ripetizioni di Programmazione C",
+          "descrizione": ""
+        },
+        {
+          "id": -1833403286,
+          "nome": "Ripetizioni di Programmazione Java",
+          "descrizione": ""
+        }
+      ]
+    },
+    {
+      "radice": {
+        "type": "it.unibs.domain.NonFoglia",
+        "data": {
+          "campo": "Materia",
+          "domini": [
+            "Analisi",
+            "Fisica"
+          ],
+          "childs": [
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "Livello",
+                "domini": [
+                  "1",
+                  "2"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 1407375300,
+                      "nome": "Esercitazioni di Analisi 1",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": 1407375301,
+                      "nome": "Esercitazioni di Analisi 2",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Esercitazioni di Analisi",
+                "descrizione": ""
+              }
+            },
+            {
+              "type": "it.unibs.domain.NonFoglia",
+              "data": {
+                "campo": "Livello",
+                "domini": [
+                  "1",
+                  "2"
+                ],
+                "childs": [
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": -1280086556,
+                      "nome": "Esercitazioni di Fisica 1",
+                      "descrizione": ""
+                    }
+                  },
+                  {
+                    "type": "it.unibs.domain.Foglia",
+                    "data": {
+                      "id": -1280086555,
+                      "nome": "Esercitazioni di Fisica 2",
+                      "descrizione": ""
+                    }
+                  }
+                ],
+                "nome": "Esercitazioni di Fisica",
+                "descrizione": ""
+              }
+            }
+          ],
+          "nome": "Esercitazioni",
+          "descrizione": ""
+        }
+      },
+      "categorie": [
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Materia",
+            "domini": [
+              "Analisi",
+              "Fisica"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "Livello",
+                  "domini": [
+                    "1",
+                    "2"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 1407375300,
+                        "nome": "Esercitazioni di Analisi 1",
+                        "descrizione": ""
+                      }
+                    },
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": 1407375301,
+                        "nome": "Esercitazioni di Analisi 2",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Esercitazioni di Analisi",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.NonFoglia",
+                "data": {
+                  "campo": "Livello",
+                  "domini": [
+                    "1",
+                    "2"
+                  ],
+                  "childs": [
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": -1280086556,
+                        "nome": "Esercitazioni di Fisica 1",
+                        "descrizione": ""
+                      }
+                    },
+                    {
+                      "type": "it.unibs.domain.Foglia",
+                      "data": {
+                        "id": -1280086555,
+                        "nome": "Esercitazioni di Fisica 2",
+                        "descrizione": ""
+                      }
+                    }
+                  ],
+                  "nome": "Esercitazioni di Fisica",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Esercitazioni",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Livello",
+            "domini": [
+              "1",
+              "2"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 1407375300,
+                  "nome": "Esercitazioni di Analisi 1",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": 1407375301,
+                  "nome": "Esercitazioni di Analisi 2",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Esercitazioni di Analisi",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.NonFoglia",
+          "data": {
+            "campo": "Livello",
+            "domini": [
+              "1",
+              "2"
+            ],
+            "childs": [
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": -1280086556,
+                  "nome": "Esercitazioni di Fisica 1",
+                  "descrizione": ""
+                }
+              },
+              {
+                "type": "it.unibs.domain.Foglia",
+                "data": {
+                  "id": -1280086555,
+                  "nome": "Esercitazioni di Fisica 2",
+                  "descrizione": ""
+                }
+              }
+            ],
+            "nome": "Esercitazioni di Fisica",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 1407375300,
+            "nome": "Esercitazioni di Analisi 1",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": 1407375301,
+            "nome": "Esercitazioni di Analisi 2",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": -1280086556,
+            "nome": "Esercitazioni di Fisica 1",
+            "descrizione": ""
+          }
+        },
+        {
+          "type": "it.unibs.domain.Foglia",
+          "data": {
+            "id": -1280086555,
+            "nome": "Esercitazioni di Fisica 2",
+            "descrizione": ""
+          }
+        }
+      ],
+      "foglie": [
+        {
+          "id": 1407375300,
+          "nome": "Esercitazioni di Analisi 1",
+          "descrizione": ""
+        },
+        {
+          "id": 1407375301,
+          "nome": "Esercitazioni di Analisi 2",
+          "descrizione": ""
+        },
+        {
+          "id": -1280086556,
+          "nome": "Esercitazioni di Fisica 1",
+          "descrizione": ""
+        },
+        {
+          "id": -1280086555,
+          "nome": "Esercitazioni di Fisica 2",
+          "descrizione": ""
+        }
+      ]
+    }
+  ],
+  "mapFattori": {
+    "map": [
+      [
+        {
+          "id": 728477803,
+          "nome": "Lezioni di storia della musica",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            2.0
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.4285714285714286
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            1.1363636363636362
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.2626262626262623
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            1.0521885521885521
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            1.0416666666666667
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.4880952380952384
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            1.0629251700680273
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            1.1111111111111112
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 383812416,
+          "nome": "Lezioni di solfeggio",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.5
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.5
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            0.625
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            0.7142857142857143
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            0.625
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.5681818181818181
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            0.6313131313131312
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.5260942760942761
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            0.625
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            0.625
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.5208333333333334
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            0.7440476190476192
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.5314625850340137
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.5555555555555556
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 393394854,
+          "nome": "Lezioni di chitarra per principianti",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            2.0
+          ],
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.4285714285714286
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            1.1363636363636362
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.2626262626262623
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            1.0521885521885521
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.25
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            1.0416666666666667
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.4880952380952384
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            1.0629251700680273
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            1.1111111111111112
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 188179425,
+          "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.6
+          ],
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.142857142857143
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.9090909090909091
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.01010101010101
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.8417508417508416
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.8333333333333334
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.1904761904761905
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.8503401360544218
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.8888888888888888
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 88630565,
+          "nome": "Lezioni di pianoforte per principianti",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.4
+          ],
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.7
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.7
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            0.8749999999999999
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            0.8749999999999999
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.7954545454545453
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            0.8838383838383836
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.7365319865319865
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            0.8749999999999999
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            0.8749999999999999
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.7291666666666665
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.0416666666666665
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.744047619047619
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.7777777777777777
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 248630871,
+          "nome": "Ripetizioni di Fisica: Meccanica",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.6
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.8417508417508416
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.9090909090909091
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.01010101010101
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.142857142857143
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.8333333333333334
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.1904761904761905
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.8503401360544218
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.8888888888888888
+          ]
+        ]
+      ],
+      [
+        {
+          "id": -1999717494,
+          "nome": "Ripetizioni di Fisica: Termodinamica",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.8800000000000001
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.7600000000000002
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.9259259259259258
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.1
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.8800000000000001
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.1
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.1
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.1111111111111112
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.2571428571428573
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.1
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.9166666666666667
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.3095238095238098
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.9353741496598641
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.9777777777777777
+          ]
+        ]
+      ],
+      [
+        {
+          "id": -1368542348,
+          "nome": "Ripetizioni di Chimica Organica",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.7920000000000001
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.5840000000000003
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.8333333333333334
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            0.9900000000000001
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.9
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.7920000000000001
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            0.9900000000000001
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            0.9900000000000001
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.1314285714285717
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            0.9900000000000001
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.8250000000000002
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.1785714285714288
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.8418367346938778
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.8800000000000002
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 904520153,
+          "nome": "Ripetizioni di Chimica Inorganica",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.9504000000000001
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.9008000000000003
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.1880000000000002
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            1.08
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.9504000000000001
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.1880000000000002
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.1880000000000002
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.2
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.3577142857142859
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.1880000000000002
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.9900000000000001
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.4142857142857146
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            1.0102040816326532
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            1.056
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 827751625,
+          "nome": "Ripetizioni di Programmazione C",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.6
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.8417508417508416
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.9090909090909091
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.01010101010101
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.142857142857143
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.8333333333333334
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.1904761904761905
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.8503401360544218
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.8888888888888888
+          ]
+        ]
+      ],
+      [
+        {
+          "id": -1833403286,
+          "nome": "Ripetizioni di Programmazione Java",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.6
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.8417508417508416
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.8
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.9090909090909091
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.01010101010101
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.142857142857143
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.0
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.8333333333333334
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.1904761904761905
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.8503401360544218
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.8888888888888888
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 1407375300,
+          "nome": "Esercitazioni di Analisi 1",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.96
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.92
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            1.0909090909090908
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.2
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.4285714285714286
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.3714285714285717
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            1.01010101010101
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.2
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.96
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.2
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            1.0666666666666664
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            1.0204081632653064
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.212121212121212
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.2
+          ]
+        ]
+      ],
+      [
+        {
+          "id": 1407375301,
+          "nome": "Esercitazioni di Analisi 2",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.6719999999999999
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.3439999999999999
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            0.7636363636363636
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.7
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            0.84
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            0.9600000000000001
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.707070707070707
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            0.84
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.6719999999999999
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            0.84
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            0.7466666666666665
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.7142857142857143
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            0.8484848484848483
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            0.84
+          ]
+        ]
+      ],
+      [
+        {
+          "id": -1280086556,
+          "nome": "Esercitazioni di Fisica 1",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.9407999999999999
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.8815999999999997
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            1.0690909090909089
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.9799999999999999
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.176
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.4
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.344
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.9898989898989897
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.176
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.9407999999999999
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.176
+          ],
+          [
+            {
+              "id": -1280086555,
+              "nome": "Esercitazioni di Fisica 2",
+              "descrizione": ""
+            },
+            1.0453333333333332
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.1878787878787875
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.176
+          ]
+        ]
+      ],
+      [
+        {
+          "id": -1280086555,
+          "nome": "Esercitazioni di Fisica 2",
+          "descrizione": ""
+        },
+        [
+          [
+            {
+              "id": 728477803,
+              "nome": "Lezioni di storia della musica",
+              "descrizione": ""
+            },
+            0.9
+          ],
+          [
+            {
+              "id": 383812416,
+              "nome": "Lezioni di solfeggio",
+              "descrizione": ""
+            },
+            1.8
+          ],
+          [
+            {
+              "id": -1999717494,
+              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "descrizione": ""
+            },
+            1.0227272727272727
+          ],
+          [
+            {
+              "id": 248630871,
+              "nome": "Ripetizioni di Fisica: Meccanica",
+              "descrizione": ""
+            },
+            1.125
+          ],
+          [
+            {
+              "id": 1407375300,
+              "nome": "Esercitazioni di Analisi 1",
+              "descrizione": ""
+            },
+            0.9375000000000001
+          ],
+          [
+            {
+              "id": 1407375301,
+              "nome": "Esercitazioni di Analisi 2",
+              "descrizione": ""
+            },
+            1.3392857142857146
+          ],
+          [
+            {
+              "id": 88630565,
+              "nome": "Lezioni di pianoforte per principianti",
+              "descrizione": ""
+            },
+            1.2857142857142858
+          ],
+          [
+            {
+              "id": 904520153,
+              "nome": "Ripetizioni di Chimica Inorganica",
+              "descrizione": ""
+            },
+            0.9469696969696969
+          ],
+          [
+            {
+              "id": -1833403286,
+              "nome": "Ripetizioni di Programmazione Java",
+              "descrizione": ""
+            },
+            1.125
+          ],
+          [
+            {
+              "id": 393394854,
+              "nome": "Lezioni di chitarra per principianti",
+              "descrizione": ""
+            },
+            0.9
+          ],
+          [
+            {
+              "id": 188179425,
+              "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+              "descrizione": ""
+            },
+            1.125
+          ],
+          [
+            {
+              "id": -1280086556,
+              "nome": "Esercitazioni di Fisica 1",
+              "descrizione": ""
+            },
+            0.9566326530612246
+          ],
+          [
+            {
+              "id": -1368542348,
+              "nome": "Ripetizioni di Chimica Organica",
+              "descrizione": ""
+            },
+            1.136363636363636
+          ],
+          [
+            {
+              "id": 827751625,
+              "nome": "Ripetizioni di Programmazione C",
+              "descrizione": ""
+            },
+            1.125
+          ]
+        ]
+      ]
+    ]
+  },
+  "scambiAperti": [
+    {
+      "richiesta": {
+        "id": 904520153,
+        "nome": "Ripetizioni di Chimica Inorganica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1280086555,
+        "nome": "Esercitazioni di Fisica 2",
+        "descrizione": ""
+      },
+      "oreRichiesta": 5,
+      "oreOfferta": 5,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 188179425,
+        "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "oreRichiesta": 2,
+      "oreOfferta": 2,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": -1833403286,
+        "nome": "Ripetizioni di Programmazione Java",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "oreRichiesta": 5,
+      "oreOfferta": 8,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 248630871,
+        "nome": "Ripetizioni di Fisica: Meccanica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "oreRichiesta": 6,
+      "oreOfferta": 5,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore2@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore2",
+          "password": "f2",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 88630565,
+        "nome": "Lezioni di pianoforte per principianti",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 1407375301,
+        "nome": "Esercitazioni di Analisi 2",
+        "descrizione": ""
+      },
+      "oreRichiesta": 12,
+      "oreOfferta": 12,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore2@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore2",
+          "password": "f2",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1280086556,
+        "nome": "Esercitazioni di Fisica 1",
+        "descrizione": ""
+      },
+      "oreRichiesta": 8,
+      "oreOfferta": 7,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore5@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Franciacorta",
+            "comuni": [
+              "Monticelli Brusati",
+              "Provaglio",
+              "Iseo",
+              "Erbusco",
+              "Corte Franca"
+            ]
+          },
+          "nome": "fruitore5",
+          "password": "f5",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 188179425,
+        "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "oreRichiesta": 4,
+      "oreOfferta": 4,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore3@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore3",
+          "password": "f3",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 393394854,
+        "nome": "Lezioni di chitarra per principianti",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 1407375301,
+        "nome": "Esercitazioni di Analisi 2",
+        "descrizione": ""
+      },
+      "oreRichiesta": 6,
+      "oreOfferta": 9,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore4@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Franciacorta",
+            "comuni": [
+              "Monticelli Brusati",
+              "Provaglio",
+              "Iseo",
+              "Erbusco",
+              "Corte Franca"
+            ]
+          },
+          "nome": "fruitore4",
+          "password": "f4",
+          "isConfiguratore": false
+        }
+      }
+    }
+  ],
+  "scambiChiusi": [
+    {
+      "richiesta": {
+        "id": 728477803,
+        "nome": "Lezioni di storia della musica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 393394854,
+        "nome": "Lezioni di chitarra per principianti",
+        "descrizione": ""
+      },
+      "oreRichiesta": 5,
+      "oreOfferta": 5,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore3@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore3",
+          "password": "f3",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 393394854,
+        "nome": "Lezioni di chitarra per principianti",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "oreRichiesta": 5,
+      "oreOfferta": 10,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore2@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore2",
+          "password": "f2",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 728477803,
+        "nome": "Lezioni di storia della musica",
+        "descrizione": ""
+      },
+      "oreRichiesta": 10,
+      "oreOfferta": 5,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": -1280086556,
+        "nome": "Esercitazioni di Fisica 1",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1280086555,
+        "nome": "Esercitazioni di Fisica 2",
+        "descrizione": ""
+      },
+      "oreRichiesta": 5,
+      "oreOfferta": 5,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore3@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore3",
+          "password": "f3",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": -1280086555,
+        "nome": "Esercitazioni di Fisica 2",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1280086556,
+        "nome": "Esercitazioni di Fisica 1",
+        "descrizione": ""
+      },
+      "oreRichiesta": 5,
+      "oreOfferta": 5,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore2@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore2",
+          "password": "f2",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 188179425,
+        "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+        "descrizione": ""
+      },
+      "oreRichiesta": 3,
+      "oreOfferta": 3,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore5@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Franciacorta",
+            "comuni": [
+              "Monticelli Brusati",
+              "Provaglio",
+              "Iseo",
+              "Erbusco",
+              "Corte Franca"
+            ]
+          },
+          "nome": "fruitore5",
+          "password": "f5",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 188179425,
+        "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "oreRichiesta": 3,
+      "oreOfferta": 3,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore4@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Franciacorta",
+            "comuni": [
+              "Monticelli Brusati",
+              "Provaglio",
+              "Iseo",
+              "Erbusco",
+              "Corte Franca"
+            ]
+          },
+          "nome": "fruitore4",
+          "password": "f4",
+          "isConfiguratore": false
+        }
+      }
+    }
+  ],
+  "scambiRitirati": [
+    {
+      "richiesta": {
+        "id": -1280086556,
+        "nome": "Esercitazioni di Fisica 1",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1280086555,
+        "nome": "Esercitazioni di Fisica 2",
+        "descrizione": ""
+      },
+      "oreRichiesta": 7,
+      "oreOfferta": 7,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": -1999717494,
+        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 393394854,
+        "nome": "Lezioni di chitarra per principianti",
+        "descrizione": ""
+      },
+      "oreRichiesta": 10,
+      "oreOfferta": 9,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 728477803,
+        "nome": "Lezioni di storia della musica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 827751625,
+        "nome": "Ripetizioni di Programmazione C",
+        "descrizione": ""
+      },
+      "oreRichiesta": 11,
+      "oreOfferta": 14,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore5@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Franciacorta",
+            "comuni": [
+              "Monticelli Brusati",
+              "Provaglio",
+              "Iseo",
+              "Erbusco",
+              "Corte Franca"
+            ]
+          },
+          "nome": "fruitore5",
+          "password": "f5",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 88630565,
+        "nome": "Lezioni di pianoforte per principianti",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": -1280086556,
+        "nome": "Esercitazioni di Fisica 1",
+        "descrizione": ""
+      },
+      "oreRichiesta": 23,
+      "oreOfferta": 17,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore5@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Franciacorta",
+            "comuni": [
+              "Monticelli Brusati",
+              "Provaglio",
+              "Iseo",
+              "Erbusco",
+              "Corte Franca"
+            ]
+          },
+          "nome": "fruitore5",
+          "password": "f5",
+          "isConfiguratore": false
+        }
+      }
+    }
+  ],
+  "scambiCompleti": [
+    {
+      "nome": "scambio-1",
+      "scambio": [
+        {
+          "richiesta": {
+            "id": 728477803,
+            "nome": "Lezioni di storia della musica",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": 393394854,
+            "nome": "Lezioni di chitarra per principianti",
+            "descrizione": ""
+          },
+          "oreRichiesta": 5,
+          "oreOfferta": 5,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore3@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Bassa Bresciana",
+                "comuni": [
+                  "Brandico",
+                  "Mairano",
+                  "Dello"
+                ]
+              },
+              "nome": "fruitore3",
+              "password": "f3",
+              "isConfiguratore": false
+            }
+          }
+        },
+        {
+          "richiesta": {
+            "id": 393394854,
+            "nome": "Lezioni di chitarra per principianti",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": 383812416,
+            "nome": "Lezioni di solfeggio",
+            "descrizione": ""
+          },
+          "oreRichiesta": 5,
+          "oreOfferta": 10,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore2@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Bassa Bresciana",
+                "comuni": [
+                  "Brandico",
+                  "Mairano",
+                  "Dello"
+                ]
+              },
+              "nome": "fruitore2",
+              "password": "f2",
+              "isConfiguratore": false
+            }
+          }
+        },
+        {
+          "richiesta": {
+            "id": 383812416,
+            "nome": "Lezioni di solfeggio",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": 728477803,
+            "nome": "Lezioni di storia della musica",
+            "descrizione": ""
+          },
+          "oreRichiesta": 10,
+          "oreOfferta": 5,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore1@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Bassa Bresciana",
+                "comuni": [
+                  "Brandico",
+                  "Mairano",
+                  "Dello"
+                ]
+              },
+              "nome": "fruitore1",
+              "password": "f1",
+              "isConfiguratore": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "nome": "scambio-2",
+      "scambio": [
+        {
+          "richiesta": {
+            "id": -1280086556,
+            "nome": "Esercitazioni di Fisica 1",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": -1280086555,
+            "nome": "Esercitazioni di Fisica 2",
+            "descrizione": ""
+          },
+          "oreRichiesta": 5,
+          "oreOfferta": 5,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore3@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Bassa Bresciana",
+                "comuni": [
+                  "Brandico",
+                  "Mairano",
+                  "Dello"
+                ]
+              },
+              "nome": "fruitore3",
+              "password": "f3",
+              "isConfiguratore": false
+            }
+          }
+        },
+        {
+          "richiesta": {
+            "id": -1280086555,
+            "nome": "Esercitazioni di Fisica 2",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": -1280086556,
+            "nome": "Esercitazioni di Fisica 1",
+            "descrizione": ""
+          },
+          "oreRichiesta": 5,
+          "oreOfferta": 5,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore2@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Bassa Bresciana",
+                "comuni": [
+                  "Brandico",
+                  "Mairano",
+                  "Dello"
+                ]
+              },
+              "nome": "fruitore2",
+              "password": "f2",
+              "isConfiguratore": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "nome": "scambio-3",
+      "scambio": [
+        {
+          "richiesta": {
+            "id": -1999717494,
+            "nome": "Ripetizioni di Fisica: Termodinamica",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": 188179425,
+            "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+            "descrizione": ""
+          },
+          "oreRichiesta": 3,
+          "oreOfferta": 3,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore5@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Franciacorta",
+                "comuni": [
+                  "Monticelli Brusati",
+                  "Provaglio",
+                  "Iseo",
+                  "Erbusco",
+                  "Corte Franca"
+                ]
+              },
+              "nome": "fruitore5",
+              "password": "f5",
+              "isConfiguratore": false
+            }
+          }
+        },
+        {
+          "richiesta": {
+            "id": 188179425,
+            "nome": "Lezioni di pianoforte di difficolta\u0027 media",
+            "descrizione": ""
+          },
+          "offerta": {
+            "id": -1999717494,
+            "nome": "Ripetizioni di Fisica: Termodinamica",
+            "descrizione": ""
+          },
+          "oreRichiesta": 3,
+          "oreOfferta": 3,
+          "fruitoreRichiedente": {
+            "type": "it.unibs.domain.Fruitore",
+            "data": {
+              "indirizzoMail": "fruitore4@studenti.unibs.it",
+              "comprensorioAppartenenza": {
+                "name": "Franciacorta",
+                "comuni": [
+                  "Monticelli Brusati",
+                  "Provaglio",
+                  "Iseo",
+                  "Erbusco",
+                  "Corte Franca"
+                ]
+              },
+              "nome": "fruitore4",
+              "password": "f4",
+              "isConfiguratore": false
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
