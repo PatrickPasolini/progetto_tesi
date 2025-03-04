@@ -33,23 +33,38 @@ public class ControllerAccesso implements Controller {
 	   StartView startView = new StartView(frame);
 	   frame.getContentPane().add(startView);
 	   startView.setLayout(null);
-	
-	   startView.setButtonListeners(this::accediConfiguratore, this::accediFruitore);
+	   startView.setButtonListeners(this::accessoConfiguratore, this::accessoFruitore);
 	   
 	   
 	   //gestione delle strategy
     }
 
-    private void accediConfiguratore(ActionEvent e) {
+//TODO GESTIRE MEGLIO LE TIPOLOGIE DI ACCESSO, C'É ANCHE RIDONDANZA NEI DUE METODI 
+    private void accessoConfiguratore(ActionEvent e) {
         ViewAccesso viewAccesso = new ViewAccesso(frame,"Configuratore");
 		frame.getContentPane().add(viewAccesso);
 		viewAccesso.setLayout(null);
+//		viewAccesso.setButtonListeners();
+		
+		int scelta = 1;//
+        StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
+		
+		if(strategyAccesso != null) {
+			strategyAccesso.eseguiAccesso(modelAccesso, viewAccesso);
+		}
       
     }
 
-    private void accediFruitore(ActionEvent e) {
+    private void accessoFruitore(ActionEvent e) {
         ViewAccesso viewAccesso = new ViewAccesso(frame,"Fruitore");
 		frame.getContentPane().add(viewAccesso);
 		viewAccesso.setLayout(null);
+		
+		int scelta = 2;//
+        StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
+		
+		if(strategyAccesso != null) {
+			strategyAccesso.eseguiAccesso(modelAccesso, viewAccesso);
+		}
     }
 }

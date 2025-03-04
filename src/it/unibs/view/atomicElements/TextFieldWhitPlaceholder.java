@@ -14,22 +14,30 @@ public class TextFieldWhitPlaceholder extends JTextField {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Color PLACEHOLDER_COLOR = Color.GRAY;
+	private Color DEFAULT_PLACEHOLDER_COLOR = Color.GRAY;
     private Color TEXT_COLOR = Color.BLACK;
     private Color BORDER_COLOR = Color.BLACK;
-    private Color BORDER_FOCUS_COLOR = new Color(8, 102, 255);//blu
+    private Color DEFAULT_BORDER_FOCUS_COLOR = new Color(8, 102, 255);//blu
+    private Color borderFocusColor;
     private int BORDER_THICKNESS = 1;
     private int BORDER_FOCUS_THICKNESS = 2;
     
     private String placeholder;
-    private boolean showingPlaceholder;
+    private Color placeholderColor;
+	private boolean showingPlaceholder;
 
+	public TextFieldWhitPlaceholder() {
+		
+	}
+			
     public TextFieldWhitPlaceholder(String placeholder) {
         this.setPlaceholder(placeholder);
         this.showingPlaceholder = true;
-
+        this.borderFocusColor=DEFAULT_BORDER_FOCUS_COLOR;
+        this.placeholderColor=DEFAULT_PLACEHOLDER_COLOR;
+        		
         setFont(new Font("Tahoma", Font.PLAIN, 22));
-        setForeground(PLACEHOLDER_COLOR);
+        setForeground(placeholderColor);
         setText(placeholder);
         
         setRoundedBorder(BORDER_THICKNESS, BORDER_COLOR);
@@ -42,14 +50,14 @@ public class TextFieldWhitPlaceholder extends JTextField {
                     setForeground(TEXT_COLOR);
                     showingPlaceholder = false;
                 }
-                setRoundedBorder(BORDER_FOCUS_THICKNESS, BORDER_FOCUS_COLOR); // Bordo più spesso e colorato
+                setRoundedBorder(BORDER_FOCUS_THICKNESS, borderFocusColor); // Bordo più spesso e colorato
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 if (getText().isEmpty()) {
                     setText(placeholder);
-                    setForeground(PLACEHOLDER_COLOR);
+                    setForeground(placeholderColor);
                     showingPlaceholder = true;
                 }
                 setRoundedBorder(BORDER_THICKNESS, BORDER_COLOR); // Torna al bordo normale
@@ -69,7 +77,7 @@ public class TextFieldWhitPlaceholder extends JTextField {
             public void removeUpdate(DocumentEvent e) {
                 if (!showingPlaceholder && !isFocusOwner()) {
                     setText(placeholder);
-                    setForeground(PLACEHOLDER_COLOR);
+                    setForeground(placeholderColor);
                     showingPlaceholder = true;
                 }
             }
@@ -111,4 +119,23 @@ public class TextFieldWhitPlaceholder extends JTextField {
 	public void setPlaceholder(String placeholder) {
 		this.placeholder = placeholder;
 	}
+	
+	public void setBorderFocusColor(Color borderFocusColor) {
+		this.borderFocusColor=borderFocusColor;
+	}
+	public void setBorderFocusColorToDafault() {
+		this.borderFocusColor=DEFAULT_BORDER_FOCUS_COLOR;
+	}
+	public void setPlaceholderColor(Color placeholderColor) {
+		this.placeholderColor = placeholderColor;
+		 if (showingPlaceholder) {
+		        setForeground(placeholderColor); // Aggiorna il colore immediatamente
+		        repaint(); // Ridisegna il componente
+		 }
+	}
+	public void setPlaceholderColorToDefault() {
+		setPlaceholderColor(DEFAULT_PLACEHOLDER_COLOR);
+	}
+
+
 }

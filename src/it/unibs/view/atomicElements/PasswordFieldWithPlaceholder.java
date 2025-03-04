@@ -10,15 +10,20 @@ import java.awt.event.FocusListener;
 
 public class PasswordFieldWithPlaceholder extends JPasswordField {
     private String placeholder;
+	private Color DEFAULT_PLACEHOLDER_COLOR = Color.GRAY;
+    private Color placeholderColor;
     private boolean showingPlaceholder;
-    private Color BORDER_COLOR = Color.BLACK;    // Colore del bordo normale
-    private Color BORDER_FOCUS_COLOR = new Color(8, 102, 255); // Colore del bordo in focus
-    private int borderThickness = 1; // Spessore del bordo normale
-    private int borderFocusThickness = 2; // Spessore del bordo  in focus
+    private Color BORDER_COLOR = Color.BLACK;
+    private Color DEFAULT_BORDER_FOCUS_COLOR = new Color(8, 102, 255);
+    private Color borderFocusColor;
+    private int borderThickness = 1;
+    private int borderFocusThickness = 2;
     
     public PasswordFieldWithPlaceholder(String placeholder) {
         this.placeholder = placeholder;
         this.showingPlaceholder = true;
+        this.borderFocusColor=DEFAULT_BORDER_FOCUS_COLOR;
+        this.placeholderColor=DEFAULT_PLACEHOLDER_COLOR;
         
         setBorder(null);
         setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -26,7 +31,7 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
         // Inizialmente mostra il placeholder come testo normale
         setText(placeholder);
         setEchoChar((char) 0); // Non nascondere il testo del placeholder
-        setForeground(Color.GRAY);
+        setForeground(placeholderColor);
         setRoundedBorder(borderThickness, BORDER_COLOR);
         
         addFocusListener(new FocusListener() {
@@ -38,7 +43,7 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
                     setForeground(Color.BLACK);
                     showingPlaceholder = false;
                 }
-                setRoundedBorder(borderFocusThickness, BORDER_FOCUS_COLOR); // Bordo più spesso e colorato
+                setRoundedBorder(borderFocusThickness, borderFocusColor); // Bordo più spesso e colorato
             }
             
             @Override
@@ -46,7 +51,7 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
                 if (getPassword().length == 0) {
                     setText(placeholder);
                     setEchoChar((char) 0); // Rimuovi mascheramento
-                    setForeground(Color.GRAY);
+                    setForeground(placeholderColor);
                     showingPlaceholder = true;
                 }
                 setRoundedBorder(borderThickness, BORDER_COLOR); // Torna al bordo normale
@@ -69,7 +74,7 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
                 if (getPassword().length == 0 && !showingPlaceholder && !isFocusOwner()) {
                     setText(placeholder);
                     setEchoChar((char) 0);
-                    setForeground(Color.GRAY);
+                    setForeground(placeholderColor);
                     showingPlaceholder = true;
                 }
             }
@@ -113,6 +118,22 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
             return getPassword();
         }
     }
-    
+    public void setBorderFocusColor(Color borderFocusColor) {
+		this.borderFocusColor=borderFocusColor;
+	}
+	public void setBorderFocusColorToDafault() {
+		this.borderFocusColor=DEFAULT_BORDER_FOCUS_COLOR;
+	}
+	
+	public void setPlaceholderColor(Color placeholderColor) {
+		this.placeholderColor = placeholderColor;
+		 if (showingPlaceholder) {
+		        setForeground(placeholderColor); // Aggiorna il colore immediatamente
+		        repaint(); // Ridisegna il componente
+		 }
+	}
+	public void setPlaceholderColorToDefault() {
+		setPlaceholderColor(DEFAULT_PLACEHOLDER_COLOR);
+	}
 
 }

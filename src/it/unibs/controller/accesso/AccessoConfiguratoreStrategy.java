@@ -4,7 +4,7 @@ import it.unibs.domain.Configuratore;
 import it.unibs.domain.Utente;
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
-import it.unibs.view.console.ViewAccesso;
+import it.unibs.view.ViewAccesso;
 
 public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     
@@ -21,33 +21,38 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
 	 */
     @Override
     public void eseguiAccesso(ModelAccesso modelAccesso, ViewAccesso viewAccesso) {
-        viewAccesso.msgInserisciNome();
-        String nome = InputDati.leggiStringaNonVuota("").toLowerCase();
-        viewAccesso.msgInserisciPsw();
-        String password = InputDati.leggiStringaNonVuota("");
-
-        if (modelAccesso.controllaDefault(nome, password)) {
-            do {
-                viewAccesso.msgNuoveCredenziali();
-                viewAccesso.msgInserisciNome();
-                nome = InputDati.leggiStringaNonVuota("").toLowerCase();
-                viewAccesso.msgInserisciPsw();
-                password = InputDati.leggiStringaNonVuota("");
-            } while (!modelAccesso.credenzialiUnivoche(nome));
-
-            Utente user = new Configuratore(nome, password);
-            modelAccesso.salvaNewUser(nome, user);
-
-            viewAccesso.msgConfermaNewConfiguratore();
-        } else if (modelAccesso.controllaAccessoConfiguratore(nome, password)) {
-            modelAccesso.setUser(nome);
-            viewAccesso.msgAccessoEffettuato();
-        } else {
-            viewAccesso.msgCredenzialiErrate();
-            return;
-        }
-
-        modelAccesso.inizializzaConfiguratore();
+    	
+    	
+    	
+    	
+    	
+//        viewAccesso.msgInserisciNome();
+//        String nome = InputDati.leggiStringaNonVuota("").toLowerCase();
+//        viewAccesso.msgInserisciPsw();
+//        String password = InputDati.leggiStringaNonVuota("");
+//
+//        if (modelAccesso.controllaDefault(nome, password)) {
+//            do {
+//                viewAccesso.msgNuoveCredenziali();
+//                viewAccesso.msgInserisciNome();
+//                nome = InputDati.leggiStringaNonVuota("").toLowerCase();
+//                viewAccesso.msgInserisciPsw();
+//                password = InputDati.leggiStringaNonVuota("");
+//            } while (!modelAccesso.credenzialiUnivoche(nome));
+//
+//            Utente user = new Configuratore(nome, password);
+//            modelAccesso.salvaNewUser(nome, user);
+//
+//            viewAccesso.msgConfermaNewConfiguratore();
+//        } else if (modelAccesso.controllaAccessoConfiguratore(nome, password)) {
+//            modelAccesso.setUser(nome);
+//            viewAccesso.msgAccessoEffettuato();
+//        } else {
+//            viewAccesso.msgCredenzialiErrate();
+//            return;
+//        }
+//
+//        modelAccesso.inizializzaConfiguratore();
     }
 	
 }

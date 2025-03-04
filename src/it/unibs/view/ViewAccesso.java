@@ -12,10 +12,10 @@ import java.awt.event.ComponentEvent;
 public class ViewAccesso extends JPanel { 
     private RoundedPanel contentPanel;
     private JFrame frame;
-    
     private String typeUser;
     private TextFieldWhitPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
+    private boolean accessoFallito=false;
     public ViewAccesso(JFrame frame, String typeUser) {
         this.frame = frame;
         this.typeUser = typeUser;
@@ -67,7 +67,7 @@ public class ViewAccesso extends JPanel {
         frame.revalidate();
         frame.repaint();
     }
-    private boolean accessoFallito=false;
+   
     	
     private void aggiornaComponenti(int w, int h) {
         contentPanel.removeAll();
@@ -75,14 +75,23 @@ public class ViewAccesso extends JPanel {
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
-        String txtAccesso;
-        if(accessoFallito) {
-        	   
-        }
-        	
         
-        JLabel lblAccesso = new JLabel("Accesso "+typeUser);
-        lblAccesso.setForeground(new Color(43, 43, 43));
+        String txtAccesso;
+        Color colorTxtAccesso;
+        Color colorTxtPlaceholder;
+        if(accessoFallito) {
+        	txtAccesso="Accesso fallito,riprova:";
+        	colorTxtAccesso=Color.RED;
+        	colorTxtPlaceholder=Color.RED;
+        }
+        else {
+        	txtAccesso="Accesso "+typeUser;
+            colorTxtAccesso=new Color(43, 43, 43);
+            colorTxtPlaceholder=Color.GRAY;
+        }
+        
+        JLabel lblAccesso = new JLabel(txtAccesso);
+        lblAccesso.setForeground(colorTxtAccesso);
         lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
         Dimension size = lblAccesso.getPreferredSize();
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
@@ -92,13 +101,14 @@ public class ViewAccesso extends JPanel {
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
         userField.setBounds(contentWidth / 2 - 170, 150, 340, 60);
+        userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
  
         pswField = new PasswordFieldWithPlaceholder("Password");
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
         pswField.setBounds(contentWidth / 2 - 170, 250, 340, 60); 
-        pswField.setBackground(Color.WHITE);
+        pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
         Button btnAccedi = new Button("Accedi", new Color(8, 102, 255));
@@ -123,9 +133,11 @@ public class ViewAccesso extends JPanel {
         btnNuovoUtente.setForeground(Color.white);
         contentPanel.add(btnNuovoUtente);
         
-       
         revalidate();
         repaint();
+    }
+    public void setAccessoFallito() {
+    	this.accessoFallito=true;
     }
     
     private void accedi(ActionEvent e) {
