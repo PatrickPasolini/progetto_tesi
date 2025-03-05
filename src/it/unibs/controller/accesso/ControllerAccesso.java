@@ -1,6 +1,5 @@
 package it.unibs.controller.accesso;
 
-import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFrame;
@@ -26,45 +25,26 @@ public class ControllerAccesso implements Controller {
     private void inizializzaStrategieAccesso() {
         strategieAccesso.put(1, new AccessoConfiguratoreStrategy());
         strategieAccesso.put(2, new AccessoFruitoreNuovoStrategy());
-        strategieAccesso.put(3, new AccessoFruitoreEsistenteStrategy());
+        strategieAccesso.put(3, new AccessoFruitoreStrategy());
     }
 
     public void run() {
-	   StartView startView = new StartView(frame);
-	   frame.getContentPane().add(startView);
-	   startView.setLayout(null);
-	   startView.setButtonListeners(this::accessoConfiguratore, this::accessoFruitore);
-	   
-	   
-	   //gestione delle strategy
-    }
-    
-    ViewAccesso viewAccesso;
-//TODO GESTIRE MEGLIO LE TIPOLOGIE DI ACCESSO, C'É ANCHE RIDONDANZA NEI DUE METODI 
-    private void accessoConfiguratore(ActionEvent e) {
-        viewAccesso = new ViewAccesso(frame,"Configuratore");
-		frame.getContentPane().add(viewAccesso);
-		viewAccesso.setLayout(null);
-//		viewAccesso.setButtonListeners();
-		viewAccesso.setButtonListeners(this::controlloAccesso);
-
-      
-    }
-    private void controlloAccesso(ActionEvent e) {
-    	String username=viewAccesso.getUsername();
-    	String password=viewAccesso.getPassword();
-    	boolean x=modelAccesso.controllaAccesso(username, password);
-    	System.out.println(x);
-    	if(x)
-    		viewAccesso.setAccessoEseguito();
-    	else
-    		viewAccesso.setAccessoFallito();
+        StartView startView = new StartView(frame);
+        frame.getContentPane().add(startView);
+        startView.setLayout(null);
+        startView.setButtonListeners(e -> mostraSchermataAccesso(1), 
+                                     e -> mostraSchermataAccesso(2));
     }
 
-    private void accessoFruitore(ActionEvent e) {
-        viewAccesso = new ViewAccesso(frame,"Fruitore");
-		frame.getContentPane().add(viewAccesso);
-		viewAccesso.setLayout(null);
-		viewAccesso.setButtonListeners(this::controlloAccesso);
+    private void mostraSchermataAccesso(int tipoAccesso) {
+        String nomeAccesso = tipoAccesso == 1 ? "Configuratore" : "Fruitore";
+        ViewAccesso viewAccesso = new ViewAccesso(frame, nomeAccesso);
+        frame.getContentPane().add(viewAccesso);
+        viewAccesso.setLayout(null);
+
+        StrategyAccesso strategy = strategieAccesso.get(tipoAccesso);
+        if (strategy != null) {
+            viewAccesso.setButtonListeners(e -> strategy.eseguiAccesso(modelAccesso, viewAccesso));
+        }
     }
 }

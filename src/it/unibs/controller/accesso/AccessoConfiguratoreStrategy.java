@@ -1,9 +1,6 @@
 package it.unibs.controller.accesso;
 
-import it.unibs.domain.Configuratore;
-import it.unibs.domain.Utente;
 import it.unibs.model.ModelAccesso;
-import it.unibs.mylib.InputDati;
 import it.unibs.view.ViewAccesso;
 
 public class AccessoConfiguratoreStrategy implements StrategyAccesso {
@@ -11,19 +8,21 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
 	public AccessoConfiguratoreStrategy() {
 		
     }
-
-	/**
-	 * Metodo per l'accesso del configuratore
-	 * se effettuato con le credenaziali predefinite chiede il cambiamento delle credenziali(nome,password)
-	 * Con accesso corretto o nuove credenziali si assegna a user il Configuratore
-	 * @return 1 se accesso confermato, 0 accesso negato
-	 * @since 2
-	 */
+	
     @Override
     public void eseguiAccesso(ModelAccesso modelAccesso, ViewAccesso viewAccesso) {
     	
-    	
-    	
+    	String username=viewAccesso.getUsername().toLowerCase();
+    	String password=viewAccesso.getPassword();
+    	boolean x=modelAccesso.controllaAccessoConfiguratore(username, password);
+    	System.out.println(x);
+    	if(x) {
+    		viewAccesso.setAccessoEseguito();
+    		modelAccesso.setUser(username);
+    		modelAccesso.inizializzaConfiguratore();
+    	}
+    	else
+    		viewAccesso.setAccessoFallito();
     	
     	
 //        viewAccesso.msgInserisciNome();
@@ -54,6 +53,5 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
 //
 //        modelAccesso.inizializzaConfiguratore();
     }
-	
 }
 
