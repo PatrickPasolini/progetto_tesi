@@ -9,13 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.SwingUtilities;
 
 public class ViewAccesso extends BaseView { 
   
     private String typeUser;
-    
-    
-   
     
     private boolean accessoFallito=false;
     
@@ -50,11 +48,13 @@ public class ViewAccesso extends BaseView {
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
-        
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
         if(accessoFallito) {
         	txtAccesso="Accesso fallito,riprova:";
+        	// Rimuovere queste righe da qui
+        	// userField.setText("");
+        	// pswField.setText("");
         	colorTxtAccesso=Color.RED;
         	colorTxtPlaceholder=Color.RED;
         }
@@ -64,7 +64,7 @@ public class ViewAccesso extends BaseView {
             colorTxtPlaceholder=Color.GRAY;
         }
         
-        
+        lblAccesso.setText(txtAccesso);
         lblAccesso.setForeground(colorTxtAccesso);
         lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
         Dimension size = lblAccesso.getPreferredSize();
@@ -77,14 +77,12 @@ public class ViewAccesso extends BaseView {
         userField.setBounds(contentWidth / 2 - 170, 150, 340, 60);
         userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
- 
        
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
         pswField.setBounds(contentWidth / 2 - 170, 250, 340, 60); 
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
-        
         
         btnAccedi.setBorder(null);
         btnAccedi.setMargin(new Insets(0, 10, 0, 0));
@@ -101,7 +99,6 @@ public class ViewAccesso extends BaseView {
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
-       
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
         btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -114,13 +111,21 @@ public class ViewAccesso extends BaseView {
     }
     
     public void setAccessoFallito() {
-    	this.accessoFallito=true;
-    	aggiornaComponenti(frame.getWidth(), frame.getHeight());
+        this.accessoFallito = true;
+        
+        // Utilizzare invokeLater per modificare i campi di testo in modo sicuro
+        SwingUtilities.invokeLater(() -> {
+            userField.setText("");
+            pswField.setText("");
+            aggiornaComponenti(frame.getWidth(), frame.getHeight());
+            
+        });
     }
     
     //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
     public void setAccessoEseguito() {
     	this.accessoFallito=false;
+    	KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
    
@@ -143,5 +148,4 @@ public class ViewAccesso extends BaseView {
     public String getPassword() {
     	return pswField.getText();
     }
-
 }

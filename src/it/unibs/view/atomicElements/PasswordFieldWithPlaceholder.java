@@ -68,16 +68,19 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
                     showingPlaceholder = false;
                 }
             }
-            
+            //invokeLater per evitare modifiche contemporanee del contenuto, facendo setText("") 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if (getPassword().length == 0 && !showingPlaceholder && !isFocusOwner()) {
-                    setText(placeholder);
-                    setEchoChar((char) 0);
-                    setForeground(placeholderColor);
-                    showingPlaceholder = true;
+                if (!showingPlaceholder && !isFocusOwner()) {
+                    SwingUtilities.invokeLater(() -> {
+                        setText(placeholder);
+                        setEchoChar((char) 0); // Rimuove i pallini
+                        setForeground(placeholderColor);
+                        showingPlaceholder = true;
+                    });
                 }
             }
+
             
             @Override
             public void changedUpdate(DocumentEvent e) {

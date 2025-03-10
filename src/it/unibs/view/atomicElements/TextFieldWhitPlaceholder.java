@@ -72,15 +72,18 @@ public class TextFieldWhitPlaceholder extends JTextField {
                     showingPlaceholder = false;
                 }
             }
-
+            //invokeLater per evitare modifiche contemporanee del contenuto, facendo setText("") 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 if (!showingPlaceholder && !isFocusOwner()) {
-                    setText(placeholder);
-                    setForeground(placeholderColor);
-                    showingPlaceholder = true;
+                    SwingUtilities.invokeLater(() -> {
+                        setText(placeholder);
+                        setForeground(placeholderColor);
+                        showingPlaceholder = true;
+                    });
                 }
             }
+
 
             @Override
             public void changedUpdate(DocumentEvent e) {
