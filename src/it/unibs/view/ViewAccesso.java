@@ -10,79 +10,47 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class ViewAccesso extends JPanel { 
+public class ViewAccesso extends BaseView { 
   
-    private JFrame frame;
     private String typeUser;
-    private RoundedPanel contentPanel;
+    
+    
+   
+    
+    private boolean accessoFallito=false;
+    
+    public ViewAccesso(JFrame frame, String typeUser) {
+        super(frame);
+        this.typeUser = typeUser;
+        inizializzaComponenti();
+        aggiornaComponenti(frame.getWidth(), frame.getHeight());
+    }
+    
+    private String txtAccesso;
+    private JLabel lblAccesso;
     private TextFieldWhitPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
     private Button btnAccedi;
     private Button btnNuovoUtente;
     
-    private boolean accessoFallito=false;
-    
-    public ViewAccesso(JFrame frame, String typeUser) {
-        this.frame = frame;
-        this.typeUser = typeUser;
-        
-        frame.getContentPane().removeAll();// Rimuove il contenuto attuale del frame 
-        
-        setBackground(SystemColor.windowBorder);
-        int w = frame.getWidth();
-        int h = frame.getHeight();
-        this.setBounds(0, 0, w, h);
-        this.setBackground(new Color(207, 207, 207)); //43,43,43
-        setLayout(null);
-        
-        contentPanel = new RoundedPanel(20,false);
-        contentPanel.setLayout(null);
-        contentPanel.setBackground(new Color(230, 230, 230));
-        
-        // Calcola le dimensioni e la posizione del pannello interno
-        int contentWidth = Math.min(600, w - 100);
-        int contentHeight = Math.min(650, h - 100);
-        int x = (w - contentWidth) / 2;
-        int y = (h - contentHeight) / 2-20;
-        contentPanel.setBounds(x, y, contentWidth, contentHeight);
-        
-        add(contentPanel);
-        
-        aggiornaComponenti(w, h);
-        
-        // Aggiungi un listener per il ridimensionamento
-        frame.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                int w = frame.getWidth();
-                int h = frame.getHeight();
-                setBounds(0, 0, w, h);
-                
-                // Aggiorna la posizione e dimensione del pannello interno
-                int contentWidth = Math.min(500, w - 100);
-                int contentHeight = Math.min(550, h - 100);
-                int x = (w - contentWidth) / 2;
-                int y = (h - contentHeight) / 2;
-                contentPanel.setBounds(x, y, contentWidth, contentHeight);
-                
-                aggiornaComponenti(w, h);
-            }
-        });
-        
-        frame.getContentPane().add(this); // Aggiunge la nuova schermata
-        frame.revalidate();
-        frame.repaint();
+    protected void inizializzaComponenti() {
+    	txtAccesso="Accesso "+typeUser;
+    	lblAccesso = new JLabel(txtAccesso);
+    	userField = new TextFieldWhitPlaceholder("Username");
+    	pswField = new PasswordFieldWithPlaceholder("Password");
+    	btnAccedi = new Button("Accedi", new Color(8, 102, 255));
+    	btnNuovoUtente = new Button("Crea nuovo "+typeUser, new Color(54, 164, 32));
     }
    
-    	
-    private void aggiornaComponenti(int w, int h) {
+    @Override
+	protected void aggiornaComponenti(int w, int h) {
         contentPanel.removeAll();
         
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
-        String txtAccesso;
+        
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
         if(accessoFallito) {
@@ -96,28 +64,28 @@ public class ViewAccesso extends JPanel {
             colorTxtPlaceholder=Color.GRAY;
         }
         
-        JLabel lblAccesso = new JLabel(txtAccesso);
+        
         lblAccesso.setForeground(colorTxtAccesso);
         lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
         Dimension size = lblAccesso.getPreferredSize();
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblAccesso);
         
-        userField = new TextFieldWhitPlaceholder("Username");
+        
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
         userField.setBounds(contentWidth / 2 - 170, 150, 340, 60);
         userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
  
-        pswField = new PasswordFieldWithPlaceholder("Password");
+       
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
         pswField.setBounds(contentWidth / 2 - 170, 250, 340, 60); 
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
-        btnAccedi = new Button("Accedi", new Color(8, 102, 255));
+        
         btnAccedi.setBorder(null);
         btnAccedi.setMargin(new Insets(0, 10, 0, 0));
         btnAccedi.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -133,7 +101,7 @@ public class ViewAccesso extends JPanel {
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
-        btnNuovoUtente = new Button("Crea nuovo "+typeUser, new Color(54, 164, 32));
+       
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
         btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -175,4 +143,5 @@ public class ViewAccesso extends JPanel {
     public String getPassword() {
     	return pswField.getText();
     }
+
 }

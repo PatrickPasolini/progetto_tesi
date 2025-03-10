@@ -16,58 +16,17 @@ import javax.swing.JPanel;
 import it.unibs.view.atomicElements.Button;
 import it.unibs.view.atomicElements.RoundedPanel;
 
-public class ViewStart extends JPanel {
-    private RoundedPanel contentPanel;
+public class ViewStart extends BaseView {
     private Button btnConfiguratore;
     private Button btnFruitore;
-    private JFrame frame;
     
     public ViewStart(JFrame frame) {
-    	this.frame=frame;
-    	inizializzaStartView();
+    	super(frame);
     }
+    protected void inizializzaComponenti() {}
     
-    private void inizializzaStartView() {
-        int w = frame.getWidth();
-        int h = frame.getHeight();
-        this.setBounds(0, 0, w, h);
-        this.setBackground(new Color(207, 207, 207));
-        setLayout(null);
-
-        int contentWidth = Math.min(600, w - 100);
-        int contentHeight = Math.min(650, h - 100);
-        int x = (w - contentWidth) / 2;
-        int y = (h - contentHeight) / 2;
-        
-        contentPanel = new RoundedPanel(20, false);
-        contentPanel.setLayout(null);
-        contentPanel.setBackground(new Color(230, 230, 230));
-        contentPanel.setBounds(x, y, contentWidth, contentHeight);
-       
-
-        aggiornaComponenti(w, h);
-        frame.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                int w = frame.getWidth();
-                int h = frame.getHeight();
-                setBounds(0, 0, w, h);
-                
-                // Aggiorna la posizione e dimensione del pannello interno
-                int contentWidth = Math.min(500, w - 100);
-                int contentHeight = Math.min(550, h - 100);
-                int x = (w - contentWidth) / 2;
-                int y = (h - contentHeight) / 2;
-                contentPanel.setBounds(x, y, contentWidth, contentHeight);
-                
-                aggiornaComponenti(w, h);
-            }
-        });
-        
-        add(contentPanel);
-    }
-
-    private void aggiornaComponenti(int w, int h) {
+    @Override
+    protected void aggiornaComponenti(int w, int h) {
         contentPanel.removeAll();
         
         int contentWidth = contentPanel.getWidth();
@@ -110,4 +69,5 @@ public class ViewStart extends JPanel {
         btnConfiguratore.addActionListener(configuratoreListener);
         btnFruitore.addActionListener(fruitoreListener);
     }
+
 }
