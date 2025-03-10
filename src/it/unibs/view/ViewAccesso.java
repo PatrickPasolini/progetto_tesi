@@ -3,25 +3,25 @@ package it.unibs.view;
 import java.awt.*;
 import javax.swing.*;
 import it.unibs.view.atomicElements.*;
-import it.unibs.view.atomicElements.Button;
 import java.awt.event.ActionListener;
 
 public class ViewAccesso extends BaseView { 
-  
+	private static final long serialVersionUID = 1L;
+	
 	private String txtAccesso;
     private JLabel lblAccesso;
     private TextFieldWhitPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
-    private Button btnAccedi;
-    private Button btnNuovoUtente;
-	
+    private RoundedButton btnAccedi;
+    private RoundedButton btnNuovoUtente;
+    private ActionListener btnAccediListener;//da salvare fuori dal metodo perche' perderei il riferimento ridisegnando il contentPanel2
+    
     private String typeUser;
     private boolean accessoFallito=false;
     
     public ViewAccesso(JFrame frame, String typeUser) {
         super(frame);
         this.typeUser = typeUser;
-        inizializzaComponenti();
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
     
@@ -29,8 +29,8 @@ public class ViewAccesso extends BaseView {
     	lblAccesso = new JLabel();
     	userField = new TextFieldWhitPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
-    	btnAccedi = new Button("Accedi", new Color(8, 102, 255));
-    	btnNuovoUtente = new Button("Crea nuovo "+typeUser, new Color(54, 164, 32));
+    	btnAccedi = new RoundedButton("Accedi", new Color(8, 102, 255));
+    	btnNuovoUtente = new RoundedButton("Crea nuovo "+typeUser, new Color(54, 164, 32));
     }
    
     @Override
@@ -88,6 +88,7 @@ public class ViewAccesso extends BaseView {
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
+        btnNuovoUtente.setText("Crea nuovo "+typeUser);
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
         btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -115,7 +116,6 @@ public class ViewAccesso extends BaseView {
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
    
-    private ActionListener btnAccediListener;//da salvare fuori dal metodo perche' perderei il riferimento ridisegnando il contentPanel2
     
     public void setButtonListeners(ActionListener accediListener, ActionListener registrazioneListener) {
         this.btnAccediListener = accediListener; // Salviamo il listener per il login
@@ -131,7 +131,9 @@ public class ViewAccesso extends BaseView {
     public String getUsername() {
     	return userField.getText();
     }
-    public String getPassword() {
+    
+    @SuppressWarnings("deprecation")
+	public String getPassword() {
     	return pswField.getText();
     }
 }

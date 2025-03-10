@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class Button extends JButton {
+public class RoundedButton extends JButton {
 	 public Color getEffectColor() {
 	        return effectColor;
 	    }
@@ -32,7 +32,7 @@ public class Button extends JButton {
 	    private float alpha;
 	    private Color effectColor = new Color(255, 255, 255);
 
-	    public Button(String btnText,Color defaultColor) {
+	    public RoundedButton(String btnText,Color defaultColor) {
 	        super(btnText);
 	        setHorizontalAlignment(SwingConstants.CENTER);
 	        setContentAreaFilled(false);

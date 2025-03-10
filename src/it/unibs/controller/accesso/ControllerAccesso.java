@@ -8,6 +8,7 @@ import it.unibs.controller.Controller;
 import it.unibs.model.ModelAccesso;
 import it.unibs.view.ViewStart;
 import it.unibs.view.ViewAccesso;
+import it.unibs.view.ViewNewFruitore;
 
 public class ControllerAccesso implements Controller {
     private ModelAccesso modelAccesso;
@@ -66,7 +67,10 @@ public class ControllerAccesso implements Controller {
         viewAccesso.setButtonListeners(this::controlloAccesso, this::registrazioneFruitore);
     }
     private void registrazioneFruitore(ActionEvent e) {
-        scelta = 4;
+        ViewNewFruitore viewNewFruitore = new ViewNewFruitore(frame);
+        frame.getContentPane().add(viewNewFruitore);
+        viewNewFruitore.setLayout(null);
+    	scelta = 4;
         controlloAccesso(e);
     }
 }

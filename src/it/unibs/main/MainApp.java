@@ -1,14 +1,10 @@
 package it.unibs.main;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.*;
 import javax.swing.JFrame;
 
 import it.unibs.controller.accesso.ControllerAccesso;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.ViewAccesso;
-
 
 public class MainApp {
 

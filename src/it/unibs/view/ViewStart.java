@@ -1,24 +1,16 @@
 package it.unibs.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.SystemColor;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import it.unibs.view.atomicElements.Button;
-import it.unibs.view.atomicElements.RoundedPanel;
+import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewStart extends BaseView {
-    private Button btnConfiguratore;
-    private Button btnFruitore;
+	private static final long serialVersionUID = 1L;
+	private RoundedButton btnConfiguratore;
+    private RoundedButton btnFruitore;
     private JLabel lblAccesso;
     
     public ViewStart(JFrame frame) {
@@ -26,8 +18,8 @@ public class ViewStart extends BaseView {
     }
     protected void inizializzaComponenti() {
     	lblAccesso = new JLabel("Accedi come:");
-    	btnConfiguratore = new Button("Configuratore", new Color(8, 102, 255));
-    	btnFruitore = new Button("Fruitore", new Color(8, 102, 255));
+    	btnConfiguratore = new RoundedButton("Configuratore", new Color(8, 102, 255));
+    	btnFruitore = new RoundedButton("Fruitore", new Color(8, 102, 255));
     }
     
     @Override

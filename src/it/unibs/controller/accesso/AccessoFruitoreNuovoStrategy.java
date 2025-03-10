@@ -1,6 +1,5 @@
 package it.unibs.controller.accesso;
 
-import it.unibs.controller.GestoreComprensoriAccesso;
 import it.unibs.domain.Comprensorio;
 import it.unibs.domain.Fruitore;
 import it.unibs.domain.Utente;

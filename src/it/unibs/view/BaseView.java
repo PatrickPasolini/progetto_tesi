@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import it.unibs.view.atomicElements.RoundedPanel;
 
 public abstract class BaseView extends JPanel {
+	private static final long serialVersionUID = 1L;
 	protected JFrame frame;
 	protected RoundedPanel contentPanel;
     
