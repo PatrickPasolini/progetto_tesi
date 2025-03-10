@@ -11,13 +11,17 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class ViewAccesso extends JPanel { 
-    private RoundedPanel contentPanel;
+  
     private JFrame frame;
     private String typeUser;
+    private RoundedPanel contentPanel;
     private TextFieldWhitPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
     private Button btnAccedi;
+    private Button btnNuovoUtente;
+    
     private boolean accessoFallito=false;
+    
     public ViewAccesso(JFrame frame, String typeUser) {
         this.frame = frame;
         this.typeUser = typeUser;
@@ -129,7 +133,7 @@ public class ViewAccesso extends JPanel {
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
-        Button btnNuovoUtente = new Button("Crea nuovo "+typeUser, new Color(54, 164, 32));
+        btnNuovoUtente = new Button("Crea nuovo "+typeUser, new Color(54, 164, 32));
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
         btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -141,23 +145,27 @@ public class ViewAccesso extends JPanel {
         repaint();
     }
     
-    
     public void setAccessoFallito() {
     	this.accessoFallito=true;
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
+    
     //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
     public void setAccessoEseguito() {
     	this.accessoFallito=false;
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
    
-    private ActionListener btnAccediListener;//da salvare fuori dal metodo perche' perderei il riferimento ridisegnando il contentPanel
+    private ActionListener btnAccediListener;//da salvare fuori dal metodo perche' perderei il riferimento ridisegnando il contentPanel2
     
-    public void setButtonListeners(ActionListener accediListener) {
-        this.btnAccediListener = accediListener; // Salviamo il listener
+    public void setButtonListeners(ActionListener accediListener, ActionListener registrazioneListener) {
+        this.btnAccediListener = accediListener; // Salviamo il listener per il login
         if (btnAccedi != null) {
-            btnAccedi.addActionListener(accediListener); // Se il pulsante esiste già, lo riaggiungiamo
+            btnAccedi.addActionListener(accediListener); // Riaggiungiamo il listener
+        }
+
+        if (btnNuovoUtente != null) {
+            btnNuovoUtente.addActionListener(registrazioneListener); // Riaggiungiamo il listener
         }
     }
 

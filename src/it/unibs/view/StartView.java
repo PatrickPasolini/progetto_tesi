@@ -7,6 +7,9 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,10 +43,28 @@ public class StartView extends JPanel {
         contentPanel.setLayout(null);
         contentPanel.setBackground(new Color(230, 230, 230));
         contentPanel.setBounds(x, y, contentWidth, contentHeight);
-
-        add(contentPanel);
+       
 
         aggiornaComponenti(w, h);
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int w = frame.getWidth();
+                int h = frame.getHeight();
+                setBounds(0, 0, w, h);
+                
+                // Aggiorna la posizione e dimensione del pannello interno
+                int contentWidth = Math.min(500, w - 100);
+                int contentHeight = Math.min(550, h - 100);
+                int x = (w - contentWidth) / 2;
+                int y = (h - contentHeight) / 2;
+                contentPanel.setBounds(x, y, contentWidth, contentHeight);
+                
+                aggiornaComponenti(w, h);
+            }
+        });
+        
+        add(contentPanel);
     }
 
     private void aggiornaComponenti(int w, int h) {
@@ -58,22 +79,31 @@ public class StartView extends JPanel {
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblAccesso);
 
-        btnConfiguratore = new Button("Configuratore", new Color(8, 102, 255));
-        btnConfiguratore.setBorder(null);
-        btnConfiguratore.setMargin(new Insets(0, 10, 0, 0));
-        btnConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 20));
+        
+        if (btnConfiguratore == null) {
+            btnConfiguratore = new Button("Configuratore", new Color(8, 102, 255));
+            btnConfiguratore.setBorder(null);
+            btnConfiguratore.setMargin(new Insets(0, 10, 0, 0));
+            btnConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 20));
+            btnConfiguratore.setForeground(Color.WHITE);
+        }
         btnConfiguratore.setBounds(contentWidth / 2 - 170, 150, 340, 100);
-        btnConfiguratore.setForeground(Color.WHITE);
         contentPanel.add(btnConfiguratore);
 
-        btnFruitore = new Button("Fruitore", new Color(8, 102, 255));
-        btnFruitore.setBorder(null);
-        btnFruitore.setMargin(new Insets(0, 10, 0, 0));
-        btnFruitore.setFont(new Font("Tahoma", Font.BOLD, 20));
+        if (btnFruitore == null) {
+            btnFruitore = new Button("Fruitore", new Color(8, 102, 255));
+            btnFruitore.setBorder(null);
+            btnFruitore.setMargin(new Insets(0, 10, 0, 0));
+            btnFruitore.setFont(new Font("Tahoma", Font.BOLD, 20));
+            btnFruitore.setForeground(Color.WHITE);
+        }
         btnFruitore.setBounds(contentWidth / 2 - 170, 300, 340, 100);
-        btnFruitore.setForeground(Color.WHITE);
         contentPanel.add(btnFruitore);
+
+        contentPanel.revalidate();
+        contentPanel.repaint();
     }
+
 
     // Metodo per collegare i bottoni al controller
     public void setButtonListeners(ActionListener configuratoreListener, ActionListener fruitoreListener) {
