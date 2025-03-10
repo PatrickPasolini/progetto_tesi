@@ -19,7 +19,6 @@ public abstract class BaseView extends JPanel {
 		inizializzaBaseView();
 	}
 	
-	
 	private void inizializzaBaseView() {
 			frame.getContentPane().removeAll();
 			frame.getContentPane().revalidate();

@@ -1,20 +1,21 @@
 package it.unibs.view;
+
 import java.awt.*;
 import javax.swing.*;
-
 import it.unibs.view.atomicElements.*;
 import it.unibs.view.atomicElements.Button;
-
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import javax.swing.SwingUtilities;
 
 public class ViewAccesso extends BaseView { 
   
+	private String txtAccesso;
+    private JLabel lblAccesso;
+    private TextFieldWhitPlaceholder userField;
+    private PasswordFieldWithPlaceholder pswField;
+    private Button btnAccedi;
+    private Button btnNuovoUtente;
+	
     private String typeUser;
-    
     private boolean accessoFallito=false;
     
     public ViewAccesso(JFrame frame, String typeUser) {
@@ -24,16 +25,8 @@ public class ViewAccesso extends BaseView {
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
     
-    private String txtAccesso;
-    private JLabel lblAccesso;
-    private TextFieldWhitPlaceholder userField;
-    private PasswordFieldWithPlaceholder pswField;
-    private Button btnAccedi;
-    private Button btnNuovoUtente;
-    
     protected void inizializzaComponenti() {
-    	txtAccesso="Accesso "+typeUser;
-    	lblAccesso = new JLabel(txtAccesso);
+    	lblAccesso = new JLabel();
     	userField = new TextFieldWhitPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
     	btnAccedi = new Button("Accedi", new Color(8, 102, 255));
@@ -46,15 +39,12 @@ public class ViewAccesso extends BaseView {
         
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
+//        int contentHeight = contentPanel.getHeight();
         
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
         if(accessoFallito) {
         	txtAccesso="Accesso fallito,riprova:";
-        	// Rimuovere queste righe da qui
-        	// userField.setText("");
-        	// pswField.setText("");
         	colorTxtAccesso=Color.RED;
         	colorTxtPlaceholder=Color.RED;
         }
@@ -70,7 +60,6 @@ public class ViewAccesso extends BaseView {
         Dimension size = lblAccesso.getPreferredSize();
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblAccesso);
-        
         
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
@@ -112,20 +101,17 @@ public class ViewAccesso extends BaseView {
     
     public void setAccessoFallito() {
         this.accessoFallito = true;
-        
-        // Utilizzare invokeLater per modificare i campi di testo in modo sicuro
-        SwingUtilities.invokeLater(() -> {
-            userField.setText("");
-            pswField.setText("");
-            aggiornaComponenti(frame.getWidth(), frame.getHeight());
-            
-        });
+        userField.setText("");
+        pswField.setText("");
+        aggiornaComponenti(frame.getWidth(), frame.getHeight());
+
+        // Sposta il focus sul pannello per permettere al placeholder di ricomparire
+        contentPanel.requestFocusInWindow();
     }
     
     //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
     public void setAccessoEseguito() {
     	this.accessoFallito=false;
-    	KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
    

@@ -77,6 +77,7 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
                         setEchoChar((char) 0); // Rimuove i pallini
                         setForeground(placeholderColor);
                         showingPlaceholder = true;
+                        
                     });
                 }
             }

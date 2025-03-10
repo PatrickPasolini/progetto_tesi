@@ -80,6 +80,7 @@ public class TextFieldWhitPlaceholder extends JTextField {
                         setText(placeholder);
                         setForeground(placeholderColor);
                         showingPlaceholder = true;
+                        
                     });
                 }
             }
