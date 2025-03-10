@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JFrame;
 import it.unibs.controller.Controller;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.StartView;
+import it.unibs.view.ViewStart;
 import it.unibs.view.ViewAccesso;
 
 public class ControllerAccesso implements Controller {
@@ -33,7 +33,7 @@ public class ControllerAccesso implements Controller {
     }
 
     public void run() {
-        StartView startView = new StartView(frame);
+        ViewStart startView = new ViewStart(frame);
         frame.getContentPane().add(startView);
         startView.setLayout(null);
         startView.setButtonListeners(this::accessoConfiguratore,this::accessoFruitore);

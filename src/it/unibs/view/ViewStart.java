@@ -16,13 +16,13 @@ import javax.swing.JPanel;
 import it.unibs.view.atomicElements.Button;
 import it.unibs.view.atomicElements.RoundedPanel;
 
-public class StartView extends JPanel {
+public class ViewStart extends JPanel {
     private RoundedPanel contentPanel;
     private Button btnConfiguratore;
     private Button btnFruitore;
     private JFrame frame;
     
-    public StartView(JFrame frame) {
+    public ViewStart(JFrame frame) {
     	this.frame=frame;
     	inizializzaStartView();
     }
