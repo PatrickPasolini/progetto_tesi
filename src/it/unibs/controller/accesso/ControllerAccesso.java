@@ -1,5 +1,6 @@
 package it.unibs.controller.accesso;
 
+import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFrame;
@@ -12,7 +13,9 @@ public class ControllerAccesso implements Controller {
     private ModelAccesso modelAccesso;
     private JFrame frame;
     private Map<Integer, StrategyAccesso> strategieAccesso = new HashMap<>();
-
+    private ViewAccesso viewAccesso;
+    private int scelta;
+    
     public ControllerAccesso(ModelAccesso modelAccesso) {
         this.modelAccesso = modelAccesso;
         inizializzaStrategieAccesso();
@@ -24,27 +27,46 @@ public class ControllerAccesso implements Controller {
 
     private void inizializzaStrategieAccesso() {
         strategieAccesso.put(1, new AccessoConfiguratoreStrategy());
-        strategieAccesso.put(2, new AccessoFruitoreNuovoStrategy());
+        strategieAccesso.put(2, new AccessoConfiguratoreNuovoStrategy());
         strategieAccesso.put(3, new AccessoFruitoreStrategy());
+        strategieAccesso.put(4, new AccessoFruitoreNuovoStrategy());
     }
 
     public void run() {
         StartView startView = new StartView(frame);
         frame.getContentPane().add(startView);
         startView.setLayout(null);
-        startView.setButtonListeners(e -> mostraSchermataAccesso(1), 
-                                     e -> mostraSchermataAccesso(2));
+        startView.setButtonListeners(this::accessoConfiguratore,this::accessoFruitore);
     }
-
-    private void mostraSchermataAccesso(int tipoAccesso) {
-        String nomeAccesso = tipoAccesso == 1 ? "Configuratore" : "Fruitore";
-        ViewAccesso viewAccesso = new ViewAccesso(frame, nomeAccesso);
+    
+    private void controlloAccesso(ActionEvent e) {
+        StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
+        if (strategyAccesso != null) {
+            strategyAccesso.eseguiAccesso(modelAccesso, viewAccesso);
+        }
+    }
+    
+    private void accessoConfiguratore(ActionEvent e) {
+        viewAccesso = new ViewAccesso(frame, "Configuratore");
         frame.getContentPane().add(viewAccesso);
         viewAccesso.setLayout(null);
+        scelta = 1;
+        viewAccesso.setButtonListeners(this::controlloAccesso, this::registrazioneConfiguratore);
+    }
+    private void registrazioneConfiguratore(ActionEvent e) {
+        scelta = 2;
+        controlloAccesso(e);
+    }
 
-        StrategyAccesso strategy = strategieAccesso.get(tipoAccesso);
-        if (strategy != null) {
-            viewAccesso.setButtonListeners(e -> strategy.eseguiAccesso(modelAccesso, viewAccesso));
-        }
+    private void accessoFruitore(ActionEvent e) {
+        viewAccesso = new ViewAccesso(frame, "Fruitore");
+        frame.getContentPane().add(viewAccesso);
+        viewAccesso.setLayout(null);
+        scelta = 3;
+        viewAccesso.setButtonListeners(this::controlloAccesso, this::registrazioneFruitore);
+    }
+    private void registrazioneFruitore(ActionEvent e) {
+        scelta = 4;
+        controlloAccesso(e);
     }
 }
