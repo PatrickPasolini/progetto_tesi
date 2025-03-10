@@ -5,13 +5,18 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import it.unibs.domain.Comprensorio;
 import it.unibs.view.atomicElements.PasswordFieldWithPlaceholder;
 import it.unibs.view.atomicElements.RoundedButton;
-import it.unibs.view.atomicElements.TextFieldWhitPlaceholder;
+import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 
 public class ViewNewFruitore extends BaseView{
 	private static final long serialVersionUID = 1L;
@@ -19,23 +24,33 @@ public class ViewNewFruitore extends BaseView{
 	private ActionListener btnAccediListener;
 	private String txtAccesso;
     private JLabel lblAccesso;
-    private TextFieldWhitPlaceholder userField;
+    private TextFieldWithPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
+    private TextFieldWithPlaceholder emailField;
     private RoundedButton btnCreazioneFruitore;
+    private JComboBox<String> cmbComprensori;
     private boolean creazioneUtenteFallita=false;
+    private String[] nomiComprensori;
     
-	public ViewNewFruitore(JFrame frame) {
+	public ViewNewFruitore(JFrame frame,String[] nomiComprensori) {
 		super(frame);
 		this.typeUser = "Fruitore";
+		this.nomiComprensori=nomiComprensori;
+		inizializzaComponenti();
 		aggiornaComponenti(frame.getWidth(), frame.getHeight());
 	}
 
 	@Override
 	protected void inizializzaComponenti() {
 		lblAccesso = new JLabel();
-    	userField = new TextFieldWhitPlaceholder("Username");
+    	userField = new TextFieldWithPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
-    	btnCreazioneFruitore = new RoundedButton("Accedi", new Color(8, 102, 255));
+    	emailField = new TextFieldWithPlaceholder("Email");
+    	cmbComprensori=new JComboBox<>();
+    	for (String nome : nomiComprensori) {
+    		cmbComprensori.addItem(nome);
+    	}
+    	btnCreazioneFruitore = new RoundedButton("Crea Fruitore", new Color(8, 102, 255));
     }
 
 	@Override
@@ -78,10 +93,18 @@ public class ViewNewFruitore extends BaseView{
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
+        emailField.setColumns(10);
+        emailField.setMargin(new Insets(10, 10, 10, 10));
+        emailField.setBounds(contentWidth / 2 - 170, 350, 340, 60); 
+        emailField.setPlaceholderColor(colorTxtPlaceholder);
+        contentPanel.add(emailField); 
+        
+        cmbComprensori.setBounds(contentWidth / 2 - 170, 450, 340, 60);
+        
         btnCreazioneFruitore.setBorder(null);
         btnCreazioneFruitore.setMargin(new Insets(0, 10, 0, 0));
         btnCreazioneFruitore.setFont(new Font("Tahoma", Font.BOLD, 20));
-        btnCreazioneFruitore.setBounds(contentWidth / 2 - 170, 350, 340, 60);
+        btnCreazioneFruitore.setBounds(contentWidth / 2 - 170, 550, 340, 60);
         btnCreazioneFruitore.setForeground(Color.WHITE);
         if (btnAccediListener != null) {
             btnCreazioneFruitore.addActionListener(btnAccediListener); // Riaggiungiamo il listener

@@ -1,10 +1,13 @@
 package it.unibs.controller.accesso;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JFrame;
 import it.unibs.controller.Controller;
+import it.unibs.domain.Comprensorio;
 import it.unibs.model.ModelAccesso;
 import it.unibs.view.ViewStart;
 import it.unibs.view.ViewAccesso;
@@ -67,7 +70,14 @@ public class ControllerAccesso implements Controller {
         viewAccesso.setButtonListeners(this::controlloAccesso, this::registrazioneFruitore);
     }
     private void registrazioneFruitore(ActionEvent e) {
-        ViewNewFruitore viewNewFruitore = new ViewNewFruitore(frame);
+    	ArrayList<String> nomiComp = new ArrayList<>();
+		for (Comprensorio c : modelAccesso.getComprensori()) {
+			nomiComp.add(c.stampaComprensorio());
+		}
+		String[] nomiComprensori = nomiComp.toArray(new String[0]);
+		
+        ViewNewFruitore viewNewFruitore = new ViewNewFruitore(frame, nomiComprensori);
+
         frame.getContentPane().add(viewNewFruitore);
         viewNewFruitore.setLayout(null);
     	scelta = 4;

@@ -10,7 +10,7 @@ public class ViewAccesso extends BaseView {
 	
 	private String txtAccesso;
     private JLabel lblAccesso;
-    private TextFieldWhitPlaceholder userField;
+    private TextFieldWithPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
     private RoundedButton btnAccedi;
     private RoundedButton btnNuovoUtente;
@@ -27,7 +27,7 @@ public class ViewAccesso extends BaseView {
     
     protected void inizializzaComponenti() {
     	lblAccesso = new JLabel();
-    	userField = new TextFieldWhitPlaceholder("Username");
+    	userField = new TextFieldWithPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
     	btnAccedi = new RoundedButton("Accedi", new Color(8, 102, 255));
     	btnNuovoUtente = new RoundedButton("Crea nuovo "+typeUser, new Color(54, 164, 32));

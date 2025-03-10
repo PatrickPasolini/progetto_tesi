@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class TextFieldWhitPlaceholder extends JTextField {
+public class TextFieldWithPlaceholder extends JTextField {
     /**
 	 * 
 	 */
@@ -26,11 +26,11 @@ public class TextFieldWhitPlaceholder extends JTextField {
     private Color placeholderColor;
 	private boolean showingPlaceholder;
 
-	public TextFieldWhitPlaceholder() {
+	public TextFieldWithPlaceholder() {
 		
 	}
 			
-    public TextFieldWhitPlaceholder(String placeholder) {
+    public TextFieldWithPlaceholder(String placeholder) {
         this.setPlaceholder(placeholder);
         this.showingPlaceholder = true;
         this.borderFocusColor=DEFAULT_BORDER_FOCUS_COLOR;
