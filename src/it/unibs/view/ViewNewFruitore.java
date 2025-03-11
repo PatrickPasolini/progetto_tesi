@@ -8,12 +8,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import it.unibs.domain.Comprensorio;
+import it.unibs.view.atomicElements.Combobox;
 import it.unibs.view.atomicElements.PasswordFieldWithPlaceholder;
 import it.unibs.view.atomicElements.RoundedButton;
 import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
@@ -28,7 +30,7 @@ public class ViewNewFruitore extends BaseView{
     private PasswordFieldWithPlaceholder pswField;
     private TextFieldWithPlaceholder emailField;
     private RoundedButton btnCreazioneFruitore;
-    private JComboBox<String> cmbComprensori;
+    private Combobox cmbComprensori;
     private boolean creazioneUtenteFallita=false;
     private String[] nomiComprensori;
     
@@ -46,10 +48,17 @@ public class ViewNewFruitore extends BaseView{
     	userField = new TextFieldWithPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
     	emailField = new TextFieldWithPlaceholder("Email");
-    	cmbComprensori=new JComboBox<>();
-    	for (String nome : nomiComprensori) {
-    		cmbComprensori.addItem(nome);
+    	cmbComprensori=new Combobox();
+    	
+    	if (nomiComprensori != null) {
+    	    for (String nome : nomiComprensori) {
+    	        // Dividiamo la stringa in base al carattere «, evitando problemi di regex
+    	        String[] parts = nome.split(Pattern.quote("["));
+    	        String nomeModificato = parts[0].trim(); // Prendiamo solo la prima parte
+    	        cmbComprensori.addItem(nomeModificato);
+    	    }
     	}
+
     	btnCreazioneFruitore = new RoundedButton("Crea Fruitore", new Color(8, 102, 255));
     }
 
@@ -100,6 +109,7 @@ public class ViewNewFruitore extends BaseView{
         contentPanel.add(emailField); 
         
         cmbComprensori.setBounds(contentWidth / 2 - 170, 450, 340, 60);
+        contentPanel.add(cmbComprensori);
         
         btnCreazioneFruitore.setBorder(null);
         btnCreazioneFruitore.setMargin(new Insets(0, 10, 0, 0));

@@ -18,59 +18,41 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class RoundedButton extends JButton {
-	 public Color getEffectColor() {
-	        return effectColor;
-	    }
-
-	    public void setEffectColor(Color effectColor) {
-	        this.effectColor = effectColor;
-	    }
-
-	    private int targetSize;
-	    private float animatSize;
-	    private Point pressedPoint;
-	    private float alpha;
-	    private Color effectColor = new Color(255, 255, 255);
-
-	    public RoundedButton(String btnText,Color defaultColor) {
-	        super(btnText);
-	        setHorizontalAlignment(SwingConstants.CENTER);
-	        setContentAreaFilled(false);
-	        setBorder(new EmptyBorder(5, 0, 5, 0));
-	        setBackground(defaultColor);
-	        setCursor(new Cursor(Cursor.HAND_CURSOR));
-	        setFocusPainted(false);
-	        Color darkerColor = darkenColor(defaultColor, 0.9f); // 80% della luminosità originale
-
-	        addMouseListener(new MouseAdapter() {
-//	            @Override
-//	            public void mousePressed(MouseEvent me) {
-//	                targetSize = Math.max(getWidth(), getHeight()) * 2;
-//	                animatSize = 0;
-//	                pressedPoint = me.getPoint();
-//	                alpha = 0.5f;
-//	            }
-	            
-	            public void mouseEntered(MouseEvent evt) {
-	               
-	            }
-	            public void mouseExited(MouseEvent evt) {
-	                
-	            }
-	        });
-	        addFocusListener(new FocusListener() {
-	            @Override
-	            public void focusGained(FocusEvent e) {
-	            	 setBackground(darkerColor);
-	            }
-
-	            @Override
-	            public void focusLost(FocusEvent e) {
-	            	setBackground(defaultColor);
-	            }
-	        });
-
-	    }
+	public Color getEffectColor() {
+	    return effectColor;
+	}
+	
+	public void setEffectColor(Color effectColor) {
+	    this.effectColor = effectColor;
+	}
+	
+	private float animatSize;
+	private Point pressedPoint;
+	private Color effectColor = new Color(255, 255, 255);
+	
+	public RoundedButton(String btnText,Color defaultColor) {
+	    super(btnText);
+	    setHorizontalAlignment(SwingConstants.CENTER);
+	    setContentAreaFilled(false);
+	    setBorder(new EmptyBorder(5, 0, 5, 0));
+	    setBackground(defaultColor);
+	    setCursor(new Cursor(Cursor.HAND_CURSOR));
+	    setFocusPainted(false);
+	    Color darkerColor = darkenColor(defaultColor, 0.9f); // 80% della luminosità originale
+	
+	    addFocusListener(new FocusListener() {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	        	 setBackground(darkerColor);
+	        }
+	
+	        @Override
+	        public void focusLost(FocusEvent e) {
+	        	setBackground(defaultColor);
+	        }
+	    });
+	
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		int width = getWidth();
