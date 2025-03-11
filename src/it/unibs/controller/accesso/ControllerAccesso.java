@@ -1,24 +1,18 @@
 package it.unibs.controller.accesso;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.swing.JFrame;
 import it.unibs.controller.Controller;
 import it.unibs.domain.Comprensorio;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.ViewStart;
-import it.unibs.view.ViewAccesso;
-import it.unibs.view.ViewNewConfiguratore;
-import it.unibs.view.ViewNewFruitore;
+import it.unibs.view.*;
 
 public class ControllerAccesso implements Controller {
-    private ModelAccesso modelAccesso;
+	private ModelAccesso modelAccesso;
     private JFrame frame;
     private Map<Integer, StrategyAccesso> strategieAccesso = new HashMap<>();
-    private ViewAccesso viewAccesso;
+    private BaseView currentView; // Sostituisce viewAccesso con una variabile più generale
     private int scelta;
     
     public ControllerAccesso(ModelAccesso modelAccesso) {
@@ -47,46 +41,48 @@ public class ControllerAccesso implements Controller {
     private void controlloAccesso(ActionEvent e) {
         StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
         if (strategyAccesso != null) {
-            strategyAccesso.eseguiAccesso(modelAccesso, viewAccesso);
+            strategyAccesso.eseguiAccesso(modelAccesso, currentView);
         }
     }
     
     private void accessoConfiguratore(ActionEvent e) {
-        viewAccesso = new ViewAccesso(frame, "Configuratore");
-        frame.getContentPane().add(viewAccesso);
-        viewAccesso.setLayout(null);
+        currentView = new ViewAccesso(frame, "Configuratore");
+        frame.getContentPane().add(currentView);
+        currentView.setLayout(null);
         scelta = 1;
-        viewAccesso.setButtonListeners(this::controlloAccesso, this::registrazioneConfiguratore);
+        ((ViewAccesso) currentView).setButtonListeners(this::controlloAccesso, this::accessoConfiguratoreNuovo);
     }
-    private void registrazioneConfiguratore(ActionEvent e) {
-    	ViewNewConfiguratore viewNewConfiguratore = new ViewNewConfiguratore(frame);
-
-        frame.getContentPane().add(viewNewConfiguratore);
-        viewNewConfiguratore.setLayout(null);
+    private void accessoConfiguratoreNuovo(ActionEvent e) {
+    	currentView = new ViewNewConfiguratore(frame);
+        frame.getContentPane().add(currentView);
+        currentView.setLayout(null);
         scelta = 2;
-        viewNewConfiguratore.setButtonListeners(this::controlloAccesso);
+        ((ViewNewConfiguratore) currentView).setButtonListeners(this::controlloAccesso);
     }
 
     private void accessoFruitore(ActionEvent e) {
-        viewAccesso = new ViewAccesso(frame, "Fruitore");
-        frame.getContentPane().add(viewAccesso);
-        viewAccesso.setLayout(null);
+        currentView = new ViewAccesso(frame, "Fruitore");
+        frame.getContentPane().add(currentView);
+        currentView.setLayout(null);
         scelta = 3;
-        viewAccesso.setButtonListeners(this::controlloAccesso, this::registrazioneFruitore);
+        ((ViewAccesso) currentView).setButtonListeners(this::controlloAccesso, this::accessoFruitoreNuovo);
     }
     
-    private void registrazioneFruitore(ActionEvent e) {
+    private void accessoFruitoreNuovo(ActionEvent e) {
     	ArrayList<String> nomiComp = new ArrayList<>();
 		for (Comprensorio c : modelAccesso.getComprensori()) {
 			nomiComp.add(c.stampaComprensorio());
 		}
 		String[] nomiComprensori = nomiComp.toArray(new String[0]);
-		
-        ViewNewFruitore viewNewFruitore = new ViewNewFruitore(frame, nomiComprensori);
 
-        frame.getContentPane().add(viewNewFruitore);
-        viewNewFruitore.setLayout(null);
+//TODO CHIEDERE AL MAIN DIRETTAMENTE LA LISTA DI NOMI E TOGLIERE QUESTA LOGICA DALLA VIEW
+//		modelAccesso;
+		
+		currentView = new ViewNewFruitore(frame, nomiComprensori);
+
+        frame.getContentPane().add(currentView);
+        currentView.setLayout(null);
     	scelta = 4;
-        controlloAccesso(e);
+    	((ViewNewFruitore) currentView).setButtonListeners(this::controlloAccesso);
     }
 }

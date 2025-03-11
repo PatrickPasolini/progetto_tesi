@@ -2,6 +2,7 @@ package it.unibs.controller.accesso;
 
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
+import it.unibs.view.BaseView;
 import it.unibs.view.ViewAccesso;
 
 public class AccessoFruitoreStrategy implements StrategyAccesso {
@@ -11,19 +12,19 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
     }
 
 	@Override
-	public void eseguiAccesso(ModelAccesso modelAccesso, ViewAccesso viewAccesso) {
+	public void eseguiAccesso(ModelAccesso modelAccesso, BaseView viewAccesso) {
 		
-		String username=viewAccesso.getUsername().toLowerCase();
-    	String password=viewAccesso.getPassword();
-    	boolean x=modelAccesso.controllaAccessoFruitore(username, password);
-    	System.out.println(x);
-    	if(x) {
-    		viewAccesso.setAccessoEseguito();
-    		modelAccesso.setUser(username);
-    		modelAccesso.inizializzaFruitore();
-    	}
-    	else
-    		viewAccesso.setAccessoFallito();
+//		String username=viewAccesso.getUsername().toLowerCase();
+//    	String password=viewAccesso.getPassword();
+//    	boolean x=modelAccesso.controllaAccessoFruitore(username, password);
+//    	System.out.println(x);
+//    	if(x) {
+//    		viewAccesso.setAccessoEseguito();
+//    		modelAccesso.setUser(username);
+//    		modelAccesso.inizializzaFruitore();
+//    	}
+//    	else
+//    		viewAccesso.setAccessoFallito();
 		
 //		viewAccesso.msgInserisciNome();
 //		String nome = InputDati.leggiStringaNonVuota("").toLowerCase();

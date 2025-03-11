@@ -3,7 +3,7 @@ package it.unibs.controller.accesso;
 import it.unibs.domain.Configuratore;
 import it.unibs.domain.Utente;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.ViewAccesso;
+import it.unibs.view.*;
 
 public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     
@@ -12,14 +12,20 @@ public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     }
 	
     @Override
-    public void eseguiAccesso(ModelAccesso modelAccesso, ViewAccesso viewAccesso) {
-    	
-    	String username=viewAccesso.getUsername().toLowerCase();
-    	String password=viewAccesso.getPassword();
+    public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
+    	 if (!(view instanceof ViewNewConfiguratore)) {
+             System.out.println("Errore: vista non compatibile");
+             return;
+         }
+         
+        ViewNewConfiguratore viewNewConf = (ViewNewConfiguratore) view;
+        
+    	String username=viewNewConf.getUsername().toLowerCase();
+    	String password=viewNewConf.getPassword();
     	boolean x=modelAccesso.credenzialiUnivoche(username);
     	System.out.println(x);
     	if(x) {
-    		viewAccesso.setAccessoEseguito();
+    		viewNewConf.setCreazioneEseguita();
     		modelAccesso.setUser(username);
     		modelAccesso.inizializzaConfiguratore();
     		Utente user = new Configuratore(username, password);
@@ -27,7 +33,7 @@ public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     		System.out.println("Nuovo utente creato");
     	}
     	else
-    		viewAccesso.setAccessoFallito();
+    		viewNewConf.setCreazioneFallita();
     }
 }
 

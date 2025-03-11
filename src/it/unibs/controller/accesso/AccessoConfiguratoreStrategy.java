@@ -1,7 +1,9 @@
 package it.unibs.controller.accesso;
 
 import it.unibs.model.ModelAccesso;
+import it.unibs.view.BaseView;
 import it.unibs.view.ViewAccesso;
+import it.unibs.view.ViewNewConfiguratore;
 
 public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     
@@ -10,19 +12,26 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     }
 	
     @Override
-    public void eseguiAccesso(ModelAccesso modelAccesso, ViewAccesso viewAccesso) {
+    public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
+    	if (!(view instanceof ViewNewConfiguratore)) {
+            System.out.println("Errore: vista non compatibile");
+            return;
+        }
+        
+       ViewAccesso viewNewConf = (ViewAccesso) view;
     	
-    	String username=viewAccesso.getUsername().toLowerCase();
-    	String password=viewAccesso.getPassword();
+    	
+    	String username=viewNewConf.getUsername().toLowerCase();
+    	String password=viewNewConf.getPassword();
     	boolean x=modelAccesso.controllaAccessoConfiguratore(username, password);
     	System.out.println(x);
     	if(x) {
-    		viewAccesso.setAccessoEseguito();
+    		viewNewConf.setAccessoEseguito();
     		modelAccesso.setUser(username);
     		modelAccesso.inizializzaConfiguratore();
     	}
     	else
-    		viewAccesso.setAccessoFallito();
+    		viewNewConf.setAccessoFallito();
     	
     	
 //        viewAccesso.msgInserisciNome();
