@@ -104,6 +104,7 @@ public class ModelAccesso{
 		ViewFruitore viewFruitore = new ViewFruitore();
 		ControllerFruitore controllerFruitore = new ControllerFruitore(model, viewFruitore);
 		controllerFruitore.run(); 
+		
 	}
 	
 	/**
