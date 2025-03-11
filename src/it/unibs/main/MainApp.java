@@ -54,11 +54,11 @@ public class MainApp {
 	
 	private void inizializzaAccesso() {
     	frame = new JFrame();
-		frame.setBounds(0, 0, 1200, 700);
+		frame.setBounds(100, 100, 1200, 750);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setMinimumSize(new Dimension(500, 650));
+		frame.setMinimumSize(new Dimension(500, 750));
 		
 		ModelAccesso modelAccesso = new ModelAccesso(persistence, persistenceLogin);
 		ControllerAccesso controllerAccesso = new ControllerAccesso(modelAccesso);

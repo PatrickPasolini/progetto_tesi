@@ -51,8 +51,8 @@ public abstract class BaseView extends JPanel {
 	                setBounds(0, 0, w, h);
 	                
 	                // Aggiorna la posizione e dimensione del pannello interno
-	                int contentWidth = Math.min(500, w - 100);
-	                int contentHeight = Math.min(550, h - 100);
+	                int contentWidth = Math.min(600, w - 100);
+	                int contentHeight = Math.min(650, h - 100);
 	                int x = (w - contentWidth) / 2;
 	                int y = (h - contentHeight) / 2;
 	                contentPanel.setBounds(x, y, contentWidth, contentHeight);
