@@ -19,7 +19,7 @@ public class AccessoFruitoreNuovoStrategy implements StrategyAccesso {
 	@Override
 	public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
 		
-		if (!(view instanceof ViewNewConfiguratore)) {
+		if (!(view instanceof ViewNewFruitore)) {
             System.out.println("Errore: vista non compatibile");
             return;
         }
@@ -28,12 +28,18 @@ public class AccessoFruitoreNuovoStrategy implements StrategyAccesso {
        	String username=viewNewFru.getUsername().toLowerCase();
    		String password=viewNewFru.getPassword();
    		String email=viewNewFru.getEmail();
-   		// comprensorio
-//   		Utente user = new Fruitore(username, password, email, comprensorio);
-//   		Utente user = new Fruitore(username, password, email, comprensorio);
-//		modelAccesso.salvaNewUser(nome, user);
-//		viewAccesso.msgAccessoNuovoFruitore();
-//		modelAccesso.inizializzaFruitore();
+   		int comprensorioIndex=viewNewFru.getNomeComprensorioIndex()+1;
+   		
+   		boolean isCredenzialiUnivoce=modelAccesso.credenzialiUnivoche(username);
+    	boolean formCondition= !username.equals("")&& !password.equals("")
+    							&& !username.equals("username")&& !password.equals("Password");
+   		if (comprensorioIndex>0&&isCredenzialiUnivoce && formCondition) {
+   			Utente user = new Fruitore(username, password, email, modelAccesso.getComprensorio(comprensorioIndex));
+   			modelAccesso.salvaNewUser(username, user);
+//   			viewAccesso.msgAccessoNuovoFruitore();
+   			modelAccesso.inizializzaFruitore();
+		}
+   		
        
    		
    		
