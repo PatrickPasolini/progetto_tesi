@@ -16,25 +16,24 @@ public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     	 if (!(view instanceof ViewNewConfiguratore)) {
              System.out.println("Errore: vista non compatibile");
              return;
-         }
-         
+         } 
         ViewNewConfiguratore viewNewConf = (ViewNewConfiguratore) view;
         
     	String username=viewNewConf.getUsername().toLowerCase();
     	String password=viewNewConf.getPassword();
-    	boolean x=modelAccesso.credenzialiUnivoche(username);
-    	System.out.println(x);
-    	System.out.println(x);
-    	if(x) {
-    		
+    	boolean isCredenzialiUnivoce=modelAccesso.credenzialiUnivoche(username);
+    	boolean formCondition= !username.equals("")&& !password.equals("")
+    							&& !username.equals("username")&& !password.equals("Password");
+    	if(isCredenzialiUnivoce && formCondition) {
     		viewNewConf.setCreazioneEseguita();
     		Utente user = new Configuratore(username, password);
     		modelAccesso.salvaNewUser(username, user);
     		System.out.println("Nuovo utente creato");
     		modelAccesso.inizializzaConfiguratore();
     	}
-    	else
+    	else {
     		viewNewConf.setCreazioneFallita();
+    	}
     }
 }
 

@@ -3,6 +3,7 @@ package it.unibs.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import it.unibs.controller.ControllerConfiguratore;
 import it.unibs.controller.ControllerFruitore;
@@ -176,5 +177,14 @@ public class ModelAccesso{
      */
 	public boolean credenzialiUnivoche(String nomeNew) {
 		return (!listUtenti.containsKey(nomeNew.toLowerCase()) && !nomeNew.equals(NAME_DEFAULT));
+	}
+
+	public String[] getNomiComprensori() {
+		String[] nomi = new String[comprensori.size()];
+		int i = 0;
+		for (Comprensorio comp : comprensori) {
+		    nomi[i++] = comp.getName();
+		}
+		return nomi;
 	}
 }

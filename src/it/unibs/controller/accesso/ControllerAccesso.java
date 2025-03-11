@@ -12,7 +12,7 @@ public class ControllerAccesso implements Controller {
 	private ModelAccesso modelAccesso;
     private JFrame frame;
     private Map<Integer, StrategyAccesso> strategieAccesso = new HashMap<>();
-    private BaseView currentView; // Sostituisce viewAccesso con una variabile più generale
+    private BaseView currentView;
     private int scelta;
     
     public ControllerAccesso(ModelAccesso modelAccesso) {
@@ -46,43 +46,33 @@ public class ControllerAccesso implements Controller {
     }
     
     private void accessoConfiguratore(ActionEvent e) {
+        scelta = 1;
         currentView = new ViewAccesso(frame, "Configuratore");
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
-        scelta = 1;
         ((ViewAccesso) currentView).setButtonListeners(this::controlloAccesso, this::accessoConfiguratoreNuovo);
     }
     private void accessoConfiguratoreNuovo(ActionEvent e) {
+        scelta = 2;
     	currentView = new ViewNewConfiguratore(frame);
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
-        scelta = 2;
         ((ViewNewConfiguratore) currentView).setButtonListeners(this::controlloAccesso);
     }
 
     private void accessoFruitore(ActionEvent e) {
+        scelta = 3;
         currentView = new ViewAccesso(frame, "Fruitore");
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
-        scelta = 3;
         ((ViewAccesso) currentView).setButtonListeners(this::controlloAccesso, this::accessoFruitoreNuovo);
     }
     
     private void accessoFruitoreNuovo(ActionEvent e) {
-    	ArrayList<String> nomiComp = new ArrayList<>();
-		for (Comprensorio c : modelAccesso.getComprensori()) {
-			nomiComp.add(c.stampaComprensorio());
-		}
-		String[] nomiComprensori = nomiComp.toArray(new String[0]);
-
-//TODO CHIEDERE AL MAIN DIRETTAMENTE LA LISTA DI NOMI E TOGLIERE QUESTA LOGICA DALLA VIEW
-//		modelAccesso;
-		
-		currentView = new ViewNewFruitore(frame, nomiComprensori);
-
+    	scelta = 4;
+		currentView = new ViewNewFruitore(frame, modelAccesso.getNomiComprensori());
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
-    	scelta = 4;
     	((ViewNewFruitore) currentView).setButtonListeners(this::controlloAccesso);
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,8 +23,8 @@ import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 
 public class ViewNewFruitore extends BaseView{
 	private static final long serialVersionUID = 1L;
-	private String typeUser;
 	private ActionListener btnCreazioneListener;
+	private String typeUser;
 	private String txtAccesso;
     private JLabel lblAccesso;
     private TextFieldWithPlaceholder userField;
@@ -49,17 +50,10 @@ public class ViewNewFruitore extends BaseView{
     	pswField = new PasswordFieldWithPlaceholder("Password");
     	emailField = new TextFieldWithPlaceholder("Email");
     	cmbComprensori=new Combobox("Scelta comprensorio");
-    	
     	if (nomiComprensori != null) {
-    		 cmbComprensori.addItem("");
-    	    for (String nome : nomiComprensori) {
-    	        // Dividiamo la stringa in base al carattere «, evitando problemi di regex
-    	        String[] parts = nome.split(Pattern.quote("["));
-    	        String nomeModificato = parts[0].trim(); // Prendiamo solo la prima parte
-    	        cmbComprensori.addItem(nomeModificato);
-    	        cmbComprensori.addItem(nomeModificato);
-    	        cmbComprensori.addItem(nomeModificato);
-    	    }
+    		for (String nome : nomiComprensori) {
+				cmbComprensori.addItem(nome);
+			}
     	}
 
     	btnCreazioneFruitore = new RoundedButton("Crea Fruitore", new Color(8, 102, 255));
@@ -134,11 +128,9 @@ public class ViewNewFruitore extends BaseView{
         }
     }
 	
-	
 	public String getUsername() {
     	return userField.getText();
     }
-    
     @SuppressWarnings("deprecation")
 	public String getPassword() {
     	return pswField.getText();
@@ -147,7 +139,7 @@ public class ViewNewFruitore extends BaseView{
     	return emailField.getText();
     }
     public int getNomeComprensorioIndex() {
-    	return 1;
+    	return cmbComprensori.getSelectedIndex();
     }
     
     public void setCreazioneFallita() {
@@ -155,8 +147,6 @@ public class ViewNewFruitore extends BaseView{
         userField.setText("");
         pswField.setText("");
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
-
-        // Sposta il focus sul pannello per permettere al placeholder di ricomparire
         contentPanel.requestFocusInWindow();
     }
     

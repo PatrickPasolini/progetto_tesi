@@ -17,23 +17,19 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
             System.out.println("Errore: vista non compatibile");
             return;
         }
-        
        ViewAccesso viewAccesso = (ViewAccesso) view;
-    	
     	
     	String username=viewAccesso.getUsername().toLowerCase();
     	String password=viewAccesso.getPassword();
-    	boolean x=modelAccesso.controllaAccessoConfiguratore(username, password);
-    	System.out.println(x);
-    	if(x) {
+    	boolean isCredenzialiCorrette=modelAccesso.controllaAccessoConfiguratore(username, password);
+    	if(isCredenzialiCorrette) {
     		viewAccesso.setAccessoEseguito();
     		modelAccesso.setUser(username);
     		modelAccesso.inizializzaConfiguratore();
     	}
-    	else
+    	else {
     		viewAccesso.setAccessoFallito();
-    	
-    	
+    	}
 //        viewAccesso.msgInserisciNome();
 //        String nome = InputDati.leggiStringaNonVuota("").toLowerCase();
 //        viewAccesso.msgInserisciPsw();
