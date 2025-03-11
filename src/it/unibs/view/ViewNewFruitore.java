@@ -48,13 +48,16 @@ public class ViewNewFruitore extends BaseView{
     	userField = new TextFieldWithPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
     	emailField = new TextFieldWithPlaceholder("Email");
-    	cmbComprensori=new Combobox();
+    	cmbComprensori=new Combobox("Scelta comprensorio");
     	
     	if (nomiComprensori != null) {
+    		 cmbComprensori.addItem("");
     	    for (String nome : nomiComprensori) {
     	        // Dividiamo la stringa in base al carattere «, evitando problemi di regex
     	        String[] parts = nome.split(Pattern.quote("["));
     	        String nomeModificato = parts[0].trim(); // Prendiamo solo la prima parte
+    	        cmbComprensori.addItem(nomeModificato);
+    	        cmbComprensori.addItem(nomeModificato);
     	        cmbComprensori.addItem(nomeModificato);
     	    }
     	}

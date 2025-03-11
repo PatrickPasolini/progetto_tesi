@@ -1,272 +1,147 @@
 package it.unibs.view.atomicElements;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.plaf.basic.ComboPopup;
+
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class Combobox<E> extends JComboBox<E> {
-
-    public String getLabeText() {
-        return labeText;
-    }
-
-    public void setLabeText(String labeText) {
-        this.labeText = labeText;
-    }
-
-    public Color getLineColor() {
-        return lineColor;
-    }
-
-    public void setLineColor(Color lineColor) {
-        this.lineColor = lineColor;
-    }
-
-    private String labeText = "Label";
-    private Color lineColor = new Color(3, 155, 216);
-    private boolean mouseOver;
-
-    @Override
-    public void updateUI() {
-        super.updateUI();
-        installUI();
-    }
-
-    private void installUI() {
-        setUI(new ComboUI(this));
-        setRenderer(new DefaultListCellRenderer() {
+    private Color DEFAULT_PLACEHOLDER_COLOR = Color.GRAY;
+    private Color TEXT_COLOR = Color.BLACK;
+    private Color BORDER_COLOR = Color.BLACK;
+    private Color DEFAULT_BORDER_FOCUS_COLOR = new Color(8, 102, 255); // blu
+    private Color borderFocusColor;
+    private int BORDER_THICKNESS = 1;
+    private int BORDER_FOCUS_THICKNESS = 2;
+    
+    private String placeholder;
+    private Color placeholderColor;
+    private boolean showingPlaceholder;
+    
+    public Combobox(String placeholder) {
+        super();
+        this.placeholder = placeholder;
+        this.showingPlaceholder = true;
+        this.borderFocusColor = DEFAULT_BORDER_FOCUS_COLOR;
+        this.placeholderColor = DEFAULT_PLACEHOLDER_COLOR;
+        // Rende la combobox editabile
+        setEditable(true);
+        // Configura l'editor (il JTextField interno)
+        JTextField editorComponent = (JTextField) getEditor().getEditorComponent();
+        editorComponent.setFont(new Font("Tahoma", Font.PLAIN, 22));
+        editorComponent.setForeground(placeholderColor);
+        editorComponent.setText(placeholder);
+        setRoundedBorder(editorComponent, BORDER_THICKNESS, BORDER_COLOR);
+        
+        // Gestione del focus per mostrare/rimuovere il placeholder
+        editorComponent.addFocusListener(new FocusListener() {
             @Override
-            public Component getListCellRendererComponent(JList<?> jlist, Object o, int i, boolean bln, boolean bln1) {
-                Component com = super.getListCellRendererComponent(jlist, o, i, bln, bln1);
-                setBorder(new EmptyBorder(5, 5, 5, 5));
-                if (bln) {
-                    com.setBackground(new Color(240, 240, 240));
+            public void focusGained(FocusEvent e) {
+                if (showingPlaceholder) {
+                    editorComponent.setText("");
+                    editorComponent.setForeground(TEXT_COLOR);
+                    showingPlaceholder = false;
                 }
-                return com;
+                setRoundedBorder(editorComponent, BORDER_FOCUS_THICKNESS, borderFocusColor);
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (editorComponent.getText().isEmpty()) {
+                    editorComponent.setText(placeholder);
+                    editorComponent.setForeground(placeholderColor);
+                    showingPlaceholder = true;
+                }
+                setRoundedBorder(editorComponent, BORDER_THICKNESS, BORDER_COLOR);
             }
         });
-    }
-
-    public Combobox() {
-        setBackground(Color.WHITE);
-        setBorder(new EmptyBorder(15, 3, 5, 3));
-        installUI();
-    }
-
-    private class ComboUI extends BasicComboBoxUI {
-
-        private boolean animateHinText = true;
-        private float location;
-        private boolean show;
-        private Combobox combo;
-
-        public ComboUI(Combobox combo) {
-            this.combo = combo;
-            addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent me) {
-                    mouseOver = true;
-                    repaint();
-                }
-
-                @Override
-                public void mouseExited(MouseEvent me) {
-                    mouseOver = false;
-                    repaint();
-                }
-            });
-            addFocusListener(new FocusAdapter() {
-                @Override
-                public void focusGained(FocusEvent fe) {
-                }
-
-                @Override
-                public void focusLost(FocusEvent fe) {
-                }
-            });
-            addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent ie) {
-                    
-                }
-            });
-            addPopupMenuListener(new PopupMenuListener() {
-                @Override
-                public void popupMenuWillBecomeVisible(PopupMenuEvent pme) {
-                    if (arrowButton != null) {
-                        arrowButton.setBackground(new Color(200, 200, 200));
-                    }
-                }
-
-                @Override
-                public void popupMenuWillBecomeInvisible(PopupMenuEvent pme) {
-                    if (arrowButton != null) {
-                        arrowButton.setBackground(new Color(150, 150, 150));
-                    }
-                }
-
-                @Override
-                public void popupMenuCanceled(PopupMenuEvent pme) {
-                    if (arrowButton != null) {
-                        arrowButton.setBackground(new Color(150, 150, 150));
-                    }
-                }
-            });
-            
-            
-        }
-
-        @Override
-        public void paintCurrentValueBackground(Graphics grphcs, Rectangle rctngl, boolean bln) {
-
-        }
-
-        @Override
-        protected JButton createArrowButton() {
-            return new ArrowButton();
-        }
-
-        @Override
-        protected ComboPopup createPopup() {
-            BasicComboPopup pop = new BasicComboPopup(comboBox) {
-                @Override
-                protected JScrollPane createScroller() {
-                    list.setFixedCellHeight(30);
-                    JScrollPane scroll = new JScrollPane(list);
-                    scroll.setBackground(Color.WHITE);
-                    ScrollBarCustom sb = new ScrollBarCustom();
-                    sb.setUnitIncrement(30);
-                    sb.setForeground(new Color(180, 180, 180));
-                    scroll.setVerticalScrollBar(sb);
-                    return scroll;
-                }
-            };
-            pop.setBorder(new LineBorder(new Color(200, 200, 200), 1));
-            return pop;
-        }
         
-        
-        
-        
-        public Color getEffectColor() {
-    	    return effectColor;
-    	}
-    	
-    	public void setEffectColor(Color effectColor) {
-    	    this.effectColor = effectColor;
-    	}
-    	
-    	private float animatSize;
-    	private Point pressedPoint;
-    	private Color effectColor = new Color(255, 255, 255);
-
-        @Override
-        public void paint(Graphics g, JComponent jc) {
-//            super.paint(grphcs, jc);
-//            Graphics2D g2 = (Graphics2D) grphcs;
-//            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
-//            int width = getWidth();
-//            int height = getHeight();
-//            if (mouseOver) {
-//                g2.setColor(lineColor);
-//            } else {
-//                g2.setColor(new Color(150, 150, 150));
-//            }
-//            g2.fillRect(2, height - 1, width - 4, 1);
-//            createHintText(g2);
-//            g2.dispose();
-        	int width = getWidth();
-            int height = getHeight();
-            BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2 = img.createGraphics();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setColor(getBackground());
-            g2.fillRoundRect(0, 0, width, height, 5, 5);
-            if (pressedPoint != null) {
-                g2.setColor(effectColor);
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 15));
-                g2.fillOval((int) (pressedPoint.x - animatSize / 2), (int) (pressedPoint.y - animatSize / 2), (int) animatSize, (int) animatSize);
-            }
-            g2.dispose();
-            g.drawImage(img, 0, 0, null);
-//            super.paintComponent(g);
-        }
-
-        private void createHintText(Graphics2D g2) {
-            Insets in = getInsets();
-            g2.setColor(new Color(150, 150, 150));
-            FontMetrics ft = g2.getFontMetrics();
-            Rectangle2D r2 = ft.getStringBounds(combo.getLabeText(), g2);
-            double height = getHeight() - in.top - in.bottom;
-            double textY = (height - r2.getHeight()) / 2;
-            double size;
-            if (animateHinText) {
-                if (show) {
-                    size = 18 * (1 - location);
-                } else {
-                    size = 18 * location;
-                }
-            } else {
-                size = 18;
-            }
-            g2.drawString(combo.getLabeText(), in.right, (int) (in.top + textY + ft.getAscent() - size));
-        }
-
-
-        private class ArrowButton extends JButton {
-
-            public ArrowButton() {
-                setContentAreaFilled(false);
-                setBorder(new EmptyBorder(5, 5, 5, 5));
-                setBackground(new Color(150, 150, 150));
-            }
-
+        // Ascoltatore sul documento per gestire le modifiche
+        editorComponent.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void paint(Graphics grphcs) {
-                super.paint(grphcs);
-                Graphics2D g2 = (Graphics2D) grphcs;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                int width = getWidth();
-                int height = getHeight();
-                int size = 10;
-                int x = (width - size) / 2;
-                int y = (height - size) / 2 + 5;
-                int px[] = {x, x + size, x + size / 2};
-                int py[] = {y, y, y + size};
-                g2.setColor(getBackground());
-                g2.fillPolygon(px, py, px.length);
-                g2.dispose();
+            public void insertUpdate(DocumentEvent e) {
+                if (showingPlaceholder) {
+                    editorComponent.setForeground(TEXT_COLOR);
+                    showingPlaceholder = false;
+                }
             }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!showingPlaceholder && !editorComponent.isFocusOwner()) {
+                    SwingUtilities.invokeLater(() -> {
+                        if (editorComponent.getText().isEmpty()) {
+                            editorComponent.setText(placeholder);
+                            editorComponent.setForeground(placeholderColor);
+                            showingPlaceholder = true;
+                        }
+                    });
+                }
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Non necessario per JTextField standard
+            }
+        });
+        
+    }
+    
+    private void setRoundedBorder(JTextField editorComponent, int thickness, Color borderColor) {
+        int radius = 15;
+        editorComponent.setOpaque(false);
+        Border roundedBorder = BorderFactory.createCompoundBorder(
+            new LineBorder(borderColor, thickness, true) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setColor(borderColor);
+                    g2.setStroke(new BasicStroke(thickness));
+                    g2.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+                    g2.dispose();
+                }
+            },
+            BorderFactory.createEmptyBorder(2, 8, 2, 8)
+        );
+        editorComponent.setBorder(roundedBorder);
+    }
+    
+    public String getPlaceholder() {
+        return placeholder;
+    }
+    
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
+    }
+    
+    public void setBorderFocusColor(Color borderFocusColor) {
+        this.borderFocusColor = borderFocusColor;
+    }
+    
+    public void setBorderFocusColorToDefault() {
+        this.borderFocusColor = DEFAULT_BORDER_FOCUS_COLOR;
+    }
+    
+    public void setPlaceholderColor(Color placeholderColor) {
+        this.placeholderColor = placeholderColor;
+        JTextField editorComponent = (JTextField) getEditor().getEditorComponent();
+        if (showingPlaceholder) {
+            editorComponent.setForeground(placeholderColor);
+            editorComponent.repaint();
         }
     }
+    
+    public void setPlaceholderColorToDefault() {
+        setPlaceholderColor(DEFAULT_PLACEHOLDER_COLOR);
+    }
+    
+    
+    
 }

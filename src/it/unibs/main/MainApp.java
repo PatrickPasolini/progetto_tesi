@@ -58,7 +58,7 @@ public class MainApp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setMinimumSize(new Dimension(500, 750));
+		frame.setMinimumSize(new Dimension(550, 750));
 		
 		ModelAccesso modelAccesso = new ModelAccesso(persistence, persistenceLogin);
 		ControllerAccesso controllerAccesso = new ControllerAccesso(modelAccesso);
