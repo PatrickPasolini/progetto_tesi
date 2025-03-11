@@ -1,4 +1,4 @@
-package it.unibs.view.accesso;
+package it.unibs.view.atomicElements;
 
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
@@ -6,8 +6,6 @@ import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import it.unibs.view.atomicElements.RoundedPanel;
 
 public abstract class BaseView extends JPanel {
 	private static final long serialVersionUID = 1L;

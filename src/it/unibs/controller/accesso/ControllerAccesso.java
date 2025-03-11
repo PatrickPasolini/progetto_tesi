@@ -7,6 +7,7 @@ import it.unibs.controller.Controller;
 import it.unibs.domain.Comprensorio;
 import it.unibs.model.ModelAccesso;
 import it.unibs.view.accesso.*;
+import it.unibs.view.atomicElements.BaseView;
 
 public class ControllerAccesso implements Controller {
 	private ModelAccesso modelAccesso;

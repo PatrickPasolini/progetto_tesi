@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.PasswordFieldWithPlaceholder;
 import it.unibs.view.atomicElements.RoundedButton;
 import it.unibs.view.atomicElements.TextFieldWithPlaceholder;

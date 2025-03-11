@@ -2,8 +2,8 @@ package it.unibs.controller.accesso;
 
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
-import it.unibs.view.accesso.BaseView;
 import it.unibs.view.accesso.ViewAccesso;
+import it.unibs.view.atomicElements.BaseView;
 
 public class AccessoFruitoreStrategy implements StrategyAccesso {
 
@@ -26,7 +26,7 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
     	if(isCredenzialiCorrette) {
     		viewAccesso.setAccessoEseguito();
     		modelAccesso.setUser(username);
-    		modelAccesso.inizializzaConfiguratore();
+    		modelAccesso.inizializzaFruitore();
     	}
     	else {
     		viewAccesso.setAccessoFallito();

@@ -5,10 +5,10 @@ import it.unibs.domain.Fruitore;
 import it.unibs.domain.Utente;
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
-import it.unibs.view.accesso.BaseView;
 import it.unibs.view.accesso.ViewAccesso;
 import it.unibs.view.accesso.ViewNewConfiguratore;
 import it.unibs.view.accesso.ViewNewFruitore;
+import it.unibs.view.atomicElements.BaseView;
 
 public class AccessoFruitoreNuovoStrategy implements StrategyAccesso {
 	
