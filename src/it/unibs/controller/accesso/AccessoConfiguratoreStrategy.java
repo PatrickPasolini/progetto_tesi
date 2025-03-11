@@ -13,25 +13,25 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
 	
     @Override
     public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
-    	if (!(view instanceof ViewNewConfiguratore)) {
+    	if (!(view instanceof ViewAccesso)) {
             System.out.println("Errore: vista non compatibile");
             return;
         }
         
-       ViewAccesso viewNewConf = (ViewAccesso) view;
+       ViewAccesso viewAccesso = (ViewAccesso) view;
     	
     	
-    	String username=viewNewConf.getUsername().toLowerCase();
-    	String password=viewNewConf.getPassword();
+    	String username=viewAccesso.getUsername().toLowerCase();
+    	String password=viewAccesso.getPassword();
     	boolean x=modelAccesso.controllaAccessoConfiguratore(username, password);
     	System.out.println(x);
     	if(x) {
-    		viewNewConf.setAccessoEseguito();
+    		viewAccesso.setAccessoEseguito();
     		modelAccesso.setUser(username);
     		modelAccesso.inizializzaConfiguratore();
     	}
     	else
-    		viewNewConf.setAccessoFallito();
+    		viewAccesso.setAccessoFallito();
     	
     	
 //        viewAccesso.msgInserisciNome();
