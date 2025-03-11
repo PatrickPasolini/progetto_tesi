@@ -3,7 +3,7 @@ package it.unibs.controller.accesso;
 import it.unibs.domain.Configuratore;
 import it.unibs.domain.Utente;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.*;
+import it.unibs.view.accesso.*;
 
 public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     

@@ -6,7 +6,7 @@ import it.unibs.controllerGrasp.ComprensoriHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.InputDati;
-import it.unibs.view.*;
+import it.unibs.view.accesso.*;
 import it.unibs.view.console.ViewConfiguratore;
 
 public class GestoreComprensoriConfiguratore {

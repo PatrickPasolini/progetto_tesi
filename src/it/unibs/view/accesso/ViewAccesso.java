@@ -1,4 +1,4 @@
-package it.unibs.view;
+package it.unibs.view.accesso;
 
 import java.awt.*;
 import javax.swing.*;

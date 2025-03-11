@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import it.unibs.controller.Controller;
 import it.unibs.domain.Comprensorio;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.*;
+import it.unibs.view.accesso.*;
 
 public class ControllerAccesso implements Controller {
 	private ModelAccesso modelAccesso;

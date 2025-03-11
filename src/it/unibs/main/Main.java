@@ -2,7 +2,7 @@ package it.unibs.main;
 
 import it.unibs.controller.accesso.ControllerAccesso;
 import it.unibs.model.ModelAccesso;
-import it.unibs.view.*;
+import it.unibs.view.accesso.*;
 import it.unibs.view.console.ViewAccesso;
 
 /**

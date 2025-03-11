@@ -6,7 +6,7 @@ import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.*;
-import it.unibs.view.*;
+import it.unibs.view.accesso.*;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.console.ViewFruitore;
 

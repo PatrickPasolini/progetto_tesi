@@ -2,8 +2,8 @@ package it.unibs.controller.accesso;
 
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
-import it.unibs.view.BaseView;
-import it.unibs.view.ViewAccesso;
+import it.unibs.view.accesso.BaseView;
+import it.unibs.view.accesso.ViewAccesso;
 
 public class AccessoFruitoreStrategy implements StrategyAccesso {
 
