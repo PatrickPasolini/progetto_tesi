@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import it.unibs.domain.Comprensorio;
+import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.Combobox;
 import it.unibs.view.atomicElements.PasswordFieldWithPlaceholder;
 import it.unibs.view.atomicElements.RoundedButton;
@@ -54,6 +55,7 @@ public class ViewNewFruitore extends BaseView{
     		for (String nome : nomiComprensori) {
 				cmbComprensori.addItem(nome);
 			}
+    		cmbComprensori.setSelectedItem(null);
     	}
 
     	btnCreazioneFruitore = new RoundedButton("Crea Fruitore", new Color(8, 102, 255));
