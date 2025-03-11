@@ -23,7 +23,7 @@ import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 public class ViewNewFruitore extends BaseView{
 	private static final long serialVersionUID = 1L;
 	private String typeUser;
-	private ActionListener btnAccediListener;
+	private ActionListener btnCreazioneListener;
 	private String txtAccesso;
     private JLabel lblAccesso;
     private TextFieldWithPlaceholder userField;
@@ -119,13 +119,51 @@ public class ViewNewFruitore extends BaseView{
         btnCreazioneFruitore.setFont(new Font("Tahoma", Font.BOLD, 20));
         btnCreazioneFruitore.setBounds(contentWidth / 2 - 170, 550, 340, 60);
         btnCreazioneFruitore.setForeground(Color.WHITE);
-        if (btnAccediListener != null) {
-            btnCreazioneFruitore.addActionListener(btnAccediListener); // Riaggiungiamo il listener
+        if (btnCreazioneListener != null) {
+            btnCreazioneFruitore.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
         }
         contentPanel.add(btnCreazioneFruitore);
         
         revalidate();
         repaint();
 	}
+	public void setButtonListeners(ActionListener accediListener) {
+        this.btnCreazioneListener = accediListener; // Salviamo il listener per il login
+        if (btnCreazioneFruitore != null) {
+        	btnCreazioneFruitore.addActionListener(accediListener); // Riaggiungiamo il listener
+        }
+    }
+	
+	
+	public String getUsername() {
+    	return userField.getText();
+    }
+    
+    @SuppressWarnings("deprecation")
+	public String getPassword() {
+    	return pswField.getText();
+    }
+    public String getEmail() {
+    	return emailField.getText();
+    }
+    public int getNomeComprensorioIndex() {
+    	return 1;
+    }
+    
+    public void setCreazioneFallita() {
+        this.creazioneUtenteFallita = true;
+        userField.setText("");
+        pswField.setText("");
+        aggiornaComponenti(frame.getWidth(), frame.getHeight());
+
+        // Sposta il focus sul pannello per permettere al placeholder di ricomparire
+        contentPanel.requestFocusInWindow();
+    }
+    
+    //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
+    public void setCreazioneEseguita() {
+    	this.creazioneUtenteFallita=false;
+    	aggiornaComponenti(frame.getWidth(), frame.getHeight());
+    }
 
 }
