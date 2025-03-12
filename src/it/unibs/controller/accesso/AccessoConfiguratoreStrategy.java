@@ -1,9 +1,13 @@
 package it.unibs.controller.accesso;
 
+import it.unibs.controller.ControllerConfiguratore;
+import it.unibs.model.Model;
 import it.unibs.model.ModelAccesso;
 import it.unibs.view.accesso.ViewAccesso;
 import it.unibs.view.accesso.ViewNewConfiguratore;
 import it.unibs.view.atomicElements.BaseView;
+import it.unibs.view.configuratore.ViewMenuConfiguratore;
+import it.unibs.view.console.ViewConfiguratore;
 
 public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     
@@ -24,8 +28,15 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     	boolean isCredenzialiCorrette=modelAccesso.controllaAccessoConfiguratore(username, password);
     	if(isCredenzialiCorrette) {
     		viewAccesso.setAccessoEseguito();
-    		modelAccesso.setUser(username);
-    		modelAccesso.inizializzaConfiguratore();
+        	modelAccesso.setUser(username);
+    		Model model = modelAccesso.getInizializzaModel();
+    		
+    		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, view.getFrame());
+    		controllerConfiguratore.run();
+//    		modelAccesso.setUser(username);
+//    		modelAccesso.inizializzaConfiguratore(); //????????????????????????????
+    		
+    		
     	}
     	else {
     		viewAccesso.setAccessoFallito();
@@ -58,5 +69,7 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
 //
 //        modelAccesso.inizializzaConfiguratore();
     }
+    
+ 
 }
 

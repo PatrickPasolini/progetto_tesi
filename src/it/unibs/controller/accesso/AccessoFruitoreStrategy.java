@@ -47,5 +47,6 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
 //		
 //		modelAccesso.inizializzaFruitore();	
 	}
+	
 
 }

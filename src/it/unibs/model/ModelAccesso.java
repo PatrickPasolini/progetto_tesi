@@ -78,19 +78,23 @@ public class ModelAccesso{
 		salva();
 		
 	}
+	
+	
+	
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@PERCHE LI AVEVO MESSI QUI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	/**
      * Inizializza MVC configuratore dell'applicazione e avvia la view del configuratore
      * @param model Il model dell'applicazione
      * @since 2
      */
-	public void inizializzaConfiguratore() {
-		Model model = new Model(persistence);
-		model.setUser(user);
-		
-		ViewConfiguratore viewConfiguratore = new ViewConfiguratore();
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, viewConfiguratore);
-		controllerConfiguratore.run();
-	}
+//	public void inizializzaConfiguratore() {
+//		Model model = new Model(persistence);
+//		model.setUser(user);
+//		
+//		ViewConfiguratore viewConfiguratore = new ViewConfiguratore();
+//		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, viewConfiguratore);
+//		controllerConfiguratore.run();
+//	}
 	
 	/**
      * Inizializza MVC fruitore dell'applicazione e avvia la view del fruitore
@@ -101,11 +105,20 @@ public class ModelAccesso{
 		Model model = new Model(persistence);
 		model.setUser(user);
 		
-		ViewFruitore viewFruitore = new ViewFruitore();
-		ControllerFruitore controllerFruitore = new ControllerFruitore(model, viewFruitore);
-		controllerFruitore.run(); 
-		
+//		ViewFruitore viewFruitore = new ViewFruitore();
+//		ControllerFruitore controllerFruitore = new ControllerFruitore(model, viewFruitore);
+//		controllerFruitore.run(); 
 	}
+	
+	public Model getInizializzaModel() {
+		Model model = new Model(persistence);
+		model.setUser(user);
+		return model;
+	}
+	
+	
+	
+	
 	
 	/**
      * Controlla l'accesso utilizzando le credenziali fornite

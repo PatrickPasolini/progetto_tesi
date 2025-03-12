@@ -39,7 +39,11 @@ public class ControllerAccesso implements Controller {
         startView.setButtonListeners(this::accessoConfiguratore,this::accessoFruitore);
     }
     
-    private void controlloAccesso(ActionEvent e) {
+    public JFrame getFrame() {
+		return frame;
+	}
+
+	private void controlloAccesso(ActionEvent e) {
         StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
         if (strategyAccesso != null) {
             strategyAccesso.eseguiAccesso(modelAccesso, currentView);
@@ -75,5 +79,10 @@ public class ControllerAccesso implements Controller {
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
     	((ViewNewFruitore) currentView).setButtonListeners(this::controlloAccesso);
+    }
+    
+    private void inizializzaConfiguratore() {
+    	
+    	
     }
 }

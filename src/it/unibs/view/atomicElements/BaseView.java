@@ -8,12 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public abstract class BaseView extends JPanel {
+	public JFrame getFrame() {
+		return frame;
+	}
 	private static final long serialVersionUID = 1L;
 	protected JFrame frame;
 	protected RoundedPanel contentPanel;
-    
-	public BaseView(JFrame frame) {
+    private int maxContentWidth;
+    private int maxContentHeight;
+	
+	public BaseView(JFrame frame, int maxContentWidth, int maxContentHeight) {
 		this.frame=frame;
+		this.maxContentWidth=maxContentWidth;
+		this.maxContentHeight=maxContentHeight; 
 		inizializzaComponenti();
 		inizializzaBaseView();
 	}
@@ -29,8 +36,8 @@ public abstract class BaseView extends JPanel {
 	        this.setBackground(new Color(207, 207, 207));
 	        setLayout(null);
 
-	        int contentWidth = Math.min(600, w - 100);
-	        int contentHeight = Math.min(650, h - 100);
+	        int contentWidth = Math.min(maxContentWidth, w - 100);
+	        int contentHeight = Math.min(maxContentHeight, h - 100);
 	        int x = (w - contentWidth) / 2;
 	        int y = (h - contentHeight) / 2;
 	        
@@ -49,8 +56,8 @@ public abstract class BaseView extends JPanel {
 	                setBounds(0, 0, w, h);
 	                
 	                // Aggiorna la posizione e dimensione del pannello interno
-	                int contentWidth = Math.min(600, w - 100);
-	                int contentHeight = Math.min(650, h - 100);
+	                int contentWidth = Math.min(maxContentWidth, w - 100);
+	                int contentHeight = Math.min(maxContentHeight, h - 100);
 	                int x = (w - contentWidth) / 2;
 	                int y = (h - contentHeight) / 2;
 	                contentPanel.setBounds(x, y, contentWidth, contentHeight);

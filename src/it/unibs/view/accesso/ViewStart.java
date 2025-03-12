@@ -16,7 +16,7 @@ public class ViewStart extends BaseView {
     private JLabel lblAccesso;
     
     public ViewStart(JFrame frame) {
-    	super(frame);
+    	super(frame,600,650);
     }
     protected void inizializzaComponenti() {
     	lblAccesso = new JLabel("Accedi come:");

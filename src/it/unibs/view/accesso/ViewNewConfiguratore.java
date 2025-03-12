@@ -26,7 +26,7 @@ public class ViewNewConfiguratore extends BaseView {
 	private ActionListener btnCreazioneListener;
 	    
 	public ViewNewConfiguratore(JFrame frame) {
-		super(frame);
+		super(frame,600,650);
 	}
 
 	@Override

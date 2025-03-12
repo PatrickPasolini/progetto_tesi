@@ -20,7 +20,7 @@ public class ViewAccesso extends BaseView {
     private boolean accessoFallito=false;
     
     public ViewAccesso(JFrame frame, String typeUser) {
-        super(frame);
+        super(frame,600,650);
         this.typeUser = typeUser;
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }

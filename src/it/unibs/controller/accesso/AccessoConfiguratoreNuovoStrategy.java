@@ -30,7 +30,7 @@ public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     		Utente user = new Configuratore(username, password);
     		modelAccesso.salvaNewUser(username, user);
     		System.out.println("Nuovo utente creato");
-    		modelAccesso.inizializzaConfiguratore();
+//    		modelAccesso.inizializzaConfiguratore();
     	}
     	else {
     		viewNewConf.setCreazioneFallita();

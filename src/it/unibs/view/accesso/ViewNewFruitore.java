@@ -37,7 +37,7 @@ public class ViewNewFruitore extends BaseView{
     private String[] nomiComprensori;
     
 	public ViewNewFruitore(JFrame frame,String[] nomiComprensori) {
-		super(frame);
+		super(frame,600,650);
 		this.typeUser = "Fruitore";
 		this.nomiComprensori=nomiComprensori;
 		inizializzaComponenti();
