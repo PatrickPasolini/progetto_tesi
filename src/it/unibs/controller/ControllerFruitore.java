@@ -3,6 +3,8 @@ package it.unibs.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JFrame;
+
 import it.unibs.controller.commands.CommandUtente;
 import it.unibs.controller.commands.fruitore.CreaPropostaCommand;
 import it.unibs.controller.commands.fruitore.NavigazioneGerarchieCommand;
@@ -10,6 +12,7 @@ import it.unibs.controller.commands.fruitore.RitiraPropostaCommand;
 import it.unibs.controller.commands.fruitore.VisualizzaProposteUtenteCommand;
 import it.unibs.model.Model;
 import it.unibs.mylib.MyMenu;
+import it.unibs.view.configuratore.ViewMenuConfiguratore;
 import it.unibs.view.console.ViewFruitore;
 import it.unibs.view.fruitore.ViewMenuFruitore;
 /**
@@ -22,15 +25,20 @@ public class ControllerFruitore implements Controller{
 	private GestoreGerarchieFruitore gestoreGerarchieFruitore;
 	private GestoreScambi gestoreScambi;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
+	private JFrame frame;
 	
-	public ControllerFruitore(Model model, ViewMenuFruitore viewFruitore) {
+	public ControllerFruitore(Model model,JFrame frame) {
 		this.model = model;
-		this.view = viewFruitore;
+		this.frame=frame;
+		this.view = new ViewMenuFruitore(frame);
 //		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, view);
 		this.gestoreScambi = new GestoreScambi(model);
 		
 		inizializzaCommandsMenu();
 	}
+	public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
 	
 	private void inizializzaCommandsMenu() {
 		commandMenu.put(1, new NavigazioneGerarchieCommand(gestoreGerarchieFruitore));
@@ -40,6 +48,9 @@ public class ControllerFruitore implements Controller{
 	}
 	
 	public void run() {
+		ViewMenuFruitore menuFruitore = new ViewMenuFruitore(frame);
+        frame.getContentPane().add(menuFruitore);
+        menuFruitore.setLayout(null);
 //		MyMenu menuRun = view.getMenuRun();
 //		
 //		do {

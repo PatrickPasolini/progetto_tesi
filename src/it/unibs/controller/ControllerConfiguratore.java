@@ -58,9 +58,9 @@ public class ControllerConfiguratore implements Controller {
 	}
 	
 	public void run() {
-		ViewMenuConfiguratore menuFruitore = new ViewMenuConfiguratore(frame);
-        frame.getContentPane().add(menuFruitore);
-        menuFruitore.setLayout(null);
+		ViewMenuConfiguratore menuConfiguratore = new ViewMenuConfiguratore(frame);
+        frame.getContentPane().add(menuConfiguratore);
+        menuConfiguratore.setLayout(null);
 		
 //		MyMenu menuRun = view.getMenuRun();
 //		

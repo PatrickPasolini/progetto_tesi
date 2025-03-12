@@ -1,5 +1,8 @@
 package it.unibs.controller.accesso;
 
+import it.unibs.controller.ControllerConfiguratore;
+import it.unibs.controller.ControllerFruitore;
+import it.unibs.model.Model;
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
 import it.unibs.view.accesso.ViewAccesso;
@@ -27,7 +30,11 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
     	if(true) {
     		viewAccesso.setAccessoEseguito();
     		modelAccesso.setUser(username);
-    		modelAccesso.inizializzaFruitore();
+
+    		Model model = modelAccesso.getInizializzaModel();
+    		
+    		ControllerFruitore controllerFruitore = new ControllerFruitore(model, view.getFrame());
+    		controllerFruitore.run();
     	} 
     	else {
     		viewAccesso.setAccessoFallito();
