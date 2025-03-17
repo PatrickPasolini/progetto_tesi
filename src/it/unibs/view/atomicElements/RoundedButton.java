@@ -38,7 +38,7 @@ public class RoundedButton extends JButton {
 	    setBackground(defaultColor);
 	    setCursor(new Cursor(Cursor.HAND_CURSOR));
 	    setFocusPainted(false);
-	    Color darkerColor = darkenColor(defaultColor, 0.9f); // 80% della luminosità originale
+	    Color darkerColor = darkenColor(defaultColor, 0.8f); // 80% della luminosità originale
 	
 	    addFocusListener(new FocusListener() {
 	        @Override

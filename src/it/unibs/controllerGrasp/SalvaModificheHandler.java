@@ -10,7 +10,7 @@ public class SalvaModificheHandler {
 	}
 	
 	public void salvaModifiche() {
-		System.out.println("btnSalva é linked");
-//		model.salvaModifiche();
+		model.salvaModifiche();
+		System.out.println("salvataggio effetuato");
 	}
 }

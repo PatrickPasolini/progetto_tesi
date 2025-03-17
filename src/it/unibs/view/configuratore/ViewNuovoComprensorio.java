@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -12,14 +15,18 @@ import it.unibs.view.atomicElements.RoundedButton;
 import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 
 public class ViewNuovoComprensorio extends BaseView {
+	private String txtNuovoComprensorio;
 	private JLabel lblNuovoComp;
 	private TextFieldWithPlaceholder comprensorioField;
 	private TextFieldWithPlaceholder comuneToAddField;
 	private RoundedButton btnPlus;
 	private RoundedButton btnConferma;
-	
 	private DefaultListModel<String> listModel;
     private JList<String> comuniList;
+    
+    private ActionListener btnPlusListener;
+    private ActionListener btnCreazioneListener;
+	private boolean nomeNonUnivoco=false;
 	
 	public ViewNuovoComprensorio(JFrame frame) {
 		super(frame,frame.getWidth()-200,650);
@@ -27,13 +34,13 @@ public class ViewNuovoComprensorio extends BaseView {
 
 	@Override
 	protected void inizializzaComponenti() {
-		lblNuovoComp = new JLabel("Creazione nuovo comprensorio");
+		lblNuovoComp = new JLabel();
 		comprensorioField = new TextFieldWithPlaceholder("Nome Comprensorio");
 		comuneToAddField = new TextFieldWithPlaceholder("Comune da aggiungere");
 		btnPlus = new RoundedButton("+",Color.GRAY);
 		btnConferma = new RoundedButton("Conferma", new Color(8, 102, 255));
-		 listModel = new DefaultListModel<>();
-		  comuniList = new JList<>(listModel);
+		listModel = new DefaultListModel<>();
+		comuniList = new JList<>(listModel);
 	}
 
 	@Override
@@ -44,23 +51,25 @@ public class ViewNuovoComprensorio extends BaseView {
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
-        lblNuovoComp.setForeground(new Color(43, 43, 43));
+        Color colorTxtAccesso;
+        Color colorTxtPlaceholder;
+        
+        if(nomeNonUnivoco) { //nome non univoco
+        	txtNuovoComprensorio="Nome comprensorio gia' presente,riprova:";
+        	colorTxtAccesso=Color.RED;
+        	colorTxtPlaceholder=Color.RED;
+        }
+        else {
+        	txtNuovoComprensorio="Creazione nuovo comprensorio";
+        	colorTxtAccesso=new Color(43, 43, 43);
+            colorTxtPlaceholder=Color.GRAY;
+        }
+        lblNuovoComp.setText(txtNuovoComprensorio);
+        lblNuovoComp.setForeground(colorTxtAccesso);
         lblNuovoComp.setFont(new Font("Tahoma", Font.PLAIN, 40));
         Dimension size = lblNuovoComp.getPreferredSize();
         lblNuovoComp.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblNuovoComp);
-        
-        Color colorTxtPlaceholder;
-        if(false) { //nome non univoco
-//        	txtAccesso="Accesso fallito,riprova:";
-//        	colorTxtAccesso=Color.RED;
-        	colorTxtPlaceholder=Color.RED;
-        }
-        else {
-//        	txtAccesso="Accesso "+typeUser;
-//          colorTxtAccesso=new Color(43, 43, 43);
-            colorTxtPlaceholder=Color.GRAY;
-        }
         
         comprensorioField.setColumns(10);
         comprensorioField.setMargin(new Insets(10, 10, 10, 10));
@@ -70,24 +79,17 @@ public class ViewNuovoComprensorio extends BaseView {
         
         comuneToAddField.setColumns(10);
         comuneToAddField.setMargin(new Insets(10, 10, 10, 10));
-        comuneToAddField.setBounds(contentWidth / 2 - 170, 250, 340, 60); 
-        comuneToAddField.setPlaceholderColor(colorTxtPlaceholder);
+        comuneToAddField.setBounds(contentWidth / 2 - 170, 250, 340, 60);
         contentPanel.add(comuneToAddField); 
         
         btnPlus.setBorder(null);
-        btnPlus.setMargin(new Insets(0, 10, 0, 0));
         btnPlus.setFont(new Font("Tahoma", Font.BOLD, 40));
         btnPlus.setBounds(contentWidth / 2 + 170, 250, 60, 60);
         btnPlus.setForeground(Color.WHITE);
-        btnPlus.addActionListener(e -> {
-            String comune = comuneToAddField.getText().trim();
-            if (!comune.isEmpty() && !listModel.contains(comune)) {
-                listModel.addElement(comune);
-                comuneToAddField.setText("");
-            }
-        });
-
         contentPanel.add(btnPlus);
+	    if (btnPlusListener != null) {
+	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
+	    }
         
 		JScrollPane scrollPane = new JScrollPane(comuniList);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -99,11 +101,71 @@ public class ViewNuovoComprensorio extends BaseView {
         btnConferma.setFont(new Font("Tahoma", Font.BOLD, 40));
         btnConferma.setBounds(contentWidth / 2 - 170, 550, 340, 60);
         btnConferma.setForeground(Color.WHITE);
-//        if (btnAccediListener != null) {
-//            btnPlus.addActionListener(btnAccediListener); // Riaggiungiamo il listener
-//        }
+        if (btnCreazioneListener != null) {
+        	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
+        }
         contentPanel.add(btnConferma);
         
+        revalidate();
+        repaint();
+        System.out.println(getComuniInseriti());
 	}
-
+	
+	public List<String> getComuniInseriti() {
+	    List<String> comuni = new ArrayList<>();
+	    for (int i = 0; i < listModel.getSize(); i++) {
+	        comuni.add(listModel.getElementAt(i));
+	    }
+	    return comuni;
+	}
+	
+	
+	public void setBtnPlusListener(ActionListener listener) {
+		this.btnPlusListener=listener;
+		if (btnPlusListener != null) {
+	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
+	    }
+	}
+	public void setBtnCreazioneListener(ActionListener listener) {
+		this.btnCreazioneListener=listener;
+		if (btnCreazioneListener != null) {
+	    	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
+	    }
+	}
+	
+	public void setAccessoFallito() {
+    	this.nomeNonUnivoco=true;
+    	comprensorioField.setText(txtNuovoComprensorio);
+    	aggiornaComponenti(frame.getWidth(), frame.getHeight());
+    	contentPanel.requestFocusInWindow();
+    }
+	public void setAccessoEseguito() {
+		contentPanel.removeAll();
+		lblNuovoComp.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
+        lblNuovoComp.setForeground(Color.GRAY);
+        lblNuovoComp.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        Dimension size = lblNuovoComp.getPreferredSize();
+        lblNuovoComp.setBounds((contentPanel.getWidth() - size.width) / 2, 20, size.width, 70);
+        contentPanel.add(lblNuovoComp);
+        revalidate();
+        repaint();
+	}
+    
+	
+	public String getComuneDaAggiungere() {
+	    return comuneToAddField.getText();
+	}
+	public String getPlaceholderComune() {
+	    return comuneToAddField.getPlaceholder();
+	}
+	public void aggiornaListaComuni(List<String> comuni) {
+	    listModel.clear();
+	    for (String comune : comuni) {
+	        listModel.addElement(comune);
+	    }
+	    comuneToAddField.setText("");
+	}
+	public String getNomeComprensorio() {
+		return comprensorioField.getText();
+	}
 }
