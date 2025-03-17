@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import it.unibs.controller.accesso.ControllerAccesso;
 import it.unibs.model.ModelAccesso;
 
-public class MainApp {
+public class MainWithGUI {
 
 	public static final String PERSISTENCE = "./Data/persistenceVB.json"; //percorso file.json contenente i dati dell'applicazione
 	public static final String CREDENTIALS = "./Data/credentialsVB.json";//percorso file.json contenente le credenziali di accesso 
@@ -19,7 +19,7 @@ public class MainApp {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try { 
-					MainApp window = new MainApp();
+					MainWithGUI window = new MainWithGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -28,7 +28,7 @@ public class MainApp {
 		});
 	}
 	
-	public MainApp() {
+	public MainWithGUI() {
 		loadPersistence();
 		loadPersistenceLogin();
 		inizializzaAccesso();
