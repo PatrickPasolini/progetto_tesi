@@ -53,8 +53,8 @@ public class ControllerConfiguratore implements Controller {
 		commandMenu.put(4, new StampaComprensoriCommand(gestoreComprensori));
 		commandMenu.put(5, new StampaGerachieCommand(gestoreGerarchieConfiguratore));
 		commandMenu.put(6, new VisualizzaFattoriCategoriaCommand(gestoreGerarchieConfiguratore));
-		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi, gestoreGerarchieConfiguratore));
-		commandMenu.put(8, new VisualizzaScambiCompleti(gestoreScambi));
+		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi, gestoreGerarchieConfiguratore));//
+		commandMenu.put(8, new VisualizzaScambiCompleti(gestoreScambi));//
 	}
 	
 	public void run() {
@@ -65,13 +65,6 @@ public class ControllerConfiguratore implements Controller {
         for (Integer key : commandMenu.keySet()) {
             menuConfiguratore.setButtonListeners(e->sceltaMenuConfig(key),key-1);
         }
-        
-//        menuConfiguratore.setButtonListener()
-       
-//		MyMenu menuRun = view.getMenuRun();
-//		do {
-//			view.stampaMenuRun();
-//		} while(sceltaMenuConfig(menuRun));
 	}
 	
 	public boolean sceltaMenuConfig(int scelta) {
