@@ -2,15 +2,19 @@ package it.unibs.controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import it.unibs.controllerGrasp.ComprensoriHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.InputDati;
 import it.unibs.view.accesso.*;
+import it.unibs.view.configuratore.ViewNuovoComprensorio;
 import it.unibs.view.console.ViewConfiguratore;
 
 public class GestoreComprensoriConfiguratore {
-	private ViewConfiguratore view;  
+	private ViewConfiguratore view;
+	private JFrame frame;
 	private ComprensoriHandler comprensoriHandler; 
 	
 //	public GestoreComprensoriConfiguratore(Model model, ViewConfiguratore view) {
@@ -18,7 +22,8 @@ public class GestoreComprensoriConfiguratore {
 //		this.comprensoriHandler = new ComprensoriHandler(model);
 //	}
 	
-	public GestoreComprensoriConfiguratore(Model model) {
+	public GestoreComprensoriConfiguratore(Model model, JFrame frame) {
+		this.frame=frame;
 		this.comprensoriHandler = new ComprensoriHandler(model);
 	}
 	
@@ -29,8 +34,10 @@ public class GestoreComprensoriConfiguratore {
 	 * @since 1
 	 */
 	public void nuovoComprensorio() {
+		ViewNuovoComprensorio viewNuovoComprensorio = new ViewNuovoComprensorio(frame);
+		frame.getContentPane().add(viewNuovoComprensorio);
+		viewNuovoComprensorio.setLayout(null);
 		
-		System.out.println("gay");
 
 //		String name;
 //		do {
