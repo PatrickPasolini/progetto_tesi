@@ -1,8 +1,10 @@
 package it.unibs.controller.accesso;
 
+import it.unibs.controller.ControllerFruitore;
 import it.unibs.domain.Comprensorio;
 import it.unibs.domain.Fruitore;
 import it.unibs.domain.Utente;
+import it.unibs.model.Model;
 import it.unibs.model.ModelAccesso;
 import it.unibs.mylib.InputDati;
 import it.unibs.view.accesso.ViewAccesso;
@@ -34,11 +36,19 @@ public class AccessoFruitoreNuovoStrategy implements StrategyAccesso {
     	boolean formCondition= !username.equals("")&& !password.equals("")
     							&& !username.equals("username")&& !password.equals("Password");
    		if (comprensorioIndex>0&&isCredenzialiUnivoce && formCondition) {
+   			//creazione utente
    			Utente user = new Fruitore(username, password, email, modelAccesso.getComprensorio(comprensorioIndex));
+   			viewNewFru.setCreazioneEseguita();
    			modelAccesso.salvaNewUser(username, user);
-//   			viewAccesso.msgAccessoNuovoFruitore();
-   			modelAccesso.inizializzaFruitore();
+   			
+   			//accesso
+   			Model model = modelAccesso.getInizializzaModel();
+    		ControllerFruitore controllerFruitore = new ControllerFruitore(model, viewNewFru.getFrame());
+    		controllerFruitore.run();	
 		}
+   		else {
+   			viewNewFru.setCreazioneFallita();
+   		}
    		
        
    		

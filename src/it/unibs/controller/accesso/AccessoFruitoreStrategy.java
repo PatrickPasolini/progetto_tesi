@@ -4,7 +4,6 @@ import it.unibs.controller.ControllerConfiguratore;
 import it.unibs.controller.ControllerFruitore;
 import it.unibs.model.Model;
 import it.unibs.model.ModelAccesso;
-import it.unibs.mylib.InputDati;
 import it.unibs.view.accesso.ViewAccesso;
 import it.unibs.view.atomicElements.BaseView;
 
