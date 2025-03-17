@@ -8,11 +8,15 @@ public class VisualizzaScambiCompleti implements CommandUtente {
 	private ViewConfiguratore view;
 	private GestoreScambi gestoreScambi;
 
-	public VisualizzaScambiCompleti(ViewConfiguratore view, GestoreScambi gestoreScambi) {
-		this.view = view;
+//	public VisualizzaScambiCompleti(ViewConfiguratore view, GestoreScambi gestoreScambi) {
+//		this.view = view;
+//		this.gestoreScambi = gestoreScambi;
+//	}
+	
+	public VisualizzaScambiCompleti( GestoreScambi gestoreScambi) {
 		this.gestoreScambi = gestoreScambi;
 	}
-
+	
 	@Override
 	public void execute() {
 		gestoreScambi.visualizzaScambiCompleti(view);

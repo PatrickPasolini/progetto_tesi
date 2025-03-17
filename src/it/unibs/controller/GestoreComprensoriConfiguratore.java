@@ -13,10 +13,15 @@ public class GestoreComprensoriConfiguratore {
 	private ViewConfiguratore view;  
 	private ComprensoriHandler comprensoriHandler; 
 	
-	public GestoreComprensoriConfiguratore(Model model, ViewConfiguratore view) {
-		this.view = view;
+//	public GestoreComprensoriConfiguratore(Model model, ViewConfiguratore view) {
+//		this.view = view;
+//		this.comprensoriHandler = new ComprensoriHandler(model);
+//	}
+	
+	public GestoreComprensoriConfiguratore(Model model) {
 		this.comprensoriHandler = new ComprensoriHandler(model);
 	}
+	
 	
 	/** 
 	 * Metodo per la creazione di un nuovo comprensorio
@@ -24,24 +29,27 @@ public class GestoreComprensoriConfiguratore {
 	 * @since 1
 	 */
 	public void nuovoComprensorio() {
-		String name;
-		do {
-			view.msgNuovoComprensorioNome();
-			name = InputDati.leggiStringaNonVuota("");
-		} while (comprensoriHandler.checkNomeComprensorio(name));
-		 
-		view.msgNuovoComprensorioComuni();
- 
-		ArrayList<String> comuni = new ArrayList<String>();
-		String comune;
 		
-		do {
-			comune = InputDati.leggiStringaNonVuota("");
-			if(!comune.equals("@")) 
-				comuni.add(comune);
-		} while(!comune.equals("@") || comuni.size() == 0);
-		
-		comprensoriHandler.addComprensorio(new Comprensorio(name,comuni));
+		System.out.println("gay");
+
+//		String name;
+//		do {
+//			view.msgNuovoComprensorioNome();
+//			name = InputDati.leggiStringaNonVuota("");
+//		} while (comprensoriHandler.checkNomeComprensorio(name));
+//		 
+//		view.msgNuovoComprensorioComuni();
+// 
+//		ArrayList<String> comuni = new ArrayList<String>();
+//		String comune;
+//		
+//		do {
+//			comune = InputDati.leggiStringaNonVuota("");
+//			if(!comune.equals("@")) 
+//				comuni.add(comune);
+//		} while(!comune.equals("@") || comuni.size() == 0);
+//		
+//		comprensoriHandler.addComprensorio(new Comprensorio(name,comuni));
 	}
 	
 	/**

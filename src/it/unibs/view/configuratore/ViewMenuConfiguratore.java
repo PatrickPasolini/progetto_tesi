@@ -85,4 +85,8 @@ public class ViewMenuConfiguratore extends BaseView {
         
 	}
 	
+	public void setButtonListeners(ActionListener btnListener,int i) {
+        btnAccedi[i].addActionListener(btnListener);
+    }
+	
 }

@@ -30,8 +30,6 @@ public class ViewMenuFruitore extends BaseView{
 			frame.setMinimumSize(new Dimension(920, 600));
 		}
 
-		
-
 		@Override
 		protected void inizializzaComponenti() {
 			lblMenuConfiguratore = new JLabel("Menu Fruitore");

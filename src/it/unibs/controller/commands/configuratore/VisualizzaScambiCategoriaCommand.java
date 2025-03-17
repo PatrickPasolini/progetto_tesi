@@ -10,13 +10,20 @@ public class VisualizzaScambiCategoriaCommand implements CommandUtente {
 	private GestoreScambi gestoreScambi;
 	private GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore;
 
-	public VisualizzaScambiCategoriaCommand(ViewConfiguratore view,
-											GestoreScambi gestoreScambi,
+//	public VisualizzaScambiCategoriaCommand(ViewConfiguratore view,
+//											GestoreScambi gestoreScambi,
+//											GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore) {
+//		this.view = view;
+//		this.gestoreScambi = gestoreScambi;
+//		this.gestoreGerarchieConfiguratore = gestoreGerarchieConfiguratore;
+//	}
+	
+	public VisualizzaScambiCategoriaCommand(GestoreScambi gestoreScambi,
 											GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore) {
-		this.view = view;
 		this.gestoreScambi = gestoreScambi;
 		this.gestoreGerarchieConfiguratore = gestoreGerarchieConfiguratore;
 	}
+	
 
 	@Override
 	public void execute() {
