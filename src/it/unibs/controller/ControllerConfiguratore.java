@@ -36,8 +36,8 @@ public class ControllerConfiguratore implements Controller {
 		this.model = model;
 		this.frame=frame;
 		this.view = new ViewMenuConfiguratore(frame);
-//		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model, view);
-		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model);
+		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model);//
+		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model);//
 		this.gestoreScambi = new GestoreScambi(model);
 		
 		inizializzaCommandsMenu();

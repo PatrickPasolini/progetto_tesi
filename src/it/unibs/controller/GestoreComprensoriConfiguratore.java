@@ -57,6 +57,7 @@ public class GestoreComprensoriConfiguratore {
 	 * @since 4
 	 */
 	public void stampaComprensori() {
-		view.stampaComprensori(comprensoriHandler.getComprensori());
+		System.out.println(comprensoriHandler.getComprensori());
+//		view.stampaComprensori(comprensoriHandler.getComprensori());
 	}
 }

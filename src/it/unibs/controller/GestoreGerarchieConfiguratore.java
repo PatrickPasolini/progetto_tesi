@@ -19,24 +19,29 @@ public class GestoreGerarchieConfiguratore {
 	private  ViewConfiguratore view;
 	private GerarchieHandler gerarchieHandler; 
 	
-	public GestoreGerarchieConfiguratore(Model model, ViewConfiguratore view) {
-		super();
-		this.view = view;
-	
+//	public GestoreGerarchieConfiguratore(Model model, ViewConfiguratore view) {
+//		super();
+//		this.view = view;
+//	
+//		gerarchieHandler = new GerarchieHandler(model);
+//	}
+
+	public GestoreGerarchieConfiguratore(Model model) {
 		gerarchieHandler = new GerarchieHandler(model);
 	}
-
+	
 	/**
 	 * Menu per scegliere se continuare con la creazione o terminare prima che inizi la creazione
 	 * @since 1
 	 */
 	public void inizioCreazione() {
-		gerarchieHandler.resetNewGerarchia();
-		int scelta = view.menuInizioCreazioneGerarchia().scegli();
-		if(scelta == 0)
-			return;
-		
-		creaGerarchiaLineare();
+		System.out.println("btnAggiungiGerarchia é linked");
+//		gerarchieHandler.resetNewGerarchia();
+//		int scelta = view.menuInizioCreazioneGerarchia().scegli();
+//		if(scelta == 0)
+//			return;
+//		
+//		creaGerarchiaLineare();
 	}
 	
 	 /**
@@ -307,8 +312,10 @@ public class GestoreGerarchieConfiguratore {
 	 * @since 1
 	 */ 
 	public void sceltaFogliaFattori() {
-		Foglia foglia = sceltaRadiceFoglia();
-		view.stampaFattoriDiCOnversioneFoglia(gerarchieHandler.getMapFattori(),foglia);
+		System.out.println("btnVisualizzaFattori é linked");
+		
+//		Foglia foglia = sceltaRadiceFoglia();
+//		view.stampaFattoriDiCOnversioneFoglia(gerarchieHandler.getMapFattori(),foglia);
 	}
 	
 	/**
@@ -325,7 +332,8 @@ public class GestoreGerarchieConfiguratore {
 	 * @since 4
 	 */
 	public void stampaGerarchie() {
-		view.stampaGerarchie(gerarchieHandler.getGerarchie());
+		System.out.println("btnStampaGerarchie é linked");
+//		view.stampaGerarchie(gerarchieHandler.getGerarchie());
 	}
 	
 }

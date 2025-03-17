@@ -25,7 +25,7 @@ public class ViewMenuConfiguratore extends BaseView {
 			"Contatta utenti di uno scambio"};
 	private JLabel lblMenuConfiguratore;
 	private RoundedButton[] btnAccedi= new RoundedButton[SCELTE_CONFIGURATORE.length];
-	private ActionListener[] btnAccediListener;// ??????DIVETA LISTA???????
+	private ActionListener[] btnAccediListener;
 	
 	public ViewMenuConfiguratore(JFrame frame) {
 		super(frame,frame.getWidth()-200,650);
