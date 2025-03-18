@@ -45,6 +45,10 @@ public class ViewNuovoComprensorio extends BaseView {
 		btnPlus = new RoundedButtonPlus(Color.GRAY);
 		
 		btnConferma = new RoundedButton("Conferma", new Color(8, 102, 255));
+		if (btnCreazioneListener != null) {
+        	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
+        }
+		
 		listModel = new DefaultListModel<>();
 		comuniList = new JList<>(listModel);
 	}
@@ -102,22 +106,15 @@ public class ViewNuovoComprensorio extends BaseView {
 		JScrollPane scrollPane = new JScrollPane(comuniList);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		scrollPane.setBounds(contentWidth / 2 - 170, 350, 340, 180);
-
-		// Personalizzazione della scrollbar
 		scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
-
+//		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		contentPanel.add(scrollPane);
 
-        
         btnConferma.setBorder(null);
         btnConferma.setMargin(new Insets(0, 10, 0, 0));
         btnConferma.setFont(new Font("Tahoma", Font.BOLD, 40));
         btnConferma.setBounds(contentWidth / 2 - 170, 550, 340, 60);
         btnConferma.setForeground(Color.WHITE);
-        if (btnCreazioneListener != null) {
-        	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
-        }
         contentPanel.add(btnConferma);
         
         revalidate();

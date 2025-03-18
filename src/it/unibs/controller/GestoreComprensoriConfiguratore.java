@@ -46,13 +46,48 @@ public class GestoreComprensoriConfiguratore {
 	
 	private void aggiungiComprensorio() {
 		String name=viewNuovoComprensorio.getNomeComprensorio();
-		if(!comprensoriHandler.checkNomeComprensorio(name)) {
+		String placeholder = viewNuovoComprensorio.getPlaceholderComp();
+		//TODO Controllo almeno un comune, name diverso da placeHolder
+		System.out.println(name);
+		if(name.isEmpty() || name.equals(placeholder) || comuni.isEmpty()){
+	        viewNuovoComprensorio.setCreazioneFallita();
+	        return;
+	    }
+		if((!comprensoriHandler.checkNomeComprensorio(name))) {
+			
 			comprensoriHandler.addComprensorio(new Comprensorio(name,comuni));
 			salvaHandler.salvaModifiche();	
-			this.viewNuovoComprensorio.setAccessoEseguito();
+			viewNuovoComprensorio.setCreazioneEseguita(name);
 		}
 		else {
-			this.viewNuovoComprensorio.setAccessoFallito();
+			viewNuovoComprensorio.setCreazioneFallita();
 		}
 	}
+
+//	private void aggiungiComprensorio() {
+//	    String name = viewNuovoComprensorio.getNomeComprensorio().trim();
+//	    String placeholder = (String) viewNuovoComprensorio.getPlaceholderComp();
+//
+//	    // Controllo sul nome: deve essere diverso da vuoto e dal placeholder
+//	    if (name.isEmpty() || name.equals(placeholder)) {
+//	        viewNuovoComprensorio.setAccessoFallito("Inserire un nome valido per il comprensorio!");
+//	        return;
+//	    }
+//	    
+//	    // Controllo che ci sia almeno un comune inserito
+//	    if (comuni.isEmpty()) {
+//	        viewNuovoComprensorio.setAccessoFallito("Inserire almeno un comune!");
+//	        return;
+//	    }
+//	    
+//	    // Se il nome non è già presente
+//	    if (!comprensoriHandler.checkNomeComprensorio(name)) {
+//	        comprensoriHandler.addComprensorio(new Comprensorio(name, comuni));
+//	        salvaHandler.salvaModifiche();
+//	        viewNuovoComprensorio.setAccessoEseguito(name);
+//	    } else {
+//	        viewNuovoComprensorio.setAccessoFallito("Nome comprensorio gia' presente, riprova!");
+//	    }
+//	}
+
 }
