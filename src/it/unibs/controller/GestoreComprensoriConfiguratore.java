@@ -19,12 +19,7 @@ public class GestoreComprensoriConfiguratore {
 	private ComprensoriHandler comprensoriHandler; 
 	private ViewNuovoComprensorio viewNuovoComprensorio;
 	private List<String> comuni ; 
-	
 	private SalvaModificheHandler salvaHandler;
-//	public GestoreComprensoriConfiguratore(Model model, ViewConfiguratore view) {
-//		this.view = view;
-//		this.comprensoriHandler = new ComprensoriHandler(model);
-//	}
 	
 	public GestoreComprensoriConfiguratore(Model model, JFrame frame) {
 		this.frame=frame;
