@@ -90,7 +90,7 @@ public class ViewNuovoComprensorio extends BaseView {
         
         btnPlus.setBorder(null);
         btnPlus.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnPlus.setBounds(contentWidth / 2 + 171, 251, 60-2, 60-2);
+        btnPlus.setBounds(contentWidth / 2 + 172, 252, 60-4, 60-4);
         btnPlus.setForeground(Color.WHITE);
         contentPanel.add(btnPlus);
 	    if (btnPlusListener != null) {
@@ -146,21 +146,55 @@ public class ViewNuovoComprensorio extends BaseView {
 	    	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
 	    }
 	}
-	
-	public void setAccessoFallito() {
+	public void setCreazioneFallita() {
     	this.nomeNonUnivoco=true;
-    	comprensorioField.setText(txtNuovoComprensorio);
+    	comprensorioField.setText("");
+    	System.out.println("accesso fallito");
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     	contentPanel.requestFocusInWindow();
     }
-	public void setAccessoEseguito() {
+	public void setCreazioneEseguita(String nomeComp) {
+		System.out.println("accesso eseguito");
+		frame.setResizable(false);
 		contentPanel.removeAll();
 		lblNuovoComp.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
-        lblNuovoComp.setForeground(Color.GRAY);
-        lblNuovoComp.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lblNuovoComp.setForeground(new Color(50, 205, 50));
+        lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 40));
         Dimension size = lblNuovoComp.getPreferredSize();
         lblNuovoComp.setBounds((contentPanel.getWidth() - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblNuovoComp);
+        
+        JLabel lblNomeComp = new JLabel();
+        lblNomeComp.setText("Comprensorio "+comprensorioField.getText()+":");
+        lblNomeComp.setForeground(Color.GRAY);
+        lblNomeComp.setFont(new Font("Tahoma", Font.BOLD, 40));
+        lblNomeComp.setBounds((contentPanel.getWidth() - size.width) / 2, 120, size.width, 70);
+        contentPanel.add(lblNomeComp);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        panel.setBackground(contentPanel.getBackground());
+        for (int i = 0; i < listModel.size(); i++) {
+            JLabel lblComune = new JLabel();
+            String item = listModel.getElementAt(i);
+            lblComune.setForeground(Color.GRAY);
+            lblComune.setFont(new Font("Tahoma", Font.PLAIN, 35));
+            lblComune.setText("- " + item);
+            lblComune.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+            panel.add(lblComune);
+        }
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setBackground(contentPanel.getBackground());
+        scrollPane.setBounds((contentPanel.getWidth() - size.width) / 2, 170+50, size.width, 300); 
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        contentPanel.add(scrollPane);
+        
+        RoundedButton btnHome = new RoundedButton("Home", new Color(8, 102, 255));
+        
+        
         revalidate();
         repaint();
 	}
@@ -181,5 +215,9 @@ public class ViewNuovoComprensorio extends BaseView {
 	}
 	public String getNomeComprensorio() {
 		return comprensorioField.getText();
+	}
+
+	public String getPlaceholderComp() {
+		return comprensorioField.getPlaceholder();
 	}
 }
