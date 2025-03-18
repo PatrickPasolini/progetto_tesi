@@ -112,9 +112,6 @@ contentPanel.removeAll();
         userField.setText("");
         pswField.setText("");
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
-
-        // Sposta il focus sul pannello per permettere al placeholder di ricomparire
-        contentPanel.requestFocusInWindow();
     }
     
     //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 

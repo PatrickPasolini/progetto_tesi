@@ -11,6 +11,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
@@ -40,17 +41,30 @@ public class RoundedButton extends JButton {
 	    setFocusPainted(false);
 	    Color darkerColor = darkenColor(defaultColor, 0.8f); // 80% della luminosità originale
 	
-	    addFocusListener(new FocusListener() {
-	        @Override
-	        public void focusGained(FocusEvent e) {
-	        	 setBackground(darkerColor);
-	        }
-	
-	        @Override
-	        public void focusLost(FocusEvent e) {
-	        	setBackground(defaultColor);
-	        }
-	    });
+	    addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setBackground(defaultColor);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setBackground(darkerColor);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
 	
 	}
 	@Override
