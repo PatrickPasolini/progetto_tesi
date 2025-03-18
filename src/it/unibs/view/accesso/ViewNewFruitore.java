@@ -149,6 +149,7 @@ public class ViewNewFruitore extends BaseView{
         userField.setText("");
         pswField.setText("");
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
+        contentPanel.requestFocusInWindow();
     }
     
     //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 

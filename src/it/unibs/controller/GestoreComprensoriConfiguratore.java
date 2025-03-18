@@ -47,12 +47,12 @@ public class GestoreComprensoriConfiguratore {
 	private void aggiungiComprensorio() {
 		String name=viewNuovoComprensorio.getNomeComprensorio();
 		String placeholder = viewNuovoComprensorio.getPlaceholderComp();
-		//TODO Controllo almeno un comune, name diverso da placeHolder
-		System.out.println(name);
+		
 		if(name.isEmpty() || name.equals(placeholder) || comuni.isEmpty()){
 	        viewNuovoComprensorio.setCreazioneFallita();
 	        return;
 	    }
+		
 		if((!comprensoriHandler.checkNomeComprensorio(name))) {
 			
 			comprensoriHandler.addComprensorio(new Comprensorio(name,comuni));

@@ -52,6 +52,7 @@ public class ViewStart extends BaseView {
 
         contentPanel.revalidate();
         contentPanel.repaint();
+        contentPanel.requestFocusInWindow();
     }
 
 
