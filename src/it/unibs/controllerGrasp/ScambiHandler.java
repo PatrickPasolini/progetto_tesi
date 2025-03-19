@@ -68,4 +68,8 @@ public class ScambiHandler {
 	public Utente getUser() {
 		return model.getUser();
 	}
+
+	public String getNameUser() {
+		return model.getNameUser();
+	}
 }

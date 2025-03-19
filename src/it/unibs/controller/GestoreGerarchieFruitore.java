@@ -22,8 +22,9 @@ public class GestoreGerarchieFruitore {
 	}
 
 	public void navigazioneGerarchie() {
-		Foglia fogliaSelezionata = navigaGerarchia();
-		view.msgFogliaSelezionata(fogliaSelezionata);
+		
+//		Foglia fogliaSelezionata = navigaGerarchia();
+//		view.msgFogliaSelezionata(fogliaSelezionata);
 	}
 	
 	// due metodi successivi usati anche da gestoreScambi

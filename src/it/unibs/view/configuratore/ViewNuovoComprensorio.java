@@ -51,8 +51,6 @@ public class ViewNuovoComprensorio extends BaseView {
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
-        
-        // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
@@ -113,7 +111,6 @@ public class ViewNuovoComprensorio extends BaseView {
         
         revalidate();
         repaint();
-        System.out.println(getComuniInseriti());
 	}
 	
 	public List<String> getComuniInseriti() {

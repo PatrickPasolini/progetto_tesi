@@ -20,11 +20,9 @@ public class ViewMenuFruitore extends BaseView{
 				"Ritira proposta"};
 		private JLabel lblMenuFruitore;
 		private RoundedButton[] btnMenu= new RoundedButton[SCELTE_FRUITORE.length];
-		private ActionListener[] btnAccediListener;// ??????DIVETA LISTA???????
 		
 		public ViewMenuFruitore(JFrame frame) {
 			super(frame,frame.getWidth()-200,650);
-//			btnAccedi = new RoundedButton[SCELTE_CONFIGURATORE.length];	
 			inizializzaComponenti();
 			aggiornaComponenti(frame.getWidth(), frame.getHeight());
 			frame.setMinimumSize(new Dimension(920, 600));
@@ -64,11 +62,7 @@ public class ViewMenuFruitore extends BaseView{
 	    	        int heightButton=contentHeight/6; //100
 	    	         
 	    	        btnMenu[i].setBounds(contentWidth/2-widthButton/2, 120+(heightButton+offset)*i, widthButton, heightButton);
-	    	        
 	    	        btnMenu[i].setForeground(Color.WHITE);
-//	    	        if (btnAccediListener[i] != null) {
-//	    	            btnAccedi[i].addActionListener(btnAccediListener[i]);
-//	    	        }
 	    	        contentPanel.add(btnMenu[i]);
 	    		}
 			}

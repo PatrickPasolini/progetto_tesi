@@ -11,14 +11,17 @@ import it.unibs.mylib.*;
 import it.unibs.view.accesso.*;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.console.ViewFruitore;
+import it.unibs.view.fruitore.ViewVisualizzaProposte;
 
 public class GestoreScambi {
 	private ScambiHandler scambiHandler;
 	private JFrame frame;
+	private Model model;
 	
 	public GestoreScambi(Model model,JFrame frame) {
 		super();
 		this.scambiHandler = new ScambiHandler(model);
+		this.model=model; 
 		this.frame=frame;
 	}
 
@@ -101,18 +104,22 @@ public class GestoreScambi {
 	 * @since 4
 	 */
 	public void visualizzaProposteUtente() {
+		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
+		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
+		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
 		
-		
-		
-//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
-//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
-//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
-//				
-//		view.msgVisualizzaProposte();
-//		
-//		view.stampaScambiApertiFruitore(scambiAperti);
-//		view.stampaScambiChiusiFruitore(scambiChiusi);
-//		view.stampaScambiRitiratiFruitore(scambiRitirati);
+		ViewVisualizzaProposte viewProposte = new ViewVisualizzaProposte(frame);
+		frame.getContentPane().add(viewProposte);
+		viewProposte.setLayout(null);
+		viewProposte.setBtnApertiListeners(e-> viewProposte.visualizzaAperti(scambiAperti,scambiHandler.getNameUser()));
+		viewProposte.setBtnChiusiListeners(e-> viewProposte.visualizzaChiusi(scambiChiusi,scambiHandler.getNameUser()));
+		viewProposte.setBtnRitiratiListeners(e-> viewProposte.visualizzaRitirati(scambiRitirati,scambiHandler.getNameUser()));
+		viewProposte.setBtnHomeListener(e-> backHome());
+	}
+	
+	private void backHome() {
+		ControllerFruitore controllerConfiguratore = new ControllerFruitore(model, frame);
+		controllerConfiguratore.run();
 	}
 	
 	/**

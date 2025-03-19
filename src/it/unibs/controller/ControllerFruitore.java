@@ -51,17 +51,13 @@ public class ControllerFruitore implements Controller{
 		ViewMenuFruitore menuFruitore = new ViewMenuFruitore(frame);
         frame.getContentPane().add(menuFruitore);
         menuFruitore.setLayout(null);
-//		MyMenu menuRun = view.getMenuRun();
-//		
-//		do {
-//			view.stampaMenuRun();
-//		} while(sceltaMenuFruitore(menuRun));
+        for (Integer key : commandMenu.keySet()) {
+        	menuFruitore.setButtonListeners(e->sceltaMenuFruitore(key),key-1);
+        }
 	}
 
-	public boolean sceltaMenuFruitore(MyMenu menu) {	
-		int scelta = menu.scegli();
+	public boolean sceltaMenuFruitore(int scelta) {	
 		CommandUtente command = commandMenu.get(scelta);
-		
 		if (command != null) {
 	        command.execute();
 	        return true;

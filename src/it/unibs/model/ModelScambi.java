@@ -34,7 +34,10 @@ public class ModelScambi {
 		this.scambiRitirati = persistence.getScambiRitirati();
 		this.mapFattori = persistence.getMapFattori();
 	}
-
+	public String getNameUser() {
+		return user.getNome();
+	}
+	
 	public Utente getUser() {
 		return user;
 	}
@@ -401,4 +404,5 @@ public class ModelScambi {
 	public Scambio getScambioCompleto(int indexScambio) {
 		return scambiCompleti.get(indexScambio);
 	}
+
 }
