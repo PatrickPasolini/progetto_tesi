@@ -1,6 +1,7 @@
 package it.unibs.view.atomicElements;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
@@ -14,8 +15,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class RoundedButton extends JButton {
@@ -30,7 +33,7 @@ public class RoundedButton extends JButton {
 	private float animatSize;
 	private Point pressedPoint;
 	private Color effectColor = new Color(255, 255, 255);
-	
+	private Color darkerColor;
 	public RoundedButton(String btnText,Color defaultColor) {
 	    super(btnText);
 	    setHorizontalAlignment(SwingConstants.CENTER);
@@ -39,7 +42,7 @@ public class RoundedButton extends JButton {
 	    setBackground(defaultColor);
 	    setCursor(new Cursor(Cursor.HAND_CURSOR));
 	    setFocusPainted(false);
-	    Color darkerColor = darkenColor(defaultColor, 0.8f); // 80% della luminosità originale
+	    darkerColor = darkenColor(defaultColor, 0.8f); // 80% della luminosità originale
 	
 	    addMouseListener(new MouseListener() {
 			
@@ -54,11 +57,14 @@ public class RoundedButton extends JButton {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setBackground(defaultColor);
+			    setBorder(new EmptyBorder(5, 0, 5, 0));
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setBackground(darkerColor);
+				Border blackBorder = BorderFactory.createLineBorder(Color.BLACK, 2);
+			    setBorder(blackBorder);
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -76,11 +82,12 @@ public class RoundedButton extends JButton {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, width, height, 5, 5);
-        if (pressedPoint != null) {
-            g2.setColor(effectColor);
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 15));
-            g2.fillOval((int) (pressedPoint.x - animatSize / 2), (int) (pressedPoint.y - animatSize / 2), (int) animatSize, (int) animatSize);
-        }
+     // Disegna il bordo stondato SOLO quando il mouse è sopra
+//        if (getBackground().equals(darkerColor)) {  //sembra che rimanga fuori un pixel negli angoli
+//        	g2.setStroke(new BasicStroke(2));
+//            g2.setColor(Color.BLACK);
+//            g2.drawRoundRect(1, 1, width - 3, height - 3, 2, 2);
+//        }
         g2.dispose();
         g.drawImage(img, 0, 0, null);
         super.paintComponent(g);

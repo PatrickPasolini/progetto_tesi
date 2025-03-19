@@ -12,6 +12,7 @@ import it.unibs.model.Model;
 import it.unibs.mylib.InputDati;
 import it.unibs.view.accesso.*;
 import it.unibs.view.configuratore.ViewNuovoComprensorio;
+import it.unibs.view.configuratore.ViewVisualizzaComprensori;
 import it.unibs.view.console.ViewConfiguratore;
 
 public class GestoreComprensoriConfiguratore {
@@ -69,6 +70,13 @@ public class GestoreComprensoriConfiguratore {
 	private void backHome() {
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
+	}
+	
+	public void stampaComprensori() {
+		ViewVisualizzaComprensori viewNuovoComprensorio = new ViewVisualizzaComprensori(frame,comprensoriHandler.getComprensori());
+		frame.getContentPane().add(viewNuovoComprensorio);
+		viewNuovoComprensorio.setLayout(null);
+		viewNuovoComprensorio.setBtnHomeListener(e-> backHome());
 	}
 
 }

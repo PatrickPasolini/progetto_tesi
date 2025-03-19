@@ -151,6 +151,7 @@ public class ViewNuovoComprensorio extends BaseView {
 		frame.setResizable(false);
 		contentPanel.removeAll();
 		int contentWidth = contentPanel.getWidth();
+		
 		JLabel lblCreazione = new JLabel();
 		lblCreazione.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
 		lblCreazione.setForeground(new Color(50, 205, 50));

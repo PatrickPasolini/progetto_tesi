@@ -12,6 +12,6 @@ public class StampaComprensoriCommand implements CommandUtente {
 
 	@Override
 	public void execute() {
-//		gestoreComprensori.stampaComprensori();		
+		gestoreComprensori.stampaComprensori();		
 	}
 }
