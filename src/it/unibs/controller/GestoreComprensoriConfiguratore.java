@@ -16,17 +16,17 @@ import it.unibs.view.console.ViewConfiguratore;
 
 public class GestoreComprensoriConfiguratore {
 	private JFrame frame;
-	private ComprensoriHandler comprensoriHandler; 
-	private ViewNuovoComprensorio viewNuovoComprensorio;
-	private List<String> comuni ; 
-	private SalvaModificheHandler salvaHandler;
 	private Model model;
+	private List<String> comuni ; 
+	private ComprensoriHandler comprensoriHandler; 
+	private SalvaModificheHandler salvaHandler;
+	private ViewNuovoComprensorio viewNuovoComprensorio;
 	
 	public GestoreComprensoriConfiguratore(Model model, JFrame frame) {
 		this.model=model; 
 		this.frame=frame;
-		this.comprensoriHandler = new ComprensoriHandler(model);
 		this.comuni = new ArrayList<>();
+		this.comprensoriHandler = new ComprensoriHandler(model);
 		this.salvaHandler=new SalvaModificheHandler(model);
 	}
 
@@ -39,11 +39,6 @@ public class GestoreComprensoriConfiguratore {
 		viewNuovoComprensorio.setBtnHomeListener(e-> backHome());
 	}
 	
-	private void backHome() {
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
-		controllerConfiguratore.run();
-	}
-
 	private void aggiungiComune() {
         String comune = viewNuovoComprensorio.getComuneDaAggiungere().trim();
         if (!comune.isEmpty() && !comuni.contains(comune) && !comune.equals(viewNuovoComprensorio.getPlaceholderComune())) {
@@ -62,7 +57,6 @@ public class GestoreComprensoriConfiguratore {
 	    }
 		
 		if((!comprensoriHandler.checkNomeComprensorio(name))) {
-			
 			comprensoriHandler.addComprensorio(new Comprensorio(name,comuni));
 			salvaHandler.salvaModifiche();	
 			viewNuovoComprensorio.setCreazioneEseguita(name);
@@ -70,6 +64,11 @@ public class GestoreComprensoriConfiguratore {
 		else {
 			viewNuovoComprensorio.setCreazioneFallita();
 		}
+	}
+	
+	private void backHome() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
 	}
 
 //	private void aggiungiComprensorio() {

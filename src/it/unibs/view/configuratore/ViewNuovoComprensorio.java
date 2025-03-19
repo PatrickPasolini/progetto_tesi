@@ -29,9 +29,6 @@ public class ViewNuovoComprensorio extends BaseView {
 	private DefaultListModel<String> listModel;
     private JList<String> comuniList;
     private RoundedButton btnHome;
-//    
-//    private ActionListener btnPlusListener;
-//    private ActionListener btnCreazioneListener;
 	private boolean nomeNonUnivoco=false;
 	
 	public ViewNuovoComprensorio(JFrame frame) {
@@ -62,7 +59,7 @@ public class ViewNuovoComprensorio extends BaseView {
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
         
-        if(nomeNonUnivoco) { //nome non univoco
+        if(nomeNonUnivoco) {
         	txtNuovoComprensorio="Nome comprensorio gia' presente,riprova:";
         	colorTxtAccesso=Color.RED;
         	colorTxtPlaceholder=Color.RED;
@@ -95,17 +92,12 @@ public class ViewNuovoComprensorio extends BaseView {
         btnPlus.setBounds(contentWidth / 2 + 172, 252, 60-4, 60-4);
         btnPlus.setForeground(Color.WHITE);
         contentPanel.add(btnPlus);
-//	    if (btnPlusListener != null) {
-//	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
-//	    }
-	    
-	    
+        
 		comuniList.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		JScrollPane scrollPane = new JScrollPane(comuniList);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		scrollPane.setBounds(contentWidth / 2 - 170, 350, 340, 180);
 		scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-//		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		contentPanel.add(scrollPane);
 
         btnConferma.setBorder(null);
@@ -130,17 +122,11 @@ public class ViewNuovoComprensorio extends BaseView {
 	
 	
 	public void setBtnPlusListener(ActionListener listener) {
-//		this.btnPlusListener=listener;
-//		if (btnPlusListener != null) {
-//	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
-//	    }
+//		if (btnPlusListener != null) 
 		btnPlus.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	public void setBtnCreazioneListener(ActionListener listener) {
-//		this.btnCreazioneListener=listener;
-//		if (btnCreazioneListener != null) {
-//	    	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
-//	    }
+//		if (btnCreazioneListener != null)
 		btnConferma.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	public void setCreazioneFallita() {
@@ -150,18 +136,17 @@ public class ViewNuovoComprensorio extends BaseView {
     	contentPanel.requestFocusInWindow();
     }
 	
-	
 	public void setCreazioneEseguita(String nomeComp) {
 		frame.setResizable(false);
 		contentPanel.removeAll();
 		int contentWidth = contentPanel.getWidth();
-		
-		lblNuovoComp.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
-        lblNuovoComp.setForeground(new Color(50, 205, 50));
-        lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 40));
-        Dimension size = lblNuovoComp.getPreferredSize();
-        lblNuovoComp.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
-        contentPanel.add(lblNuovoComp);
+		JLabel lblCreazione = new JLabel();
+		lblCreazione.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
+		lblCreazione.setForeground(new Color(50, 205, 50));
+		lblCreazione.setFont(new Font("Tahoma", Font.BOLD, 40));
+        Dimension size = lblCreazione.getPreferredSize();
+        lblCreazione.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        contentPanel.add(lblCreazione);
         
         JLabel lblNomeComp = new JLabel();
         lblNomeComp.setText("Comprensorio "+comprensorioField.getText()+":");

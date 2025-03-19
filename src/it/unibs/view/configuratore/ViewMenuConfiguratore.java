@@ -50,7 +50,8 @@ public class ViewMenuConfiguratore extends BaseView {
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
-        
+		frame.setResizable(true);
+		
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
