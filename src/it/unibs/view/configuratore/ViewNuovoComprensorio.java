@@ -92,12 +92,14 @@ public class ViewNuovoComprensorio extends BaseView {
         contentPanel.add(btnPlus);
         
 		comuniList.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comuniList.setBackground(contentPanel.getBackground());
 		JScrollPane scrollPane = new JScrollPane(comuniList);
 		scrollPane.setBorder(BorderFactory.createCompoundBorder(
 			    BorderFactory.createLineBorder(Color.BLACK, 1),
 			    BorderFactory.createEmptyBorder(10, 20, 10, 10)
 			));
 		scrollPane.setBounds(contentWidth / 2 - 170, 350, 340, 180);
+		scrollPane.setBackground(contentPanel.getBackground());
 		scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		contentPanel.add(scrollPane);
@@ -176,7 +178,7 @@ public class ViewNuovoComprensorio extends BaseView {
             String item = listModel.getElementAt(i);
             lblComune.setForeground(Color.GRAY);
             lblComune.setFont(new Font("Tahoma", Font.PLAIN, 35));
-            lblComune.setText("- " + item);
+            lblComune.setText(item);
             lblComune.setAlignmentX(JLabel.LEFT_ALIGNMENT);
             panel.add(lblComune);
         }
@@ -209,9 +211,9 @@ public class ViewNuovoComprensorio extends BaseView {
 	}
 	public void aggiornaListaComuni(List<String> comuni) {
 	    listModel.clear();
-    	comuneToAddField.setPlaceholderColor(Color.GRAY);//x togliere il rosso se prima non erano stati inseriti comuni
+    	comuneToAddField.setPlaceholderColor(Color.GRAY);//x togliere il rosso se prima errore
 	    for (String comune : comuni) {
-	        listModel.addElement(comune);
+	        listModel.addElement("- "+comune);
 	    }
 	    comuneToAddField.setText("");
 	}

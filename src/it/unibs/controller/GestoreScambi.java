@@ -2,6 +2,8 @@ package it.unibs.controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
@@ -12,10 +14,12 @@ import it.unibs.view.console.ViewFruitore;
 
 public class GestoreScambi {
 	private ScambiHandler scambiHandler;
+	private JFrame frame;
 	
-	public GestoreScambi(Model model) {
+	public GestoreScambi(Model model,JFrame frame) {
 		super();
 		this.scambiHandler = new ScambiHandler(model);
+		this.frame=frame;
 	}
 
 	// GESTORE SCAMBI-CONFIGURATORE
@@ -65,27 +69,30 @@ public class GestoreScambi {
 	 * Se il fruitore conferma lo scambio viene salvato in forma persistente 
 	 *@since 3
 	 */
-	public void creaProposta(ViewFruitore view, GestoreGerarchieFruitore gestoreGerarchieFruitore) {
-		view.msgSceltaPrestazioneRichiesta();
-		Foglia richiesta = gestoreGerarchieFruitore.navigaGerarchia();
-		
-		view.msgInserimentoOreProposta(richiesta);
-		int oreRichiesta = InputDati.leggiInteroPositivo("");
-		
-		Foglia offerta;
-		do {
-			view.msgSceltaPrestazioneOfferta();
-			offerta = gestoreGerarchieFruitore.navigaGerarchia();
-		} while (richiesta.equals(offerta));
+	public void creaProposta( GestoreGerarchieFruitore gestoreGerarchieFruitore) {
 		
 		
-		int oreOfferta = scambiHandler.calcolaOreDaFattore(richiesta, offerta, oreRichiesta);
-		Proposta proposta = new Proposta(richiesta, offerta, oreRichiesta, oreOfferta, scambiHandler.getUser());
 		
-		view.msgSceltaAccettaScambio(proposta);
-		if(InputDati.yesOrNo("")) {
-			scambiHandler.addScambio(proposta);
-		}
+//		view.msgSceltaPrestazioneRichiesta();
+//		Foglia richiesta = gestoreGerarchieFruitore.navigaGerarchia();
+//		
+//		view.msgInserimentoOreProposta(richiesta);
+//		int oreRichiesta = InputDati.leggiInteroPositivo("");
+//		
+//		Foglia offerta;
+//		do {
+//			view.msgSceltaPrestazioneOfferta();
+//			offerta = gestoreGerarchieFruitore.navigaGerarchia();
+//		} while (richiesta.equals(offerta));
+//		
+//		
+//		int oreOfferta = scambiHandler.calcolaOreDaFattore(richiesta, offerta, oreRichiesta);
+//		Proposta proposta = new Proposta(richiesta, offerta, oreRichiesta, oreOfferta, scambiHandler.getUser());
+//		
+//		view.msgSceltaAccettaScambio(proposta);
+//		if(InputDati.yesOrNo("")) {
+//			scambiHandler.addScambio(proposta);
+//		}
 	}
 	
 	/**
@@ -93,16 +100,19 @@ public class GestoreScambi {
 	 * @param gestoreScambi 
 	 * @since 4
 	 */
-	public void visualizzaProposteUtente(ViewFruitore view) {
-		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
-		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
-		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
-				
-		view.msgVisualizzaProposte();
+	public void visualizzaProposteUtente() {
 		
-		view.stampaScambiApertiFruitore(scambiAperti);
-		view.stampaScambiChiusiFruitore(scambiChiusi);
-		view.stampaScambiRitiratiFruitore(scambiRitirati);
+		
+		
+//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
+//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
+//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
+//				
+//		view.msgVisualizzaProposte();
+//		
+//		view.stampaScambiApertiFruitore(scambiAperti);
+//		view.stampaScambiChiusiFruitore(scambiChiusi);
+//		view.stampaScambiRitiratiFruitore(scambiRitirati);
 	}
 	
 	/**
@@ -112,18 +122,21 @@ public class GestoreScambi {
 	 * 
 	 * @since 4
 	 */
-	public void ritiraProposta(ViewFruitore view) {
-		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
-		MyMenu menuProposte = view.menuSceltaRitiraProposta(scambiAperti);
-		int scelta = menuProposte.scegli();
+	public void ritiraProposta() {
 		
-		if(scelta != 0) {
-			Proposta p = scambiAperti.get(scelta-1);
-			
-			view.msgConfermaRitiroProposta(p);
-			if(InputDati.yesOrNo("")) {
-				scambiHandler.ritiraScambioAperto(p);
-			}
-		}
+		
+		
+//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
+//		MyMenu menuProposte = view.menuSceltaRitiraProposta(scambiAperti);
+//		int scelta = menuProposte.scegli();
+//		
+//		if(scelta != 0) {
+//			Proposta p = scambiAperti.get(scelta-1);
+//			
+//			view.msgConfermaRitiroProposta(p);
+//			if(InputDati.yesOrNo("")) {
+//				scambiHandler.ritiraScambioAperto(p);
+//			}
+//		}
 	}
 }

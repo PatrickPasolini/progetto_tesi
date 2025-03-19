@@ -2,6 +2,8 @@
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
@@ -11,10 +13,11 @@ import it.unibs.view.console.ViewFruitore;
 public class GestoreGerarchieFruitore {
 	private  ViewFruitore view; 
 	private GerarchieHandler gerarchieHandler;
+	private JFrame frame;
 	
-	public GestoreGerarchieFruitore(Model model, ViewFruitore view) {
+	public GestoreGerarchieFruitore(Model model, JFrame frame) {
 		super();
-		this.view = view;
+		this.frame=frame;
 		this.gerarchieHandler = new GerarchieHandler(model);
 	}
 

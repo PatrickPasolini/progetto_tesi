@@ -18,8 +18,8 @@ public class ViewMenuFruitore extends BaseView{
 				"Formula proposte di scambio di prestazioni",
 				"Visualizza proposte",
 				"Ritira proposta"};
-		private JLabel lblMenuConfiguratore;
-		private RoundedButton[] btnAccedi= new RoundedButton[SCELTE_FRUITORE.length];
+		private JLabel lblMenuFruitore;
+		private RoundedButton[] btnMenu= new RoundedButton[SCELTE_FRUITORE.length];
 		private ActionListener[] btnAccediListener;// ??????DIVETA LISTA???????
 		
 		public ViewMenuFruitore(JFrame frame) {
@@ -32,10 +32,10 @@ public class ViewMenuFruitore extends BaseView{
 
 		@Override
 		protected void inizializzaComponenti() {
-			lblMenuConfiguratore = new JLabel("Menu Fruitore");
-			if (btnAccedi!=null) {
-				for (int i=0;i<btnAccedi.length;i++) {
-					btnAccedi[i] = new RoundedButton(SCELTE_FRUITORE[i], new Color(8, 102, 255));
+			lblMenuFruitore = new JLabel("Menu Fruitore");
+			if (btnMenu!=null) {
+				for (int i=0;i<btnMenu.length;i++) {
+					btnMenu[i] = new RoundedButton(SCELTE_FRUITORE[i], new Color(8, 102, 255));
 				}
 			}
 		}
@@ -48,32 +48,34 @@ public class ViewMenuFruitore extends BaseView{
 	        int contentWidth = contentPanel.getWidth();
 	        int contentHeight = contentPanel.getHeight();
 	        
-	        lblMenuConfiguratore.setForeground(new Color(43, 43, 43));
-	        lblMenuConfiguratore.setFont(new Font("Tahoma", Font.PLAIN, 40));
-	        Dimension size = lblMenuConfiguratore.getPreferredSize();
-	        lblMenuConfiguratore.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
-	        contentPanel.add(lblMenuConfiguratore);
+	        lblMenuFruitore.setForeground(new Color(43, 43, 43));
+	        lblMenuFruitore.setFont(new Font("Tahoma", Font.PLAIN, 40));
+	        Dimension size = lblMenuFruitore.getPreferredSize();
+	        lblMenuFruitore.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+	        contentPanel.add(lblMenuFruitore);
 	        
-	        if (btnAccedi!=null) {
-	        	for (int i=0;i<btnAccedi.length;i++) {
-	    			btnAccedi[i].setBorder(null);
-	    			btnAccedi[i].setMargin(new Insets(0, 10, 0, 0));
-	    	        btnAccedi[i].setFont(new Font("Tahoma", Font.BOLD, 20));
+	        if (btnMenu!=null) {
+	        	for (int i=0;i<btnMenu.length;i++) {
+	    			btnMenu[i].setBorder(null);
+	    			btnMenu[i].setMargin(new Insets(0, 10, 0, 0));
+	    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 20));
 	    	        int offset=20;
 	    	        int widthButton=contentWidth-200;
 	    	        int heightButton=contentHeight/6; //100
 	    	         
-	    	        btnAccedi[i].setBounds(contentWidth/2-widthButton/2, 120+(heightButton+offset)*i, widthButton, heightButton);
+	    	        btnMenu[i].setBounds(contentWidth/2-widthButton/2, 120+(heightButton+offset)*i, widthButton, heightButton);
 	    	        
-	    	        btnAccedi[i].setForeground(Color.WHITE);
+	    	        btnMenu[i].setForeground(Color.WHITE);
 //	    	        if (btnAccediListener[i] != null) {
 //	    	            btnAccedi[i].addActionListener(btnAccediListener[i]);
 //	    	        }
-	    	        contentPanel.add(btnAccedi[i]);
+	    	        contentPanel.add(btnMenu[i]);
 	    		}
 			}
 	        
 		}
-		
+		public void setButtonListeners(ActionListener btnListener,int i) {
+	        btnMenu[i].addActionListener(btnListener);
+	    }
 	}
 

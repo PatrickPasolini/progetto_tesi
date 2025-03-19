@@ -31,8 +31,8 @@ public class ControllerFruitore implements Controller{
 		this.model = model;
 		this.frame=frame;
 		this.view = new ViewMenuFruitore(frame);
-//		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, view);
-		this.gestoreScambi = new GestoreScambi(model);
+		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, frame);
+		this.gestoreScambi = new GestoreScambi(model,frame);
 		
 		inizializzaCommandsMenu();
 	}
@@ -42,10 +42,10 @@ public class ControllerFruitore implements Controller{
 	
 	private void inizializzaCommandsMenu() {
 		commandMenu.put(1, new NavigazioneGerarchieCommand(gestoreGerarchieFruitore));
-//		commandMenu.put(2, new CreaPropostaCommand(gestoreGerarchieFruitore, gestoreScambi, view));
-//		commandMenu.put(3, new VisualizzaProposteUtenteCommand(gestoreScambi, view));
-//		commandMenu.put(4, new RitiraPropostaCommand(gestoreScambi, view));
-	}
+		commandMenu.put(2, new CreaPropostaCommand(gestoreGerarchieFruitore, gestoreScambi));
+		commandMenu.put(3, new VisualizzaProposteUtenteCommand(gestoreScambi));
+		commandMenu.put(4, new RitiraPropostaCommand(gestoreScambi));
+	} 
 	
 	public void run() {
 		ViewMenuFruitore menuFruitore = new ViewMenuFruitore(frame);

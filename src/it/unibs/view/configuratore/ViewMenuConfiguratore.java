@@ -19,7 +19,7 @@ public class ViewMenuConfiguratore extends BaseView {
 			"Visualizza scambi di una categoria",
 			"Contatta utenti di uno scambio"};
 	private JLabel lblMenuConfiguratore;
-	private RoundedButton[] btnAccedi= new RoundedButton[SCELTE_CONFIGURATORE.length];
+	private RoundedButton[] btnMenu= new RoundedButton[SCELTE_CONFIGURATORE.length];
 	
 	public ViewMenuConfiguratore(JFrame frame) {
 		super(frame,frame.getWidth()-200,650);
@@ -31,9 +31,9 @@ public class ViewMenuConfiguratore extends BaseView {
 	@Override
 	protected void inizializzaComponenti() {
 		lblMenuConfiguratore = new JLabel("Menu Configuratore");
-		if (btnAccedi!=null) {
-			for (int i=0;i<btnAccedi.length;i++) {
-				btnAccedi[i] = new RoundedButton(SCELTE_CONFIGURATORE[i], new Color(8, 102, 255));
+		if (btnMenu!=null) {
+			for (int i=0;i<btnMenu.length;i++) {
+				btnMenu[i] = new RoundedButton(SCELTE_CONFIGURATORE[i], new Color(8, 102, 255));
 			}
 		}
 	}
@@ -53,27 +53,27 @@ public class ViewMenuConfiguratore extends BaseView {
         lblMenuConfiguratore.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblMenuConfiguratore);
         
-        if (btnAccedi!=null) {
-        	for (int i=0;i<btnAccedi.length;i++) {
-    			btnAccedi[i].setBorder(null);
-    			btnAccedi[i].setMargin(new Insets(0, 10, 0, 0));
-    	        btnAccedi[i].setFont(new Font("Tahoma", Font.BOLD, 20));
+        if (btnMenu!=null) {
+        	for (int i=0;i<btnMenu.length;i++) {
+    			btnMenu[i].setBorder(null);
+    			btnMenu[i].setMargin(new Insets(0, 10, 0, 0));
+    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 20));
     	        int offset=20;
     	        int widthButton=contentWidth/2-50;
     	        int heightButton=contentHeight/6; //100
     	        if (i>3) {
-    	        	btnAccedi[i].setBounds(contentWidth/2+offset, 120+(offset+heightButton)*(i-4), widthButton, heightButton);
+    	        	btnMenu[i].setBounds(contentWidth/2+offset, 120+(offset+heightButton)*(i-4), widthButton, heightButton);
     	        }
     	        else 
-    	        	btnAccedi[i].setBounds(contentWidth/2-widthButton-offset, 120+(heightButton+offset)*i, widthButton, heightButton);
+    	        	btnMenu[i].setBounds(contentWidth/2-widthButton-offset, 120+(heightButton+offset)*i, widthButton, heightButton);
     	        
-    	        btnAccedi[i].setForeground(Color.WHITE);
-    	        contentPanel.add(btnAccedi[i]);
+    	        btnMenu[i].setForeground(Color.WHITE);
+    	        contentPanel.add(btnMenu[i]);
     		}
 		}
 	}
 	
 	public void setButtonListeners(ActionListener btnListener,int i) {
-        btnAccedi[i].addActionListener(btnListener);
+        btnMenu[i].addActionListener(btnListener);
     }
 }
