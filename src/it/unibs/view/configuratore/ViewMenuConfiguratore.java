@@ -1,19 +1,14 @@
 package it.unibs.view.configuratore;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewMenuConfiguratore extends BaseView {
+	private static final long serialVersionUID = 1L;
 	private final static String[] SCELTE_CONFIGURATORE = new String[]{
 			"Aggiungi comprensorio",
 			"Aggiungi gerarchia",
@@ -25,17 +20,13 @@ public class ViewMenuConfiguratore extends BaseView {
 			"Contatta utenti di uno scambio"};
 	private JLabel lblMenuConfiguratore;
 	private RoundedButton[] btnAccedi= new RoundedButton[SCELTE_CONFIGURATORE.length];
-	private ActionListener[] btnAccediListener;
 	
 	public ViewMenuConfiguratore(JFrame frame) {
 		super(frame,frame.getWidth()-200,650);
-//		btnAccedi = new RoundedButton[SCELTE_CONFIGURATORE.length];	
 		inizializzaComponenti();
 		aggiornaComponenti(frame.getWidth(), frame.getHeight());
 		frame.setMinimumSize(new Dimension(920, 600));
 	}
-
-	
 
 	@Override
 	protected void inizializzaComponenti() {
@@ -77,17 +68,12 @@ public class ViewMenuConfiguratore extends BaseView {
     	        	btnAccedi[i].setBounds(contentWidth/2-widthButton-offset, 120+(heightButton+offset)*i, widthButton, heightButton);
     	        
     	        btnAccedi[i].setForeground(Color.WHITE);
-//    	        if (btnAccediListener[i] != null) {
-//    	            btnAccedi[i].addActionListener(btnAccediListener[i]);
-//    	        }
     	        contentPanel.add(btnAccedi[i]);
     		}
 		}
-        
 	}
 	
 	public void setButtonListeners(ActionListener btnListener,int i) {
         btnAccedi[i].addActionListener(btnListener);
     }
-	
 }

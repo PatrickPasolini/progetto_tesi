@@ -52,7 +52,7 @@ public class GestoreComprensoriConfiguratore {
 		String placeholder = viewNuovoComprensorio.getPlaceholderComp();
 		
 		if(name.isEmpty() || name.equals(placeholder) || comuni.isEmpty()){
-	        viewNuovoComprensorio.setCreazioneFallita();
+	        viewNuovoComprensorio.setCreazioneFallita_AlmenoUnComune();
 	        return;
 	    }
 		
@@ -62,7 +62,7 @@ public class GestoreComprensoriConfiguratore {
 			viewNuovoComprensorio.setCreazioneEseguita(name);
 		}
 		else {
-			viewNuovoComprensorio.setCreazioneFallita();
+			viewNuovoComprensorio.setCreazioneFallita_NomeNonUnivoco();
 		}
 	}
 	
@@ -70,31 +70,5 @@ public class GestoreComprensoriConfiguratore {
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
 	}
-
-//	private void aggiungiComprensorio() {
-//	    String name = viewNuovoComprensorio.getNomeComprensorio().trim();
-//	    String placeholder = (String) viewNuovoComprensorio.getPlaceholderComp();
-//
-//	    // Controllo sul nome: deve essere diverso da vuoto e dal placeholder
-//	    if (name.isEmpty() || name.equals(placeholder)) {
-//	        viewNuovoComprensorio.setAccessoFallito("Inserire un nome valido per il comprensorio!");
-//	        return;
-//	    }
-//	    
-//	    // Controllo che ci sia almeno un comune inserito
-//	    if (comuni.isEmpty()) {
-//	        viewNuovoComprensorio.setAccessoFallito("Inserire almeno un comune!");
-//	        return;
-//	    }
-//	    
-//	    // Se il nome non è già presente
-//	    if (!comprensoriHandler.checkNomeComprensorio(name)) {
-//	        comprensoriHandler.addComprensorio(new Comprensorio(name, comuni));
-//	        salvaHandler.salvaModifiche();
-//	        viewNuovoComprensorio.setAccessoEseguito(name);
-//	    } else {
-//	        viewNuovoComprensorio.setAccessoFallito("Nome comprensorio gia' presente, riprova!");
-//	    }
-//	}
 
 }
