@@ -28,9 +28,10 @@ public class ViewNuovoComprensorio extends BaseView {
 	private RoundedButton btnConferma;
 	private DefaultListModel<String> listModel;
     private JList<String> comuniList;
-    
-    private ActionListener btnPlusListener;
-    private ActionListener btnCreazioneListener;
+    private RoundedButton btnHome;
+//    
+//    private ActionListener btnPlusListener;
+//    private ActionListener btnCreazioneListener;
 	private boolean nomeNonUnivoco=false;
 	
 	public ViewNuovoComprensorio(JFrame frame) {
@@ -43,14 +44,11 @@ public class ViewNuovoComprensorio extends BaseView {
 		comprensorioField = new TextFieldWithPlaceholder("Nome Comprensorio");
 		comuneToAddField = new TextFieldWithPlaceholder("Comune da aggiungere");
 		btnPlus = new RoundedButtonPlus(Color.GRAY);
-		
-		btnConferma = new RoundedButton("Conferma", new Color(8, 102, 255));
-		if (btnCreazioneListener != null) {
-        	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
-        }
-		
+		btnConferma = new RoundedButton("Conferma", new Color(8, 102, 255));	
 		listModel = new DefaultListModel<>();
 		comuniList = new JList<>(listModel);
+		
+		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
 	}
 
 	@Override
@@ -97,9 +95,9 @@ public class ViewNuovoComprensorio extends BaseView {
         btnPlus.setBounds(contentWidth / 2 + 172, 252, 60-4, 60-4);
         btnPlus.setForeground(Color.WHITE);
         contentPanel.add(btnPlus);
-	    if (btnPlusListener != null) {
-	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
-	    }
+//	    if (btnPlusListener != null) {
+//	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
+//	    }
 	    
 	    
 		comuniList.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -132,40 +130,44 @@ public class ViewNuovoComprensorio extends BaseView {
 	
 	
 	public void setBtnPlusListener(ActionListener listener) {
-		this.btnPlusListener=listener;
-		if (btnPlusListener != null) {
-	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
-	    }
+//		this.btnPlusListener=listener;
+//		if (btnPlusListener != null) {
+//	    	btnPlus.addActionListener(btnPlusListener); // Riaggiungiamo il listener
+//	    }
+		btnPlus.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	public void setBtnCreazioneListener(ActionListener listener) {
-		this.btnCreazioneListener=listener;
-		if (btnCreazioneListener != null) {
-	    	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
-	    }
+//		this.btnCreazioneListener=listener;
+//		if (btnCreazioneListener != null) {
+//	    	btnConferma.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
+//	    }
+		btnConferma.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	public void setCreazioneFallita() {
     	this.nomeNonUnivoco=true;
     	comprensorioField.setText("");
-    	System.out.println("accesso fallito");
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());
     	contentPanel.requestFocusInWindow();
     }
+	
+	
 	public void setCreazioneEseguita(String nomeComp) {
-		System.out.println("accesso eseguito");
 		frame.setResizable(false);
 		contentPanel.removeAll();
+		int contentWidth = contentPanel.getWidth();
+		
 		lblNuovoComp.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
         lblNuovoComp.setForeground(new Color(50, 205, 50));
         lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 40));
         Dimension size = lblNuovoComp.getPreferredSize();
-        lblNuovoComp.setBounds((contentPanel.getWidth() - size.width) / 2, 20, size.width, 70);
+        lblNuovoComp.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblNuovoComp);
         
         JLabel lblNomeComp = new JLabel();
         lblNomeComp.setText("Comprensorio "+comprensorioField.getText()+":");
-        lblNomeComp.setForeground(Color.GRAY);
+        lblNomeComp.setForeground(Color.BLACK);
         lblNomeComp.setFont(new Font("Tahoma", Font.BOLD, 40));
-        lblNomeComp.setBounds((contentPanel.getWidth() - size.width) / 2, 120, size.width, 70);
+        lblNomeComp.setBounds((contentWidth - size.width) / 2, 120, size.width, 70);
         contentPanel.add(lblNomeComp);
 
         JPanel panel = new JPanel();
@@ -183,17 +185,24 @@ public class ViewNuovoComprensorio extends BaseView {
         }
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds((contentPanel.getWidth() - size.width) / 2, 170+50, size.width, 300); 
+        scrollPane.setBounds((contentWidth - size.width) / 2, 170+50, size.width, 300); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         contentPanel.add(scrollPane);
         
-        RoundedButton btnHome = new RoundedButton("Home", new Color(8, 102, 255));
         
+        btnHome.setMargin(new Insets(0, 10, 0, 0));
+        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
+        btnHome.setBounds(contentWidth / 2 - 170, 530, 340, 60);
+        btnHome.setForeground(Color.WHITE);
+        contentPanel.add(btnHome);
         
         revalidate();
         repaint();
+	}
+	public void setBtnHomeListener(ActionListener listener) {
+		btnHome.addActionListener(listener); // Riaggiungiamo il listener
 	}
     
 	

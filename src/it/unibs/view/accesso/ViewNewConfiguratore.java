@@ -39,7 +39,7 @@ public class ViewNewConfiguratore extends BaseView {
 
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
-contentPanel.removeAll();
+		contentPanel.removeAll();
         
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();

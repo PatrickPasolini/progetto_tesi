@@ -71,7 +71,6 @@ public class ControllerConfiguratore implements Controller {
 		CommandUtente command = commandMenu.get(scelta);
 		if (command != null) {
 	        command.execute();
-	        commandMenu.get(3).execute();//SALVATAGGIO AUTOMATICO
 	        return true;
 	    }
 	    return false;

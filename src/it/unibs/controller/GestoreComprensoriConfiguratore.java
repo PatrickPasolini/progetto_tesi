@@ -20,8 +20,10 @@ public class GestoreComprensoriConfiguratore {
 	private ViewNuovoComprensorio viewNuovoComprensorio;
 	private List<String> comuni ; 
 	private SalvaModificheHandler salvaHandler;
+	private Model model;
 	
 	public GestoreComprensoriConfiguratore(Model model, JFrame frame) {
+		this.model=model; 
 		this.frame=frame;
 		this.comprensoriHandler = new ComprensoriHandler(model);
 		this.comuni = new ArrayList<>();
@@ -34,8 +36,14 @@ public class GestoreComprensoriConfiguratore {
 		viewNuovoComprensorio.setLayout(null);
 		viewNuovoComprensorio.setBtnPlusListener(e -> aggiungiComune()); 
 		viewNuovoComprensorio.setBtnCreazioneListener(e -> aggiungiComprensorio());
+		viewNuovoComprensorio.setBtnHomeListener(e-> backHome());
 	}
 	
+	private void backHome() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
+	}
+
 	private void aggiungiComune() {
         String comune = viewNuovoComprensorio.getComuneDaAggiungere().trim();
         if (!comune.isEmpty() && !comuni.contains(comune) && !comune.equals(viewNuovoComprensorio.getPlaceholderComune())) {
