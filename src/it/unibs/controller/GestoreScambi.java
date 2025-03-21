@@ -11,6 +11,7 @@ import it.unibs.mylib.*;
 import it.unibs.view.accesso.*;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.console.ViewFruitore;
+import it.unibs.view.fruitore.ViewRitiraProposte;
 import it.unibs.view.fruitore.ViewVisualizzaProposte;
 
 public class GestoreScambi {
@@ -130,6 +131,17 @@ public class GestoreScambi {
 	 * @since 4
 	 */
 	public void ritiraProposta() {
+		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
+//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
+//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
+		
+		ViewRitiraProposte viewRitiraProposte = new ViewRitiraProposte(frame,scambiAperti);
+		frame.getContentPane().add(viewRitiraProposte);
+		viewRitiraProposte.setLayout(null);
+		
+		
+		viewRitiraProposte.setBtnHomeListener(e-> backHome());
+	
 		
 		
 		
