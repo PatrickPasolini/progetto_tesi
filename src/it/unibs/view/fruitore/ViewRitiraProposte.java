@@ -30,7 +30,7 @@ public class ViewRitiraProposte extends BaseView {
 
 	@Override
 	protected void inizializzaComponenti() {
-		lblRitira = new JLabel("Scegli che proposte ritirare:");
+		lblRitira = new JLabel("Seleziona che proposta ritirare:");
 		listModel = new DefaultListModel<>();
 		scambiList = new JList<>(listModel);
 		btnRitira = new RoundedButton("Ritira scambio", new Color(8, 102, 255));
@@ -72,32 +72,32 @@ public class ViewRitiraProposte extends BaseView {
 	            BorderFactory.createLineBorder(Color.BLACK, 1),
 	            BorderFactory.createEmptyBorder(10, 20, 10, 10)
 	    ));
-	    scrollPane.setBounds(contentWidth / 2 - 400, currentY, 800, blockHeight * 3);
+	    scrollPane.setBounds(contentWidth / 2 - 400, currentY, 800, blockHeight * 4);
 	    scrollPane.setBackground(contentPanel.getBackground());
 	    scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 	    scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 	    scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 	    contentPanel.add(scrollPane);
-	    currentY += blockHeight * 3 + offsetH;
+	    currentY += blockHeight * 4 + offsetH;
 
 	    btnRitira.setBorder(null);
 	    btnRitira.setMargin(new Insets(0, 10, 0, 0));
 	    btnRitira.setFont(new Font("Tahoma", Font.BOLD, 20));
-	    btnRitira.setBounds(contentWidth / 2 - 170, currentY, 340, blockHeight);
+	    btnRitira.setBounds(contentWidth / 2 - 170, currentY, 340, 60);
 	    btnRitira.setForeground(Color.WHITE);
 	    contentPanel.add(btnRitira);
-	    currentY += blockHeight + offsetH;
+	    currentY += 60 + 30 ;
 
 	    JSeparator line = new JSeparator();
 	    line.setBounds(contentWidth / 2 - 170, currentY, 340, 10);
 	    line.setForeground(Color.DARK_GRAY);
 	    contentPanel.add(line);
-	    currentY += 10 + offsetH;
+	    currentY += 60 - 30 ;
 
 	    btnHome.setBorder(null);
 	    btnHome.setMargin(new Insets(0, 10, 0, 0));
 	    btnHome.setFont(new Font("Tahoma", Font.BOLD, 20));
-	    btnHome.setBounds(contentWidth / 2 - 150, currentY, 300, blockHeight);
+	    btnHome.setBounds(contentWidth / 2 - 150, currentY, 300, 60);
 	    btnHome.setForeground(Color.WHITE);
 	    contentPanel.add(btnHome);
 	    
@@ -126,10 +126,10 @@ public class ViewRitiraProposte extends BaseView {
 	}
 	
 	public void setBtnRitiraListener(ActionListener listener) {
-		btnRitira.addActionListener(listener); // Riaggiungiamo il listener
+		btnRitira.addActionListener(listener);
 	}
 	public void setBtnHomeListener(ActionListener listener) {
-		btnHome.addActionListener(listener); // Riaggiungiamo il listener
+		btnHome.addActionListener(listener);
 	}
 
 	public Proposta getPropostaSelezionata() {
@@ -140,6 +140,3 @@ public class ViewRitiraProposte extends BaseView {
 	    return null;
 	}
 }
-
-
-
