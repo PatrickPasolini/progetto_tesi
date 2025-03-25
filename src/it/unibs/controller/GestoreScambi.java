@@ -139,7 +139,15 @@ public class GestoreScambi {
 		frame.getContentPane().add(viewRitiraProposte);
 		viewRitiraProposte.setLayout(null);
 		
-		
+		viewRitiraProposte.setBtnRitiraListener(e-> {
+				Proposta propDaRitirare = viewRitiraProposte.getPropostaSelezionata();
+//				view.msgConfermaRitiroProposta(p);
+				if(propDaRitirare!=null) {
+					scambiHandler.ritiraScambioAperto(propDaRitirare);
+					
+					viewRitiraProposte.aggiornaListaScambi(scambiHandler.getScambiApertiFruitore());
+				}
+		});
 		viewRitiraProposte.setBtnHomeListener(e-> backHome());
 	
 		

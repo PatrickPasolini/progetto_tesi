@@ -185,7 +185,8 @@ public class ViewNuovoComprensorio extends BaseView {
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
-        contentPanel.add(scrollPane);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+		contentPanel.add(scrollPane);
         
         btnHome.setMargin(new Insets(0, 10, 0, 0));
         btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));

@@ -148,3 +148,38 @@
 	Proposta di :fruitore5
 	richiesta:  [Lezioni di pianoforte per principianti, 23 ore]
 	offerta:  [Esercitazioni di Fisica 1, 23 ore]
+----------------------------------------------------------
+2025.03.25 at 23:29:00 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Ripetizioni di Chimica Inorganica, 5 ore]
+	offerta:  [Esercitazioni di Fisica 2, 5 ore]
+----------------------------------------------------------
+2025.03.25 at 23:34:02 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 2 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 2 ore]
+----------------------------------------------------------
+2025.03.25 at 23:34:09 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 2 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 2 ore]
+----------------------------------------------------------
+2025.03.25 at 23:34:10 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 2 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 2 ore]
+----------------------------------------------------------
+2025.03.25 at 23:34:12 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 2 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 2 ore]
+----------------------------------------------------------
+2025.03.25 at 23:34:14 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Lezioni di pianoforte di difficolta' media, 2 ore]
+	offerta:  [Ripetizioni di Fisica: Termodinamica, 2 ore]
+----------------------------------------------------------
+2025.03.25 at 23:34:17 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Ripetizioni di Programmazione Java, 5 ore]
+	offerta:  [Lezioni di solfeggio, 5 ore]

@@ -120,6 +120,7 @@ public class ViewVisualizzaProposte extends BaseView {
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
 
         btnHome.setMargin(new Insets(0, 10, 0, 0));
