@@ -116,7 +116,7 @@ public class ViewVisualizzaProposte extends BaseView {
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(20, 150, contentWidth-40, 350); 
+        scrollPane.setBounds(contentWidth/2- contentWidth/ 4 , 150, contentWidth/3*2, 350); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
