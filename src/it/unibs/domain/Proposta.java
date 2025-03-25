@@ -64,7 +64,7 @@ public class Proposta {
 		sb.append("\n\tProposta di :").append(this.fruitoreRichiedente.getNome());
 		sb.append("\n\trichiesta:  [").append(this.richiesta.getNome());
 		sb.append(", ").append(this.oreRichiesta).append(" ore]\n");
-		sb.append("\tofferta:  [").append(this.offerta.getNome());
+		sb.append("<br>").append("\tofferta:  [").append(this.offerta.getNome());
 		sb.append(", ").append(this.oreRichiesta).append(" ore]");
 		return sb.toString(); 
 	}

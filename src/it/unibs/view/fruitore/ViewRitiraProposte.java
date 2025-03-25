@@ -108,19 +108,21 @@ public class ViewRitiraProposte extends BaseView {
 	public void aggiornaListaScambi(List<Proposta> scambiAperti) {
 	    listModel.clear();
 	    for (Proposta s : scambiAperti) {
-	        listModel.addElement(estraiRichiestaEOfferta(s.toString()));
+	        listModel.addElement(formattaStringProposta(s));
 	    }
 	}
 	
-	public static String estraiRichiestaEOfferta(String input) {
-	    input = input.replace("[", "");
-	    
-	    int richiestaIndex = input.indexOf("richiesta:");
-	    int offertaIndex = input.indexOf("offerta:");
-	    String richiesta = input.substring(richiestaIndex + 11, input.indexOf("]", richiestaIndex)).trim();
-	    String offerta = input.substring(offertaIndex + 8, input.indexOf("]", offertaIndex)).trim();
-	    
-	    return "<html>- richiesta: " + richiesta + "<br>"+"&nbsp;&nbsp;offerta: " + offerta + "</html>";
+	private static String formattaStringProposta(Proposta proposta) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<html>- richiesta: ");
+		sb.append("<b>").append(proposta.getRichiesta().getNome()).append("</b>");
+		sb.append(", di ").append(proposta.getOreRichiesta()).append(" ore");
+		sb.append("<br>&nbsp;&nbsp;offerta: " );
+		sb.append("<b>").append(proposta.getOfferta().getNome()).append("</b>");
+		sb.append(", di ").append(proposta.getOreOfferta()).append(" ore");
+		sb.append("</html>");
+		
+	    return sb.toString();
 	}
 	
 	public void setBtnRitiraListener(ActionListener listener) {
