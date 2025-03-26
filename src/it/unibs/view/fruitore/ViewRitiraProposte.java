@@ -41,12 +41,13 @@ public class ViewRitiraProposte extends BaseView {
 	protected void aggiornaComponenti(int w, int h) {
 	    contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
+	    int contentHeight = contentPanel.getHeight();
 	    int blockHeight = frame.getHeight() / 10;
 	    int offsetH = 20;
 	    
 	    int currentY = offsetH; 
 
-	    lblRitira.setFont(new Font("Tahoma", Font.PLAIN, 40));
+	    lblRitira.setFont(new Font("Tahoma",  Font.BOLD, 55));
 	    Dimension size = lblRitira.getPreferredSize();
 	    lblRitira.setBounds((contentWidth - size.width) / 2, currentY, size.width, blockHeight);
 	    contentPanel.add(lblRitira);
@@ -56,7 +57,7 @@ public class ViewRitiraProposte extends BaseView {
 	    if (scambiAperti != null) {
 	        aggiornaListaScambi(scambiAperti);
 	    }
-	    scambiList.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	    scambiList.setFont(new Font("Tahoma", Font.PLAIN, 30));
 	    scambiList.setBackground(contentPanel.getBackground());
 	    scambiList.setCellRenderer(new DefaultListCellRenderer() { //interlinea 
 	        @Override
@@ -72,7 +73,7 @@ public class ViewRitiraProposte extends BaseView {
 	            BorderFactory.createLineBorder(Color.BLACK, 1),
 	            BorderFactory.createEmptyBorder(10, 20, 10, 10)
 	    ));
-	    scrollPane.setBounds(contentWidth / 2 - 400, currentY, 800, blockHeight * 4);
+	    scrollPane.setBounds(contentWidth / 2 - 500, currentY, 1000, blockHeight * 4);
 	    scrollPane.setBackground(contentPanel.getBackground());
 	    scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 	    scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
@@ -82,22 +83,22 @@ public class ViewRitiraProposte extends BaseView {
 
 	    btnRitira.setBorder(null);
 	    btnRitira.setMargin(new Insets(0, 10, 0, 0));
-	    btnRitira.setFont(new Font("Tahoma", Font.BOLD, 20));
-	    btnRitira.setBounds(contentWidth / 2 - 170, currentY, 340, 60);
+	    btnRitira.setFont(new Font("Tahoma", Font.BOLD, 30));
+	    btnRitira.setBounds(contentWidth / 2 - 190, contentHeight - 270, 380, 100);
 	    btnRitira.setForeground(Color.WHITE);
 	    contentPanel.add(btnRitira);
 	    currentY += 60 + 30 ;
 
 	    JSeparator line = new JSeparator();
-	    line.setBounds(contentWidth / 2 - 170, currentY, 340, 10);
+	    line.setBounds(contentWidth / 2 - 190, contentHeight - 150, 380, 10);
 	    line.setForeground(Color.DARK_GRAY);
 	    contentPanel.add(line);
 	    currentY += 60 - 30 ;
 
 	    btnHome.setBorder(null);
 	    btnHome.setMargin(new Insets(0, 10, 0, 0));
-	    btnHome.setFont(new Font("Tahoma", Font.BOLD, 20));
-	    btnHome.setBounds(contentWidth / 2 - 150, currentY, 300, 60);
+	    btnHome.setFont(new Font("Tahoma", Font.BOLD, 30));
+	    btnHome.setBounds(contentWidth / 2 - 150, contentHeight - 130, 300, 90);
 	    btnHome.setForeground(Color.WHITE);
 	    contentPanel.add(btnHome);
 	    

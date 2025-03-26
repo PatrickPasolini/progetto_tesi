@@ -26,7 +26,7 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
         this.placeholderColor=DEFAULT_PLACEHOLDER_COLOR;
         
         setBorder(null);
-        setFont(new Font("Tahoma", Font.PLAIN, 22));
+        setFont(new Font("Tahoma", Font.PLAIN, 28));
         
         // Inizialmente mostra il placeholder come testo normale
         setText(placeholder);

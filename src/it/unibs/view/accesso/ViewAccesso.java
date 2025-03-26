@@ -20,7 +20,7 @@ public class ViewAccesso extends BaseView {
     private boolean accessoFallito=false;
     
     public ViewAccesso(JFrame frame, String typeUser) {
-        super(frame,600,650);
+        super(frame,700,750);
         this.typeUser = typeUser;
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
@@ -56,27 +56,27 @@ public class ViewAccesso extends BaseView {
         
         lblAccesso.setText(txtAccesso);
         lblAccesso.setForeground(colorTxtAccesso);
-        lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lblAccesso.setFont(new Font("Tahoma",  Font.PLAIN, 50));
         Dimension size = lblAccesso.getPreferredSize();
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblAccesso);
         
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
-        userField.setBounds(contentWidth / 2 - 170, 150, 340, 60);
+        userField.setBounds(contentWidth / 2 - 185, 190, 370, 80);
         userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
        
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
-        pswField.setBounds(contentWidth / 2 - 170, 250, 340, 60); 
+        pswField.setBounds(contentWidth / 2 - 185, 310, 370, 80); 
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
         btnAccedi.setBorder(null);
         btnAccedi.setMargin(new Insets(0, 10, 0, 0));
-        btnAccedi.setFont(new Font("Tahoma", Font.BOLD, 20));
-        btnAccedi.setBounds(contentWidth / 2 - 170, 350, 340, 60);
+        btnAccedi.setFont(new Font("Tahoma", Font.BOLD, 32));
+        btnAccedi.setBounds(contentWidth / 2 - 185, 430, 370, 90);
         btnAccedi.setForeground(Color.WHITE);
         if (btnAccediListener != null) {
             btnAccedi.addActionListener(btnAccediListener); // Riaggiungiamo il listener
@@ -84,15 +84,15 @@ public class ViewAccesso extends BaseView {
         contentPanel.add(btnAccedi);
       
         JSeparator line = new JSeparator();
-        line.setBounds(contentWidth / 2 - 170, 430, 340, 10);
+        line.setBounds(contentWidth / 2 - 185, 535, 370, 10);
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
         btnNuovoUtente.setText("Crea nuovo "+typeUser);
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
-        btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 20));
-        btnNuovoUtente.setBounds(contentWidth / 2 - 150, 450, 300, 60);
+        btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 24));
+        btnNuovoUtente.setBounds(contentWidth / 2 - 160, 560, 320, 80);
         btnNuovoUtente.setForeground(Color.white);
         contentPanel.add(btnNuovoUtente);
         

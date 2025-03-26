@@ -26,7 +26,7 @@ public class ViewNewConfiguratore extends BaseView {
 	private ActionListener btnCreazioneListener;
 	    
 	public ViewNewConfiguratore(JFrame frame) {
-		super(frame,600,650);
+		super(frame,700,750);
 	}
 
 	@Override
@@ -61,27 +61,27 @@ public class ViewNewConfiguratore extends BaseView {
         
         lblAccesso.setText(txtAccesso);
         lblAccesso.setForeground(colorTxtAccesso);
-        lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lblAccesso.setFont(new Font("Tahoma",  Font.PLAIN, 50));
         Dimension size = lblAccesso.getPreferredSize();
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblAccesso);
         
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
-        userField.setBounds(contentWidth / 2 - 170, contentHeight/2 - 30 - 100, 340, 60);
+        userField.setBounds(contentWidth / 2 - 185, 240, 370, 80);
         userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
        
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
-        pswField.setBounds(contentWidth / 2 - 170, contentHeight/2 - 30 , 340, 60); 
+        pswField.setBounds(contentWidth / 2 - 185, 360, 370, 80); 
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
         btnCreazioneConfiguratore.setBorder(null);
         btnCreazioneConfiguratore.setMargin(new Insets(0, 10, 0, 0));
-        btnCreazioneConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 20));
-        btnCreazioneConfiguratore.setBounds(contentWidth / 2 - 170, contentHeight/2 - 3 + 100, 340, 60);
+        btnCreazioneConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 32));
+        btnCreazioneConfiguratore.setBounds(contentWidth / 2 - 185, 490, 370, 90);
         btnCreazioneConfiguratore.setForeground(Color.WHITE);
         if (btnCreazioneListener != null) {
             btnCreazioneConfiguratore.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener

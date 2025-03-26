@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 
 import it.unibs.domain.Comprensorio;
 import it.unibs.view.atomicElements.BaseView;
@@ -37,7 +38,7 @@ public class ViewNewFruitore extends BaseView{
     private String[] nomiComprensori;
     
 	public ViewNewFruitore(JFrame frame,String[] nomiComprensori) {
-		super(frame,600,650);
+		super(frame,700,750);
 		this.typeUser = "Fruitore";
 		this.nomiComprensori=nomiComprensori;
 		inizializzaComponenti();
@@ -67,7 +68,7 @@ public class ViewNewFruitore extends BaseView{
         
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
-//        int contentHeight = contentPanel.getHeight();
+        int contentHeight = contentPanel.getHeight();
         
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
@@ -84,36 +85,42 @@ public class ViewNewFruitore extends BaseView{
         
         lblAccesso.setText(txtAccesso);
         lblAccesso.setForeground(colorTxtAccesso);
-        lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lblAccesso.setFont(new Font("Tahoma",  Font.PLAIN, 50));
         Dimension size = lblAccesso.getPreferredSize();
         lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblAccesso);
         
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
-        userField.setBounds(contentWidth / 2 - 170, 150, 340, 60);
+        userField.setBounds(contentWidth / 2 - 185, 170, 370, 80);
         userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
        
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
-        pswField.setBounds(contentWidth / 2 - 170, 250, 340, 60); 
+        pswField.setBounds(contentWidth / 2 - 185, 270, 370, 80); 
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
         emailField.setColumns(10);
         emailField.setMargin(new Insets(10, 10, 10, 10));
-        emailField.setBounds(contentWidth / 2 - 170, 350, 340, 60); 
+        emailField.setBounds(contentWidth / 2 - 185, 370, 370, 80); 
         emailField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(emailField); 
         
-        cmbComprensori.setBounds(contentWidth / 2 - 170, 450, 340, 60);
+        cmbComprensori.setBounds(contentWidth / 2 - 185, 470, 370, 80);
+//        cmbComprensori.setPopupHeight(contentHeight-570);
         contentPanel.add(cmbComprensori);
+        
+        JSeparator line = new JSeparator();
+        line.setBounds(contentWidth / 2 - 185, 575, 370, 10);
+        line.setForeground(Color.DARK_GRAY);
+        contentPanel.add(line);
         
         btnCreazioneFruitore.setBorder(null);
         btnCreazioneFruitore.setMargin(new Insets(0, 10, 0, 0));
-        btnCreazioneFruitore.setFont(new Font("Tahoma", Font.BOLD, 20));
-        btnCreazioneFruitore.setBounds(contentWidth / 2 - 170, 550, 340, 60);
+        btnCreazioneFruitore.setFont(new Font("Tahoma", Font.BOLD, 30));
+        btnCreazioneFruitore.setBounds(contentWidth / 2 - 185, 600, 370, 90);
         btnCreazioneFruitore.setForeground(Color.WHITE);
         if (btnCreazioneListener != null) {
             btnCreazioneFruitore.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener

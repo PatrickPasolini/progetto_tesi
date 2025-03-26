@@ -22,7 +22,7 @@ public class ViewMenuConfiguratore extends BaseView {
 	private RoundedButton[] btnMenu= new RoundedButton[SCELTE_CONFIGURATORE.length];
 	
 	public ViewMenuConfiguratore(JFrame frame) {
-		super(frame,frame.getWidth()-200,650);
+		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 		inizializzaComponenti();
 		aggiornaComponenti(frame.getWidth(), frame.getHeight());
 		frame.setMinimumSize(new Dimension(920, 600));
@@ -48,7 +48,7 @@ public class ViewMenuConfiguratore extends BaseView {
         int contentHeight = contentPanel.getHeight();
         
         lblMenuConfiguratore.setForeground(new Color(43, 43, 43));
-        lblMenuConfiguratore.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lblMenuConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblMenuConfiguratore.getPreferredSize();
         lblMenuConfiguratore.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblMenuConfiguratore);
@@ -57,7 +57,7 @@ public class ViewMenuConfiguratore extends BaseView {
         	for (int i=0;i<btnMenu.length;i++) {
     			btnMenu[i].setBorder(null);
     			btnMenu[i].setMargin(new Insets(0, 10, 0, 0));
-    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 20));
+    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 30));
     	        int offset=20;
     	        int widthButton=contentWidth/2-50;
     	        int heightButton=contentHeight/6; //100

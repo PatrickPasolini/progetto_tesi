@@ -14,7 +14,7 @@ public class ViewVisualizzaProposte extends BaseView {
 	private RoundedButton bntRitirati;
     private RoundedButton btnHome;
 	public ViewVisualizzaProposte(JFrame frame) {
-		super(frame,frame.getWidth()-200,650);
+		super(frame,frame.getWidth()-400,750);
 		aggiornaComponenti(frame.getWidth(),frame.getHeight());
 	}
 
@@ -33,12 +33,12 @@ public class ViewVisualizzaProposte extends BaseView {
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
 		
-		lblProposte.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblProposte.getPreferredSize();
-        lblProposte.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblProposte.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblProposte);
         
-        int widthButton=contentWidth-200;
+        int widthButton=contentWidth-600;
         int heightButton=contentHeight/6; //100
         
         bntAperti.setBorder(null);
@@ -85,14 +85,14 @@ public class ViewVisualizzaProposte extends BaseView {
 	private void visualizzaScambi(ArrayList<Proposta> scambi, String string) {
 		contentPanel.removeAll();
         int contentWidth = contentPanel.getWidth();
-//        int contentHeight = contentPanel.getHeight();
+        int contentHeight = contentPanel.getHeight();
 		
 		JLabel lblScambi = new JLabel();
 		lblScambi.setText(string);
 		lblScambi.setForeground(Color.BLACK);
-		lblScambi.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblScambi.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblScambi.getPreferredSize();
-        lblScambi.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblScambi.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblScambi);
         
         JPanel panel = new JPanel();
@@ -116,7 +116,7 @@ public class ViewVisualizzaProposte extends BaseView {
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentWidth/2- contentWidth/ 4 , 150, contentWidth/3*2, 350); 
+        scrollPane.setBounds(contentWidth/2- 525 , 160, 1050, 400); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
@@ -125,7 +125,7 @@ public class ViewVisualizzaProposte extends BaseView {
 
         btnHome.setMargin(new Insets(0, 10, 0, 0));
         btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 170, 530, 340, 60);
+        btnHome.setBounds(contentWidth / 2 - 180, contentHeight-150, 360, 90);
         btnHome.setForeground(Color.WHITE);
         contentPanel.add(btnHome);
         

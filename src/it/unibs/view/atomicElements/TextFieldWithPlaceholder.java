@@ -36,7 +36,7 @@ public class TextFieldWithPlaceholder extends JTextField {
         this.borderFocusColor=DEFAULT_BORDER_FOCUS_COLOR;
         this.placeholderColor=DEFAULT_PLACEHOLDER_COLOR;
         		
-        setFont(new Font("Tahoma", Font.PLAIN, 22));
+        setFont(new Font("Tahoma", Font.PLAIN, 28));
         setForeground(placeholderColor);
         setText(placeholder);
         

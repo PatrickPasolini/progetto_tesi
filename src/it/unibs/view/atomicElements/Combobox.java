@@ -32,9 +32,12 @@ public class Combobox<E> extends JComboBox<E> {
         this.placeholderColor = DEFAULT_PLACEHOLDER_COLOR;
         // Rende la combobox editabile
         setEditable(true);
+        setFont(new Font("Arial", Font.BOLD, 22));
+        setOpaque(false); 
+        
         // Configura l'editor (il JTextField interno)
         JTextField editorComponent = (JTextField) getEditor().getEditorComponent();
-        editorComponent.setFont(new Font("Tahoma", Font.PLAIN, 22));
+        editorComponent.setFont(new Font("Tahoma", Font.PLAIN, 28));
         editorComponent.setForeground(placeholderColor);
         editorComponent.setText(placeholder);
         setRoundedBorder(editorComponent, BORDER_THICKNESS, BORDER_COLOR);
