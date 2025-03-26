@@ -22,7 +22,7 @@ public class ViewMenuFruitore extends BaseView{
 		private RoundedButton[] btnMenu= new RoundedButton[SCELTE_FRUITORE.length];
 		
 		public ViewMenuFruitore(JFrame frame) {
-			super(frame,frame.getWidth()-200,650);
+			super(frame,frame.getWidth()-400,750);
 			inizializzaComponenti();
 			aggiornaComponenti(frame.getWidth(), frame.getHeight());
 			frame.setMinimumSize(new Dimension(920, 600));
@@ -47,7 +47,7 @@ public class ViewMenuFruitore extends BaseView{
 	        int contentHeight = contentPanel.getHeight();
 	        
 	        lblMenuFruitore.setForeground(new Color(43, 43, 43));
-	        lblMenuFruitore.setFont(new Font("Tahoma", Font.PLAIN, 40));
+	        lblMenuFruitore.setFont(new Font("Tahoma", Font.BOLD, 55));
 	        Dimension size = lblMenuFruitore.getPreferredSize();
 	        lblMenuFruitore.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
 	        contentPanel.add(lblMenuFruitore);
@@ -56,7 +56,7 @@ public class ViewMenuFruitore extends BaseView{
 	        	for (int i=0;i<btnMenu.length;i++) {
 	    			btnMenu[i].setBorder(null);
 	    			btnMenu[i].setMargin(new Insets(0, 10, 0, 0));
-	    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 20));
+	    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 30));
 	    	        int offset=20;
 	    	        int widthButton=contentWidth-200;
 	    	        int heightButton=contentHeight/6; //100

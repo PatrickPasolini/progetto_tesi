@@ -53,17 +53,53 @@ public class MainWithGUI {
 	}
 	
 	private void inizializzaAccesso() {
-    	frame = new JFrame();
-		frame.setBounds(100, 100, 1200, 750);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setMinimumSize(new Dimension(550, 750));
-		
-		ModelAccesso modelAccesso = new ModelAccesso(persistence, persistenceLogin);
-		ControllerAccesso controllerAccesso = new ControllerAccesso(modelAccesso);
-		controllerAccesso.setFrame(frame);
-		controllerAccesso.run();
-	
+	    frame = new JFrame();
+	    frame.setBounds(100, 100, 1200, 750);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setResizable(true);
+	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
+	    frame.setMinimumSize(new Dimension(550, 750));
+
+	    ModelAccesso modelAccesso = new ModelAccesso(persistence, persistenceLogin);
+	    ControllerAccesso controllerAccesso = new ControllerAccesso(modelAccesso);
+	    controllerAccesso.setFrame(frame);
+	    controllerAccesso.run();
+	    
+	    // Massimizza la finestra (senza rimuovere i bordi e la barra del titolo)
+	    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	    frame.setVisible(true);
 	}
+	
+	
+	
+	
+//	private void inizializzaAccesso() {
+//	    // Crea il frame
+//	    frame = new JFrame();
+//	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	    frame.setResizable(true);
+//	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
+//	    frame.setMinimumSize(new Dimension(550, 750));
+//	    
+//	    // Impostazioni per il full screen:
+//	    // Rimuove la barra del titolo e i bordi della finestra
+//	    frame.setUndecorated(true);
+//
+//	    // Inizializza il modello e il controller
+//	    ModelAccesso modelAccesso = new ModelAccesso(persistence, persistenceLogin);
+//	    ControllerAccesso controllerAccesso = new ControllerAccesso(modelAccesso);
+//	    controllerAccesso.setFrame(frame);
+//	    controllerAccesso.run();
+//
+//	    // Ottiene il dispositivo grafico per la modalità full screen
+//	    GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+//	    if (gd.isFullScreenSupported()) {
+//	        // Se il full screen esclusivo è supportato, imposta il frame in modalità full screen
+//	        gd.setFullScreenWindow(frame);
+//	    } else {
+//	        // Altrimenti, massimizza il frame
+//	        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//	        frame.setVisible(true);
+//	    }
+//	}
 }
