@@ -84,7 +84,7 @@ public class ViewAccesso extends BaseView {
         contentPanel.add(btnAccedi);
       
         JSeparator line = new JSeparator();
-        line.setBounds(contentWidth / 2 - 185, 535, 370, 10);
+        line.setBounds(contentWidth / 2 - 185, 540, 370, 10);
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         

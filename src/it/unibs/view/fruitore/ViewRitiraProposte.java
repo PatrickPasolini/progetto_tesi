@@ -33,7 +33,7 @@ public class ViewRitiraProposte extends BaseView {
 		lblRitira = new JLabel("Seleziona che proposta ritirare:");
 		listModel = new DefaultListModel<>();
 		scambiList = new JList<>(listModel);
-		btnRitira = new RoundedButton("Ritira scambio", new Color(8, 102, 255));
+		btnRitira = new RoundedButton("Ritira proposta", new Color(8, 102, 255));
     	btnHome = new RoundedButton("Home", new Color(54, 164, 32));
 	}
 
@@ -140,4 +140,7 @@ public class ViewRitiraProposte extends BaseView {
 	    }
 	    return null;
 	}
+	
+	
+	
 }

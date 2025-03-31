@@ -2,7 +2,10 @@ package it.unibs.controller;
 
 import java.util.*;
 
+import javax.swing.JFrame;
+
 import it.unibs.view.accesso.*;
+import it.unibs.view.configuratore.ViewVisualizzaGerarchie;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
@@ -18,7 +21,7 @@ import it.unibs.mylib.MyMenu;
 public class GestoreGerarchieConfiguratore {
 	private  ViewConfiguratore view;
 	private GerarchieHandler gerarchieHandler; 
-	
+	private JFrame frame;
 //	public GestoreGerarchieConfiguratore(Model model, ViewConfiguratore view) {
 //		super();
 //		this.view = view;
@@ -26,8 +29,9 @@ public class GestoreGerarchieConfiguratore {
 //		gerarchieHandler = new GerarchieHandler(model);
 //	}
 
-	public GestoreGerarchieConfiguratore(Model model) {
-		gerarchieHandler = new GerarchieHandler(model);
+	public GestoreGerarchieConfiguratore(Model model, JFrame frame) {
+		this.gerarchieHandler = new GerarchieHandler(model);
+		this.frame = frame;
 	}
 	
 	/**
@@ -332,7 +336,11 @@ public class GestoreGerarchieConfiguratore {
 	 * @since 4
 	 */
 	public void stampaGerarchie() {
-		System.out.println("btnStampaGerarchie é linked");
+		ViewVisualizzaGerarchie viewGerarchie = new ViewVisualizzaGerarchie(frame,gerarchieHandler.getGerarchie() );
+		frame.getContentPane().add(viewGerarchie);
+		viewGerarchie.setLayout(null);
+		
+		
 //		view.stampaGerarchie(gerarchieHandler.getGerarchie());
 	}
 	
