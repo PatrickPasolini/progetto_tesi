@@ -22,6 +22,7 @@ public class GestoreGerarchieConfiguratore {
 	private  ViewConfiguratore view;
 	private GerarchieHandler gerarchieHandler; 
 	private JFrame frame;
+	private Model model;
 //	public GestoreGerarchieConfiguratore(Model model, ViewConfiguratore view) {
 //		super();
 //		this.view = view;
@@ -30,8 +31,14 @@ public class GestoreGerarchieConfiguratore {
 //	}
 
 	public GestoreGerarchieConfiguratore(Model model, JFrame frame) {
+		this.model = model;
 		this.gerarchieHandler = new GerarchieHandler(model);
 		this.frame = frame;
+	}
+	
+	private void backHome() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
 	}
 	
 	/**
@@ -339,8 +346,8 @@ public class GestoreGerarchieConfiguratore {
 		ViewVisualizzaGerarchie viewGerarchie = new ViewVisualizzaGerarchie(frame,gerarchieHandler.getGerarchie() );
 		frame.getContentPane().add(viewGerarchie);
 		viewGerarchie.setLayout(null);
-		
-		
+		viewGerarchie.setBtnHomeListener(e-> backHome());
+		viewGerarchie.setLeafDoubleClickListener(e -> System.out.println(viewGerarchie.getCategoriaSelezionata().getNome()));
 //		view.stampaGerarchie(gerarchieHandler.getGerarchie());
 	}
 	

@@ -1,22 +1,25 @@
 package it.unibs.view.configuratore;
 
-import java.awt.Font;
-import java.util.ArrayList;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.*;
+import javax.swing.tree.*;
 
 import it.unibs.domain.Categoria;
 import it.unibs.domain.Gerarchia;
-import it.unibs.domain.NonFoglia;
-import it.unibs.view.atomicElements.BaseView;
-import it.unibs.view.atomicElements.CustomTree;
+import it.unibs.view.atomicElements.*;
 
 public class ViewVisualizzaGerarchie extends BaseView{
+	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
+	private RoundedButton btnHome;
+	private ActionListener leafDoubleClickListener;
+	private Categoria categoriaSelezionata;
+	
 	public ViewVisualizzaGerarchie(JFrame frame, List<Gerarchia> gerarchie) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 		this.gerarchie = gerarchie;
@@ -25,82 +28,81 @@ public class ViewVisualizzaGerarchie extends BaseView{
 
 	@Override
 	protected void inizializzaComponenti() {
-		
+		lblProposte = new JLabel("Gerarchie:");
+		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
 	}
 
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 	    contentPanel.removeAll();
-
+	    int contentWidth = contentPanel.getWidth();
+        int contentHeight = contentPanel.getHeight();
+	    
+	    lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
+        Dimension size = lblProposte.getPreferredSize();
+        lblProposte.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        contentPanel.add(lblProposte);
+        
 	    if (gerarchie != null && !gerarchie.isEmpty()) {
-	        JTree tree = createUnifiedJTreeFromGerarchie(gerarchie);
+	        JTree tree = CustomTree.createUnifiedTree(gerarchie,true);
+	        tree.setBackground(contentPanel.getBackground());
+	        
+//	        tree.addMouseListener(new MouseAdapter() {
+//	            @Override
+//	            public void mouseClicked(MouseEvent e) {
+//	                if (e.getClickCount() == 2) {  // Doppio click
+//	                    TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
+//	                    if (selPath != null) {
+//	                        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) selPath.getLastPathComponent();
+//	                        if (selectedNode.isLeaf() && leafDoubleClickListener != null) {
+//	                            Object userObj = selectedNode.getUserObject();
+//	                            if (userObj instanceof Categoria) {
+//	                                // Salva l'oggetto Categoria selezionato
+//	                                categoriaSelezionata = (Categoria) userObj;
+//	                            }
+//	                            // Genera un ActionEvent e comunica l'evento
+//	                            ActionEvent event = new ActionEvent(selectedNode, ActionEvent.ACTION_PERFORMED, "LeafDoubleClick");
+//	                            leafDoubleClickListener.actionPerformed(event);
+//	                        }
+//	                    }
+//	                }
+//	            }
+//	        });
+	        
 	        JScrollPane scrollPane = new JScrollPane(tree);
-	        scrollPane.setBounds(0, 0, contentPanel.getWidth(), contentPanel.getHeight());
+	        scrollPane.setBorder(null);
+	        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        scrollPane.setBackground(contentPanel.getBackground());
+	        scrollPane.setBounds(contentPanel.getWidth()/2-400, 110, 800, contentPanel.getHeight()-250);
+	        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+	        scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+	        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+	        
 	        contentPanel.add(scrollPane);
 	    }
-
+	    
+	    btnHome.setBorder(null);
+	    btnHome.setMargin(new Insets(0, 10, 0, 0));
+	    btnHome.setFont(new Font("Tahoma", Font.BOLD, 30));
+	    btnHome.setBounds(contentWidth / 2 - 150, contentHeight - 120, 300, 90);
+	    btnHome.setForeground(Color.WHITE);
+	    contentPanel.add(btnHome);
+	    
 	    contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
 
-	public static JTree createUnifiedJTreeFromGerarchie(List<Gerarchia> gerarchie) {
-	    // Creiamo un nodo radice "invisibile"
-	    DefaultMutableTreeNode invisibleRoot = new DefaultMutableTreeNode("invisible");
-	    for (Gerarchia g : gerarchie) {
-	        // Aggiungiamo ciascuna gerarchia come figlio del nodo invisibile
-	        invisibleRoot.add(buildNode(g.getRadice()));
-	    }
-	    
-	    // Creiamo il JTree e nascondiamo il nodo radice
-	    JTree tree = new JTree(invisibleRoot);
-	    tree.setCellRenderer(new CustomTree());
-	    tree.setRootVisible(false);
-	    
-	    // Facoltativo: mostra le icone di espansione anche se il nodo radice non è visibile
-	    tree.setShowsRootHandles(true);
-	    
-	    return tree;
+	public void setBtnHomeListener(ActionListener listener) {
+		btnHome.addActionListener(listener); // Riaggiungiamo il listener
+	}
+	
+	
+	public void setLeafDoubleClickListener(ActionListener listener) {
+	    this.leafDoubleClickListener = listener;
+	}
+	
+	public Categoria getCategoriaSelezionata() {
+	    return categoriaSelezionata;
 	}
 
-	
-	private static DefaultMutableTreeNode buildNode(Categoria cat) {
-        String label = cat.getNome();
-
-        // Se il nodo è un NonFoglia, aggiungiamo il campo
-        if (cat instanceof NonFoglia) {
-            NonFoglia n = (NonFoglia) cat;
-//          label += " - campo :[ " + n.getCampo() + " ]";
-        }
-//        // Aggiungiamo la descrizione se presente
-//        if (!cat.getDescrizione().isEmpty()) {
-//            label += " - descrizione :[ " + cat.getDescrizione() + " ]";
-//        }
-
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(label);
-
-        // Ricorsione per ogni figlio
-        for (Categoria child : cat.getChilds()) {
-            node.add(buildNode(child));
-        }
-        return node;
-    }
-
-    /**
-     * Crea un JTree a partire da una Gerarchia.
-     */
-    public static JTree createJTreeFromGerarchia(Gerarchia g) {
-        DefaultMutableTreeNode root = buildNode(g.getRadice());
-        return new JTree(root);
-    }
-
-    /**
-     * Dato un Iterable di Gerarchia, crea una lista di JTree.
-     */
-    public static List<JTree> createJTreesFromGerarchie(Iterable<Gerarchia> gerarchie) {
-        List<JTree> trees = new ArrayList<>();
-        for (Gerarchia g : gerarchie) {
-            trees.add(createJTreeFromGerarchia(g));
-        }
-        return trees;
-    }
 }
