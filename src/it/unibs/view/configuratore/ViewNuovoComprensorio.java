@@ -32,7 +32,7 @@ public class ViewNuovoComprensorio extends BaseView {
 	private boolean nomeNonUnivoco=false;
 	
 	public ViewNuovoComprensorio(JFrame frame) {
-		super(frame,frame.getWidth()-200,650);
+		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 	}
 
 	@Override
@@ -68,35 +68,35 @@ public class ViewNuovoComprensorio extends BaseView {
 //            colorTxtPlaceholder=Color.GRAY;
 //        }
         
-        lblNuovoComp.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblNuovoComp.getPreferredSize();
-        lblNuovoComp.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblNuovoComp.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblNuovoComp);
         
         comprensorioField.setColumns(10);
         comprensorioField.setMargin(new Insets(10, 10, 10, 10));
-        comprensorioField.setBounds(contentWidth / 2 - 170, 150, 340, 60);
+        comprensorioField.setBounds(contentWidth / 2 - 200, 170, 400, 80);
         contentPanel.add(comprensorioField); 
         
         comuneToAddField.setColumns(10);
         comuneToAddField.setMargin(new Insets(10, 10, 10, 10));
-        comuneToAddField.setBounds(contentWidth / 2 - 170, 250, 340, 60);
+        comuneToAddField.setBounds(contentWidth / 2 - 200, 270, 400, 80);
         contentPanel.add(comuneToAddField); 
         
         btnPlus.setBorder(null);
         btnPlus.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnPlus.setBounds(contentWidth / 2 + 172, 252, 60-4, 60-4);
-        btnPlus.setForeground(Color.WHITE);
+        btnPlus.setBounds(contentWidth / 2 + 202, 272, 80-4, 80-4);
+        btnPlus.setForeground(Color.WHITE);	
         contentPanel.add(btnPlus);
         
-		comuniList.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comuniList.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		comuniList.setBackground(contentPanel.getBackground());
 		JScrollPane scrollPane = new JScrollPane(comuniList);
 		scrollPane.setBorder(BorderFactory.createCompoundBorder(
 			    BorderFactory.createLineBorder(Color.BLACK, 1),
 			    BorderFactory.createEmptyBorder(10, 20, 10, 10)
 			));
-		scrollPane.setBounds(contentWidth / 2 - 170, 350, 340, 180);
+		scrollPane.setBounds(contentWidth / 2 - 200, 370, 400, 300);
 		scrollPane.setBackground(contentPanel.getBackground());
 		scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
@@ -105,7 +105,7 @@ public class ViewNuovoComprensorio extends BaseView {
         btnConferma.setBorder(null);
         btnConferma.setMargin(new Insets(0, 10, 0, 0));
         btnConferma.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnConferma.setBounds(contentWidth / 2 - 170, 550, 340, 60);
+        btnConferma.setBounds(contentWidth / 2 - 200, 700, 400, 90);
         btnConferma.setForeground(Color.WHITE);
         contentPanel.add(btnConferma);
         

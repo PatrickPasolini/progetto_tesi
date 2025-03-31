@@ -3,9 +3,11 @@ package it.unibs.view.atomicElements;
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.awt.font.TextAttribute;
 import java.util.List;
+import java.util.Map;
+
 import it.unibs.domain.Gerarchia;
 import it.unibs.domain.Categoria;
 
@@ -18,16 +20,17 @@ public class CustomTree {
         private final Font normalFont = new Font("Arial", Font.PLAIN, 30);
         private final Font boldFont = new Font("Arial", Font.BOLD, 35);
         private final boolean locked;
-        
+
         // Costruttore che riceve il parametro locked
         public CustomTreeCellRenderer(boolean locked) {
             this.locked = locked;
+            setLeafIcon(null);
         }
-        
+
         @Override
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
                                                       boolean expanded, boolean leaf, int row, boolean hasFocus) {
-        	JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+            JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
             label.setOpaque(true);
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
             Object userObj = node.getUserObject();
@@ -39,21 +42,27 @@ public class CustomTree {
             }
             label.setText(text);
 
-            // Impostazioni per font e bordi come da logica già presente
+            
             if (node.getParent() != null && node.getParent().getParent() == null) {
-                label.setFont(boldFont);
+            	//underline
+            	label.setFont(boldFont);
+            	Font font = label.getFont();
+            	Map attributes = font.getAttributes();
+            	attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+            	label.setFont(font.deriveFont(attributes));
+            	
                 label.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
             } else {
                 label.setFont(normalFont);
                 label.setBorder(BorderFactory.createEmptyBorder(2, 0, 2, 0));
             }
-            
+
             if (leaf && sel && !locked) {
-                label.setBackground(Color.GREEN);
+                label.setBackground(new Color(50, 205, 50));
             } else {
                 label.setBackground(tree.getBackground());
             }
-            
+
             return label;
         }
     }
@@ -84,37 +93,32 @@ public class CustomTree {
         tree.setShowsRootHandles(true);
         tree.setCellRenderer(new CustomTreeCellRenderer(expandedAndLocked));
 
-        
-//        if (!expandedAndLocked) {
-//	        // Espansione con un solo clic
-//	        tree.addMouseListener(new MouseAdapter() {
-//	            @Override
-//	            public void mouseClicked(MouseEvent e) {
-//	                int selRow = tree.getRowForLocation(e.getX(), e.getY());
-//	                TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
-//	                if (selRow != -1 && selPath != null) {
-//	                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) selPath.getLastPathComponent();
-//	                    if (!node.isLeaf()) {
-//	                        if (tree.isExpanded(selPath)) {
-//	                            tree.collapsePath(selPath);
-//	                        } else {
-//	                            tree.expandPath(selPath);
-//	                        }
-//	                    }
-//	                }
-//	            }
-//	        });
-//        }
-	        
-        // Se il flag è attivo, espandi tutto e disabilita la selezione delle foglie
+        // Espansione automatica dei nodi interni, lasciando chiuse le radici
         if (expandedAndLocked) {
-            // Espande tutte le righe
-            for (int i = 0; i < tree.getRowCount(); i++) {
-                tree.expandRow(i);
-            }
-           
+            expandAllExceptRoot(tree, new TreePath(invisibleRoot), 2);
         }
+
         
+
         return tree;
+    }
+
+    /**
+     * Espande tutti i nodi interni, tranne le radici (nodi di livello 2).
+     */
+    private static void expandAllExceptRoot(JTree tree, TreePath parent, int rootLevel) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getLastPathComponent();
+        if (node.getChildCount() > 0) {
+            for (int i = 0; i < node.getChildCount(); i++) {
+                DefaultMutableTreeNode childNode = (DefaultMutableTreeNode) node.getChildAt(i);
+                TreePath childPath = parent.pathByAddingChild(childNode);
+                expandAllExceptRoot(tree, childPath, rootLevel);
+            }
+        }
+
+        // Espandi solo se non è un nodo radice
+        if (parent.getPathCount() > rootLevel) {
+            tree.expandPath(parent);
+        }
     }
 }

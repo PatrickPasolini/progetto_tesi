@@ -1,13 +1,9 @@
 package it.unibs.view.configuratore;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.tree.*;
 
 import it.unibs.domain.Categoria;
 import it.unibs.domain.Gerarchia;
@@ -17,7 +13,7 @@ public class ViewVisualizzaGerarchie extends BaseView{
 	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnHome;
-	private ActionListener leafDoubleClickListener;
+//	private ActionListener leafDoubleClickListener;
 	private Categoria categoriaSelezionata;
 	
 	public ViewVisualizzaGerarchie(JFrame frame, List<Gerarchia> gerarchie) {
@@ -46,7 +42,7 @@ public class ViewVisualizzaGerarchie extends BaseView{
 	    if (gerarchie != null && !gerarchie.isEmpty()) {
 	        JTree tree = CustomTree.createUnifiedTree(gerarchie,true);
 	        tree.setBackground(contentPanel.getBackground());
-	        
+	        tree.setToggleClickCount(1);
 //	        tree.addMouseListener(new MouseAdapter() {
 //	            @Override
 //	            public void mouseClicked(MouseEvent e) {
@@ -96,10 +92,9 @@ public class ViewVisualizzaGerarchie extends BaseView{
 		btnHome.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	
-	
-	public void setLeafDoubleClickListener(ActionListener listener) {
-	    this.leafDoubleClickListener = listener;
-	}
+//	public void setLeafDoubleClickListener(ActionListener listener) {
+//	    this.leafDoubleClickListener = listener;
+//	}
 	
 	public Categoria getCategoriaSelezionata() {
 	    return categoriaSelezionata;

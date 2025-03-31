@@ -347,8 +347,8 @@ public class GestoreGerarchieConfiguratore {
 		frame.getContentPane().add(viewGerarchie);
 		viewGerarchie.setLayout(null);
 		viewGerarchie.setBtnHomeListener(e-> backHome());
-		viewGerarchie.setLeafDoubleClickListener(e -> System.out.println(viewGerarchie.getCategoriaSelezionata().getNome()));
-//		view.stampaGerarchie(gerarchieHandler.getGerarchie());
+//		viewGerarchie.setLeafDoubleClickListener(e -> System.out.println(viewGerarchie.getCategoriaSelezionata().getNome()));
+		
 	}
 	
 }
