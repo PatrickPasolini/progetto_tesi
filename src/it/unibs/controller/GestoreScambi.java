@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
@@ -11,19 +12,23 @@ import it.unibs.mylib.*;
 import it.unibs.view.accesso.*;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.console.ViewFruitore;
+import it.unibs.view.fruitore.ViewFormulaProposteScambio;
+import it.unibs.view.fruitore.ViewNavigaGerarchie;
 import it.unibs.view.fruitore.ViewRitiraProposte;
 import it.unibs.view.fruitore.ViewVisualizzaProposte;
 
 public class GestoreScambi {
 	private ScambiHandler scambiHandler;
+	private GerarchieHandler gerarchieHandler;
 	private JFrame frame;
 	private Model model;
 	
 	public GestoreScambi(Model model,JFrame frame) {
 		super();
-		this.scambiHandler = new ScambiHandler(model);
 		this.model=model; 
 		this.frame=frame;
+		this.scambiHandler = new ScambiHandler(model);
+		this.gerarchieHandler = new GerarchieHandler(model);
 	}
 
 	// GESTORE SCAMBI-CONFIGURATORE
@@ -73,8 +78,12 @@ public class GestoreScambi {
 	 * Se il fruitore conferma lo scambio viene salvato in forma persistente 
 	 *@since 3
 	 */
-	public void creaProposta( GestoreGerarchieFruitore gestoreGerarchieFruitore) {
+	public void creaProposta() {
+		ViewFormulaProposteScambio viewProposte = new ViewFormulaProposteScambio(frame, gerarchieHandler.getGerarchie());
+		frame.getContentPane().add(viewProposte);
+		viewProposte.setLayout(null);
 		
+
 		
 		
 //		view.msgSceltaPrestazioneRichiesta();

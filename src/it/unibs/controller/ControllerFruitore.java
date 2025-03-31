@@ -21,7 +21,6 @@ import it.unibs.view.fruitore.ViewMenuFruitore;
  */
 public class ControllerFruitore implements Controller{
 	private Model model;
-	private ViewMenuFruitore view;
 	private GestoreGerarchieFruitore gestoreGerarchieFruitore;
 	private GestoreScambi gestoreScambi;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
@@ -30,7 +29,6 @@ public class ControllerFruitore implements Controller{
 	public ControllerFruitore(Model model,JFrame frame) {
 		this.model = model;
 		this.frame=frame;
-		this.view = new ViewMenuFruitore(frame);
 		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, frame);
 		this.gestoreScambi = new GestoreScambi(model,frame);
 		
@@ -42,7 +40,7 @@ public class ControllerFruitore implements Controller{
 	
 	private void inizializzaCommandsMenu() {
 		commandMenu.put(1, new NavigazioneGerarchieCommand(gestoreGerarchieFruitore));
-		commandMenu.put(2, new CreaPropostaCommand(gestoreGerarchieFruitore, gestoreScambi));
+		commandMenu.put(2, new CreaPropostaCommand(gestoreScambi));
 		commandMenu.put(3, new VisualizzaProposteUtenteCommand(gestoreScambi));
 		commandMenu.put(4, new RitiraPropostaCommand(gestoreScambi));
 	} 

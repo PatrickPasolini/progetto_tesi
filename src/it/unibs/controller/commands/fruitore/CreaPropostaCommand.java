@@ -9,15 +9,13 @@ public class CreaPropostaCommand implements CommandUtente{
 	private GestoreGerarchieFruitore gestoreGerarchieFruitore;
 	private GestoreScambi gestoreScambi;
 	
-	public CreaPropostaCommand(GestoreGerarchieFruitore gestoreGerarchieFruitore, 
-								GestoreScambi gestoreScambi) {
-		this.gestoreGerarchieFruitore = gestoreGerarchieFruitore;
+	public CreaPropostaCommand(GestoreScambi gestoreScambi) {
 		this.gestoreScambi = gestoreScambi;
 	}
 	
 	@Override
 	public void execute() {
-		gestoreScambi.creaProposta(gestoreGerarchieFruitore);		
+		gestoreScambi.creaProposta();		
 	}
 
 	

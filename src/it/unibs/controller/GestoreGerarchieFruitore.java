@@ -8,32 +8,39 @@ import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.MyMenu;
+import it.unibs.view.configuratore.ViewVisualizzaGerarchie;
 import it.unibs.view.console.ViewFruitore;
+import it.unibs.view.fruitore.ViewNavigaGerarchie;
 
 public class GestoreGerarchieFruitore {
 	private  ViewFruitore view; 
 	private GerarchieHandler gerarchieHandler;
 	private JFrame frame;
-	
+	private Model model;
 	public GestoreGerarchieFruitore(Model model, JFrame frame) {
 		super();
 		this.frame=frame;
+		this.model=model;
 		this.gerarchieHandler = new GerarchieHandler(model);
 	}
 
 	public void navigazioneGerarchie() {
-		
+		ViewNavigaGerarchie viewGerarchie = new ViewNavigaGerarchie(frame,gerarchieHandler.getGerarchie() );
+		frame.getContentPane().add(viewGerarchie);
+		viewGerarchie.setLayout(null);
+		viewGerarchie.setBtnHomeListener(e-> backHome());
+		viewGerarchie.setLeafDoubleClickListener(e -> System.out.println(viewGerarchie.getCategoriaSelezionata().getNome()));
+
+
 //		Foglia fogliaSelezionata = navigaGerarchia();
 //		view.msgFogliaSelezionata(fogliaSelezionata);
 	}
 	
-	// due metodi successivi usati anche da gestoreScambi
-	/**
-	 * Permette al Fruitore di selezionare una gerarchia scegliendo la radice
-	 * E selezione di una foglia {@link #sceltaFogliaDaCampo(Categoria)}
-	 * @return Foglia selezionata
-	 * @since 3
-	 */ 
+	private void backHome() {
+		ControllerFruitore controllerConfiguratore = new ControllerFruitore(model, frame);
+		controllerConfiguratore.run();
+	}
+	
 	public Foglia navigaGerarchia() {
 		ArrayList<String> nomiRadici = gerarchieHandler.getNomiRadici();
 		MyMenu menuRadice = view.menuSceltaRadice(nomiRadici);
@@ -43,14 +50,6 @@ public class GestoreGerarchieFruitore {
 		
 		return fogliaSelezionata;
 	}
-	
-	/**
-	 * Permette al Fruitore di navigare entro la gerarchia scendendo dalla radice ad una foglia,
-	 * impostando  prograssivamente i valori dei campi
-	 * @param nf NonFoglia di cui si vuole impostare il valore del campo 
-	 * @return Foglia selezionata al termine della ricorsione
-	 * @since 2
-	 */
 	private Foglia sceltaFogliaDaCampo(Categoria nf) {
 		if(nf instanceof Foglia)
 			return (Foglia) nf;

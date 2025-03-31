@@ -26,7 +26,6 @@ import it.unibs.view.console.ViewConfiguratore;
  */
 public class ControllerConfiguratore implements Controller {
 	private Model model;
-	private ViewMenuConfiguratore view;
 	private GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore;
 	private GestoreComprensoriConfiguratore gestoreComprensori;
 	private GestoreScambi gestoreScambi;
@@ -35,7 +34,6 @@ public class ControllerConfiguratore implements Controller {
 	public ControllerConfiguratore(Model model,JFrame frame) {
 		this.model = model;
 		this.frame=frame;
-		this.view = new ViewMenuConfiguratore(frame);
 		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model,frame);//
 		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model,frame);//
 		this.gestoreScambi = new GestoreScambi(model,frame);
