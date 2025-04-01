@@ -4,33 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.text.AbstractDocument;
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
-import it.unibs.domain.Categoria;
 import it.unibs.domain.Foglia;
 import it.unibs.domain.Gerarchia;
-import it.unibs.view.atomicElements.BaseView;
-import it.unibs.view.atomicElements.CustomScrollBarUI;
-import it.unibs.view.atomicElements.CustomTree;
-import it.unibs.view.atomicElements.IntegerDocumentFilter;
-import it.unibs.view.atomicElements.NumericFieldWithPlaceholder;
-import it.unibs.view.atomicElements.RoundedButton;
-import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
+import it.unibs.view.atomicElements.*;
 
 public class ViewFormulaProposteScambio extends BaseView {
+	private static final long serialVersionUID = 1L;
 	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnContinua;
@@ -90,7 +76,7 @@ public class ViewFormulaProposteScambio extends BaseView {
         }
         
         JScrollPane scrollPane = new JScrollPane(tree);
-//        scrollPane.setBorder(null);
+        scrollPane.setBorder(null);
         scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         scrollPane.setBackground(contentPanel.getBackground());
         scrollPane.setBounds(contentPanel.getWidth()/2-400, 110, 800, contentPanel.getHeight()-250);

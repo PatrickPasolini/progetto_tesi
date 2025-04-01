@@ -1,35 +1,30 @@
 package it.unibs.controller;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
-import it.unibs.view.accesso.*;
 import it.unibs.view.configuratore.ViewVisualizzaGerarchie;
-import it.unibs.view.console.ViewConfiguratore;
+import it.unibs.view.fruitore.ViewAddGerarchiaNonFoglia;
+import it.unibs.view.fruitore.ViewAddGerarchiaRadice;
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
-import it.unibs.mylib.InputDati;
-import it.unibs.mylib.MyMenu;
 
 /**
- * La classe GestoreGerarchie ï¿½ un controller e gestisce le operazioni relative alla creazione e gestione delle gerarchie.
+ * La classe GestoreGerarchie e' un controller e gestisce le operazioni relative alla creazione e gestione delle gerarchie.
  * Consente di creare nuove gerarchie, permette la creazione dei nodi foglia e nonFoglia 
  * e la creazione dei fattori di conversione tra foglie
  */
 public class GestoreGerarchieConfiguratore {
-	private  ViewConfiguratore view;
 	private GerarchieHandler gerarchieHandler; 
 	private JFrame frame;
 	private Model model;
-//	public GestoreGerarchieConfiguratore(Model model, ViewConfiguratore view) {
-//		super();
-//		this.view = view;
-//	
-//		gerarchieHandler = new GerarchieHandler(model);
-//	}
 
+	private ViewAddGerarchiaRadice viewRadice;
+	
 	public GestoreGerarchieConfiguratore(Model model, JFrame frame) {
 		this.model = model;
 		this.gerarchieHandler = new GerarchieHandler(model);
@@ -41,31 +36,50 @@ public class GestoreGerarchieConfiguratore {
 		controllerConfiguratore.run();
 	}
 	
+	
+	private NonFoglia radice;
+	private List<String> domini = new ArrayList<>();
 	/**
 	 * Menu per scegliere se continuare con la creazione o terminare prima che inizi la creazione
 	 * @since 1
 	 */
 	public void inizioCreazione() {
-		System.out.println("btnAggiungiGerarchia é linked");
-//		gerarchieHandler.resetNewGerarchia();
-//		int scelta = view.menuInizioCreazioneGerarchia().scegli();
-//		if(scelta == 0)
-//			return;
-//		
-//		creaGerarchiaLineare();
-	}
-	
-	 /**
-     * Metodo privato per la creazione di una gerarchia lineare, partendo dalla radice 
-     * @since 1
-     */
-	private void creaGerarchiaLineare() {		
-		view.msgCreazioneGerarchia();
-		NonFoglia radice = addRadice();
-		gerarchieHandler.addRadice(radice);
+		gerarchieHandler.resetNewGerarchia();
+		viewRadice = new ViewAddGerarchiaRadice(frame);
+		frame.getContentPane().add(viewRadice);
+		viewRadice.setLayout(null);
 		
-		costruisciGerarchia(gerarchieHandler.getRadiceNewGerarchia());
-		gerarchieHandler.addGerarchia();
+		viewRadice.setBtnAvantiListener(e -> {
+			radice = addRadice();
+			gerarchieHandler.addRadice(radice);
+			viewRadice.visualizzaSceltaNodo(radice.getNome(),radice.getCampo(),radice.getDomini());
+		});
+		viewRadice.setBtnPlusListener(e -> addDominiNonFoglia()); 
+		
+		viewRadice.setBtnConfermaCreazione(e -> {
+            boolean foglia = Boolean.parseBoolean(e.getActionCommand());
+            
+            if (foglia) {
+            	
+			}
+            else {
+            	ViewAddGerarchiaNonFoglia viewNonFoglia = new ViewAddGerarchiaNonFoglia(frame,gerarchieHandler.getGerarchie());
+            	frame.getContentPane().add(viewNonFoglia);
+            	viewNonFoglia.setLayout(null);
+            	
+//            	viewNonFoglia.aggiornaAlbero(gerarchieHandler.getGerarchie());
+            }
+            
+
+		});
+		
+//		gerarchieHandler.resetNewGerarchia();
+//		view.msgCreazioneGerarchia();
+//		NonFoglia radice = addRadice();
+//		gerarchieHandler.addRadice(radice);
+//		
+//		costruisciGerarchia(gerarchieHandler.getRadiceNewGerarchia());
+//		gerarchieHandler.addGerarchia();
 	}
 	
 	 /**
@@ -99,18 +113,18 @@ public class GestoreGerarchieConfiguratore {
      * @since 1
      */
 	private void aggiungiFigli(NonFoglia parent, String dominio) {
-	    int scelta = view.menuSceltaFigliGerarchia(parent, dominio).scegliNoExit();
-
-	    switch(scelta) {
-	    	case 1:
-	            addNonFoglia(parent);
-	            break; 
-	    	case 2:
-	    		addFoglia(parent);
-	    		break;
-	    	default:
-	    		break;
-	    }    
+//	    int scelta = view.menuSceltaFigliGerarchia(parent, dominio).scegliNoExit();
+//
+//	    switch(scelta) {
+//	    	case 1:
+//	            addNonFoglia(parent);
+//	            break; 
+//	    	case 2:
+//	    		addFoglia(parent);
+//	    		break;
+//	    	default:
+//	    		break;
+//	    }    
 	}
 	
 	/**
@@ -120,23 +134,32 @@ public class GestoreGerarchieConfiguratore {
      * @since 1
      */
 	private NonFoglia addRadice() {
-		String nome;
-		do {
-			view.msgNomeRadiceGerarchia();
-			nome = InputDati.leggiStringaNonVuota("");
-		} while (gerarchieHandler.checkNomeRadiceGerarchia(nome));
-		
-		view.msgDescrizioneCategoria();
-		String descrizione = InputDati.leggiStringa("");
-		
-		view.msgNomeCampoGerarchia();
-		String campo = InputDati.leggiStringaNonVuota("");
-		
+		String nome = viewRadice.getRadiceField();
+		String descrizione = viewRadice.getDescrizioneField();
+		String campo = viewRadice.getCampoField();
 		NonFoglia r =  new NonFoglia(nome, campo, descrizione);
-		
-		addDominiNonFoglia(r);
-		
+		for (String d : domini) {
+			r.addDominio(d);
+		}
 		return r;
+		
+//		String nome;
+//		do {
+//			view.msgNomeRadiceGerarchia();
+//			nome = InputDati.leggiStringaNonVuota("");
+//		} while (gerarchieHandler.checkNomeRadiceGerarchia(nome));
+//		
+//		view.msgDescrizioneCategoria();
+//		String descrizione = InputDati.leggiStringa("");
+//		
+//		view.msgNomeCampoGerarchia();
+//		String campo = InputDati.leggiStringaNonVuota("");
+//		
+//		NonFoglia r =  new NonFoglia(nome, campo, descrizione);
+//		
+//		addDominiNonFoglia(r);
+//		
+//		return r;
 	}
 	
 	 /**
@@ -147,23 +170,23 @@ public class GestoreGerarchieConfiguratore {
      * @since 1
      */
 	private void addNonFoglia(NonFoglia parent) {
-		String nome;
-		do {
-			view.msgNomeNuovaCategoria();
-			nome = InputDati.leggiStringaNonVuota("");
-		} while (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome));
-		
-		view.msgDescrizioneCategoria();
-		String descrizione = InputDati.leggiStringa("");
-		
-		view.msgNomeCampoGerarchia();
-		String campo = InputDati.leggiStringaNonVuota("");
-		
-		NonFoglia n = new NonFoglia(nome, campo, descrizione);
-		addDominiNonFoglia(n);
-		
-		gerarchieHandler.getNewGerarchia().addCategoria(n);
-		parent.addChilds(n);
+//		String nome;
+//		do {
+//			view.msgNomeNuovaCategoria();
+//			nome = InputDati.leggiStringaNonVuota("");
+//		} while (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome));
+//		
+//		view.msgDescrizioneCategoria();
+//		String descrizione = InputDati.leggiStringa("");
+//		
+//		view.msgNomeCampoGerarchia();
+//		String campo = InputDati.leggiStringaNonVuota("");
+//		
+//		NonFoglia n = new NonFoglia(nome, campo, descrizione);
+//		addDominiNonFoglia(n);
+//		
+//		gerarchieHandler.getNewGerarchia().addCategoria(n);
+//		parent.addChilds(n);
 	}
 	
 	 /**
@@ -175,22 +198,22 @@ public class GestoreGerarchieConfiguratore {
      * @since 1
      */
 	private void addFoglia(NonFoglia parent) {
-		String nome;
-		do {
-			view.msgNomeNuovaCategoria();
-			nome = InputDati.leggiStringaNonVuota("");
-		} while (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome));//check nome foglia univoco nella gerarchia
-		
-		view.msgDescrizioneCategoria();
-		String descrizione = InputDati.leggiStringa("");
-		
-		Foglia fogliaNew = new Foglia(nome, descrizione,gerarchieHandler.getNewGerarchia().getNomeRadice());
-		gerarchieHandler.getNewGerarchia().addCategoria(fogliaNew);
-		
-		inserisciFattoriConversione(fogliaNew);
-		
-		gerarchieHandler.getNewGerarchia().addFoglia(fogliaNew);
-		parent.addChilds(fogliaNew);
+//		String nome;
+//		do {
+//			view.msgNomeNuovaCategoria();
+//			nome = InputDati.leggiStringaNonVuota("");
+//		} while (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome));//check nome foglia univoco nella gerarchia
+//		
+//		view.msgDescrizioneCategoria();
+//		String descrizione = InputDati.leggiStringa("");
+//		
+//		Foglia fogliaNew = new Foglia(nome, descrizione,gerarchieHandler.getNewGerarchia().getNomeRadice());
+//		gerarchieHandler.getNewGerarchia().addCategoria(fogliaNew);
+//		
+//		inserisciFattoriConversione(fogliaNew);
+//		
+//		gerarchieHandler.getNewGerarchia().addFoglia(fogliaNew);
+//		parent.addChilds(fogliaNew);
 	}
 	
 	/**
@@ -200,22 +223,28 @@ public class GestoreGerarchieConfiguratore {
      * @param n Categoria NonFoglia a cui aggiungere i domini
      * @since 1
      */
-	private void addDominiNonFoglia(NonFoglia n) {
-		String d = "";
-		view.msgInputDominiCampo(n);
+	private void addDominiNonFoglia() {
+		String dominio = viewRadice.getDominioDaAggiungere().trim();
+        
+		if (!dominio.isEmpty()&& !domini.contains(dominio) && !dominio.equals(viewRadice.getPlaceholderDominio())) {
+			domini.add(dominio);
+            viewRadice.aggiornaListaComuni(domini);
+		}
 		
-		do {
-			view.msgInputDominio();
-			d = InputDati.leggiStringaNonVuota("");
-			
-			if (!d.equals("@")) {
-	            n.addDominio(d);
-	        } else if (n.dominiIsEmpty()) {
-	        	view.msgInputDominiEmpty();
-	            d = "";
-	        }
-			
-		} while(!d.equals("@"));
+//		String d = "";
+//		view.msgInputDominiCampo(n);
+//		do {
+//			view.msgInputDominio();
+//			d = InputDati.leggiStringaNonVuota("");
+//			
+//			if (!d.equals("@")) {
+//	            n.addDominio(d);
+//	        } else if (n.dominiIsEmpty()) {
+//	        	view.msgInputDominiEmpty();
+//	            d = "";
+//	        }
+//			
+//		} while(!d.equals("@"));
 	}
 	
 	/**
@@ -237,33 +266,33 @@ public class GestoreGerarchieConfiguratore {
 	 * @since 1
 	 */
 	private void inserisciFattoriConversione(Foglia fogliaNew) {
-		Foglia fogliaOld = null;
-		
-		if(gerarchieHandler.getGerarchie().isEmpty() && gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
-			return;
-		}
-		else if(gerarchieHandler.getGerarchie().isEmpty() && !gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
-			fogliaOld = sceltaFogliaNewGerarchia();
-		}
-		else if(!gerarchieHandler.getGerarchie().isEmpty() && gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
-			fogliaOld = sceltaRadiceFoglia();
-		}
-		else if(!gerarchieHandler.getGerarchie().isEmpty() && !gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
-			fogliaOld = sceltaAggiuntaFattori();
-		}
-		else {
-			return;
-		}
-		
-		gerarchieHandler.calcolaFattoriMinMax(fogliaNew, fogliaOld);
-		double min = gerarchieHandler.getFattoreMin();
-		double max = gerarchieHandler.getFattoreMax();
-		
-		view.msgFattoreConversioneFoglie(fogliaNew, fogliaOld);
-		view.msgInserimentoFattoreConversione(min, max);
-		double fattore = InputDati.leggiDoubleConMinMax("", min, max);
-
-		gerarchieHandler.calcolaFattoriConversione(fogliaNew, fogliaOld, fattore);
+//		Foglia fogliaOld = null;
+//		
+//		if(gerarchieHandler.getGerarchie().isEmpty() && gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
+//			return;
+//		}
+//		else if(gerarchieHandler.getGerarchie().isEmpty() && !gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
+//			fogliaOld = sceltaFogliaNewGerarchia();
+//		}
+//		else if(!gerarchieHandler.getGerarchie().isEmpty() && gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
+//			fogliaOld = sceltaRadiceFoglia();
+//		}
+//		else if(!gerarchieHandler.getGerarchie().isEmpty() && !gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {
+//			fogliaOld = sceltaAggiuntaFattori();
+//		}
+//		else {
+//			return;
+//		}
+//		
+//		gerarchieHandler.calcolaFattoriMinMax(fogliaNew, fogliaOld);
+//		double min = gerarchieHandler.getFattoreMin();
+//		double max = gerarchieHandler.getFattoreMax();
+//		
+//		view.msgFattoreConversioneFoglie(fogliaNew, fogliaOld);
+//		view.msgInserimentoFattoreConversione(min, max);
+//		double fattore = InputDati.leggiDoubleConMinMax("", min, max);
+//
+//		gerarchieHandler.calcolaFattoriConversione(fogliaNew, fogliaOld, fattore);
 	}
 	
 	/**
@@ -273,18 +302,18 @@ public class GestoreGerarchieConfiguratore {
 	 * @return la Foglia scelta rispetto cui aggiungere il fattore
 	 * @since 1
 	 */
-	private Foglia sceltaAggiuntaFattori() {
-	    int scelta = view.menuSceltaAggiuntaFattori().scegliNoExit();
-
-	    switch(scelta) {
-	    	case 1:
-	            return sceltaFogliaNewGerarchia();
-	    	case 2:
-	    		return sceltaRadiceFoglia();
-	    	default:
-	    		return null;
-	    }    
-	}
+//	private Foglia sceltaAggiuntaFattori() {
+//	    int scelta = view.menuSceltaAggiuntaFattori().scegliNoExit();
+//
+//	    switch(scelta) {
+//	    	case 1:
+//	            return sceltaFogliaNewGerarchia();
+//	    	case 2:
+//	    		return sceltaRadiceFoglia();
+//	    	default:
+//	    		return null;
+//	    }    
+//	}
 	
 	/**
 	 * Permette di selezionare una foglia tra tutte le foglie presenti nelle gerarchie nel model
@@ -292,30 +321,30 @@ public class GestoreGerarchieConfiguratore {
 	 * @return foglia selezionata (richiesta al model)
 	 * @since 1
 	 */
-	private Foglia sceltaRadiceFoglia() {
-		ArrayList<String> nomiRadici = gerarchieHandler.getNomiRadici();
-		MyMenu menuRadici = view.menuSceltaRadice(nomiRadici);
-		int sceltaRadice = menuRadici.scegliNoExit();
-		
-		ArrayList<String> nomiFoglie = gerarchieHandler.getNomiFoglieGerarchia(sceltaRadice-1);
-		MyMenu menuFoglie = view.menuSceltaFoglia(nomiFoglie);
-		int sceltaFoglie = menuFoglie.scegliNoExit();
-		
-		return gerarchieHandler.getFogliaDaRadice(sceltaRadice-1, sceltaFoglie-1);
-	}
+//	private Foglia sceltaRadiceFoglia() {
+//		ArrayList<String> nomiRadici = gerarchieHandler.getNomiRadici();
+//		MyMenu menuRadici = view.menuSceltaRadice(nomiRadici);
+//		int sceltaRadice = menuRadici.scegliNoExit();
+//		
+//		ArrayList<String> nomiFoglie = gerarchieHandler.getNomiFoglieGerarchia(sceltaRadice-1);
+//		MyMenu menuFoglie = view.menuSceltaFoglia(nomiFoglie);
+//		int sceltaFoglie = menuFoglie.scegliNoExit();
+//		
+//		return gerarchieHandler.getFogliaDaRadice(sceltaRadice-1, sceltaFoglie-1);
+//	}
 	
 	/**
 	 * Permette di selezionare una foglia all'interno della gerarchia che si sta creando 
 	 * @return foglia selezionata (richiesta al model)
 	 * @since 1
 	 */
-	private Foglia sceltaFogliaNewGerarchia() {
-		ArrayList<String> nomiFoglie = gerarchieHandler.getNomiFoglieGerarchia(gerarchieHandler.getNewGerarchia());
-		MyMenu menuFoglie = view.menuSceltaFoglia(nomiFoglie);
-		int sceltaFoglie = menuFoglie.scegliNoExit();
-		
-		return gerarchieHandler.getNewGerarchia().getFoglia(sceltaFoglie-1);
-	}
+//	private Foglia sceltaFogliaNewGerarchia() {
+//		ArrayList<String> nomiFoglie = gerarchieHandler.getNomiFoglieGerarchia(gerarchieHandler.getNewGerarchia());
+//		MyMenu menuFoglie = view.menuSceltaFoglia(nomiFoglie);
+//		int sceltaFoglie = menuFoglie.scegliNoExit();
+//		
+//		return gerarchieHandler.getNewGerarchia().getFoglia(sceltaFoglie-1);
+//	}
 	
 	/**
 	 * Permette di selezionare una foglia all'interno della gerarchia che si sta creando 
@@ -335,7 +364,8 @@ public class GestoreGerarchieConfiguratore {
 	 * @since 4
 	 */
 	public Foglia sceltaFogliaScambi() {
-		return sceltaRadiceFoglia();
+//		return sceltaRadiceFoglia();
+		return null;
 	}
 		
 	/**

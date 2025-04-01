@@ -37,15 +37,15 @@ public class GestoreScambi {
 	 * Metodo per visualizzare tutte le proposte fatte dall'utente
 	 * @since 4
 	 */
-	public void visualizzaProposteFoglia(ViewConfiguratore view,Foglia foglia) {
-		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
-		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
-		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);
-				
-		view.msgVisualizzaProposteFoglia(foglia);
-		view.stampaScambiApertiFoglia(scambiAperti);
-		view.stampaScambiChiusiFoglia(scambiChiusi);
-		view.stampaScambiRitiratiFoglia(scambiRitirati);
+	public void visualizzaProposteFoglia(Foglia foglia) {
+//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
+//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
+//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);
+//				
+//		view.msgVisualizzaProposteFoglia(foglia);
+//		view.stampaScambiApertiFoglia(scambiAperti);
+//		view.stampaScambiChiusiFoglia(scambiChiusi);
+//		view.stampaScambiRitiratiFoglia(scambiRitirati);
 	}
 	
 	/**

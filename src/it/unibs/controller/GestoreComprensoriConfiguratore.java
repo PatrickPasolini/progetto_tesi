@@ -18,7 +18,7 @@ import it.unibs.view.console.ViewConfiguratore;
 public class GestoreComprensoriConfiguratore {
 	private JFrame frame;
 	private Model model;
-	private List<String> comuni ; 
+	private List<String> comuni; 
 	private ComprensoriHandler comprensoriHandler; 
 	private SalvaModificheHandler salvaHandler;
 	private ViewNuovoComprensorio viewNuovoComprensorio;
