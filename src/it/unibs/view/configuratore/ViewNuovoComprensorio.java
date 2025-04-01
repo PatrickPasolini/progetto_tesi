@@ -54,20 +54,6 @@ public class ViewNuovoComprensorio extends BaseView {
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
-//        Color colorTxtAccesso;
-//        Color colorTxtPlaceholder;
-//        
-//        if(nomeNonUnivoco) {
-//        	txtNuovoComprensorio="Nome comprensorio gia' presente,riprova:";
-//        	colorTxtAccesso=Color.RED;
-//        	colorTxtPlaceholder=Color.RED;
-//        }
-//        else {
-//        	txtNuovoComprensorio="Creazione nuovo comprensorio";
-//        	colorTxtAccesso=new Color(43, 43, 43);
-//            colorTxtPlaceholder=Color.GRAY;
-//        }
-        
         lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblNuovoComp.getPreferredSize();
         lblNuovoComp.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
@@ -150,25 +136,25 @@ public class ViewNuovoComprensorio extends BaseView {
 		frame.setResizable(false);
 		contentPanel.removeAll();
 		int contentWidth = contentPanel.getWidth();
+		int contentHeight = contentPanel.getHeight();
 		
 		JLabel lblCreazione = new JLabel();
 		lblCreazione.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
 		lblCreazione.setForeground(new Color(50, 205, 50));
 		lblCreazione.setFont(new Font("Tahoma", Font.BOLD, 40));
         Dimension size = lblCreazione.getPreferredSize();
-        lblCreazione.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblCreazione.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblCreazione);
         
         JLabel lblNomeComp = new JLabel();
         lblNomeComp.setText("Comprensorio "+comprensorioField.getText()+":");
         lblNomeComp.setForeground(Color.BLACK);
         lblNomeComp.setFont(new Font("Tahoma", Font.BOLD, 40));
-        lblNomeComp.setBounds((contentWidth - size.width) / 2, 120, size.width, 70);
+        lblNomeComp.setBounds((contentWidth - size.width) / 2, 170, size.width, 70);
         contentPanel.add(lblNomeComp);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
         panel.setBackground(contentPanel.getBackground());
         for (int i = 0; i < listModel.size(); i++) {
             JLabel lblComune = new JLabel();
@@ -181,7 +167,7 @@ public class ViewNuovoComprensorio extends BaseView {
         }
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds((contentWidth - size.width) / 2, 170+50, size.width, 300); 
+        scrollPane.setBounds((contentWidth - size.width) / 2 + 20, 170+90, size.width, 300); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
@@ -190,7 +176,7 @@ public class ViewNuovoComprensorio extends BaseView {
         
         btnHome.setMargin(new Insets(0, 10, 0, 0));
         btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 170, 530, 340, 60);
+        btnHome.setBounds(contentWidth / 2 - 170, contentHeight-150, 340, 90);
         btnHome.setForeground(Color.WHITE);
         contentPanel.add(btnHome);
         

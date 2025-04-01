@@ -24,7 +24,7 @@ public class ViewVisualizzaComprensori extends BaseView {
 	private RoundedButton btnHome;
 	private List<Comprensorio>  listComprensori;
 	public ViewVisualizzaComprensori(JFrame frame, List<Comprensorio> listComprensori) {
-		super(frame,frame.getWidth()-200,650);
+		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 		this.frame=frame;
 		this.listComprensori=listComprensori;
 		aggiornaComponenti(frame.getWidth(), frame.getHeight());
@@ -44,7 +44,7 @@ public class ViewVisualizzaComprensori extends BaseView {
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
-        lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 40));
+        lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblTitolo.getPreferredSize();
         lblTitolo.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblTitolo);
@@ -60,14 +60,14 @@ public class ViewVisualizzaComprensori extends BaseView {
     			JLabel lblComp = new JLabel();
                 String item = c.getName();
                 lblComp.setForeground(new Color(90, 90, 90));
-                lblComp.setFont(new Font("Tahoma", Font.PLAIN, 25));
+                lblComp.setFont(new Font("Tahoma", Font.BOLD, 30));
                 lblComp.setText(" " + item+":");
                 lblComp.setAlignmentX(JLabel.LEFT_ALIGNMENT);
                 panel.add(lblComp);
                 for (String comune : c.getComuni()) {
                 	JLabel lblComune = new JLabel();
                     lblComune.setForeground(Color.GRAY);
-                    lblComune.setFont(new Font("Tahoma", Font.PLAIN, 20));
+                    lblComune.setFont(new Font("Tahoma", Font.PLAIN, 30));
                     lblComune.setText("     - " + comune);
                     lblComune.setAlignmentX(JLabel.LEFT_ALIGNMENT);
                     panel.add(lblComune);
@@ -77,7 +77,7 @@ public class ViewVisualizzaComprensori extends BaseView {
 		}
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(240, 120, contentWidth-480, contentHeight-btnHome.getHeight()-lblTitolo.getHeight()-100); 
+        scrollPane.setBounds(contentPanel.getWidth()/2-300, 150, 600, contentPanel.getHeight()-270); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
@@ -87,7 +87,7 @@ public class ViewVisualizzaComprensori extends BaseView {
         
         btnHome.setMargin(new Insets(0, 10, 0, 0));
         btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 170, contentHeight-100, 340, 60);
+        btnHome.setBounds(contentWidth / 2 - 150, contentHeight - 110, 300, 80);
         btnHome.setForeground(Color.WHITE);
         contentPanel.add(btnHome);
         
