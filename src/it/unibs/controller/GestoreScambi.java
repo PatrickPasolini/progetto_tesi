@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import org.junit.jupiter.engine.execution.InvocationInterceptorChain.VoidInterceptorCall;
+
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.*;
-import it.unibs.view.accesso.*;
+import it.unibs.view.console.View;
 import it.unibs.view.console.ViewConfiguratore;
-import it.unibs.view.console.ViewFruitore;
 import it.unibs.view.fruitore.ViewFormulaProposteScambio;
-import it.unibs.view.fruitore.ViewNavigaGerarchie;
 import it.unibs.view.fruitore.ViewRitiraProposte;
 import it.unibs.view.fruitore.ViewVisualizzaProposte;
 
@@ -70,6 +70,10 @@ public class GestoreScambi {
 	
 	// GESTORE SCAMBI-FRUITORE
 	
+	private Foglia richiesta;
+	private Foglia offerta;
+	private int oreRichiesta;
+	private int oreOfferta;
 	/**
 	 * Permette al fruitore la formulazione di una proposta di scambio di prestazioni
 	 * richiedendo un quantitativo di ore di una prestazione 
@@ -78,13 +82,46 @@ public class GestoreScambi {
 	 * Se il fruitore conferma lo scambio viene salvato in forma persistente 
 	 *@since 3
 	 */
+	
 	public void creaProposta() {
 		ViewFormulaProposteScambio viewProposte = new ViewFormulaProposteScambio(frame, gerarchieHandler.getGerarchie());
 		frame.getContentPane().add(viewProposte);
 		viewProposte.setLayout(null);
 		
-
+		viewProposte.setBtnContinuaListener(e->{
+			richiesta = viewProposte.getFogliaSelezionata();
+			viewProposte.visualizzaRichiesta(richiesta);
+		});
 		
+		viewProposte.setBtnConfermaRichiestaListener(e->{
+			oreRichiesta = viewProposte.getOreRichiesta();
+			viewProposte.visualizzaSceltaOfferta();
+		});
+		
+		viewProposte.setBtnConfermaOffertaListener(e->{
+			offerta = viewProposte.getFogliaSelezionata();
+			oreOfferta = scambiHandler.calcolaOreDaFattore(richiesta, offerta, oreRichiesta);
+			viewProposte.visualizzaPropostaFormulata(richiesta,oreRichiesta,offerta,oreOfferta);
+			;
+			System.out.println(offerta.getNome());
+
+		}
+		);
+		viewProposte.setBtnConfermaCreazione(e -> {
+            boolean risposta = Boolean.parseBoolean(e.getActionCommand());
+            
+            if (risposta) {
+            	viewProposte.visualizzaCreazione(richiesta, offerta, oreRichiesta, oreOfferta);
+    			Proposta proposta = new Proposta(richiesta, offerta, oreRichiesta, oreOfferta, scambiHandler.getUser());
+    			scambiHandler.addScambio(proposta);
+			}
+            else {
+            	backHome();
+            }
+            
+
+		});
+		viewProposte.setBtnHome(e ->backHome());
 		
 //		view.msgSceltaPrestazioneRichiesta();
 //		Foglia richiesta = gestoreGerarchieFruitore.navigaGerarchia();
@@ -159,20 +196,7 @@ public class GestoreScambi {
 		});
 		viewRitiraProposte.setBtnHomeListener(e-> backHome());
 	
-		
-		
-		
-//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
-//		MyMenu menuProposte = view.menuSceltaRitiraProposta(scambiAperti);
-//		int scelta = menuProposte.scegli();
-//		
-//		if(scelta != 0) {
-//			Proposta p = scambiAperti.get(scelta-1);
-//			
-//			view.msgConfermaRitiroProposta(p);
-//			if(InputDati.yesOrNo("")) {
-//				scambiHandler.ritiraScambioAperto(p);
-//			}
-//		}
+		//TODO CHIEDI CONFERMA PER ELIMINARE
+
 	}
 }

@@ -59,7 +59,7 @@ public class CustomTree {
 
             if (leaf && sel && !locked) {
 //            	label.setFont(new Font("Arial", Font.BOLD, 30)); //TODO: sistemare le dimensioni del label
-                label.setForeground(new Color(50, 205, 50));
+                label.setForeground(new Color(8, 95, 255));
             } else {
                 label.setBackground(tree.getBackground());
             }

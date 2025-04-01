@@ -119,6 +119,10 @@ public class TextFieldWithPlaceholder extends JTextField {
 	public String getPlaceholder() {
 		return placeholder;
 	}
+	
+	public void setFont(Font font) {
+		super.setFont(font);
+	}
 
 	public void setPlaceholder(String placeholder) {
 		this.placeholder = placeholder;
