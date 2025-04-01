@@ -249,7 +249,7 @@ public class ViewFormulaProposteScambio extends BaseView {
         JLabel lblScambio = new JLabel(
         	    "<html>" +
         	      "<div align='center'>" +
-        	        "Formulazione del seguente scambio avvenuta con successo:<br><br>" +
+        	        "<span style='color:#33CC33;'><b>Formulazione del seguente scambio avvenuta con successo:</b></span><br><br>" +
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
         	        " di: <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +
