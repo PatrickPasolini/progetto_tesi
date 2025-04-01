@@ -19,63 +19,26 @@
       ]
     },
     {
-      "name": "maro",
+      "name": "Brescia Nord",
       "comuni": [
-        "aa"
+        "Mompiano",
+        "San Bartolomeo",
+        "Casazza",
+        "Borgo Trento",
+        "Villaggio Prealpino",
+        "San Rocchino",
+        "Sant\u0027Eustacchio"
       ]
     },
     {
-      "name": "1",
+      "name": "Brescia Ovest",
       "comuni": [
-        "11"
-      ]
-    },
-    {
-      "name": "aaaa",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "aaa",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "aaaaaaa",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "aaaaaaaaaaaaaaaaaaaa",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "z",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "d",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "asas",
-      "comuni": [
-        "a"
-      ]
-    },
-    {
-      "name": "aaaaaaaaaa",
-      "comuni": [
-        "s"
+        "Chiusure",
+        "Fiumicello",
+        "Urago Mella",
+        "Villaggio Badia",
+        "Villaggio Violino",
+        "Primo Maggio"
       ]
     }
   ],
