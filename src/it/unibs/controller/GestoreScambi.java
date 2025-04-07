@@ -11,6 +11,7 @@ import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.*;
+import it.unibs.view.configuratore.ViewScambiCategoria;
 import it.unibs.view.console.View;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.fruitore.ViewFormulaProposteScambio;
@@ -38,10 +39,19 @@ public class GestoreScambi {
 	 * @since 4
 	 */
 	public void visualizzaProposteFoglia(Foglia foglia) {
+		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
+		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
+		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);		
+		
+		ViewScambiCategoria viewProposte = new ViewScambiCategoria(frame, gerarchieHandler.getGerarchie());
+		frame.getContentPane().add(viewProposte);
+		viewProposte.setLayout(null);
+				
+		
+		
 //		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
 //		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
-//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);
-//				
+//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);		
 //		view.msgVisualizzaProposteFoglia(foglia);
 //		view.stampaScambiApertiFoglia(scambiAperti);
 //		view.stampaScambiChiusiFoglia(scambiChiusi);

@@ -1,4 +1,4 @@
-package it.unibs.view.fruitore;
+package it.unibs.view.configuratore;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

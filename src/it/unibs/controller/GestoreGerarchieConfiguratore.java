@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import it.unibs.view.configuratore.ViewAddGerarchiaNonFoglia;
+import it.unibs.view.configuratore.ViewAddGerarchiaRadice;
 import it.unibs.view.configuratore.ViewVisualizzaGerarchie;
-import it.unibs.view.fruitore.ViewAddGerarchiaNonFoglia;
-import it.unibs.view.fruitore.ViewAddGerarchiaRadice;
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;

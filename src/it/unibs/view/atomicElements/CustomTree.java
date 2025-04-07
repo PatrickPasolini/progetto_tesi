@@ -95,7 +95,7 @@ public class CustomTree {
 
         // Espansione automatica dei nodi interni, lasciando chiuse le radici
         if (expandedAndLocked) {
-            expandAllExceptRoot(tree, new TreePath(invisibleRoot), 2);
+            expandAllExceptRoot(tree, tree.getModel());
         }
 
         
@@ -103,22 +103,58 @@ public class CustomTree {
         return tree;
     }
 
+//    /**
+//     * Espande tutti i nodi interni, tranne le radici (nodi di livello 2).
+//     */
+//    private static void expandAllExceptRoot(JTree tree, TreePath parent, int rootLevel) {
+//        DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getLastPathComponent();
+//        if (node.getChildCount() > 0) {
+//            for (int i = 0; i < node.getChildCount(); i++) {
+//                DefaultMutableTreeNode childNode = (DefaultMutableTreeNode) node.getChildAt(i);
+//                TreePath childPath = parent.pathByAddingChild(childNode);
+//                expandAllExceptRoot(tree, childPath, rootLevel);
+//            }
+//        }
+//
+//        // Espandi solo se non è un nodo radice
+//        if (parent.getPathCount() > rootLevel) {
+//            tree.expandPath(parent);
+//        }
+//    }
+    
     /**
-     * Espande tutti i nodi interni, tranne le radici (nodi di livello 2).
+     * Prepara l'albero in modo che quando una radice viene espansa, tutto il suo sottoalbero si apra automaticamente.
+     * Il trucco è preespandere tutti i nodi, memorizzarli, e poi chiudere solo le radici.
      */
-    private static void expandAllExceptRoot(JTree tree, TreePath parent, int rootLevel) {
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getLastPathComponent();
-        if (node.getChildCount() > 0) {
-            for (int i = 0; i < node.getChildCount(); i++) {
-                DefaultMutableTreeNode childNode = (DefaultMutableTreeNode) node.getChildAt(i);
-                TreePath childPath = parent.pathByAddingChild(childNode);
-                expandAllExceptRoot(tree, childPath, rootLevel);
-            }
+    private static void expandAllExceptRoot(JTree tree, TreeModel model) {
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        
+        // Prima espandiamo tutto l'albero
+        for (int i = 0; i < root.getChildCount(); i++) {
+            DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode) root.getChildAt(i);
+            expandAllNodesRecursively(tree, rootNode);
         }
+        
+        // Poi chiudiamo solo i nodi radice
+        for (int i = 0; i < root.getChildCount(); i++) {
+            DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode) root.getChildAt(i);
+            TreePath rootPath = new TreePath(new Object[] {root, rootNode});
+            tree.collapsePath(rootPath);
+        }
+    }
 
-        // Espandi solo se non è un nodo radice
-        if (parent.getPathCount() > rootLevel) {
-            tree.expandPath(parent);
+    /**
+     * Espande ricorsivamente tutti i nodi nell'albero a partire dal nodo specificato.
+     */
+    private static void expandAllNodesRecursively(JTree tree, DefaultMutableTreeNode node) {
+        if (node == null) return;
+        
+        TreePath path = new TreePath(node.getPath());
+        tree.expandPath(path);
+        
+        for (int i = 0; i < node.getChildCount(); i++) {
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
+            expandAllNodesRecursively(tree, child);
         }
     }
 }
