@@ -17,13 +17,28 @@ public class CustomTree {
      * Custom cell renderer per il JTree con maggiore spazio tra le gerarchie.
      */
     public static class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
-        private final Font normalFont = new Font("Arial", Font.PLAIN, 30);
+    	private static final String ARROW_PATH = "./Data/arrowRight.png"; //percorso file.json contenente i dati dell'applicazione
+    	private static final String ARROWDOWN_PATH = "./Data/arrowDown.png"; //percorso file.json contenente i dati dell'applicazione
+        
+    	private final Font normalFont = new Font("Arial", Font.PLAIN, 30);
         private final Font boldFont = new Font("Arial", Font.BOLD, 35);
         private final boolean locked;
+        
+        ImageIcon arrowDownIconOriginal = new ImageIcon(ARROW_PATH);
+        Image arrowDownScaledImage = arrowDownIconOriginal.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        ImageIcon arrowDownIcon = new ImageIcon(arrowDownScaledImage);
+        ImageIcon arrowRightIconOriginal = new ImageIcon(ARROWDOWN_PATH);
+        Image arrowRightScaledImage = arrowRightIconOriginal.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        ImageIcon arrowRightIcon = new ImageIcon(arrowRightScaledImage);
 
+        
         // Costruttore che riceve il parametro locked
         public CustomTreeCellRenderer(boolean locked) {
             this.locked = locked;
+//            UIManager.put("Tree.leafIcon",      null);
+            setOpenIcon(arrowRightIcon);
+            setClosedIcon(arrowDownIcon);
+            
             setLeafIcon(null);
         }
 
@@ -89,10 +104,16 @@ public class CustomTree {
         }
 
         JTree tree = new JTree(invisibleRoot);
+        
+        tree.setCellRenderer(new CustomTreeCellRenderer(expandedAndLocked));
+        tree.setCellEditor(new CustomTreeCellEditor(tree));
+        tree.setEditable(true); // Abilita la modalità editabile per usare l'editor
+        
+        tree.setUI(new CustomTreeUI());
         tree.setRootVisible(false);
         tree.setShowsRootHandles(true);
         tree.setCellRenderer(new CustomTreeCellRenderer(expandedAndLocked));
-
+        tree.putClientProperty("Tree.paintLines", Boolean.FALSE);
         // Espansione automatica dei nodi interni, lasciando chiuse le radici
         if (expandedAndLocked) {
             expandAllExceptRoot(tree, tree.getModel());
@@ -103,25 +124,6 @@ public class CustomTree {
         return tree;
     }
 
-//    /**
-//     * Espande tutti i nodi interni, tranne le radici (nodi di livello 2).
-//     */
-//    private static void expandAllExceptRoot(JTree tree, TreePath parent, int rootLevel) {
-//        DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getLastPathComponent();
-//        if (node.getChildCount() > 0) {
-//            for (int i = 0; i < node.getChildCount(); i++) {
-//                DefaultMutableTreeNode childNode = (DefaultMutableTreeNode) node.getChildAt(i);
-//                TreePath childPath = parent.pathByAddingChild(childNode);
-//                expandAllExceptRoot(tree, childPath, rootLevel);
-//            }
-//        }
-//
-//        // Espandi solo se non è un nodo radice
-//        if (parent.getPathCount() > rootLevel) {
-//            tree.expandPath(parent);
-//        }
-//    }
-    
     /**
      * Prepara l'albero in modo che quando una radice viene espansa, tutto il suo sottoalbero si apra automaticamente.
      * Il trucco è preespandere tutti i nodi, memorizzarli, e poi chiudere solo le radici.
