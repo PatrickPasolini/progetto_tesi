@@ -13,7 +13,7 @@ import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.*;
 public class ViewSceltaFoglia extends BaseView {
 	private static final long serialVersionUID = 1L;
-	private JLabel lblProposte;
+	protected JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnContinua;
 	private JTree tree;
@@ -36,7 +36,21 @@ public class ViewSceltaFoglia extends BaseView {
 	    int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
 	    
-        lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
+        sceltaFoglia(contentWidth);
+        
+        btnContinua.setBorder(null);
+	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
+	    btnContinua.setFont(new Font("Tahoma", Font.BOLD, 28));
+	    btnContinua.setBounds(contentWidth / 2 - 225, contentHeight - 120, 450, 90);
+	    btnContinua.setForeground(Color.WHITE);
+	    contentPanel.add(btnContinua);
+        
+        contentPanel.revalidate();
+	    contentPanel.repaint();
+	}
+
+	protected void sceltaFoglia(int contentWidth) {
+		lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblProposte.getPreferredSize();
         lblProposte.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblProposte);
@@ -57,15 +71,6 @@ public class ViewSceltaFoglia extends BaseView {
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
         
-        btnContinua.setBorder(null);
-	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
-	    btnContinua.setFont(new Font("Tahoma", Font.BOLD, 28));
-	    btnContinua.setBounds(contentWidth / 2 - 225, contentHeight - 120, 450, 90);
-	    btnContinua.setForeground(Color.WHITE);
-	    contentPanel.add(btnContinua);
-        
-        contentPanel.revalidate();
-	    contentPanel.repaint();
 	}
 
 	public void setBtnContinuaListener(ActionListener event) {

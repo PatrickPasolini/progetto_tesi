@@ -358,15 +358,15 @@ public class GestoreGerarchieConfiguratore {
 //		view.stampaFattoriDiCOnversioneFoglia(gerarchieHandler.getMapFattori(),foglia);
 	}
 	
-	/**
-	 * Permette di selezionare una foglia all'interno della gerarchia che si sta creando
-	 * e di visualizzarne le proposte che richiedono o offrono la prestazione
-	 * @since 4
-	 */
-	public Foglia sceltaFogliaScambi() {
-//		return sceltaRadiceFoglia();
-		return null;
-	}
+//	/**
+//	 * Permette di selezionare una foglia all'interno della gerarchia che si sta creando
+//	 * e di visualizzarne le proposte che richiedono o offrono la prestazione
+//	 * @since 4
+//	 */
+//	public Foglia sceltaFogliaScambi() {
+////		return sceltaRadiceFoglia();
+//		return null;
+//	}
 		
 	/**
 	 * Metodo per visualizzare le gerarchie presenti
