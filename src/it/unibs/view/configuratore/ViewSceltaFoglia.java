@@ -36,21 +36,7 @@ public class ViewSceltaFoglia extends BaseView {
 	    int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
 	    
-        sceltaFoglia(contentWidth);
-        
-        btnContinua.setBorder(null);
-	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
-	    btnContinua.setFont(new Font("Tahoma", Font.BOLD, 28));
-	    btnContinua.setBounds(contentWidth / 2 - 225, contentHeight - 120, 450, 90);
-	    btnContinua.setForeground(Color.WHITE);
-	    contentPanel.add(btnContinua);
-        
-        contentPanel.revalidate();
-	    contentPanel.repaint();
-	}
-
-	private void sceltaFoglia(int contentWidth) {
-		lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
+        lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblProposte.getPreferredSize();
         lblProposte.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
         contentPanel.add(lblProposte);
@@ -71,9 +57,16 @@ public class ViewSceltaFoglia extends BaseView {
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
         
+        btnContinua.setBorder(null);
+	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
+	    btnContinua.setFont(new Font("Tahoma", Font.BOLD, 28));
+	    btnContinua.setBounds(contentWidth / 2 - 225, contentHeight - 120, 450, 90);
+	    btnContinua.setForeground(Color.WHITE);
+	    contentPanel.add(btnContinua);
+        
+        contentPanel.revalidate();
+	    contentPanel.repaint();
 	}
-		
-
 
 	public void setBtnContinuaListener(ActionListener event) {
 		btnContinua.addActionListener(event);

@@ -16,7 +16,8 @@ public class VisualizzaScambiCategoriaCommand implements CommandUtente {
 	
 	@Override
 	public void execute() {
-		gestoreScambi.visualizzaProposteFoglia(gestoreGerarchieConfiguratore.sceltaFogliaScambi());
+//		gestoreScambi.visualizzaProposteFoglia(gestoreGerarchieConfiguratore.sceltaFogliaScambi());
+		gestoreScambi.visualizzaProposteFoglia();
 	}
 	
 }

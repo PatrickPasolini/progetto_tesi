@@ -18,8 +18,8 @@ public class CustomTree {
      * Custom cell renderer per il JTree con maggiore spazio tra le gerarchie.
      */
     public static class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
-    	private static final String ARROW_PATH = "./Data/arrowRight.png";
-    	private static final String ARROWDOWN_PATH = "./Data/arrowDown.png";
+    	private static final String ARROW_PATH = "./Img/arrowRight.png";
+    	private static final String ARROWDOWN_PATH = "./Img/arrowDown.png";
     	private final Font normalFont = new Font("Arial", Font.PLAIN, 30);
         private final Font boldFont = new Font("Arial", Font.BOLD, 35);
         private final boolean locked;
