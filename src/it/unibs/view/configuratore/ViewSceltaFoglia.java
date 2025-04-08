@@ -13,7 +13,7 @@ import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.*;
 public class ViewSceltaFoglia extends BaseView {
 	private static final long serialVersionUID = 1L;
-	protected JLabel lblProposte;
+	protected JLabel lblSceltaFoglia;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnContinua;
 	private JTree tree;
@@ -26,7 +26,7 @@ public class ViewSceltaFoglia extends BaseView {
 
 	@Override
 	protected void inizializzaComponenti() {
-		lblProposte = new JLabel("Seleziona la prestazione d'opera che necessiti:");
+		lblSceltaFoglia = new JLabel("Seleziona la prestazione d'opera che necessiti:");
 		btnContinua = new RoundedButton("Conferma scelta e prosegui", new Color(8, 102, 255));
 	}
 
@@ -50,10 +50,10 @@ public class ViewSceltaFoglia extends BaseView {
 	}
 
 	protected void sceltaFoglia(int contentWidth) {
-		lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
-        Dimension size = lblProposte.getPreferredSize();
-        lblProposte.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
-        contentPanel.add(lblProposte);
+		lblSceltaFoglia.setFont(new Font("Tahoma", Font.BOLD, 55));
+        Dimension size = lblSceltaFoglia.getPreferredSize();
+        lblSceltaFoglia.setBounds((contentWidth - size.width) / 2, 20, size.width, size.height);
+        contentPanel.add(lblSceltaFoglia);
         
         if (gerarchie != null && !gerarchie.isEmpty()) {
 	        tree = CustomTree.createUnifiedTree(gerarchie,false);
@@ -65,7 +65,7 @@ public class ViewSceltaFoglia extends BaseView {
         scrollPane.setBorder(null);
         scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentPanel.getWidth()/2-400, 110, 800, contentPanel.getHeight()-250);
+        scrollPane.setBounds(contentPanel.getWidth()/2-400, size.height+40, 800, contentPanel.getHeight()-165 - size.height);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);

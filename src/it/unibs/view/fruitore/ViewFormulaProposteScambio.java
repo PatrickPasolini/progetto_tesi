@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
 
 import it.unibs.domain.Foglia;
 import it.unibs.domain.Gerarchia;
@@ -23,6 +21,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	private RoundedButton btnSi;
 	private RoundedButton btnNo;
 	private RoundedButton btnHome;
+	private NumericFieldWithPlaceholder oreRichiestaField;
 	
 	public ViewFormulaProposteScambio(JFrame frame, List<Gerarchia> gerarchie) {
 		super(frame,gerarchie);
@@ -31,8 +30,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	}
 
 	protected void inizializzaComponenti() {
-//		lblProposte = new JLabel("Seleziona la prestazione d'opera che necessiti:");
-//		btnContinua = new RoundedButton("Conferma scelta e prosegui", new Color(8, 102, 255));
 		super.inizializzaComponenti();
 		btnConfermaRichiesta = new RoundedButton("Conferma richiesta e prosegui", new Color(8, 102, 255));
 		btnConfermaOfferta = new RoundedButton("Conferma offerta e prosegui", new Color(8, 102, 255));
@@ -41,11 +38,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
 	}
 
-	public void setBtnConfermaRichiestaListener(ActionListener event) {
-		btnConfermaRichiesta.addActionListener(event);
-	}
-	
-	private NumericFieldWithPlaceholder oreRichiestaField;
 	public void visualizzaRichiesta(Foglia richiesta) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
@@ -84,16 +76,18 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
+	public void setBtnConfermaRichiestaListener(ActionListener event) {
+		btnConfermaRichiesta.addActionListener(event);
+	}
 	public int getOreRichiesta() {
 		return oreRichiestaField.getNumericValue();
 	}
-	
 	
 	public void visualizzaSceltaOfferta() {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
-        lblProposte.setText("Seleziona la prestazione d'opera che offri");
+        lblSceltaFoglia.setText("Seleziona la prestazione d'opera che offri");
         sceltaFoglia(contentWidth);
         
         btnConfermaOfferta.setBorder(null);
@@ -106,7 +100,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
-
 	public void setBtnConfermaOffertaListener(ActionListener listener) {
 		btnConfermaOfferta.addActionListener(listener);
 	}
@@ -189,7 +182,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	    contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
-
 	public void setBtnHome(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	}

@@ -133,7 +133,7 @@ public class ViewVisualizzaProposte extends BaseView {
         repaint();
 	}
 	public void setBtnHomeListener(ActionListener listener) {
-		btnHome.addActionListener(listener); // Riaggiungiamo il listener
+		btnHome.addActionListener(listener);
 	}
 	
 	private static String formattaStringProposta(Proposta proposta) {

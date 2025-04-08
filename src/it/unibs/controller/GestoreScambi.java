@@ -4,15 +4,12 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import org.junit.jupiter.engine.execution.InvocationInterceptorChain.VoidInterceptorCall;
-
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.*;
 import it.unibs.view.configuratore.ViewScambiCategoria;
-import it.unibs.view.console.View;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.fruitore.ViewFormulaProposteScambio;
 import it.unibs.view.fruitore.ViewRitiraProposte;
@@ -32,30 +29,45 @@ public class GestoreScambi {
 		this.gerarchieHandler = new GerarchieHandler(model);
 	}
 
-	// GESTORE SCAMBI-CONFIGURATORE
+	// #GESTORE SCAMBI-CONFIGURATORE
 	
+	// ## visualizza proposte aperte/chiuse/ritirate di una prestazione d'opera
 	/**
 	 * Metodo per visualizzare tutte le proposte fatte dall'utente
 	 * @since 4
 	 */
 	public void visualizzaProposteFoglia() {
-//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
-//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
-//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);		
-		
 		ViewScambiCategoria viewProposte = new ViewScambiCategoria(frame, gerarchieHandler.getGerarchie());
 		frame.getContentPane().add(viewProposte);
 		viewProposte.setLayout(null);
 				
+		viewProposte.setBtnContinuaListener(e-> visualizzaSceltaScambi(viewProposte));
+	}
+	
+	private void visualizzaSceltaScambi(ViewScambiCategoria viewProposte) {
+		Foglia foglia = viewProposte.getFogliaSelezionata();
+		viewProposte.visualizzaSceltaScambi();
 		
+		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
+		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
+		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);	
 		
-//		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
-//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
-//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);		
-//		view.msgVisualizzaProposteFoglia(foglia);
-//		view.stampaScambiApertiFoglia(scambiAperti);
-//		view.stampaScambiChiusiFoglia(scambiChiusi);
-//		view.stampaScambiRitiratiFoglia(scambiRitirati);
+		viewProposte.setBtnBackListeners(e->visualizzaProposteFoglia());
+		viewProposte.setBtnApertiListeners(e-> viewProposte.visualizzaAperti(scambiAperti));
+		viewProposte.setBtnChiusiListeners(e-> viewProposte.visualizzaChiusi(scambiChiusi));
+		viewProposte.setBtnRitiratiListeners(e-> viewProposte.visualizzaRitirati(scambiRitirati));
+		viewProposte.setBtnHomeListener(e-> backHomeConfiguratore());
+	}
+	
+	
+	
+	
+	
+	
+	
+	private void backHomeConfiguratore() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
 	}
 	
 	/**
@@ -126,12 +138,12 @@ public class GestoreScambi {
     			scambiHandler.addScambio(proposta);
 			}
             else {
-            	backHome();
+            	backHomeFruitore();
             }
             
 
 		});
-		viewProposte.setBtnHome(e ->backHome());
+		viewProposte.setBtnHome(e ->backHomeFruitore());
 		
 //		view.msgSceltaPrestazioneRichiesta();
 //		Foglia richiesta = gestoreGerarchieFruitore.navigaGerarchia();
@@ -171,12 +183,12 @@ public class GestoreScambi {
 		viewProposte.setBtnApertiListeners(e-> viewProposte.visualizzaAperti(scambiAperti,scambiHandler.getNameUser()));
 		viewProposte.setBtnChiusiListeners(e-> viewProposte.visualizzaChiusi(scambiChiusi,scambiHandler.getNameUser()));
 		viewProposte.setBtnRitiratiListeners(e-> viewProposte.visualizzaRitirati(scambiRitirati,scambiHandler.getNameUser()));
-		viewProposte.setBtnHomeListener(e-> backHome());
+		viewProposte.setBtnHomeListener(e-> backHomeFruitore());
 	}
 	
-	private void backHome() {
-		ControllerFruitore controllerConfiguratore = new ControllerFruitore(model, frame);
-		controllerConfiguratore.run();
+	private void backHomeFruitore() {
+		ControllerFruitore controllerFruitore = new ControllerFruitore(model, frame);
+		controllerFruitore.run();
 	}
 	
 	/**
@@ -204,7 +216,7 @@ public class GestoreScambi {
 					viewRitiraProposte.aggiornaListaScambi(scambiHandler.getScambiApertiFruitore());
 				}
 		});
-		viewRitiraProposte.setBtnHomeListener(e-> backHome());
+		viewRitiraProposte.setBtnHomeListener(e-> backHomeFruitore());
 	
 		//TODO CHIEDI CONFERMA PER ELIMINARE
 
