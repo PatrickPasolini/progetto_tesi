@@ -13,32 +13,29 @@ import it.unibs.domain.Categoria;
 
 public class CustomTree {
 
+    private static TreePath hoveredPath = null;
     /**
      * Custom cell renderer per il JTree con maggiore spazio tra le gerarchie.
      */
     public static class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
-    	private static final String ARROW_PATH = "./Data/arrowRight.png"; //percorso file.json contenente i dati dell'applicazione
-    	private static final String ARROWDOWN_PATH = "./Data/arrowDown.png"; //percorso file.json contenente i dati dell'applicazione
-        
+    	private static final String ARROW_PATH = "./Data/arrowRight.png";
+    	private static final String ARROWDOWN_PATH = "./Data/arrowDown.png";
     	private final Font normalFont = new Font("Arial", Font.PLAIN, 30);
         private final Font boldFont = new Font("Arial", Font.BOLD, 35);
         private final boolean locked;
-        
+
         ImageIcon arrowDownIconOriginal = new ImageIcon(ARROW_PATH);
         Image arrowDownScaledImage = arrowDownIconOriginal.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         ImageIcon arrowDownIcon = new ImageIcon(arrowDownScaledImage);
+        
         ImageIcon arrowRightIconOriginal = new ImageIcon(ARROWDOWN_PATH);
         Image arrowRightScaledImage = arrowRightIconOriginal.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         ImageIcon arrowRightIcon = new ImageIcon(arrowRightScaledImage);
 
-        
-        // Costruttore che riceve il parametro locked
         public CustomTreeCellRenderer(boolean locked) {
             this.locked = locked;
-//            UIManager.put("Tree.leafIcon",      null);
             setOpenIcon(arrowRightIcon);
-            setClosedIcon(arrowDownIcon);
-            
+            setClosedIcon(arrowDownIcon);           
             setLeafIcon(null);
         }
 
@@ -71,13 +68,25 @@ public class CustomTree {
                 label.setFont(normalFont);
                 label.setBorder(BorderFactory.createEmptyBorder(2, 0, 2, 0));
             }
+          //mouse over
+            if (tree.getPathForRow(row) != null && tree.getPathForRow(row).equals(CustomTree.hoveredPath)) {
+                label.setBackground(new Color(207, 207, 207));
 
-            if (leaf && sel && !locked) {
-//            	label.setFont(new Font("Arial", Font.BOLD, 30)); //TODO: sistemare le dimensioni del label
-                label.setForeground(new Color(8, 95, 255));
             } else {
                 label.setBackground(tree.getBackground());
             }
+            
+            if (leaf && sel && !locked) {
+//            	label.setFont(new Font("Arial", Font.BOLD, 30)); //TODO: sistemare le dimensioni del label
+                label.setForeground(new Color(8, 95, 255));
+                label.setBackground(new Color(207, 207, 207));
+            } 
+//            else {
+//                label.setBackground(tree.getBackground());
+//            }
+            
+            
+            
             return label;
         }
     }
@@ -97,29 +106,34 @@ public class CustomTree {
      * Crea un JTree con maggiore spazio tra le gerarchie senza nodi extra.
      */
     public static JTree createUnifiedTree(List<Gerarchia> gerarchie, boolean expandedAndLocked) {
-        DefaultMutableTreeNode invisibleRoot = new DefaultMutableTreeNode("invisible");
-
+        DefaultMutableTreeNode invisibleRoot = new DefaultMutableTreeNode("invisible");//per avere le gerarchie tutte unite
         for (Gerarchia g : gerarchie) {
             invisibleRoot.add(buildNode(g.getRadice()));
         }
 
         JTree tree = new JTree(invisibleRoot);
-        
         tree.setCellRenderer(new CustomTreeCellRenderer(expandedAndLocked));
-        tree.setCellEditor(new CustomTreeCellEditor(tree));
-        tree.setEditable(true); // Abilita la modalità editabile per usare l'editor
-        
         tree.setUI(new CustomTreeUI());
         tree.setRootVisible(false);
         tree.setShowsRootHandles(true);
         tree.setCellRenderer(new CustomTreeCellRenderer(expandedAndLocked));
         tree.putClientProperty("Tree.paintLines", Boolean.FALSE);
+        
         // Espansione automatica dei nodi interni, lasciando chiuse le radici
         if (expandedAndLocked) {
             expandAllExceptRoot(tree, tree.getModel());
         }
-
         
+        tree.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+                if (path != hoveredPath) {
+                    hoveredPath = path;
+                    tree.repaint();
+                }
+            }
+        });
 
         return tree;
     }
