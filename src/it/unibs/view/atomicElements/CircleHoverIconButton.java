@@ -59,7 +59,7 @@ public class CircleHoverIconButton extends JButton {
         
         // Disegna il cerchio scuro se il mouse è sopra
         if (isHovered) {
-            g2d.setColor(new Color(0, 0, 0, 60)); // Nero semi-trasparente
+            g2d.setColor(new Color(0, 0, 0, 30)); // Nero semi-trasparente
             int circleDiameter = Math.min(w, h);
             int x = (w - circleDiameter) / 2;
             int y = (h - circleDiameter) / 2;
