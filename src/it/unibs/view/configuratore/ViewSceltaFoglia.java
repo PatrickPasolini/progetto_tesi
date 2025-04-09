@@ -45,7 +45,6 @@ public class ViewSceltaFoglia extends BaseView {
         btnArrowLeft.setBounds(45, 45, 90, 90);
         contentPanel.add(btnArrowLeft);
         
-        
         btnContinua.setBorder(null);
 	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
 	    btnContinua.setFont(new Font("Tahoma", Font.BOLD, 28));
@@ -84,7 +83,11 @@ public class ViewSceltaFoglia extends BaseView {
 	public void setSceltaFallita() {
 	    lblSceltaFoglia.setForeground(Color.RED);
 	    lblSceltaFoglia.setText("<html><div align='center'>Seleziona una prestazione d'opera<br> prima di continuare!</div></html>");
-	    aggiornaComponenti(frame.getWidth(), frame.getHeight());
+	    
+	    Dimension size = lblSceltaFoglia.getPreferredSize();
+	    int contentWidth = contentPanel.getWidth();
+	    lblSceltaFoglia.setBounds((contentWidth - size.width) / 2, 20, size.width, size.height);
+	    
 	    revalidate();
 	    repaint();
 	}
