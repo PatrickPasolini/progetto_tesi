@@ -18,7 +18,7 @@ public class ViewSceltaFoglia extends BaseView {
 	protected JLabel lblSceltaFoglia;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnContinua;
-    private CircleHoverIconButton btnArrowLeft;
+    private CircleHoverIconButton btnBack;
 	private JTree tree;
 	
 	public ViewSceltaFoglia(JFrame frame, List<Gerarchia> gerarchie) {
@@ -31,7 +31,7 @@ public class ViewSceltaFoglia extends BaseView {
 	protected void inizializzaComponenti() {
 		lblSceltaFoglia = new JLabel("Seleziona la prestazione d'opera che necessiti:");
 		btnContinua = new RoundedButton("Conferma scelta e prosegui", new Color(8, 102, 255));
-		btnArrowLeft = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
+		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class ViewSceltaFoglia extends BaseView {
 	    
         sceltaFoglia(contentWidth);
         
-        btnArrowLeft.setBounds(45, 45, 90, 90);
-        contentPanel.add(btnArrowLeft);
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         btnContinua.setBorder(null);
 	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
@@ -93,10 +93,10 @@ public class ViewSceltaFoglia extends BaseView {
 	}
 	
 	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : btnArrowLeft.getActionListeners()) {
-			btnArrowLeft.removeActionListener(al);
+		for (ActionListener al : btnBack.getActionListeners()) {
+			btnBack.removeActionListener(al);
 		}
-		btnArrowLeft.addActionListener(btnListener);
+		btnBack.addActionListener(btnListener);
     }
 	public void setBtnContinuaListener(ActionListener event) {
 		btnContinua.addActionListener(event);

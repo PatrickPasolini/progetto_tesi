@@ -15,17 +15,18 @@ import javax.swing.JScrollPane;
 
 import it.unibs.domain.Comprensorio;
 import it.unibs.view.atomicElements.BaseView;
+import it.unibs.view.atomicElements.CircleHoverIconButton;
 import it.unibs.view.atomicElements.CustomScrollBarUI;
 import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewVisualizzaComprensori extends BaseView {
-	private JFrame frame;
+	private static final long serialVersionUID = 1L;
+	private static final String HOME_PATH = "./Img/home.png";
 	private  JLabel lblTitolo;
-	private RoundedButton btnHome;
+    private CircleHoverIconButton btnBack;
 	private List<Comprensorio>  listComprensori;
 	public ViewVisualizzaComprensori(JFrame frame, List<Comprensorio> listComprensori) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
-		this.frame=frame;
 		this.listComprensori=listComprensori;
 		aggiornaComponenti(frame.getWidth(), frame.getHeight());
 	}
@@ -33,20 +34,19 @@ public class ViewVisualizzaComprensori extends BaseView {
 	@Override
 	protected void inizializzaComponenti() {
 		lblTitolo = new JLabel("Lista comprensori");
-		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
+		btnBack = new CircleHoverIconButton(HOME_PATH, 50);
 	}
 
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
         
-        // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
         
         lblTitolo.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblTitolo.getPreferredSize();
-        lblTitolo.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblTitolo.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblTitolo);
         
         JPanel panel = new JPanel();
@@ -77,28 +77,22 @@ public class ViewVisualizzaComprensori extends BaseView {
 		}
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentPanel.getWidth()/2-300, 150, 600, contentPanel.getHeight()-270); 
+        scrollPane.setBounds((contentWidth - size.width) / 2, 150, size.width,contentHeight-size.height-120); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
         
-        
-        btnHome.setMargin(new Insets(0, 10, 0, 0));
-        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 150, contentHeight - 110, 300, 80);
-        btnHome.setForeground(Color.WHITE);
-        contentPanel.add(btnHome);
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         revalidate();
         repaint();
 	}
 	
-   
-
 	public void setBtnHomeListener(ActionListener listener) {
-		btnHome.addActionListener(listener); // Riaggiungiamo il listener
+		btnBack.addActionListener(listener);
 	}
 
 }

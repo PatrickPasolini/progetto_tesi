@@ -1,11 +1,8 @@
 package it.unibs.view.configuratore;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,13 +11,15 @@ import java.util.List;
 import javax.swing.*;
 
 import it.unibs.view.atomicElements.BaseView;
+import it.unibs.view.atomicElements.CircleHoverIconButton;
 import it.unibs.view.atomicElements.CustomScrollBarUI;
 import it.unibs.view.atomicElements.RoundedButton;
 import it.unibs.view.atomicElements.RoundedButtonPlus;
 import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 
 public class ViewNuovoComprensorio extends BaseView {
-	private String txtNuovoComprensorio;
+	private static final long serialVersionUID = 1L;
+	private static final String ARROWLEFT_PATH = "./Img/home.png";
 	private JLabel lblNuovoComp;
 	private TextFieldWithPlaceholder comprensorioField;
 	private TextFieldWithPlaceholder comuneToAddField;
@@ -28,8 +27,8 @@ public class ViewNuovoComprensorio extends BaseView {
 	private RoundedButton btnConferma;
 	private DefaultListModel<String> listModel;
     private JList<String> comuniList;
+    private CircleHoverIconButton btnBack;
     private RoundedButton btnHome;
-	private boolean nomeNonUnivoco=false;
 	
 	public ViewNuovoComprensorio(JFrame frame) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
@@ -44,7 +43,7 @@ public class ViewNuovoComprensorio extends BaseView {
 		btnConferma = new RoundedButton("Conferma", new Color(8, 102, 255));	
 		listModel = new DefaultListModel<>();
 		comuniList = new JList<>(listModel);
-		
+		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
 	}
 
@@ -52,7 +51,7 @@ public class ViewNuovoComprensorio extends BaseView {
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
         int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
+//        int contentHeight = contentPanel.getHeight();
         
         lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblNuovoComp.getPreferredSize();
@@ -88,6 +87,9 @@ public class ViewNuovoComprensorio extends BaseView {
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		contentPanel.add(scrollPane);
 
+		btnBack.setBounds(45, 45, 90, 90);
+		contentPanel.add(btnBack);
+		
         btnConferma.setBorder(null);
         btnConferma.setMargin(new Insets(0, 10, 0, 0));
         btnConferma.setFont(new Font("Tahoma", Font.BOLD, 40));
@@ -98,6 +100,9 @@ public class ViewNuovoComprensorio extends BaseView {
         revalidate();
         repaint();
 	}
+	public void setBtnBackListeners(ActionListener btnListener) {
+		btnBack.addActionListener(btnListener);
+    } 
 	
 	public List<String> getComuniInseriti() {
 	    List<String> comuni = new ArrayList<>();
@@ -139,18 +144,22 @@ public class ViewNuovoComprensorio extends BaseView {
 		int contentHeight = contentPanel.getHeight();
 		
 		JLabel lblCreazione = new JLabel();
-		lblCreazione.setText("CREAZIONE EFFETTUATA CON SUCCESSO");
+		lblCreazione.setText("Creazione effettuata con successo");
 		lblCreazione.setForeground(new Color(50, 205, 50));
-		lblCreazione.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblCreazione.setFont(new Font("Tahoma", Font.BOLD, 50));
         Dimension size = lblCreazione.getPreferredSize();
-        lblCreazione.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
+        lblCreazione.setBounds((contentWidth - size.width) / 2, 60, size.width, 70);
         contentPanel.add(lblCreazione);
         
         JLabel lblNomeComp = new JLabel();
-        lblNomeComp.setText("Comprensorio "+comprensorioField.getText()+":");
+        
+        String txt = "<html>Comprensorio <span style='color:#085FFF;'><b>" 
+        			+ comprensorioField.getText() + "</b></span>, nei comuni:</html>";
+        lblNomeComp.setText(txt);
         lblNomeComp.setForeground(Color.BLACK);
         lblNomeComp.setFont(new Font("Tahoma", Font.BOLD, 40));
-        lblNomeComp.setBounds((contentWidth - size.width) / 2, 170, size.width, 70);
+        Dimension size2 = lblNomeComp.getPreferredSize();
+        lblNomeComp.setBounds((contentWidth - size.width) / 2, 190, size2.width, 70);
         contentPanel.add(lblNomeComp);
 
         JPanel panel = new JPanel();
@@ -159,7 +168,7 @@ public class ViewNuovoComprensorio extends BaseView {
         for (int i = 0; i < listModel.size(); i++) {
             JLabel lblComune = new JLabel();
             String item = listModel.getElementAt(i);
-            lblComune.setForeground(Color.GRAY);
+            lblComune.setForeground(Color.BLACK);
             lblComune.setFont(new Font("Tahoma", Font.PLAIN, 35));
             lblComune.setText(item);
             lblComune.setAlignmentX(JLabel.LEFT_ALIGNMENT);
@@ -167,18 +176,21 @@ public class ViewNuovoComprensorio extends BaseView {
         }
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds((contentWidth - size.width) / 2 + 20, 170+90, size.width, 300); 
+        scrollPane.setBounds((contentWidth - size.width) / 2 + 50, 190+90, size.width, 300); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		contentPanel.add(scrollPane);
         
-        btnHome.setMargin(new Insets(0, 10, 0, 0));
-        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 170, contentHeight-150, 340, 90);
-        btnHome.setForeground(Color.WHITE);
-        contentPanel.add(btnHome);
+		btnBack.setBounds(45, 45, 90, 90);
+		contentPanel.add(btnBack);
+		
+//        btnHome.setMargin(new Insets(0, 10, 0, 0));
+//        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
+//        btnHome.setBounds(contentWidth / 2 - 170, contentHeight-150, 340, 90);
+//        btnHome.setForeground(Color.WHITE);
+//        contentPanel.add(btnHome);
         
         revalidate();
         repaint();

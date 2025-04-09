@@ -28,8 +28,9 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 	private RoundedButton bntChiusi;
 	private RoundedButton bntRitirati;
     private CircleHoverIconButton btnBack;
-    private CircleHoverIconButton btnBackToScelta;
     private CircleHoverIconButton btnHome;
+//    private CircleHoverIconButton btnBackToScelta;
+   
 	public ViewScambiCategoria(JFrame frame, List<Gerarchia> gerarchie) {
 		super(frame,gerarchie);
 	}
@@ -47,7 +48,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		bntRitirati = new RoundedButton("Scambi ritirati",new Color(8, 102, 255));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
-		btnBackToScelta = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
+//		btnBackToScelta = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 	
 	
@@ -194,8 +195,8 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         }
         	
 
-        btnBackToScelta.setBounds(45, 45, 90, 90);
-        contentPanel.add(btnBackToScelta);
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         btnHome.setBounds(140, 45, 90, 90);
         contentPanel.add(btnHome);
@@ -206,12 +207,12 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         repaint();
 	}
 	
-	public void setBtnBackToSceltaListener(ActionListener listener) {
-	    for (ActionListener al : btnBackToScelta.getActionListeners()) {
-	        btnBackToScelta.removeActionListener(al);
-	    }
-	    btnBackToScelta.addActionListener(listener);
-	}
+//	public void setBtnBackToSceltaListener(ActionListener listener) {
+//	    for (ActionListener al : btnBackToScelta.getActionListeners()) {
+//	        btnBackToScelta.removeActionListener(al);
+//	    }
+//	    btnBackToScelta.addActionListener(listener);
+//	}
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	} 

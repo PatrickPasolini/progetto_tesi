@@ -14,9 +14,10 @@ import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.*;
 
 public class ViewNavigaGerarchie extends BaseView{
+	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
-	private RoundedButton btnHome;
+    private CircleHoverIconButton btnBack;
 	private ActionListener leafDoubleClickListener;
 	private Categoria categoriaSelezionata;
 	
@@ -29,7 +30,7 @@ public class ViewNavigaGerarchie extends BaseView{
 	@Override
 	protected void inizializzaComponenti() {
 		lblProposte = new JLabel("Gerarchie:");
-		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
+		btnBack = new CircleHoverIconButton(HOME_PATH, 50);
 	}
 
 	@Override
@@ -73,7 +74,7 @@ public class ViewNavigaGerarchie extends BaseView{
 	        scrollPane.setBorder(null);
 	        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	        scrollPane.setBackground(contentPanel.getBackground());
-	        scrollPane.setBounds(contentPanel.getWidth()/2-400, 110, 800, contentPanel.getHeight()-250);
+	        scrollPane.setBounds(contentPanel.getWidth()/2-400, 110, 800, contentPanel.getHeight()-140);
 	        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 	        scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 	        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -81,19 +82,15 @@ public class ViewNavigaGerarchie extends BaseView{
 	        contentPanel.add(scrollPane);
 	    }
 	    
-	    btnHome.setBorder(null);
-	    btnHome.setMargin(new Insets(0, 10, 0, 0));
-	    btnHome.setFont(new Font("Tahoma", Font.BOLD, 30));
-	    btnHome.setBounds(contentWidth / 2 - 150, contentHeight - 120, 300, 90);
-	    btnHome.setForeground(Color.WHITE);
-	    contentPanel.add(btnHome);
+	    btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
 	    
 	    contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
 
 	public void setBtnHomeListener(ActionListener listener) {
-		btnHome.addActionListener(listener); // Riaggiungiamo il listener
+		btnBack.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	
 	public void setLeafDoubleClickListener(ActionListener listener) {

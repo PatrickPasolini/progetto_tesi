@@ -20,7 +20,8 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	private RoundedButton btnConfermaOfferta;
 	private RoundedButton btnSi;
 	private RoundedButton btnNo;
-	private RoundedButton btnHome;
+	private CircleHoverIconButton btnBack;
+	private CircleHoverIconButton btnHome;
 	private NumericFieldWithPlaceholder oreRichiestaField;
 	
 	public ViewFormulaProposteScambio(JFrame frame, List<Gerarchia> gerarchie) {
@@ -35,7 +36,8 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 		btnConfermaOfferta = new RoundedButton("Conferma offerta e prosegui", new Color(8, 102, 255));
 		btnSi = new RoundedButton("SI", new Color(8, 102, 255));
 		btnNo = new RoundedButton("NO", new Color(8, 102, 255));
-		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
+		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
+		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
  
 	public void visualizzaRichiesta(Foglia richiesta) {
@@ -73,9 +75,23 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         btnConfermaRichiesta.setBounds(contentWidth / 2 - 260, size.height+350, 520, 120);
 	    contentPanel.add(btnConfermaRichiesta);
         
+	    btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
+        
+        btnHome.setBounds(140, 45, 90, 90);
+        contentPanel.add(btnHome);
+	    
         contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
+	
+	public void setBtnBackListeners(ActionListener btnListener) {
+		super.setBtnBackListeners(btnListener);
+		for (ActionListener al : btnBack.getActionListeners()) {
+			btnBack.removeActionListener(al);
+		}
+		btnBack.addActionListener(btnListener);
+    }
 	public void setBtnConfermaRichiestaListener(ActionListener event) {
 		btnConfermaRichiesta.addActionListener(event);
 	}
@@ -97,6 +113,11 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         btnConfermaOfferta.setForeground(Color.WHITE);
 	    contentPanel.add(btnConfermaOfferta);
         
+	    btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
+        btnHome.setBounds(140, 45, 90, 90);
+        contentPanel.add(btnHome);
+	    
         contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
@@ -140,17 +161,27 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	    btnNo.setBounds(contentWidth / 2 + 10, size.height+150, 250, 120);
 	    contentPanel.add(btnNo);
         
+	    btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
+        
+        btnHome.setBounds(140, 45, 90, 90);
+        contentPanel.add(btnHome);
         
 	    contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
 	public void setBtnConfermaCreazione(ActionListener listener) {
-		  btnSi.setActionCommand("true");
-		  btnNo.setActionCommand("false");
-		  btnSi.addActionListener(listener);
-		  btnNo.addActionListener(listener);
+	    for (ActionListener al : btnSi.getActionListeners()) {
+	        btnSi.removeActionListener(al);
+	    }
+	    for (ActionListener al : btnNo.getActionListeners()) {
+	        btnNo.removeActionListener(al);
+	    }
+	    btnSi.setActionCommand("true");
+	    btnNo.setActionCommand("false");
+	    btnSi.addActionListener(listener);
+	    btnNo.addActionListener(listener);
 	}
-	
 	public void visualizzaCreazione(Foglia richiesta, Foglia offerta, int oreRichiesta, int oreOfferta) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
@@ -159,7 +190,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         JLabel lblScambio = new JLabel(
         	    "<html>" +
         	      "<div align='center'>" +
-        	        "<span style='color:#33CC33;'><b>Formulazione del seguente scambio avvenuta con successo:</b></span><br><br>" +
+        	        "<span style='color:#33CC33;'><b>Formulazione del seguente scambio<br> avvenuta con successo:</b></span><br><br>" +
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
         	        " di: <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +
@@ -172,12 +203,8 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
     	lblScambio.setBounds((contentWidth - size.width) / 2, 70, size.width, size.height);
         contentPanel.add(lblScambio);
         
-        btnHome.setBorder(null);
-        btnHome.setMargin(new Insets(0, 10, 0, 0));
-        btnHome.setFont(new Font("Tahoma", Font.BOLD, 30));
-        btnHome.setBounds(contentWidth / 2 - 225, contentHeight - 200, 450, 90);
-        btnHome.setForeground(Color.WHITE);
-	    contentPanel.add(btnHome);
+        btnHome.setBounds(140, 45, 90, 90);
+        contentPanel.add(btnHome);
 	    
 	    contentPanel.revalidate();
 	    contentPanel.repaint();

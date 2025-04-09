@@ -35,6 +35,7 @@ public class GestoreComprensoriConfiguratore {
 		viewNuovoComprensorio = new ViewNuovoComprensorio(frame);
 		frame.getContentPane().add(viewNuovoComprensorio);
 		viewNuovoComprensorio.setLayout(null);
+		viewNuovoComprensorio.setBtnBackListeners(e-> backHome());
 		viewNuovoComprensorio.setBtnPlusListener(e -> aggiungiComune()); 
 		viewNuovoComprensorio.setBtnCreazioneListener(e -> aggiungiComprensorio());
 		viewNuovoComprensorio.setBtnHomeListener(e-> backHome());

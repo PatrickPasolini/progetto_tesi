@@ -33,6 +33,10 @@ public class GestoreScambi {
 	}
 
 	// #GESTORE SCAMBI-CONFIGURATORE
+	private void backHomeConfiguratore() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
+	}
 	
 	// ## VISUALIZZA PROPOSTE APERTE/CHIUSE/RITIRATE DI UNA PRESTAZIONE D'OPERA
 	public void visualizzaProposteFoglia() {
@@ -41,9 +45,9 @@ public class GestoreScambi {
 	    frame.getContentPane().add(viewProposte);
 	    viewProposte.setLayout(null);
 	    viewProposte.setBtnBackListeners(e -> navigateBack());
-	    viewProposte.setBtnContinuaListener(e -> visualizzaSceltaScambi(viewProposte));
+	    viewProposte.setBtnContinuaListener(e -> sceltaScambi(viewProposte));
 	}
-	private void visualizzaSceltaScambi(ViewScambiCategoria viewProposte) {
+	private void sceltaScambi(ViewScambiCategoria viewProposte) {
 	    navigationStack.push(() -> visualizzaProposteFoglia());
 	    Foglia foglia = viewProposte.getFogliaSelezionata();
 	    if(foglia == null) {
@@ -61,22 +65,22 @@ public class GestoreScambi {
 	    viewProposte.setBtnHomeListener(e -> backHomeConfiguratore());
 	}
 	private void visualizzaAperti(ViewScambiCategoria viewProposte,Foglia foglia) {
-		navigationStack.push(() -> visualizzaSceltaScambi(viewProposte));
+		navigationStack.push(() -> sceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
 		viewProposte.visualizzaAperti(scambiAperti, foglia.getNome());
-    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
+//    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
 	}
 	private void visualizzaChiusi(ViewScambiCategoria viewProposte,Foglia foglia) {
-		navigationStack.push(() -> visualizzaSceltaScambi(viewProposte));
+		navigationStack.push(() -> sceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
 		viewProposte.visualizzaChiusi(scambiChiusi, foglia.getNome());
-    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
+//    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
 	}
 	private void visualizzaRitirati(ViewScambiCategoria viewProposte,Foglia foglia) {
-		navigationStack.push(() -> visualizzaSceltaScambi(viewProposte));
+		navigationStack.push(() -> sceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);
 		viewProposte.visualizzaRitirati(scambiRitirati, foglia.getNome());
-    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
+//    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
 	}
 	
 
@@ -119,10 +123,7 @@ public class GestoreScambi {
 		view.stampaScambioCompleto(scambiHandler.getScambioCompleto(scelta-1));
 	}
 	
-	private void backHomeConfiguratore() {
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
-		controllerConfiguratore.run();
-	}
+	
 
 	
 	// # GESTORE SCAMBI-FRUITORE
@@ -131,6 +132,10 @@ public class GestoreScambi {
 	private Foglia offerta;
 	private int oreRichiesta;
 	private int oreOfferta;
+	private void backHomeFruitore() {
+		ControllerFruitore controllerFruitore = new ControllerFruitore(model, frame);
+		controllerFruitore.run();
+	}
 	/**
 	 * Permette al fruitore la formulazione di una proposta di scambio di prestazioni
 	 * richiedendo un quantitativo di ore di una prestazione 
@@ -140,67 +145,48 @@ public class GestoreScambi {
 	 *@since 3
 	 */
 	
-	public void creaProposta() {
+	public void creaProposta() {		
+		navigationStack.push(() -> backHomeFruitore());
 		ViewFormulaProposteScambio viewProposte = new ViewFormulaProposteScambio(frame, gerarchieHandler.getGerarchie());
 		frame.getContentPane().add(viewProposte);
 		viewProposte.setLayout(null);
+		viewProposte.setBtnContinuaListener(e-> sceltaRichiesta(viewProposte));
 		
-		viewProposte.setBtnContinuaListener(e->{
-			richiesta = viewProposte.getFogliaSelezionata();
-			viewProposte.visualizzaRichiesta(richiesta);
-		});
-		
-		viewProposte.setBtnConfermaRichiestaListener(e->{
-			oreRichiesta = viewProposte.getOreRichiesta();
-			viewProposte.visualizzaSceltaOfferta();
-		});
-		
-		viewProposte.setBtnConfermaOffertaListener(e->{
-			offerta = viewProposte.getFogliaSelezionata();
-			oreOfferta = scambiHandler.calcolaOreDaFattore(richiesta, offerta, oreRichiesta);
-			viewProposte.visualizzaPropostaFormulata(richiesta,oreRichiesta,offerta,oreOfferta);
-			;
-			System.out.println(offerta.getNome());
-
-		}
-		);
-		viewProposte.setBtnConfermaCreazione(e -> {
-            boolean risposta = Boolean.parseBoolean(e.getActionCommand());
-            
-            if (risposta) {
-            	viewProposte.visualizzaCreazione(richiesta, offerta, oreRichiesta, oreOfferta);
-    			Proposta proposta = new Proposta(richiesta, offerta, oreRichiesta, oreOfferta, scambiHandler.getUser());
-    			scambiHandler.addScambio(proposta);
-			}
-            else {
-            	backHomeFruitore();
-            }
-            
-
-		});
+		viewProposte.setBtnBackListeners(e-> navigateBack());
 		viewProposte.setBtnHome(e ->backHomeFruitore());
-		
-//		view.msgSceltaPrestazioneRichiesta();
-//		Foglia richiesta = gestoreGerarchieFruitore.navigaGerarchia();
-//		
-//		view.msgInserimentoOreProposta(richiesta);
-//		int oreRichiesta = InputDati.leggiInteroPositivo("");
-//		
-//		Foglia offerta;
-//		do {
-//			view.msgSceltaPrestazioneOfferta();
-//			offerta = gestoreGerarchieFruitore.navigaGerarchia();
-//		} while (richiesta.equals(offerta));
-//		
-//		
-//		int oreOfferta = scambiHandler.calcolaOreDaFattore(richiesta, offerta, oreRichiesta);
-//		Proposta proposta = new Proposta(richiesta, offerta, oreRichiesta, oreOfferta, scambiHandler.getUser());
-//		
-//		view.msgSceltaAccettaScambio(proposta);
-//		if(InputDati.yesOrNo("")) {
-//			scambiHandler.addScambio(proposta);
-//		}
 	}
+	private void sceltaRichiesta(ViewFormulaProposteScambio viewProposte) {
+		navigationStack.push(() -> creaProposta());
+		if(viewProposte.getFogliaSelezionata()!=null)
+			richiesta = viewProposte.getFogliaSelezionata();
+		viewProposte.visualizzaRichiesta(richiesta);
+		viewProposte.setBtnConfermaRichiestaListener(e-> sceltaOreRichiesta(viewProposte));
+	}
+	private void sceltaOreRichiesta(ViewFormulaProposteScambio viewProposte) {
+		navigationStack.push(() -> sceltaRichiesta(viewProposte));
+		oreRichiesta = viewProposte.getOreRichiesta();
+		viewProposte.visualizzaSceltaOfferta();
+		viewProposte.setBtnConfermaOffertaListener(e->sceltaOfferta(viewProposte));
+	}
+	private void sceltaOfferta(ViewFormulaProposteScambio viewProposte) {
+		navigationStack.push(() -> sceltaOreRichiesta(viewProposte));
+		offerta = viewProposte.getFogliaSelezionata();
+		oreOfferta = scambiHandler.calcolaOreDaFattore(richiesta, offerta, oreRichiesta);
+		viewProposte.visualizzaPropostaFormulata(richiesta,oreRichiesta,offerta,oreOfferta);
+		viewProposte.setBtnConfermaCreazione(e-> {
+			boolean risposta = Boolean.parseBoolean(e.getActionCommand());
+	        if (risposta) {
+	        	navigationStack.push(() -> sceltaOfferta(viewProposte));
+	        	viewProposte.visualizzaCreazione(richiesta, offerta, oreRichiesta, oreOfferta);
+				Proposta proposta = new Proposta(richiesta, offerta, oreRichiesta, oreOfferta, scambiHandler.getUser());
+				scambiHandler.addScambio(proposta);
+			}
+	        else {
+	        	backHomeFruitore();
+	        }
+		});
+	}
+	
 	
 	/**
 	 * Metodo per visualizzare tutte le proposte fatte dall'utente
@@ -208,6 +194,7 @@ public class GestoreScambi {
 	 * @since 4
 	 */
 	public void visualizzaProposteUtente() {
+		navigationStack.push(() -> backHomeFruitore());
 		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
 		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
 		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
@@ -215,16 +202,25 @@ public class GestoreScambi {
 		ViewVisualizzaProposte viewProposte = new ViewVisualizzaProposte(frame);
 		frame.getContentPane().add(viewProposte);
 		viewProposte.setLayout(null);
-		viewProposte.setBtnApertiListeners(e-> viewProposte.visualizzaAperti(scambiAperti,scambiHandler.getNameUser()));
-		viewProposte.setBtnChiusiListeners(e-> viewProposte.visualizzaChiusi(scambiChiusi,scambiHandler.getNameUser()));
-		viewProposte.setBtnRitiratiListeners(e-> viewProposte.visualizzaRitirati(scambiRitirati,scambiHandler.getNameUser()));
+		
+		viewProposte.setBtnApertiListeners(e-> {
+			navigationStack.push(() -> visualizzaProposteUtente());
+			viewProposte.visualizzaAperti(scambiAperti,scambiHandler.getNameUser());
+		});
+		viewProposte.setBtnChiusiListeners(e-> {
+			navigationStack.push(() -> visualizzaProposteUtente());
+			viewProposte.visualizzaChiusi(scambiChiusi,scambiHandler.getNameUser());
+		});	 
+		viewProposte.setBtnRitiratiListeners(e-> {
+			navigationStack.push(() -> visualizzaProposteUtente());
+			viewProposte.visualizzaRitirati(scambiRitirati,scambiHandler.getNameUser());
+		});
+		viewProposte.setBtnBackListeners(e-> navigateBack());
 		viewProposte.setBtnHomeListener(e-> backHomeFruitore());
 	}
 	
-	private void backHomeFruitore() {
-		ControllerFruitore controllerFruitore = new ControllerFruitore(model, frame);
-		controllerFruitore.run();
-	}
+	
+	
 	
 	/**
 	 * Metodo per ritirare una proposta tra quelle aperte
@@ -235,8 +231,6 @@ public class GestoreScambi {
 	 */
 	public void ritiraProposta() {
 		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
-//		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFruitore();
-//		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFruitore();
 		
 		ViewRitiraProposte viewRitiraProposte = new ViewRitiraProposte(frame,scambiAperti);
 		frame.getContentPane().add(viewRitiraProposte);
@@ -244,10 +238,8 @@ public class GestoreScambi {
 		
 		viewRitiraProposte.setBtnRitiraListener(e-> {
 				Proposta propDaRitirare = viewRitiraProposte.getPropostaSelezionata();
-//				view.msgConfermaRitiroProposta(p);
 				if(propDaRitirare!=null) {
 					scambiHandler.ritiraScambioAperto(propDaRitirare);
-					
 					viewRitiraProposte.aggiornaListaScambi(scambiHandler.getScambiApertiFruitore());
 				}
 		});

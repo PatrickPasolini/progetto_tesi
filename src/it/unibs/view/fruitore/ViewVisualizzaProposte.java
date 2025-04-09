@@ -8,13 +8,16 @@ import it.unibs.domain.Proposta;
 import it.unibs.view.atomicElements.*;
 
 public class ViewVisualizzaProposte extends BaseView {
+	private static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
+	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblProposte;
 	private RoundedButton bntAperti;
 	private RoundedButton bntChiusi;
 	private RoundedButton bntRitirati;
-    private RoundedButton btnHome;
+    private CircleHoverIconButton btnBack;
+    private CircleHoverIconButton btnHome;
 	public ViewVisualizzaProposte(JFrame frame) {
-		super(frame,frame.getWidth()-400,750);
+		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 		aggiornaComponenti(frame.getWidth(),frame.getHeight());
 	}
 
@@ -24,7 +27,8 @@ public class ViewVisualizzaProposte extends BaseView {
 		bntAperti = new RoundedButton("Scambi aperti",new Color(8, 102, 255));
 		bntChiusi = new RoundedButton("Scambi chiusi", new Color(8, 102, 255));
 		bntRitirati = new RoundedButton("Scambi ritirati",new Color(8, 102, 255));
-		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
+		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
+		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 
 	@Override
@@ -58,6 +62,9 @@ public class ViewVisualizzaProposte extends BaseView {
         bntRitirati.setBounds(contentWidth/2-widthButton/2, 50+(heightButton+20)*3, widthButton, heightButton);
         bntRitirati.setForeground(Color.WHITE);
         contentPanel.add(bntRitirati);
+        
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         revalidate();
         repaint();
@@ -116,22 +123,28 @@ public class ViewVisualizzaProposte extends BaseView {
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentWidth/2- 525 , 160, 1050, 400); 
+        scrollPane.setBounds(contentWidth/2- 525 , 160, 1050, contentPanel.getHeight()-165 - size.height);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
 
-        btnHome.setMargin(new Insets(0, 10, 0, 0));
-        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 180, contentHeight-150, 360, 90);
-        btnHome.setForeground(Color.WHITE);
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
+        
+        btnHome.setBounds(140, 45, 90, 90);
         contentPanel.add(btnHome);
         
         revalidate();
         repaint();
 	}
+	public void setBtnBackListeners(ActionListener btnListener) {
+		for (ActionListener al : btnBack.getActionListeners()) {
+			btnBack.removeActionListener(al);
+		}
+		btnBack.addActionListener(btnListener);
+    }
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	}
