@@ -43,7 +43,7 @@ public class ControllerConfiguratore implements Controller {
 	public void setFrame(JFrame frame) {
         this.frame = frame;
     }
-	
+	 
 	private void inizializzaCommandsMenu() {
 		commandMenu.put(1, new NuovoComprensorioCommand(gestoreComprensori));
 		commandMenu.put(2, new AggiungiGerarchiaCommand(gestoreGerarchieConfiguratore));
@@ -51,7 +51,7 @@ public class ControllerConfiguratore implements Controller {
 		commandMenu.put(4, new StampaComprensoriCommand(gestoreComprensori));
 		commandMenu.put(5, new StampaGerachieCommand(gestoreGerarchieConfiguratore));
 		commandMenu.put(6, new VisualizzaFattoriCategoriaCommand(gestoreGerarchieConfiguratore));
-		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi, gestoreGerarchieConfiguratore));//
+		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi));//
 		commandMenu.put(8, new VisualizzaScambiCompleti(gestoreScambi));//
 	}
 	

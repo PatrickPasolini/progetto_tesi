@@ -1,6 +1,7 @@
 package it.unibs.controller;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 
@@ -20,6 +21,8 @@ public class GestoreScambi {
 	private GerarchieHandler gerarchieHandler;
 	private JFrame frame;
 	private Model model;
+	// Stack per gestire la navigazione
+	private Stack<Runnable> navigationStack = new Stack<>();
 	
 	public GestoreScambi(Model model,JFrame frame) {
 		super();
@@ -31,32 +34,62 @@ public class GestoreScambi {
 
 	// #GESTORE SCAMBI-CONFIGURATORE
 	
-	// ## visualizza proposte aperte/chiuse/ritirate di una prestazione d'opera
-	/**
-	 * Metodo per visualizzare tutte le proposte fatte dall'utente
-	 * @since 4
-	 */
+	// ## VISUALIZZA PROPOSTE APERTE/CHIUSE/RITIRATE DI UNA PRESTAZIONE D'OPERA
 	public void visualizzaProposteFoglia() {
-		ViewScambiCategoria viewProposte = new ViewScambiCategoria(frame, gerarchieHandler.getGerarchie());
-		frame.getContentPane().add(viewProposte);
-		viewProposte.setLayout(null);
-				
-		viewProposte.setBtnContinuaListener(e-> visualizzaSceltaScambi(viewProposte));
+		navigationStack.push(() -> backHomeConfiguratore());
+	    ViewScambiCategoria viewProposte = new ViewScambiCategoria(frame, gerarchieHandler.getGerarchie());
+	    frame.getContentPane().add(viewProposte);
+	    viewProposte.setLayout(null);
+	    viewProposte.setBtnBackListeners(e -> navigateBack());
+	    viewProposte.setBtnContinuaListener(e -> visualizzaSceltaScambi(viewProposte));
 	}
-	
 	private void visualizzaSceltaScambi(ViewScambiCategoria viewProposte) {
-		Foglia foglia = viewProposte.getFogliaSelezionata();
-		viewProposte.visualizzaSceltaScambi();
-		
+	    navigationStack.push(() -> visualizzaProposteFoglia());
+	    Foglia foglia = viewProposte.getFogliaSelezionata();
+	    if(foglia == null) {
+	        viewProposte.setSceltaFallita();
+	    } else {
+	        viewProposte.visualizzaSceltaScambi();
+	        viewProposte.setBtnBackListeners(e -> navigateBack());
+	        visualizzaScambi(viewProposte, foglia);
+	    }
+	}
+	private void visualizzaScambi(ViewScambiCategoria viewProposte, Foglia foglia) {
+	    viewProposte.setBtnApertiListeners(e -> visualizzaAperti(viewProposte, foglia));
+	    viewProposte.setBtnChiusiListeners(e -> visualizzaChiusi(viewProposte, foglia));
+	    viewProposte.setBtnRitiratiListeners(e -> visualizzaRitirati(viewProposte, foglia));
+	    viewProposte.setBtnHomeListener(e -> backHomeConfiguratore());
+	}
+	private void visualizzaAperti(ViewScambiCategoria viewProposte,Foglia foglia) {
+		navigationStack.push(() -> visualizzaSceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
+		viewProposte.visualizzaAperti(scambiAperti, foglia.getNome());
+    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
+	}
+	private void visualizzaChiusi(ViewScambiCategoria viewProposte,Foglia foglia) {
+		navigationStack.push(() -> visualizzaSceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
-		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);	
-		
-		viewProposte.setBtnBackListeners(e->visualizzaProposteFoglia());
-		viewProposte.setBtnApertiListeners(e-> viewProposte.visualizzaAperti(scambiAperti));
-		viewProposte.setBtnChiusiListeners(e-> viewProposte.visualizzaChiusi(scambiChiusi));
-		viewProposte.setBtnRitiratiListeners(e-> viewProposte.visualizzaRitirati(scambiRitirati));
-		viewProposte.setBtnHomeListener(e-> backHomeConfiguratore());
+		viewProposte.visualizzaChiusi(scambiChiusi, foglia.getNome());
+    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
+	}
+	private void visualizzaRitirati(ViewScambiCategoria viewProposte,Foglia foglia) {
+		navigationStack.push(() -> visualizzaSceltaScambi(viewProposte));
+		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);
+		viewProposte.visualizzaRitirati(scambiRitirati, foglia.getNome());
+    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
+	}
+	
+
+	// Metodo generico per gestire la navigazione indietro
+	private void navigateBack() {
+	    if (!navigationStack.isEmpty()) {
+	        Runnable previousView = navigationStack.pop();
+	        previousView.run();
+	    }
+//	    else { // tolto per renderlo piú generico, fai un push all'inizio
+//	        // Fallback se non ci sono stati precedenti
+//	        backHomeConfiguratore();
+//	    }
 	}
 	
 	
@@ -65,11 +98,8 @@ public class GestoreScambi {
 	
 	
 	
-	private void backHomeConfiguratore() {
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
-		controllerConfiguratore.run();
-	}
 	
+	// ## VISUALIZZA GLI SCAMBI COMPLETI
 	/**
 	 * Metodo per visualizzare le mail e le informazioni deglu utenti di un insieme
 	 * di scambi chiusi
@@ -88,9 +118,14 @@ public class GestoreScambi {
 		
 		view.stampaScambioCompleto(scambiHandler.getScambioCompleto(scelta-1));
 	}
+	
+	private void backHomeConfiguratore() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
+	}
 
 	
-	// GESTORE SCAMBI-FRUITORE
+	// # GESTORE SCAMBI-FRUITORE
 	
 	private Foglia richiesta;
 	private Foglia offerta;

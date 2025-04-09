@@ -6,17 +6,13 @@ import it.unibs.controller.commands.CommandUtente;
 
 public class VisualizzaScambiCategoriaCommand implements CommandUtente {
 	private GestoreScambi gestoreScambi;
-	private GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore;
 
-	public VisualizzaScambiCategoriaCommand(GestoreScambi gestoreScambi,
-											GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore) {
+	public VisualizzaScambiCategoriaCommand(GestoreScambi gestoreScambi) {
 		this.gestoreScambi = gestoreScambi;
-		this.gestoreGerarchieConfiguratore = gestoreGerarchieConfiguratore;
 	}
 	
 	@Override
 	public void execute() {
-//		gestoreScambi.visualizzaProposteFoglia(gestoreGerarchieConfiguratore.sceltaFogliaScambi());
 		gestoreScambi.visualizzaProposteFoglia();
 	}
 	

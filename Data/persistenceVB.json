@@ -393,7 +393,7 @@
                     "type": "it.unibs.domain.Foglia",
                     "data": {
                       "id": 248630871,
-                      "nome": "Ripetizioni di Fisica: Meccanica",
+                      "nome": "Ripetizioni di Fisica Meccanica",
                       "descrizione": ""
                     }
                   },
@@ -401,7 +401,7 @@
                     "type": "it.unibs.domain.Foglia",
                     "data": {
                       "id": -1999717494,
-                      "nome": "Ripetizioni di Fisica: Termodinamica",
+                      "nome": "Ripetizioni di Fisica Termodinamica",
                       "descrizione": ""
                     }
                   }
@@ -499,7 +499,7 @@
                       "type": "it.unibs.domain.Foglia",
                       "data": {
                         "id": 248630871,
-                        "nome": "Ripetizioni di Fisica: Meccanica",
+                        "nome": "Ripetizioni di Fisica Meccanica",
                         "descrizione": ""
                       }
                     },
@@ -507,7 +507,7 @@
                       "type": "it.unibs.domain.Foglia",
                       "data": {
                         "id": -1999717494,
-                        "nome": "Ripetizioni di Fisica: Termodinamica",
+                        "nome": "Ripetizioni di Fisica Termodinamica",
                         "descrizione": ""
                       }
                     }
@@ -594,7 +594,7 @@
                 "type": "it.unibs.domain.Foglia",
                 "data": {
                   "id": 248630871,
-                  "nome": "Ripetizioni di Fisica: Meccanica",
+                  "nome": "Ripetizioni di Fisica Meccanica",
                   "descrizione": ""
                 }
               },
@@ -602,7 +602,7 @@
                 "type": "it.unibs.domain.Foglia",
                 "data": {
                   "id": -1999717494,
-                  "nome": "Ripetizioni di Fisica: Termodinamica",
+                  "nome": "Ripetizioni di Fisica Termodinamica",
                   "descrizione": ""
                 }
               }
@@ -675,7 +675,7 @@
           "type": "it.unibs.domain.Foglia",
           "data": {
             "id": 248630871,
-            "nome": "Ripetizioni di Fisica: Meccanica",
+            "nome": "Ripetizioni di Fisica Meccanica",
             "descrizione": ""
           }
         },
@@ -683,7 +683,7 @@
           "type": "it.unibs.domain.Foglia",
           "data": {
             "id": -1999717494,
-            "nome": "Ripetizioni di Fisica: Termodinamica",
+            "nome": "Ripetizioni di Fisica Termodinamica",
             "descrizione": ""
           }
         },
@@ -723,12 +723,12 @@
       "foglie": [
         {
           "id": 248630871,
-          "nome": "Ripetizioni di Fisica: Meccanica",
+          "nome": "Ripetizioni di Fisica Meccanica",
           "descrizione": ""
         },
         {
           "id": -1999717494,
-          "nome": "Ripetizioni di Fisica: Termodinamica",
+          "nome": "Ripetizioni di Fisica Termodinamica",
           "descrizione": ""
         },
         {
@@ -1064,7 +1064,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.25
@@ -1072,7 +1072,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             1.1363636363636362
@@ -1185,7 +1185,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             0.625
@@ -1193,7 +1193,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.5681818181818181
@@ -1306,7 +1306,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.25
@@ -1314,7 +1314,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             1.1363636363636362
@@ -1427,7 +1427,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.0
@@ -1435,7 +1435,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.9090909090909091
@@ -1548,7 +1548,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             0.8749999999999999
@@ -1556,7 +1556,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.7954545454545453
@@ -1630,7 +1630,7 @@
       [
         {
           "id": 248630871,
-          "nome": "Ripetizioni di Fisica: Meccanica",
+          "nome": "Ripetizioni di Fisica Meccanica",
           "descrizione": ""
         },
         [
@@ -1677,7 +1677,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.9090909090909091
@@ -1751,7 +1751,7 @@
       [
         {
           "id": -1999717494,
-          "nome": "Ripetizioni di Fisica: Termodinamica",
+          "nome": "Ripetizioni di Fisica Termodinamica",
           "descrizione": ""
         },
         [
@@ -1798,7 +1798,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.1
@@ -1911,7 +1911,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.9
@@ -1927,7 +1927,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             0.9900000000000001
@@ -2024,7 +2024,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             1.08
@@ -2040,7 +2040,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.1880000000000002
@@ -2161,7 +2161,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.9090909090909091
@@ -2169,7 +2169,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.0
@@ -2274,7 +2274,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.9090909090909091
@@ -2282,7 +2282,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.0
@@ -2379,7 +2379,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             1.0909090909090908
@@ -2387,7 +2387,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.2
@@ -2500,7 +2500,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             0.7636363636363636
@@ -2516,7 +2516,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             0.84
@@ -2621,7 +2621,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             1.0690909090909089
@@ -2637,7 +2637,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.176
@@ -2742,7 +2742,7 @@
           [
             {
               "id": -1999717494,
-              "nome": "Ripetizioni di Fisica: Termodinamica",
+              "nome": "Ripetizioni di Fisica Termodinamica",
               "descrizione": ""
             },
             1.0227272727272727
@@ -2750,7 +2750,7 @@
           [
             {
               "id": 248630871,
-              "nome": "Ripetizioni di Fisica: Meccanica",
+              "nome": "Ripetizioni di Fisica Meccanica",
               "descrizione": ""
             },
             1.125
@@ -2879,7 +2879,7 @@
       },
       "offerta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "oreRichiesta": 2,
@@ -2936,12 +2936,12 @@
     {
       "richiesta": {
         "id": 248630871,
-        "nome": "Ripetizioni di Fisica: Meccanica",
+        "nome": "Ripetizioni di Fisica Meccanica",
         "descrizione": ""
       },
       "offerta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "oreRichiesta": 6,
@@ -2998,7 +2998,7 @@
     {
       "richiesta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "offerta": {
@@ -3036,7 +3036,7 @@
       },
       "offerta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "oreRichiesta": 4,
@@ -3252,7 +3252,7 @@
     {
       "richiesta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "offerta": {
@@ -3290,7 +3290,7 @@
       },
       "offerta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "oreRichiesta": 3,
@@ -3351,7 +3351,7 @@
     {
       "richiesta": {
         "id": -1999717494,
-        "nome": "Ripetizioni di Fisica: Termodinamica",
+        "nome": "Ripetizioni di Fisica Termodinamica",
         "descrizione": ""
       },
       "offerta": {
@@ -3618,7 +3618,7 @@
         {
           "richiesta": {
             "id": -1999717494,
-            "nome": "Ripetizioni di Fisica: Termodinamica",
+            "nome": "Ripetizioni di Fisica Termodinamica",
             "descrizione": ""
           },
           "offerta": {
@@ -3656,7 +3656,7 @@
           },
           "offerta": {
             "id": -1999717494,
-            "nome": "Ripetizioni di Fisica: Termodinamica",
+            "nome": "Ripetizioni di Fisica Termodinamica",
             "descrizione": ""
           },
           "oreRichiesta": 3,

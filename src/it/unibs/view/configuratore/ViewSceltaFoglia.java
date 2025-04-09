@@ -13,21 +13,25 @@ import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.*;
 public class ViewSceltaFoglia extends BaseView {
 	private static final long serialVersionUID = 1L;
+	protected static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
+	protected static final String HOME_PATH = "./Img/home.png";
 	protected JLabel lblSceltaFoglia;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnContinua;
+    private CircleHoverIconButton btnArrowLeft;
 	private JTree tree;
 	
 	public ViewSceltaFoglia(JFrame frame, List<Gerarchia> gerarchie) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 		this.gerarchie = gerarchie;
 		aggiornaComponenti(frame.getWidth(), frame.getHeight());
-	}
+	} 
 
 	@Override
 	protected void inizializzaComponenti() {
 		lblSceltaFoglia = new JLabel("Seleziona la prestazione d'opera che necessiti:");
 		btnContinua = new RoundedButton("Conferma scelta e prosegui", new Color(8, 102, 255));
+		btnArrowLeft = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 
 	@Override
@@ -37,6 +41,10 @@ public class ViewSceltaFoglia extends BaseView {
         int contentHeight = contentPanel.getHeight();
 	    
         sceltaFoglia(contentWidth);
+        
+        btnArrowLeft.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnArrowLeft);
+        
         
         btnContinua.setBorder(null);
 	    btnContinua.setMargin(new Insets(0, 10, 0, 0));
@@ -73,6 +81,20 @@ public class ViewSceltaFoglia extends BaseView {
         
 	}
 
+	public void setSceltaFallita() {
+	    lblSceltaFoglia.setForeground(Color.RED);
+	    lblSceltaFoglia.setText("<html><div align='center'>Seleziona una prestazione d'opera<br> prima di continuare!</div></html>");
+	    aggiornaComponenti(frame.getWidth(), frame.getHeight());
+	    revalidate();
+	    repaint();
+	}
+	
+	public void setBtnBackListeners(ActionListener btnListener) {
+		for (ActionListener al : btnArrowLeft.getActionListeners()) {
+			btnArrowLeft.removeActionListener(al);
+		}
+		btnArrowLeft.addActionListener(btnListener);
+    }
 	public void setBtnContinuaListener(ActionListener event) {
 		btnContinua.addActionListener(event);
 	}

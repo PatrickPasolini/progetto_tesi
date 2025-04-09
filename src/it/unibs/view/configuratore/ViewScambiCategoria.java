@@ -3,16 +3,12 @@ package it.unibs.view.configuratore;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,13 +22,14 @@ import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewScambiCategoria extends ViewSceltaFoglia {
 	private static final long serialVersionUID = 1L;
-	private static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
+	
 	private JLabel lblScambi;
 	private RoundedButton bntAperti;
 	private RoundedButton bntChiusi;
 	private RoundedButton bntRitirati;
-    private RoundedButton btnHome;
-    private CircleHoverIconButton btnArrowLeft;
+    private CircleHoverIconButton btnBack;
+    private CircleHoverIconButton btnBackToScelta;
+    private CircleHoverIconButton btnHome;
 	public ViewScambiCategoria(JFrame frame, List<Gerarchia> gerarchie) {
 		super(frame,gerarchie);
 	}
@@ -40,7 +37,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 	@Override
 	protected void inizializzaComponenti() {
 		super.inizializzaComponenti();
-		lblSceltaFoglia.setText("<html><div align='center'>"
+		lblSceltaFoglia.setText("<html><div align='center'>" 
 				+ "Seleziona la prestazione d'opera <br> di cui vuoi visualizzare gli scambi"
 				+ "</div></html>");
 		
@@ -48,9 +45,11 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		bntAperti = new RoundedButton("Scambi aperti",new Color(8, 102, 255));
 		bntChiusi = new RoundedButton("Scambi chiusi", new Color(8, 102, 255));
 		bntRitirati = new RoundedButton("Scambi ritirati",new Color(8, 102, 255));
-		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
-		btnArrowLeft = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
+		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
+		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
+		btnBackToScelta = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
+	
 	
 	public void visualizzaSceltaScambi() {
 		contentPanel.removeAll();
@@ -83,22 +82,22 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         bntRitirati.setForeground(Color.WHITE);
         contentPanel.add(bntRitirati);
         
-        btnArrowLeft.setBounds(45, 45, 90, 90);
-        contentPanel.add(btnArrowLeft);
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
-        btnHome.setMargin(new Insets(0, 10, 0, 0));
-        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 180, contentHeight-150, 360, 90);
-        btnHome.setForeground(Color.WHITE);
+        btnHome.setBounds(140, 45, 90, 90);
         contentPanel.add(btnHome);
-        
         
         revalidate();
         repaint();
 	}
 	
 	public void setBtnBackListeners(ActionListener btnListener) {
-		btnArrowLeft.addActionListener(btnListener);
+		super.setBtnBackListeners(btnListener);
+		for (ActionListener al : btnBack.getActionListeners()) {
+			btnBack.removeActionListener(al);
+		}
+		btnBack.addActionListener(btnListener);
     }
 	
 	public void setBtnApertiListeners(ActionListener btnListener) {
@@ -111,14 +110,38 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		bntRitirati.addActionListener(btnListener);
     }
 
-	public void visualizzaAperti(ArrayList<Proposta> scambiAperti) {
-		visualizzaScambi(scambiAperti,"Scambi aperti di :");
+	public void visualizzaAperti(ArrayList<Proposta> scambiAperti,String fogliaSelezionata) {
+		String txt;
+		if(scambiAperti.isEmpty()) {
+			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio aperta di<br><span style='color:#085FFF;'>" 
+					+ fogliaSelezionata + "</div></span></html>";
+		}else {
+			txt = "<html><div align='center'>Scambi aperti di <br><span style='color:#085FFF;'>" 
+					+ fogliaSelezionata + " :</div></span></html>";
+		}
+		visualizzaScambi(scambiAperti,txt);
 	}
-	public void visualizzaChiusi(ArrayList<Proposta> scambiChiusi) {
-		visualizzaScambi(scambiChiusi,"Scambi chiusi di :");
+	public void visualizzaChiusi(ArrayList<Proposta> scambiChiusi,String fogliaSelezionata) {
+		String txt;
+		if(scambiChiusi.isEmpty()) {
+			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio chiusa di<br><span style='color:#085FFF;'>" 
+					+ fogliaSelezionata + "</div></span></html>";
+		}else {
+			txt = "<html><div align='center'>Scambi chiusi di <br><span style='color:#085FFF;'>" 
+					+ fogliaSelezionata + " :</div></span></html>";
+		}
+		visualizzaScambi(scambiChiusi,txt);
 	}
-	public void visualizzaRitirati(ArrayList<Proposta> scambiRitirati) {
-		visualizzaScambi(scambiRitirati,"Scambi ritirati di :");
+	public void visualizzaRitirati(ArrayList<Proposta> scambiRitirati,String fogliaSelezionata) {
+		String txt;
+		if(scambiRitirati.isEmpty()) {
+			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio ritirata di<br><span style='color:#085FFF;'>" 
+					+ fogliaSelezionata + "</div></span></html>";
+		}else {
+			txt = "<html><div align='center'>Scambi ritirati di <br><span style='color:#085FFF;'>" 
+					+ fogliaSelezionata + " :</div></span></html>";
+		}
+		visualizzaScambi(scambiRitirati,txt);
 	}
 
 	private void visualizzaScambi(ArrayList<Proposta> scambi, String string) {
@@ -126,13 +149,14 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         int contentWidth = contentPanel.getWidth();
         int contentHeight = contentPanel.getHeight();
 		
-		JLabel lblScambi = new JLabel();
-		lblScambi.setText(string);
-		lblScambi.setForeground(Color.BLACK);
-		lblScambi.setFont(new Font("Tahoma", Font.BOLD, 55));
-        Dimension size = lblScambi.getPreferredSize();
-        lblScambi.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
-        contentPanel.add(lblScambi);
+        
+		JLabel lblTitoloScambi = new JLabel();
+		lblTitoloScambi.setText(string);
+		lblTitoloScambi.setForeground(Color.BLACK);
+		lblTitoloScambi.setFont(new Font("Tahoma", Font.BOLD, 55));
+        Dimension size = lblTitoloScambi.getPreferredSize();
+        
+        contentPanel.add(lblTitoloScambi);
         
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -150,30 +174,47 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
             lblComune.setAlignmentX(JLabel.LEFT_ALIGNMENT);
             
             panel.add(lblComune);
-            panel.add(Box.createVerticalStrut(20));
+            panel.add(Box.createVerticalStrut(20)); 
         }
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentWidth/2- 525 , 160, 1050, 400); 
+        scrollPane.setBounds(contentWidth/2- 525 , size.height + 90, 1050, 500); 
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-        contentPanel.add(scrollPane);
+        
+        if(scambi.isEmpty()) {
+        	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, (contentHeight-size.height)/2, size.width, size.height);
+        }
+        else {
+        	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, 50, size.width, size.height);
+        	contentPanel.add(scrollPane);
+        }
+        	
 
-        btnHome.setMargin(new Insets(0, 10, 0, 0));
-        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-        btnHome.setBounds(contentWidth / 2 - 180, contentHeight-150, 360, 90);
-        btnHome.setForeground(Color.WHITE);
+        btnBackToScelta.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBackToScelta);
+        
+        btnHome.setBounds(140, 45, 90, 90);
         contentPanel.add(btnHome);
+        
+        
         
         revalidate();
         repaint();
 	}
+	
+	public void setBtnBackToSceltaListener(ActionListener listener) {
+	    for (ActionListener al : btnBackToScelta.getActionListeners()) {
+	        btnBackToScelta.removeActionListener(al);
+	    }
+	    btnBackToScelta.addActionListener(listener);
+	}
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
-	}
+	} 
 	
 	private static String formattaStringProposta(Proposta proposta) {
 		StringBuilder sb = new StringBuilder();
@@ -187,6 +228,8 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		
 	    return sb.toString();
 	}
+
+	
 
 	
 	

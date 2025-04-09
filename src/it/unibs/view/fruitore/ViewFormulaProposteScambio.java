@@ -37,7 +37,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 		btnNo = new RoundedButton("NO", new Color(8, 102, 255));
 		btnHome = new RoundedButton("Home", new Color(8, 102, 255));
 	}
-
+ 
 	public void visualizzaRichiesta(Foglia richiesta) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
