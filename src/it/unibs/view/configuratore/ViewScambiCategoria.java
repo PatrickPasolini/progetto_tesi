@@ -187,10 +187,10 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         
         if(scambi.isEmpty()) {
-        	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, (contentHeight-size.height)/2, size.width, size.height);
+        	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, 60, size.width, size.height);
         }
         else {
-        	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, 50, size.width, size.height);
+        	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, 60, size.width, size.height);
         	contentPanel.add(scrollPane);
         }
         	
@@ -207,12 +207,6 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         repaint();
 	}
 	
-//	public void setBtnBackToSceltaListener(ActionListener listener) {
-//	    for (ActionListener al : btnBackToScelta.getActionListeners()) {
-//	        btnBackToScelta.removeActionListener(al);
-//	    }
-//	    btnBackToScelta.addActionListener(listener);
-//	}
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	} 

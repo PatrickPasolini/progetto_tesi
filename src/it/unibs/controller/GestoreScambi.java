@@ -221,7 +221,7 @@ public class GestoreScambi {
 	
 	
 	
-	
+	// ## RITIRO PROPOSTE
 	/**
 	 * Metodo per ritirare una proposta tra quelle aperte
 	 * dopo averla scelta viene chiesta conferma sul ritiro
@@ -230,22 +230,44 @@ public class GestoreScambi {
 	 * @since 4
 	 */
 	public void ritiraProposta() {
-		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
+		navigationStack.push(() -> backHomeFruitore());
 		
+		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFruitore();
 		ViewRitiraProposte viewRitiraProposte = new ViewRitiraProposte(frame,scambiAperti);
 		frame.getContentPane().add(viewRitiraProposte);
 		viewRitiraProposte.setLayout(null);
 		
-		viewRitiraProposte.setBtnRitiraListener(e-> {
-				Proposta propDaRitirare = viewRitiraProposte.getPropostaSelezionata();
-				if(propDaRitirare!=null) {
-					scambiHandler.ritiraScambioAperto(propDaRitirare);
-					viewRitiraProposte.aggiornaListaScambi(scambiHandler.getScambiApertiFruitore());
-				}
-		});
 		viewRitiraProposte.setBtnHomeListener(e-> backHomeFruitore());
-	
-		//TODO CHIEDI CONFERMA PER ELIMINARE
-
+		if (!scambiAperti.isEmpty()) {
+			viewRitiraProposte.setBtnRitiraListener(e-> visualizzaConferma(viewRitiraProposte));
+			viewRitiraProposte.setBtnBackListeners(e -> navigateBack());
+		}
+		else {
+			viewRitiraProposte.visualizzaNessunoScambioRitirabile();
+		}
+		
 	}
+	public void visualizzaConferma(ViewRitiraProposte viewRitiraProposte) {
+		Proposta propDaRitirare = viewRitiraProposte.getPropostaSelezionata();
+		if(propDaRitirare!=null) { 
+			navigationStack.push(() -> ritiraProposta());
+			viewRitiraProposte.visualizzaConfermaRitiro(propDaRitirare);
+			
+			viewRitiraProposte.setBtnConfermaCreazione(ev->{
+				boolean risposta = Boolean.parseBoolean(ev.getActionCommand());
+		        if (risposta) {
+		        	viewRitiraProposte.visualizzaRitiroEffettuato(propDaRitirare);
+		        	scambiHandler.ritiraScambioAperto(propDaRitirare);
+		        }
+		        else {
+		        	backHomeFruitore();
+		        }
+			});	
+		}
+		else {
+			viewRitiraProposte.setSelezioneFallita();
+		}
+		
+	}
+	
 }

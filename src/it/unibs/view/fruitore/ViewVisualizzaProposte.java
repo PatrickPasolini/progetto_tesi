@@ -80,13 +80,34 @@ public class ViewVisualizzaProposte extends BaseView {
     }
 
 	public void visualizzaAperti(ArrayList<Proposta> scambiAperti, String nameUser) {
-		visualizzaScambi(scambiAperti,"Scambi aperti di "+nameUser+":");
+		String txt;
+		if(scambiAperti.isEmpty()) {
+			txt = "<html><div align='center'>" + nameUser
+					+ "<br>Non hai nessuna proposta di scambio aperta </div></html>";
+		}else {
+			txt = "<html><div align='center'>Scambi ritirati di "+nameUser+":</div></span></html>";
+		}
+		visualizzaScambi(scambiAperti,txt);
 	}
 	public void visualizzaChiusi(ArrayList<Proposta> scambiChiusi, String nameUser) {
-		visualizzaScambi(scambiChiusi,"Scambi chiusi di "+nameUser+":");
+		String txt;
+		if(scambiChiusi.isEmpty()) {
+			txt = "<html><div align='center'>" + nameUser
+					+ "<br>Non hai nessuna proposta di scambio chiusa </div></html>";
+		}else {
+			txt = "<html><div align='center'>Scambi ritirati di "+nameUser+":</div></span></html>";
+		}
+		visualizzaScambi(scambiChiusi,txt);
 	}
 	public void visualizzaRitirati(ArrayList<Proposta> scambiRitirati, String nameUser) {
-		visualizzaScambi(scambiRitirati,"Scambi ritirati di "+nameUser+":");
+		String txt;
+		if(scambiRitirati.isEmpty()) {
+			txt = "<html><div align='center'>" + nameUser
+					+ "<br>Non hai nessuna proposta di scambio ritirata </div></html>";
+		}else {
+			txt = "<html><div align='center'>Scambi ritirati di "+nameUser+":</div></span></html>";
+		}
+		visualizzaScambi(scambiRitirati,txt);
 	}
 	
 	private void visualizzaScambi(ArrayList<Proposta> scambi, String string) {
@@ -129,7 +150,16 @@ public class ViewVisualizzaProposte extends BaseView {
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
-
+        
+        if(scambi.isEmpty()) {
+        	lblScambi.setBounds((contentWidth - size.width) / 2, 60, size.width, size.height);
+        }
+        else {
+        	lblScambi.setBounds((contentWidth - size.width) / 2, 60, size.width, size.height);
+        	contentPanel.add(scrollPane);
+        }
+        
+        
         btnBack.setBounds(45, 45, 90, 90);
         contentPanel.add(btnBack);
         
