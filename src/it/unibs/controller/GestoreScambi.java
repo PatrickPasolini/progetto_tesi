@@ -1,6 +1,7 @@
 package it.unibs.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.mylib.*;
+import it.unibs.view.configuratore.ViewContattaUtentiScambio;
 import it.unibs.view.configuratore.ViewScambiCategoria;
 import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.fruitore.ViewFormulaProposteScambio;
@@ -89,7 +91,7 @@ public class GestoreScambi {
 	    if (!navigationStack.isEmpty()) {
 	        Runnable previousView = navigationStack.pop();
 	        previousView.run();
-	    }
+    }
 //	    else { // tolto per renderlo piú generico, fai un push all'inizio
 //	        // Fallback se non ci sono stati precedenti
 //	        backHomeConfiguratore();
@@ -111,16 +113,21 @@ public class GestoreScambi {
 	 * Se ci sono scambi completi si sceglie lo scambio con un menu
 	 * @since 4 
 	 */
-	public void visualizzaScambiCompleti(ViewConfiguratore view) {
+	public void visualizzaScambiCompleti() {
+		List<Scambio> scambi = scambiHandler.getScambiCompleti();
+		ViewContattaUtentiScambio viewContatta = new ViewContattaUtentiScambio(frame,scambi);		
+		frame.getContentPane().add(viewContatta);
+		viewContatta.setLayout(null);
+		
 		if(scambiHandler.getScambiCompleti().isEmpty()) {
-			view.msgScambiCompletiVuoto();
+//			view.msgScambiCompletiVuoto();
 			return;
 		}
 		
-		MyMenu menuScambio = view.menuSceltaScambio(scambiHandler.getNomiScambiCopleti());
-		int scelta = menuScambio.scegli();
 		
-		view.stampaScambioCompleto(scambiHandler.getScambioCompleto(scelta-1));
+//		MyMenu menuScambio = view.menuSceltaScambio(scambiHandler.getNomiScambiCopleti());
+//		int scelta = menuScambio.scegli();
+//		view.stampaScambioCompleto(scambiHandler.getScambioCompleto(scelta-1));
 	}
 	
 	

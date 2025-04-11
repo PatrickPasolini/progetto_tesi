@@ -85,7 +85,7 @@ public class ViewVisualizzaProposte extends BaseView {
 			txt = "<html><div align='center'>" + nameUser
 					+ "<br>Non hai nessuna proposta di scambio aperta </div></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi ritirati di "+nameUser+":</div></span></html>";
+			txt = "<html><div align='center'>Scambi aperti di "+nameUser+":</div></span></html>";
 		}
 		visualizzaScambi(scambiAperti,txt);
 	}
@@ -95,7 +95,7 @@ public class ViewVisualizzaProposte extends BaseView {
 			txt = "<html><div align='center'>" + nameUser
 					+ "<br>Non hai nessuna proposta di scambio chiusa </div></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi ritirati di "+nameUser+":</div></span></html>";
+			txt = "<html><div align='center'>Scambi chiusi di "+nameUser+":</div></span></html>";
 		}
 		visualizzaScambi(scambiChiusi,txt);
 	}

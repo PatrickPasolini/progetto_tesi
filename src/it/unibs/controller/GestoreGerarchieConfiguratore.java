@@ -3,12 +3,17 @@ package it.unibs.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import javax.swing.JFrame;
+import javax.swing.text.ViewFactory;
 
 import it.unibs.view.configuratore.ViewAddGerarchiaNonFoglia;
 import it.unibs.view.configuratore.ViewAddGerarchiaRadice;
+import it.unibs.view.configuratore.ViewFattori;
 import it.unibs.view.configuratore.ViewVisualizzaGerarchie;
+import it.unibs.view.console.View;
+import it.unibs.view.fruitore.ViewFormulaProposteScambio;
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
@@ -23,6 +28,7 @@ public class GestoreGerarchieConfiguratore {
 	private JFrame frame;
 	private Model model;
 
+	private Stack<Runnable> navigationStack = new Stack<>();
 	private ViewAddGerarchiaRadice viewRadice;
 	
 	public GestoreGerarchieConfiguratore(Model model, JFrame frame) {
@@ -30,6 +36,13 @@ public class GestoreGerarchieConfiguratore {
 		this.gerarchieHandler = new GerarchieHandler(model);
 		this.frame = frame;
 	}
+	private void navigateBack() {
+	    if (!navigationStack.isEmpty()) {
+	        Runnable previousView = navigationStack.pop();
+	        previousView.run();
+	    }
+    }
+	
 	
 	private void backHome() {
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
@@ -352,21 +365,26 @@ public class GestoreGerarchieConfiguratore {
 	 * @since 1
 	 */ 
 	public void sceltaFogliaFattori() {
-		System.out.println("btnVisualizzaFattori é linked");
+		navigationStack.push(() -> backHomeConfiguratore());
+		ViewFattori viewFattori = new ViewFattori(frame, gerarchieHandler.getGerarchie());
+		frame.getContentPane().add(viewFattori);
+		viewFattori.setLayout(null);
+		viewFattori.setBtnBackListeners(e-> navigateBack());
+		viewFattori.setBtnHomeListener(e->backHome());
+		viewFattori.setBtnContinuaListener(e->{
+			Foglia fogliaSelezionata = viewFattori.getFogliaSelezionata();
+			if(fogliaSelezionata!=null) {
+				navigationStack.push(() -> sceltaFogliaFattori());
+				viewFattori.visualizzaFattori(gerarchieHandler.getMapFattori(),fogliaSelezionata);
+			}
+			viewFattori.setSceltaFallita();
+		});
 		
+		
+
 //		Foglia foglia = sceltaRadiceFoglia();
 //		view.stampaFattoriDiCOnversioneFoglia(gerarchieHandler.getMapFattori(),foglia);
 	}
-	
-//	/**
-//	 * Permette di selezionare una foglia all'interno della gerarchia che si sta creando
-//	 * e di visualizzarne le proposte che richiedono o offrono la prestazione
-//	 * @since 4
-//	 */
-//	public Foglia sceltaFogliaScambi() {
-////		return sceltaRadiceFoglia();
-//		return null;
-//	}
 		
 	/**
 	 * Metodo per visualizzare le gerarchie presenti
@@ -377,8 +395,10 @@ public class GestoreGerarchieConfiguratore {
 		frame.getContentPane().add(viewGerarchie);
 		viewGerarchie.setLayout(null);
 		viewGerarchie.setBtnHomeListener(e-> backHome());
-//		viewGerarchie.setLeafDoubleClickListener(e -> System.out.println(viewGerarchie.getCategoriaSelezionata().getNome()));
 		
 	}
-	
+	private void backHomeConfiguratore() {
+		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		controllerConfiguratore.run();
+	}
 }

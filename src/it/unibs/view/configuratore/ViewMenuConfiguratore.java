@@ -12,11 +12,11 @@ public class ViewMenuConfiguratore extends BaseView {
 	private final static String[] SCELTE_CONFIGURATORE = new String[]{
 			"Aggiungi comprensorio",
 			"Aggiungi gerarchia",
+			"Visualizza fattori di una prestazione",
 			"Salva Modifiche",
 			"Visualizza comprensori",
 			"Visualizza gerarchie",
-			"Visualizza fattori di una categoria",
-			"Visualizza scambi di una categoria",
+			"Visualizza scambi di una prestazione",
 			"Contatta utenti di uno scambio"};
 	private JLabel lblMenuConfiguratore;
 	private RoundedButton[] btnMenu= new RoundedButton[SCELTE_CONFIGURATORE.length];
@@ -41,7 +41,6 @@ public class ViewMenuConfiguratore extends BaseView {
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
-		frame.setResizable(true);
 		
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
@@ -57,7 +56,7 @@ public class ViewMenuConfiguratore extends BaseView {
         	for (int i=0;i<btnMenu.length;i++) {
     			btnMenu[i].setBorder(null);
     			btnMenu[i].setMargin(new Insets(0, 10, 0, 0));
-    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 30));
+    	        btnMenu[i].setFont(new Font("Tahoma", Font.BOLD, 35));
     	        int offset=20;
     	        int widthButton=contentWidth/2-50;
     	        int heightButton=contentHeight/6; //100

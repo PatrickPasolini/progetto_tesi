@@ -56,7 +56,7 @@ public class MainWithGUI {
 	    frame = new JFrame();
 	    frame.setBounds(100, 100, 1200, 750);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setResizable(true);
+	    frame.setResizable(false);
 	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
 	    frame.setMinimumSize(new Dimension(550, 750));
 

@@ -4,7 +4,7 @@ import it.unibs.controller.GestoreScambi;
 import it.unibs.controller.commands.CommandUtente;
 import it.unibs.view.console.ViewConfiguratore;
 
-public class VisualizzaScambiCompleti implements CommandUtente {
+public class VisualizzaScambiCompletiCommand implements CommandUtente {
 	private ViewConfiguratore view;
 	private GestoreScambi gestoreScambi;
 
@@ -13,13 +13,13 @@ public class VisualizzaScambiCompleti implements CommandUtente {
 //		this.gestoreScambi = gestoreScambi;
 //	}
 	
-	public VisualizzaScambiCompleti( GestoreScambi gestoreScambi) {
+	public VisualizzaScambiCompletiCommand( GestoreScambi gestoreScambi) {
 		this.gestoreScambi = gestoreScambi;
 	}
 	
 	@Override
 	public void execute() {
-		gestoreScambi.visualizzaScambiCompleti(view);
+		gestoreScambi.visualizzaScambiCompleti();
 	}
 
 }

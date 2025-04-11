@@ -33,21 +33,21 @@ public class ViewStart extends BaseView {
         lblAccesso.setForeground(new Color(43, 43, 43));
         lblAccesso.setFont(new Font("Tahoma", Font.PLAIN, 55));
         Dimension size = lblAccesso.getPreferredSize();
-        lblAccesso.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
+        lblAccesso.setBounds((contentWidth - size.width) / 2, 70, size.width, 70);
         contentPanel.add(lblAccesso);
 
         btnConfiguratore.setBorder(null);
         btnConfiguratore.setMargin(new Insets(0, 10, 0, 0));
         btnConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 30));
         btnConfiguratore.setForeground(Color.WHITE);
-        btnConfiguratore.setBounds(contentWidth / 2 - 220, contentHeight/2-120 - 50, 440, 170);
+        btnConfiguratore.setBounds(contentWidth / 2 - 220, contentHeight/2-120 , 440, 170);
         contentPanel.add(btnConfiguratore);
      
         btnFruitore.setBorder(null);
         btnFruitore.setMargin(new Insets(0, 10, 0, 0));
         btnFruitore.setFont(new Font("Tahoma", Font.BOLD, 30));
         btnFruitore.setForeground(Color.WHITE);
-        btnFruitore.setBounds(contentWidth / 2 - 220, contentHeight/2 + 50 , 440, 170);
+        btnFruitore.setBounds(contentWidth / 2 - 220, contentHeight/2 + 100 , 440, 170);
         contentPanel.add(btnFruitore);
 
         contentPanel.revalidate();

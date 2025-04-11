@@ -39,8 +39,11 @@ public class ViewRitiraProposte extends BaseView {
 		listModel = new DefaultListModel<>();
 		scambiList = new JList<>(listModel);
 		btnRitira = new RoundedButton("Ritira proposta", new Color(8, 102, 255));
-		btnSi = new RoundedButton("Ritira", new Color(8, 102, 255));
-		btnNo = new RoundedButton("Annulla", new Color(8, 102, 255));
+//		btnSi = new RoundedButton("Ritira", new Color(8, 102, 255));
+//		btnNo = new RoundedButton("Annulla", new Color(8, 102, 255));
+		
+		btnSi = new RoundedButton("Ritira", new Color(0, 143, 57));
+		btnNo = new RoundedButton("Annulla",new Color(165, 32, 25));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
@@ -200,7 +203,7 @@ public class ViewRitiraProposte extends BaseView {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
 	    
-	    String txtRitirato = "<html><div align='center'><span style='color:#33CC33;'>"
+	    String txtRitirato = "<html><div align='center'><span style='color:#008F39;'>"
 	    		+ "Ritiro della seguente proposta avvenuto con successo:</span></div><br><br>"
 	    		+"richiesta:<b>" + propRitirata.getRichiesta().getNome() 
 	    		+ "</b>, di " + propRitirata.getOreRichiesta() + " ore<br>offerta: <b>" 

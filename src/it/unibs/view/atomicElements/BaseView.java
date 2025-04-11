@@ -29,6 +29,7 @@ public abstract class BaseView extends JPanel {
 			frame.getContentPane().removeAll();
 			frame.getContentPane().revalidate();
 			frame.getContentPane().repaint();
+			frame.setResizable(false);
 			
 			int w = frame.getWidth();
 	        int h = frame.getHeight();
@@ -62,7 +63,7 @@ public abstract class BaseView extends JPanel {
 	                int y = (h - contentHeight) / 2;
 	                contentPanel.setBounds(x, y, contentWidth, contentHeight);
 	                
-	                aggiornaComponenti(w, h);
+//	                aggiornaComponenti(w, h); 
 	            }
 	        });
 	}

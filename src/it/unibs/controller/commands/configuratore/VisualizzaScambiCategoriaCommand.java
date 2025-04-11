@@ -1,6 +1,5 @@
 package it.unibs.controller.commands.configuratore;
 
-import it.unibs.controller.GestoreGerarchieConfiguratore;
 import it.unibs.controller.GestoreScambi;
 import it.unibs.controller.commands.CommandUtente;
 

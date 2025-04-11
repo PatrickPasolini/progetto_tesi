@@ -59,7 +59,7 @@ public class ViewSceltaFoglia extends BaseView {
 	protected void sceltaFoglia(int contentWidth) {
 		lblSceltaFoglia.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblSceltaFoglia.getPreferredSize();
-        lblSceltaFoglia.setBounds((contentWidth - size.width) / 2, 20, size.width, size.height);
+        lblSceltaFoglia.setBounds((contentWidth - size.width) / 2, 20, size.width, 135);
         contentPanel.add(lblSceltaFoglia);
         
         if (gerarchie != null && !gerarchie.isEmpty()) {
@@ -72,7 +72,7 @@ public class ViewSceltaFoglia extends BaseView {
         scrollPane.setBorder(null);
         scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentPanel.getWidth()/2-400, size.height+40, 800, contentPanel.getHeight()-165 - size.height);
+        scrollPane.setBounds(contentPanel.getWidth()/2-400, 135+40, 800, contentPanel.getHeight()-165 - 135);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);

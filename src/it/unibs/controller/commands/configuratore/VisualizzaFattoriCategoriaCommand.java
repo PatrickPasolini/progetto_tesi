@@ -12,6 +12,7 @@ public class VisualizzaFattoriCategoriaCommand implements CommandUtente {
 
 	@Override
 	public void execute() {
+		
 		gestoreGerarchieConfiguratore.sceltaFogliaFattori();	
 	}
 

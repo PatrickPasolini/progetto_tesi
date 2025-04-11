@@ -3,10 +3,10 @@ package it.unibs.controller.commands.configuratore;
 import it.unibs.controller.GestoreComprensoriConfiguratore;
 import it.unibs.controller.commands.CommandUtente;
 
-public class NuovoComprensorioCommand implements CommandUtente {
+public class AggiungiComprensorioCommand implements CommandUtente {
 	private GestoreComprensoriConfiguratore gestoreComprensori;
 
-	public NuovoComprensorioCommand(GestoreComprensoriConfiguratore gestoreComprensori) {
+	public AggiungiComprensorioCommand(GestoreComprensoriConfiguratore gestoreComprensori) {
 		this.gestoreComprensori = gestoreComprensori;
 	}
 

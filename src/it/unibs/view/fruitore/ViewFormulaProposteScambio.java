@@ -34,8 +34,8 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 		super.inizializzaComponenti();
 		btnConfermaRichiesta = new RoundedButton("Conferma richiesta e prosegui", new Color(8, 102, 255));
 		btnConfermaOfferta = new RoundedButton("Conferma offerta e prosegui", new Color(8, 102, 255));
-		btnSi = new RoundedButton("SI", new Color(8, 102, 255));
-		btnNo = new RoundedButton("NO", new Color(8, 102, 255));
+		btnSi = new RoundedButton("Crea", new Color(0, 143, 57));
+		btnNo = new RoundedButton("Annulla", new Color(165, 32, 25));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
@@ -136,7 +136,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
         	        " di: <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +
-        	        " di: <span style='color:#085FFF;'><b>"+ oreOfferta + "</b></span> ore<br><br>" +
+        	        " di <span style='color:#085FFF;'><b>"+ oreOfferta + "</b></span> ore<br><br>" +
         	        "Vuoi confermare la creazione della proposta di scambio:" +
         	      "</div>" +
         	    "</html>"
@@ -190,7 +190,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         JLabel lblScambio = new JLabel(
         	    "<html>" +
         	      "<div align='center'>" +
-        	        "<span style='color:#33CC33;'><b>Formulazione del seguente scambio<br> avvenuta con successo:</b></span><br><br>" +
+        	        "<span style='color:#008F39;'><b>Formulazione del seguente scambio<br> avvenuta con successo:</b></span><br><br>" +
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
         	        " di: <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +
@@ -203,7 +203,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
     	lblScambio.setBounds((contentWidth - size.width) / 2, 70, size.width, size.height);
         contentPanel.add(lblScambio);
         
-        btnHome.setBounds(140, 45, 90, 90);
+        btnHome.setBounds(45, 45, 90, 90);
         contentPanel.add(btnHome);
 	    
 	    contentPanel.revalidate();

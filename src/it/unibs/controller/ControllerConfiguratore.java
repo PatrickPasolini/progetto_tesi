@@ -7,13 +7,13 @@ import javax.swing.JFrame;
 
 import it.unibs.controller.commands.CommandUtente;
 import it.unibs.controller.commands.configuratore.AggiungiGerarchiaCommand;
-import it.unibs.controller.commands.configuratore.NuovoComprensorioCommand;
+import it.unibs.controller.commands.configuratore.AggiungiComprensorioCommand;
 import it.unibs.controller.commands.configuratore.SalvaModificheCommand;
 import it.unibs.controller.commands.configuratore.StampaComprensoriCommand;
 import it.unibs.controller.commands.configuratore.StampaGerachieCommand;
 import it.unibs.controller.commands.configuratore.VisualizzaFattoriCategoriaCommand;
 import it.unibs.controller.commands.configuratore.VisualizzaScambiCategoriaCommand;
-import it.unibs.controller.commands.configuratore.VisualizzaScambiCompleti;
+import it.unibs.controller.commands.configuratore.VisualizzaScambiCompletiCommand;
 import it.unibs.model.Model;
 import it.unibs.mylib.*;
 import it.unibs.view.accesso.ViewStart;
@@ -31,9 +31,11 @@ public class ControllerConfiguratore implements Controller {
 	private GestoreScambi gestoreScambi;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
 	private JFrame frame;
+	
 	public ControllerConfiguratore(Model model,JFrame frame) {
 		this.model = model;
 		this.frame=frame;
+		frame.setResizable(false);
 		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model,frame);//
 		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model,frame);//
 		this.gestoreScambi = new GestoreScambi(model,frame);
@@ -45,14 +47,14 @@ public class ControllerConfiguratore implements Controller {
     }
 	 
 	private void inizializzaCommandsMenu() {
-		commandMenu.put(1, new NuovoComprensorioCommand(gestoreComprensori));
+		commandMenu.put(1, new AggiungiComprensorioCommand(gestoreComprensori));
 		commandMenu.put(2, new AggiungiGerarchiaCommand(gestoreGerarchieConfiguratore));
-		commandMenu.put(3, new SalvaModificheCommand(model));
-		commandMenu.put(4, new StampaComprensoriCommand(gestoreComprensori));
-		commandMenu.put(5, new StampaGerachieCommand(gestoreGerarchieConfiguratore));
-		commandMenu.put(6, new VisualizzaFattoriCategoriaCommand(gestoreGerarchieConfiguratore));
-		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi));//
-		commandMenu.put(8, new VisualizzaScambiCompleti(gestoreScambi));//
+		commandMenu.put(3, new VisualizzaFattoriCategoriaCommand(gestoreGerarchieConfiguratore));
+		commandMenu.put(4, new SalvaModificheCommand(model));
+		commandMenu.put(5, new StampaComprensoriCommand(gestoreComprensori));
+		commandMenu.put(6, new StampaGerachieCommand(gestoreGerarchieConfiguratore));
+		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi));
+		commandMenu.put(8, new VisualizzaScambiCompletiCommand(gestoreScambi));
 	}
 	
 	public void run() {

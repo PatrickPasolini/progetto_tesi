@@ -33,7 +33,6 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     		Model model = modelAccesso.getInizializzaModel();
     		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, view.getFrame());
     		controllerConfiguratore.run();
-//    		modelAccesso.setUser(username);
 //    		modelAccesso.inizializzaConfiguratore(); //????????????????????????????
     		
     		
