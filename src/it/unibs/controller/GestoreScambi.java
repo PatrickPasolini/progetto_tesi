@@ -1,5 +1,7 @@
 package it.unibs.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -96,7 +98,7 @@ public class GestoreScambi {
 	 */
 	public void visualizzaScambiCompleti() {
 		List<Scambio> scambi = scambiHandler.getScambiCompleti();
-		ViewContattaUtentiScambio viewContatta = new ViewContattaUtentiScambio(frame,scambi);		
+		ViewContattaUtentiScambio viewContatta = new ViewContattaUtentiScambio(frame,scambiHandler.getNomiScambiCopleti());	
 		frame.getContentPane().add(viewContatta);
 		viewContatta.setLayout(null);
 		
@@ -106,11 +108,12 @@ public class GestoreScambi {
 		}
 		
 		viewContatta.setBtnHomeListener(e->backHomeConfiguratore());
-		viewContatta.setBtnSelezioneListener(e-> viewContatta.mostraDettagliScambio());
+		viewContatta.setBtnSelezioneListener(e-> {
+			int index = viewContatta.getIndexScambioSelezionato();
+			Scambio scambioSelezionato = scambiHandler.getScambioCompleto(index);
+			viewContatta.mostraDettagliScambio(scambioSelezionato);
+		});
 		
-//		MyMenu menuScambio = view.menuSceltaScambio(scambiHandler.getNomiScambiCopleti());
-//		int scelta = menuScambio.scegli();
-//		view.stampaScambioCompleto(scambiHandler.getScambioCompleto(scelta-1));
 	}
 	
 	

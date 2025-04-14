@@ -1,7 +1,6 @@
 package it.unibs.view.configuratore;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewContattaUtentiScambio extends BaseView {
 	private static final long serialVersionUID = 1L;
-	private List<Scambio> scambi;
+	private List<String> nomiScambi;
 	private JComboBox<String> scambiComboBox;
     private JPanel dettagliScambioPanel;
     private RoundedButton selezionaButton;
@@ -29,13 +28,11 @@ public class ViewContattaUtentiScambio extends BaseView {
     private CircleHoverIconButton btnHome;
 	protected static final String HOME_PATH = "./Img/home.png";
     
-	public ViewContattaUtentiScambio(JFrame frame, List<Scambio> scambi) {
+	public ViewContattaUtentiScambio(JFrame frame, ArrayList<String> nomiScambi) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
-		this.scambi = scambi;
+		this.nomiScambi = nomiScambi;
 		aggiornaComponenti(frame.getWidth(),frame.getHeight());
 	}
-	
-	
 
 	@Override
 	protected void inizializzaComponenti() {
@@ -47,7 +44,7 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
 	    
-	    if(scambi==null)
+	    if(nomiScambi==null)
 	        return;
 	                
 	    JPanel topPanel = createTopPanel();
@@ -62,7 +59,6 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    titoloScambioLabel = new JLabel("Seleziona uno scambio per vedere i dettagli");
 	    titoloScambioLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 	    titoloScambioLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-	    
 	    dettagliScambioPanel.add(titoloScambioLabel);
 	    
 	    JScrollPane scrollPane = new JScrollPane(dettagliScambioPanel);
@@ -75,7 +71,6 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    
 	    btnHome.setBounds(45, 45, 90, 90);
 	    contentPanel.add(btnHome);
-	    
 	    
 	    JSeparator separator = new JSeparator();
 	    separator.setForeground(new Color(180, 180, 180));
@@ -116,8 +111,8 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    
 	    List<String> scambiOptionsList = new ArrayList<>();
 	    
-	    for (Scambio s : scambi) {
-	        scambiOptionsList.add(s.getNome());
+	    for (String nome : nomiScambi) {
+	        scambiOptionsList.add(nome);
 	    }
 	    String[] scambiOptions = scambiOptionsList.toArray(new String[0]);
 	    scambiComboBox = new JComboBox<>(scambiOptions);
@@ -130,13 +125,7 @@ public class ViewContattaUtentiScambio extends BaseView {
         selezionaButton.setForeground(Color.WHITE);
         selezionaButton.setFont(new Font("Arial", Font.PLAIN, 30));
         selezionaButton.setPreferredSize(new Dimension(150, 50));
-        selezionaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedScambio = (String) scambiComboBox.getSelectedItem();
-                mostraDettagliScambio(selectedScambio);
-            }
-        });
+       
         selectionPanel.add(selezionaButton);
 	    
 	    topPanel.add(selectionPanel, BorderLayout.CENTER);
@@ -149,21 +138,17 @@ public class ViewContattaUtentiScambio extends BaseView {
 	public void setBtnSelezioneListener(ActionListener listener) {
 		selezionaButton.addActionListener(listener);
 	}
-	public Scambio getScambioSelezionato() {
-		return selectedScambio;
-	}
 	
-	public void mostraDettagliScambio() {
-		
-	}
 	
+	public int getIndexScambioSelezionato() {
+		return scambiComboBox.getSelectedIndex();
+	}
 
-	
-	Scambio selectedScambio = null;
-	private void mostraDettagliScambio(String nomeScambio) {
+
+	public void mostraDettagliScambio(Scambio scambioSelezionato) {
 	    dettagliScambioPanel.removeAll();
 	    
-	    String txtTitoloScambio = "<html>Scambio: <font color='0866FF'>"+nomeScambio+"</font></html>";
+	    String txtTitoloScambio = "<html>Scambio: <font color='0866FF'>"+scambioSelezionato.getNome()+"</font></html>";
 	    
 	    titoloScambioLabel = new JLabel(txtTitoloScambio);
 	    titoloScambioLabel.setFont(new Font("Arial", Font.BOLD, 30));
@@ -171,18 +156,11 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    dettagliScambioPanel.add(titoloScambioLabel);
 	    dettagliScambioPanel.add(Box.createVerticalStrut(10));
 	    
-	    for (Scambio s : scambi) {
-	        if (s.getNome().equals(nomeScambio)) {
-	            selectedScambio = s;
-	            break;
-	        }
-	    }
-	    
-	    if (selectedScambio != null) {
-	        Stack<Proposta> proposte = selectedScambio.getScambio();
+	    if (scambioSelezionato != null) {
+	        Stack<Proposta> proposte = scambioSelezionato.getScambio();
 	        if (proposte != null && !proposte.isEmpty()) {
 	            for (Proposta p : proposte) {
-	                JPanel utentePanel = createUtentePanel(p);
+	                JPanel utentePanel = createUtentePanel(scambioSelezionato,p);
 	                utentePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 	                dettagliScambioPanel.add(utentePanel);
 	                dettagliScambioPanel.add(Box.createVerticalStrut(10));
@@ -199,7 +177,7 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    dettagliScambioPanel.repaint();
 	}
 	
-	private JPanel createUtentePanel(Proposta proposta) {
+	private JPanel createUtentePanel(Scambio scambioSelezionato,Proposta proposta) {
 	    JPanel utentePanel = new JPanel(new BorderLayout());
 	    utentePanel.setBorder(BorderFactory.createCompoundBorder(
 	        new LineBorder(new Color(180, 180, 180), 1, true),
@@ -208,7 +186,7 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    utentePanel.setBackground(new Color(250, 250, 250));
 	    utentePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 	    
-	    JLabel utenteLabel = new JLabel(stampaScambio(selectedScambio, proposta));
+	    JLabel utenteLabel = new JLabel(stampaScambio(scambioSelezionato, proposta));
 	    utenteLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 	    utenteLabel.setVerticalAlignment(JLabel.CENTER);
 	    utenteLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -245,6 +223,10 @@ public class ViewContattaUtentiScambio extends BaseView {
 	        .append("  all'utente: " + ricevente.getNome());
 	    sb.append("</div></html>");
 	    return sb.toString();
+	}
+
+	public void visualizzaScambiIsEmpty() {
+		
 	}
     
 }
