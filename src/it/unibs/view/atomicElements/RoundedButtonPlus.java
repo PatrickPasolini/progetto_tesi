@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class RoundedButtonPlus extends RoundedButton {
+	private static final long serialVersionUID = 1L;
 
 	public RoundedButtonPlus(Color defaultColor) {
 		super("", defaultColor);

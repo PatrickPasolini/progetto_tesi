@@ -15,14 +15,12 @@ import it.unibs.view.atomicElements.RoundedButton;
 import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 
 public class ViewNewConfiguratore extends BaseView {
+	private static final long serialVersionUID = 1L;
 	private JLabel lblAccesso;
     private TextFieldWithPlaceholder userField;
     private PasswordFieldWithPlaceholder pswField;
-    private TextFieldWithPlaceholder emailField;
     private RoundedButton btnCreazioneConfiguratore;
     private boolean creazioneUtenteFallita=false;
-    
-
 	private ActionListener btnCreazioneListener;
 	    
 	public ViewNewConfiguratore(JFrame frame) {
@@ -40,10 +38,7 @@ public class ViewNewConfiguratore extends BaseView {
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
-        
-        // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
         
         String txtAccesso;
         Color colorTxtAccesso;
@@ -115,7 +110,6 @@ public class ViewNewConfiguratore extends BaseView {
         contentPanel.requestFocusInWindow();
     }
     
-    //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
     public void setCreazioneEseguita() {
     	this.creazioneUtenteFallita=false;
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());

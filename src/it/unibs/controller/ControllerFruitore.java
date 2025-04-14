@@ -11,23 +11,20 @@ import it.unibs.controller.commands.fruitore.NavigazioneGerarchieCommand;
 import it.unibs.controller.commands.fruitore.RitiraPropostaCommand;
 import it.unibs.controller.commands.fruitore.VisualizzaProposteUtenteCommand;
 import it.unibs.model.Model;
-import it.unibs.mylib.MyMenu;
-import it.unibs.view.configuratore.ViewMenuConfiguratore;
-import it.unibs.view.console.ViewFruitore;
 import it.unibs.view.fruitore.ViewMenuFruitore;
 /**
  * Il ControllerFruitore gestisce le operazioni di comunicazione tra il model e la view
  * Consente di selezionare una Foglia tramite l'impostazione progressiva dei valori dei campi
  */
 public class ControllerFruitore implements Controller{
-	private Model model;
+//	private Model model;
 	private GestoreGerarchieFruitore gestoreGerarchieFruitore;
 	private GestoreScambi gestoreScambi;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
 	private JFrame frame;
 	
 	public ControllerFruitore(Model model,JFrame frame) {
-		this.model = model;
+//		this.model = model;
 		this.frame=frame;
 		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, frame);
 		this.gestoreScambi = new GestoreScambi(model,frame);

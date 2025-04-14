@@ -6,14 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
+import javax.swing.*;
 import it.unibs.domain.Gerarchia;
 import it.unibs.domain.Proposta;
 import it.unibs.view.atomicElements.CircleHoverIconButton;
@@ -22,14 +15,12 @@ import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewScambiCategoria extends ViewSceltaFoglia {
 	private static final long serialVersionUID = 1L;
-	
 	private JLabel lblScambi;
 	private RoundedButton bntAperti;
 	private RoundedButton bntChiusi;
 	private RoundedButton bntRitirati;
     private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
-//    private CircleHoverIconButton btnBackToScelta;
    
 	public ViewScambiCategoria(JFrame frame, List<Gerarchia> gerarchie) {
 		super(frame,gerarchie);
@@ -48,9 +39,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		bntRitirati = new RoundedButton("Scambi ritirati",new Color(8, 102, 255));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
-//		btnBackToScelta = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
-	
 	
 	public void visualizzaSceltaScambi() {
 		contentPanel.removeAll();
@@ -122,6 +111,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		}
 		visualizzaScambi(scambiAperti,txt);
 	}
+	
 	public void visualizzaChiusi(ArrayList<Proposta> scambiChiusi,String fogliaSelezionata) {
 		String txt;
 		if(scambiChiusi.isEmpty()) {
@@ -133,6 +123,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		}
 		visualizzaScambi(scambiChiusi,txt);
 	}
+	
 	public void visualizzaRitirati(ArrayList<Proposta> scambiRitirati,String fogliaSelezionata) {
 		String txt;
 		if(scambiRitirati.isEmpty()) {
@@ -148,32 +139,24 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 	private void visualizzaScambi(ArrayList<Proposta> scambi, String string) {
 		contentPanel.removeAll();
         int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
-		
         
 		JLabel lblTitoloScambi = new JLabel();
 		lblTitoloScambi.setText(string);
 		lblTitoloScambi.setForeground(Color.BLACK);
 		lblTitoloScambi.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblTitoloScambi.getPreferredSize();
-        
         contentPanel.add(lblTitoloScambi);
         
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
         panel.setBackground(contentPanel.getBackground());
         for (Proposta proposta : scambi) {
             JLabel lblComune = new JLabel();
-            
-            // Ottieni la stringa della proposta e formattala per includere una nuova riga
             String item = formattaStringProposta(proposta);
-            
             lblComune.setForeground(Color.GRAY);
             lblComune.setFont(new Font("Tahoma", Font.PLAIN, 35));
             lblComune.setText(item);
             lblComune.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-            
             panel.add(lblComune);
             panel.add(Box.createVerticalStrut(20)); 
         }
@@ -193,15 +176,12 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         	lblTitoloScambi.setBounds((contentWidth - size.width) / 2, 60, size.width, size.height);
         	contentPanel.add(scrollPane);
         }
-        	
 
         btnBack.setBounds(45, 45, 90, 90);
         contentPanel.add(btnBack);
         
         btnHome.setBounds(140, 45, 90, 90);
         contentPanel.add(btnHome);
-        
-        
         
         revalidate();
         repaint();
@@ -223,10 +203,4 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		
 	    return sb.toString();
 	}
-
-	
-
-	
-	
-
 }

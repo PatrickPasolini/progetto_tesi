@@ -15,10 +15,7 @@ import it.unibs.controller.commands.configuratore.VisualizzaFattoriCategoriaComm
 import it.unibs.controller.commands.configuratore.VisualizzaScambiCategoriaCommand;
 import it.unibs.controller.commands.configuratore.VisualizzaScambiCompletiCommand;
 import it.unibs.model.Model;
-import it.unibs.mylib.*;
-import it.unibs.view.accesso.ViewStart;
 import it.unibs.view.configuratore.ViewMenuConfiguratore;
-import it.unibs.view.console.ViewConfiguratore;
 
 /**
  * Il ControllerConfiguratore gestisce le operazioni di comunicazione tra il model e la view

@@ -9,7 +9,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class PasswordFieldWithPlaceholder extends JPasswordField {
-    private String placeholder;
+	private static final long serialVersionUID = 1L;
+	private String placeholder;
 	private Color DEFAULT_PLACEHOLDER_COLOR = Color.GRAY;
     private Color placeholderColor;
     private boolean showingPlaceholder;
@@ -99,7 +100,9 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
 
         Border roundedBorder = BorderFactory.createCompoundBorder(
             new LineBorder(borderColor, thickness, true) {
-                @Override
+				private static final long serialVersionUID = 1L;
+
+				@Override
                 public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
                     Graphics2D g2 = (Graphics2D) g.create();
                     g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -138,6 +141,10 @@ public class PasswordFieldWithPlaceholder extends JPasswordField {
 	}
 	public void setPlaceholderColorToDefault() {
 		setPlaceholderColor(DEFAULT_PLACEHOLDER_COLOR);
+	}
+
+	public String getPlaceholder() {
+		return placeholder;
 	}
 
 }

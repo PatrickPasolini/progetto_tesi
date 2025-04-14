@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 
 // Classe interna per pannello con bordi arrotondati
     public class RoundedPanel extends JPanel {
-        private int cornerRadius;
+		private static final long serialVersionUID = 1L;
+		private int cornerRadius;
         private Color borderColor = new Color(100, 100, 100);
         private int borderThickness = 2;
         private boolean drawShadow;

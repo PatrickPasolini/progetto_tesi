@@ -185,7 +185,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	public void visualizzaCreazione(Foglia richiesta, Foglia offerta, int oreRichiesta, int oreOfferta) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
-	    int contentHeight = contentPanel.getHeight();
 	    
         JLabel lblScambio = new JLabel(
         	    "<html>" +

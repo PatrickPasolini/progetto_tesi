@@ -2,7 +2,6 @@ package it.unibs.controller.commands.fruitore;
 
 import it.unibs.controller.GestoreScambi;
 import it.unibs.controller.commands.CommandUtente;
-import it.unibs.view.console.ViewFruitore;
 
 public class RitiraPropostaCommand implements CommandUtente{
 	private GestoreScambi gestoreScambi;

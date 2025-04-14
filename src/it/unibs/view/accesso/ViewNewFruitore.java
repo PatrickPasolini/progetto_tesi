@@ -1,22 +1,10 @@
 package it.unibs.view.accesso;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import java.util.regex.Pattern;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
-
-import it.unibs.domain.Comprensorio;
 import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.Combobox;
 import it.unibs.view.atomicElements.PasswordFieldWithPlaceholder;
@@ -33,7 +21,7 @@ public class ViewNewFruitore extends BaseView{
     private PasswordFieldWithPlaceholder pswField;
     private TextFieldWithPlaceholder emailField;
     private RoundedButton btnCreazioneFruitore;
-    private Combobox cmbComprensori;
+    private Combobox<String> cmbComprensori;
     private boolean creazioneUtenteFallita=false;
     private String[] nomiComprensori;
     
@@ -51,7 +39,7 @@ public class ViewNewFruitore extends BaseView{
     	userField = new TextFieldWithPlaceholder("Username");
     	pswField = new PasswordFieldWithPlaceholder("Password");
     	emailField = new TextFieldWithPlaceholder("Email");
-    	cmbComprensori=new Combobox("Scelta comprensorio");
+    	cmbComprensori=new Combobox<String>("Scelta comprensorio");
     	if (nomiComprensori != null) {
     		for (String nome : nomiComprensori) {
 				cmbComprensori.addItem(nome);
@@ -68,7 +56,6 @@ public class ViewNewFruitore extends BaseView{
         
         // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
         
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
@@ -109,7 +96,6 @@ public class ViewNewFruitore extends BaseView{
         contentPanel.add(emailField); 
         
         cmbComprensori.setBounds(contentWidth / 2 - 185, 470, 370, 80);
-//        cmbComprensori.setPopupHeight(contentHeight-570);
         contentPanel.add(cmbComprensori);
         
         JSeparator line = new JSeparator();
@@ -123,7 +109,7 @@ public class ViewNewFruitore extends BaseView{
         btnCreazioneFruitore.setBounds(contentWidth / 2 - 185, 600, 370, 90);
         btnCreazioneFruitore.setForeground(Color.WHITE);
         if (btnCreazioneListener != null) {
-            btnCreazioneFruitore.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
+            btnCreazioneFruitore.addActionListener(btnCreazioneListener);
         }
         contentPanel.add(btnCreazioneFruitore);
         
@@ -131,9 +117,9 @@ public class ViewNewFruitore extends BaseView{
         repaint();
 	}
 	public void setButtonListeners(ActionListener accediListener) {
-        this.btnCreazioneListener = accediListener; // Salviamo il listener per il login
+        this.btnCreazioneListener = accediListener;
         if (btnCreazioneFruitore != null) {
-        	btnCreazioneFruitore.addActionListener(accediListener); // Riaggiungiamo il listener
+        	btnCreazioneFruitore.addActionListener(accediListener);
         }
     }
 	
@@ -159,7 +145,6 @@ public class ViewNewFruitore extends BaseView{
         contentPanel.requestFocusInWindow();
     }
     
-    //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
     public void setCreazioneEseguita() {
     	this.creazioneUtenteFallita=false;
     	aggiornaComponenti(frame.getWidth(), frame.getHeight());

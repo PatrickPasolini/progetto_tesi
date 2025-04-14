@@ -4,10 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.*;
-
-import it.unibs.domain.Foglia;
 import it.unibs.domain.Proposta;
 import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.CircleHoverIconButton;
@@ -15,6 +12,7 @@ import it.unibs.view.atomicElements.CustomScrollBarUI;
 import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewRitiraProposte extends BaseView {
+	private static final long serialVersionUID = 1L;
 	private static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
 	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblRitira;
@@ -71,7 +69,8 @@ public class ViewRitiraProposte extends BaseView {
 	    scambiList.setFont(new Font("Tahoma", Font.PLAIN, 30));
 	    scambiList.setBackground(contentPanel.getBackground());
 	    scambiList.setCellRenderer(new DefaultListCellRenderer() { //interlinea 
-	        @Override
+			private static final long serialVersionUID = 1L;
+			@Override
 	        public Component getListCellRendererComponent(JList<?> list, Object value, int index,
 	                boolean isSelected, boolean cellHasFocus) {
 	            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

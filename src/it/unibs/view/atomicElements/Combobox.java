@@ -5,14 +5,13 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class Combobox<E> extends JComboBox<E> {
-    private Color DEFAULT_PLACEHOLDER_COLOR = Color.GRAY;
+	private static final long serialVersionUID = 1L;
+	private Color DEFAULT_PLACEHOLDER_COLOR = Color.GRAY;
     private Color TEXT_COLOR = Color.BLACK;
     private Color BORDER_COLOR = Color.BLACK;
     private Color DEFAULT_BORDER_FOCUS_COLOR = new Color(8, 102, 255); // blu

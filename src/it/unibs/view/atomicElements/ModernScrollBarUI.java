@@ -1,8 +1,5 @@
 package it.unibs.view.atomicElements;
 
-import javax.swing.plaf.ScrollBarUI;
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -94,8 +91,9 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
     }
 
     private class ScrollBarButton extends JButton {
+		private static final long serialVersionUID = 1L;
 
-        public ScrollBarButton() {
+		public ScrollBarButton() {
             setBorder(BorderFactory.createEmptyBorder());
         }
 

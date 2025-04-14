@@ -9,11 +9,8 @@ import it.unibs.controllerGrasp.ComprensoriHandler;
 import it.unibs.controllerGrasp.SalvaModificheHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
-import it.unibs.mylib.InputDati;
-import it.unibs.view.accesso.*;
 import it.unibs.view.configuratore.ViewNuovoComprensorio;
 import it.unibs.view.configuratore.ViewVisualizzaComprensori;
-import it.unibs.view.console.ViewConfiguratore;
 
 public class GestoreComprensoriConfiguratore {
 	private JFrame frame;

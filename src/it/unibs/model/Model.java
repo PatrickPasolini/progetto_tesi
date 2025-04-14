@@ -59,7 +59,7 @@ public class Model{
 	 * @since 1
 	 */
 	public void salvaModifiche() {
-		JSONParser.saveDataToJson(persistence, Main.PERSISTENCE);
+		JSONParser.saveDataToJson(persistence, MainWithGUI.PERSISTENCE);
 	}
 
 	/**

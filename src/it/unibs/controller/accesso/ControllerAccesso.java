@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 import javax.swing.JFrame;
 import it.unibs.controller.Controller;
-import it.unibs.domain.Comprensorio;
 import it.unibs.model.ModelAccesso;
 import it.unibs.view.accesso.*;
 import it.unibs.view.atomicElements.BaseView;
@@ -79,10 +78,5 @@ public class ControllerAccesso implements Controller {
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
     	((ViewNewFruitore) currentView).setButtonListeners(this::controlloAccesso);
-    }
-    
-    private void inizializzaConfiguratore() {
-    	
-    	
     }
 }

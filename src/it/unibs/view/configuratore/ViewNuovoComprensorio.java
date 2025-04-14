@@ -51,7 +51,6 @@ public class ViewNuovoComprensorio extends BaseView {
 	protected void aggiornaComponenti(int w, int h) {
 		contentPanel.removeAll();
         int contentWidth = contentPanel.getWidth();
-//        int contentHeight = contentPanel.getHeight();
         
         lblNuovoComp.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblNuovoComp.getPreferredSize();
@@ -141,7 +140,6 @@ public class ViewNuovoComprensorio extends BaseView {
 		frame.setResizable(false);
 		contentPanel.removeAll();
 		int contentWidth = contentPanel.getWidth();
-		int contentHeight = contentPanel.getHeight();
 		
 		JLabel lblCreazione = new JLabel();
 		lblCreazione.setText("Creazione effettuata con successo");
@@ -185,12 +183,6 @@ public class ViewNuovoComprensorio extends BaseView {
         
 		btnBack.setBounds(45, 45, 90, 90);
 		contentPanel.add(btnBack);
-		
-//        btnHome.setMargin(new Insets(0, 10, 0, 0));
-//        btnHome.setFont(new Font("Tahoma", Font.BOLD, 40));
-//        btnHome.setBounds(contentWidth / 2 - 170, contentHeight-150, 340, 90);
-//        btnHome.setForeground(Color.WHITE);
-//        contentPanel.add(btnHome);
         
         revalidate();
         repaint();
@@ -216,7 +208,6 @@ public class ViewNuovoComprensorio extends BaseView {
 	public String getNomeComprensorio() {
 		return comprensorioField.getText();
 	}
-
 	public String getPlaceholderComp() {
 		return comprensorioField.getPlaceholder();
 	}

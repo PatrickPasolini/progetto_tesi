@@ -14,6 +14,7 @@ import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.*;
 
 public class ViewNavigaGerarchie extends BaseView{
+	private static final long serialVersionUID = 1L;
 	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
@@ -37,7 +38,6 @@ public class ViewNavigaGerarchie extends BaseView{
 	protected void aggiornaComponenti(int w, int h) {
 	    contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
 	    
 	    lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblProposte.getPreferredSize();

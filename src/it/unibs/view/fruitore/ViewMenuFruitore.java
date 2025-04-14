@@ -13,6 +13,7 @@ import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewMenuFruitore extends BaseView{
+	private static final long serialVersionUID = 1L;
 		private final static String[] SCELTE_FRUITORE = new String[]{
 				"Naviga Gerarchie",
 				"Formula proposte di scambio di prestazioni",

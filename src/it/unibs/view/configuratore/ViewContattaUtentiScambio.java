@@ -10,17 +10,21 @@ import java.util.Stack;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import it.unibs.domain.Foglia;
 import it.unibs.domain.Fruitore;
 import it.unibs.domain.Proposta;
 import it.unibs.domain.Scambio;
 import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.CircleHoverIconButton;
+import it.unibs.view.atomicElements.CustomScrollBarUI;
+import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewContattaUtentiScambio extends BaseView {
+	private static final long serialVersionUID = 1L;
 	private List<Scambio> scambi;
 	private JComboBox<String> scambiComboBox;
     private JPanel dettagliScambioPanel;
-    private JButton selezionaButton;
+    private RoundedButton selezionaButton;
     private JLabel titoloScambioLabel;
     private CircleHoverIconButton btnHome;
 	protected static final String HOME_PATH = "./Img/home.png";
@@ -30,6 +34,8 @@ public class ViewContattaUtentiScambio extends BaseView {
 		this.scambi = scambi;
 		aggiornaComponenti(frame.getWidth(),frame.getHeight());
 	}
+	
+	
 
 	@Override
 	protected void inizializzaComponenti() {
@@ -45,68 +51,85 @@ public class ViewContattaUtentiScambio extends BaseView {
 	        return;
 	                
 	    JPanel topPanel = createTopPanel();
-	    topPanel.setBounds(150, 50, contentWidth-300, 200);
+	    topPanel.setBounds(300, 50, contentWidth-600, 150);
+	    topPanel.setBackground(contentPanel.getBackground());
 	    contentPanel.add(topPanel);
 	    
-	    // Create the details panel with a vertical BoxLayout
 	    dettagliScambioPanel = new JPanel();
 	    dettagliScambioPanel.setLayout(new BoxLayout(dettagliScambioPanel, BoxLayout.Y_AXIS));
 	    dettagliScambioPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	    
-	    // Initial message
 	    titoloScambioLabel = new JLabel("Seleziona uno scambio per vedere i dettagli");
-	    titoloScambioLabel.setFont(new Font("Arial", Font.BOLD, 16));
+	    titoloScambioLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 	    titoloScambioLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+	    
 	    dettagliScambioPanel.add(titoloScambioLabel);
 	    
-	    // Create and add the scroll pane to the content panel
 	    JScrollPane scrollPane = new JScrollPane(dettagliScambioPanel);
-	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+	    scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 	    scrollPane.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1, true));
-	    scrollPane.setBounds(150, 270, contentWidth-300, 400); // Adjust position to be below top panel
+	    scrollPane.setBounds(300, 220, contentWidth-600, 600);
 	    contentPanel.add(scrollPane);
 	    
 	    btnHome.setBounds(45, 45, 90, 90);
 	    contentPanel.add(btnHome);
 	    
+	    
+	    JSeparator separator = new JSeparator();
+	    separator.setForeground(new Color(180, 180, 180));
+	    separator.setBounds(300, 200, contentWidth-600, 400);
+	    contentPanel.add(separator);
+	    
 	    revalidate();
 	    repaint();
 	}
 	
+	public void setBtnHomeListener(ActionListener listener) {
+		btnHome.addActionListener(listener);
+	} 
+	
 	private JPanel createTopPanel() {
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new BorderLayout(10, 10));
-        
-        // Titolo
-        JLabel titleLabel = new JLabel("Contatta gli utenti di uno scambio");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
-        topPanel.add(titleLabel, BorderLayout.NORTH);
-        
-        // Pannello per la selezione dello scambio
-        JPanel selectionPanel = new JPanel();
-        selectionPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        
-        JLabel scambioLabel = new JLabel("Scelta scambio:");
-        scambioLabel.setFont(new Font("Arial", Font.PLAIN, 22));
-        selectionPanel.add(scambioLabel);
-        
-        // Creazione della combo box con gli scambi disponibili
-        
-        
-        List<String> scambiOptionsList = new ArrayList<>();
-        
-        for (Scambio s : scambi) {
-            scambiOptionsList.add(s.getNome());
-        }
-        String[] scambiOptions = scambiOptionsList.toArray(new String[0]);
-        JComboBox<String> scambiComboBox = new JComboBox<>(scambiOptions);
-        scambiComboBox.setFont(new Font("Arial", Font.PLAIN, 22));
-        scambiComboBox.setPreferredSize(new Dimension(200, 30));
-        selectionPanel.add(scambiComboBox);
-        
-        // Pulsante per selezionare lo scambio
-        selezionaButton = new JButton("Seleziona");
-        selezionaButton.setFont(new Font("Arial", Font.PLAIN, 16));
+	    JPanel topPanel = new JPanel();
+	    topPanel.setLayout(new BorderLayout(10, 10));
+	    
+	    // Titolo
+	    JLabel titleLabel = new JLabel("Contatta gli utenti di uno scambio");
+	    titleLabel.setFont(new Font("Arial", Font.BOLD, 50));
+	    titleLabel.setHorizontalAlignment(JLabel.CENTER);
+	    
+	    JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	    titlePanel.setBackground(contentPanel.getBackground());
+	    titlePanel.add(titleLabel);
+	    
+	    topPanel.add(titlePanel, BorderLayout.NORTH);
+	    
+	    // Pannello per la selezione dello scambio
+	    JPanel selectionPanel = new JPanel();
+	    selectionPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 10));
+	    selectionPanel.setBackground(contentPanel.getBackground());
+	    
+	    JLabel scambioLabel = new JLabel("Scelta scambio:");
+	    scambioLabel.setFont(new Font("Arial", Font.PLAIN, 35));
+	    selectionPanel.add(scambioLabel);
+	    
+	    List<String> scambiOptionsList = new ArrayList<>();
+	    
+	    for (Scambio s : scambi) {
+	        scambiOptionsList.add(s.getNome());
+	    }
+	    String[] scambiOptions = scambiOptionsList.toArray(new String[0]);
+	    scambiComboBox = new JComboBox<>(scambiOptions);
+	    scambiComboBox.setFont(new Font("Arial", Font.PLAIN, 25));
+	    scambiComboBox.setBorder(null);
+	    scambiComboBox.setPreferredSize(new Dimension(200, 50));
+	    selectionPanel.add(scambiComboBox);
+	    
+	    selezionaButton = new RoundedButton("Seleziona", new Color(8, 102, 255));
+        selezionaButton.setForeground(Color.WHITE);
+        selezionaButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        selezionaButton.setPreferredSize(new Dimension(150, 50));
         selezionaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,30 +138,39 @@ public class ViewContattaUtentiScambio extends BaseView {
             }
         });
         selectionPanel.add(selezionaButton);
-        
-        topPanel.add(selectionPanel, BorderLayout.CENTER);
-        
-        // Linea divisoria
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(180, 180, 180));
-        topPanel.add(separator, BorderLayout.SOUTH);
-        
-        return topPanel;
-    }
+	    
+	    topPanel.add(selectionPanel, BorderLayout.CENTER);
+	    
+	   
+	    return topPanel;
+	}
+	
+	
+	public void setBtnSelezioneListener(ActionListener listener) {
+		selezionaButton.addActionListener(listener);
+	}
+	public Scambio getScambioSelezionato() {
+		return selectedScambio;
+	}
+	
+	public void mostraDettagliScambio() {
+		
+	}
+	
 
+	
+	Scambio selectedScambio = null;
 	private void mostraDettagliScambio(String nomeScambio) {
-	    // Clear the details panel
 	    dettagliScambioPanel.removeAll();
 	    
-	    // Set title with selected exchange name
-	    titoloScambioLabel = new JLabel("Scambio: " + nomeScambio);
-	    titoloScambioLabel.setFont(new Font("Arial", Font.BOLD, 18));
+	    String txtTitoloScambio = "<html>Scambio: <font color='0866FF'>"+nomeScambio+"</font></html>";
+	    
+	    titoloScambioLabel = new JLabel(txtTitoloScambio);
+	    titoloScambioLabel.setFont(new Font("Arial", Font.BOLD, 30));
 	    titoloScambioLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 	    dettagliScambioPanel.add(titoloScambioLabel);
-	    dettagliScambioPanel.add(Box.createVerticalStrut(10)); // Add spacing
+	    dettagliScambioPanel.add(Box.createVerticalStrut(10));
 	    
-	    // Get exchange proposals
-	    Scambio selectedScambio = null;
 	    for (Scambio s : scambi) {
 	        if (s.getNome().equals(nomeScambio)) {
 	            selectedScambio = s;
@@ -151,77 +183,68 @@ public class ViewContattaUtentiScambio extends BaseView {
 	        if (proposte != null && !proposte.isEmpty()) {
 	            for (Proposta p : proposte) {
 	                JPanel utentePanel = createUtentePanel(p);
-	                utentePanel.setAlignmentX(Component.LEFT_ALIGNMENT); // Ensure alignment
+	                utentePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 	                dettagliScambioPanel.add(utentePanel);
-	                dettagliScambioPanel.add(Box.createVerticalStrut(10)); // Add spacing between user panels
+	                dettagliScambioPanel.add(Box.createVerticalStrut(10));
 	            }
 	        } else {
 	            JLabel noProposteLabel = new JLabel("Nessuna proposta disponibile per questo scambio");
+	            noProposteLabel.setFont(new Font("Arial", Font.BOLD, 50));
 	            noProposteLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 	            dettagliScambioPanel.add(noProposteLabel);
 	        }
 	    }
 	    
-	    // Update the UI
 	    dettagliScambioPanel.revalidate();
 	    dettagliScambioPanel.repaint();
 	}
 	
 	private JPanel createUtentePanel(Proposta proposta) {
-        JPanel utentePanel = new JPanel();
-        utentePanel.setBorder(BorderFactory.createCompoundBorder(
-            new LineBorder(new Color(180, 180, 180), 1, true),
-            BorderFactory.createEmptyBorder(10, 10, 10, 10)
-        ));
-        utentePanel.setBackground(new Color(250, 250, 250));
-        utentePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        // Intestazione con nome e email dell'utente
-        JPanel headerPanel = new JPanel();
-        headerPanel.setOpaque(false);
-        headerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        Fruitore utente = (Fruitore) proposta.getFruitoreRichiedente();
-        
-        JLabel utenteLabel = new JLabel("Utente: " + utente.getNome());
-        utenteLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        headerPanel.add(utenteLabel);
-        
-        JLabel emailLabel = new JLabel("Mail: " + utente.getIndirizzoMail());
-        emailLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        headerPanel.add(emailLabel);
-        
-        
-        utentePanel.add(headerPanel);
-        utentePanel.add(Box.createVerticalStrut(10));
-        
-//         Dettagli dello scambio
-//        for (DettaglioScambio dettaglio : utente.dettagli) {
-//            JPanel dettaglioPanel = new JPanel();
-//            dettaglioPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
-//            dettaglioPanel.setOpaque(false);
-//            dettaglioPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-//            
-//            String tipoScambio = dettaglio.isRiceve ? "-riceve: " : "-offre: ";
-//            JLabel tipoLabel = new JLabel(tipoScambio);
-//            tipoLabel.setFont(new Font("Arial", Font.BOLD, 14));
-//            dettaglioPanel.add(tipoLabel);
-//            
-//            String dettaglioTesto = dettaglio.prestazione + " per [" + dettaglio.ore + " ore] ";
-//            String altroUtenteText = dettaglio.isRiceve ? " dall'utente: " : " all'utente: ";
-//            JLabel dettaglioLabel = new JLabel(
-//                dettaglioTesto + altroUtenteText + dettaglio.altroUtente + 
-//                " mail: " + dettaglio.altroEmail
-//            );
-//            dettaglioLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-//            dettaglioPanel.add(dettaglioLabel);
-//            
-//            utentePanel.add(dettaglioPanel);
-//            utentePanel.add(Box.createVerticalStrut(5));
-//        }
-        
-        return utentePanel;
-    }
+	    JPanel utentePanel = new JPanel(new BorderLayout());
+	    utentePanel.setBorder(BorderFactory.createCompoundBorder(
+	        new LineBorder(new Color(180, 180, 180), 1, true),
+	        BorderFactory.createEmptyBorder(10, 10, 10, 10)
+	    ));
+	    utentePanel.setBackground(new Color(250, 250, 250));
+	    utentePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+	    
+	    JLabel utenteLabel = new JLabel(stampaScambio(selectedScambio, proposta));
+	    utenteLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+	    utenteLabel.setVerticalAlignment(JLabel.CENTER);
+	    utenteLabel.setHorizontalAlignment(JLabel.LEFT);
+	    
+	    utentePanel.add(utenteLabel, BorderLayout.CENTER);
+	    
+	    return utentePanel;
+	}
 	
+	
+	private String stampaScambio(Scambio scambio, Proposta proposta) {
+	    StringBuilder sb = new StringBuilder();
+	    
+	    Fruitore utente = (Fruitore)proposta.getFruitoreRichiedente();
+	    Foglia richiesta = proposta.getRichiesta();
+	    Foglia offerta = proposta.getOfferta();
+	    Fruitore ricevente = null;
+	    Fruitore offerente = null;
+	    
+	    for(Proposta p2 : scambio.getScambio()) {
+	        if(offerta.equals(p2.getRichiesta()))
+	            ricevente = (Fruitore)p2.getFruitoreRichiedente();
+	        
+	        if(richiesta.equals(p2.getOfferta()))
+	            offerente = (Fruitore)p2.getFruitoreRichiedente();
+	    }
+	    
+	    sb.append("<html><div style='text-align:left;'>");
+	    sb.append("<b>Utente: ").append(utente.getNome()).
+	        append("</b><br>mail: " + utente.getIndirizzoMail());
+	    sb.append("<br><br><b>-riceve:</b> " + richiesta.getNome()).append(" per " + proposta.getOreRichiesta() + " ore")
+	        .append("  dall'utente: " + offerente.getNome());
+	    sb.append("<br><br><b>-offre:</b> " + offerta.getNome()).append(" per " + proposta.getOreOfferta() + " ore")
+	        .append("  all'utente: " + ricevente.getNome());
+	    sb.append("</div></html>");
+	    return sb.toString();
+	}
     
 }

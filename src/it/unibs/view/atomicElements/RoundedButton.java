@@ -1,16 +1,6 @@
 package it.unibs.view.atomicElements;
 
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -22,6 +12,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class RoundedButton extends JButton {
+	private static final long serialVersionUID = 1L;
 	public Color getEffectColor() {
 	    return effectColor;
 	}
@@ -30,8 +21,6 @@ public class RoundedButton extends JButton {
 	    this.effectColor = effectColor;
 	}
 	
-	private float animatSize;
-	private Point pressedPoint;
 	private Color effectColor = new Color(255, 255, 255);
 	private Color darkerColor;
 	public RoundedButton(String btnText,Color defaultColor) {

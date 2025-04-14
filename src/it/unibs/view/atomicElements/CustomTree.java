@@ -18,7 +18,8 @@ public class CustomTree {
      * Custom cell renderer per il JTree con maggiore spazio tra le gerarchie.
      */
     public static class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
-    	private static final String ARROW_PATH = "./Img/arrowRight.png";
+		private static final long serialVersionUID = 1L;
+		private static final String ARROW_PATH = "./Img/arrowRight.png";
     	private static final String ARROWDOWN_PATH = "./Img/arrowDown.png";
     	private final Font normalFont = new Font("Arial", Font.PLAIN, 30);
         private final Font boldFont = new Font("Arial", Font.BOLD, 35);
@@ -39,7 +40,8 @@ public class CustomTree {
             setLeafIcon(null);
         }
 
-        @Override
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
                                                       boolean expanded, boolean leaf, int row, boolean hasFocus) {
             JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);

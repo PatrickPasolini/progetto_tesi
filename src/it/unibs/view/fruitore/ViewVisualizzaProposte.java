@@ -8,6 +8,7 @@ import it.unibs.domain.Proposta;
 import it.unibs.view.atomicElements.*;
 
 public class ViewVisualizzaProposte extends BaseView {
+	private static final long serialVersionUID = 1L;
 	private static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
 	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblProposte;
@@ -113,7 +114,6 @@ public class ViewVisualizzaProposte extends BaseView {
 	private void visualizzaScambi(ArrayList<Proposta> scambi, String string) {
 		contentPanel.removeAll();
         int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
 		
 		JLabel lblScambi = new JLabel();
 		lblScambi.setText(string);

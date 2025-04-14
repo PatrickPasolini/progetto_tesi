@@ -3,18 +3,12 @@ package it.unibs.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
-
-import it.unibs.controller.ControllerConfiguratore;
-import it.unibs.controller.ControllerFruitore;
 import it.unibs.domain.Comprensorio;
 import it.unibs.domain.Utente;
 import it.unibs.main.JSONParser;
-import it.unibs.main.Main;
+import it.unibs.main.MainWithGUI;
 import it.unibs.main.Persistence;
 import it.unibs.main.PersistenceLogin;
-import it.unibs.view.console.ViewConfiguratore;
-import it.unibs.view.console.ViewFruitore;
 
 public class ModelAccesso{
 	private static final String NAME_DEFAULT = "a"; // Nome predefinito
@@ -69,7 +63,7 @@ public class ModelAccesso{
 	}
 	
 	public void salva() {
-		JSONParser.saveDataToJson(persistenceLogin, Main.CREDENTIALS);
+		JSONParser.saveDataToJson(persistenceLogin, MainWithGUI.CREDENTIALS);
 	}
 	
 	public void salvaNewUser(String nome, Utente user) {

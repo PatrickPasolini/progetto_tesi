@@ -7,17 +7,8 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
+import javax.swing.*;
 
-import it.unibs.domain.Categoria;
 import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.CustomScrollBarUI;

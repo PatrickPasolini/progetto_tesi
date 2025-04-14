@@ -3,28 +3,23 @@ package it.unibs.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
 import javax.swing.JFrame;
-
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
-import it.unibs.mylib.*;
 import it.unibs.view.configuratore.ViewContattaUtentiScambio;
 import it.unibs.view.configuratore.ViewScambiCategoria;
-import it.unibs.view.console.ViewConfiguratore;
 import it.unibs.view.fruitore.ViewFormulaProposteScambio;
 import it.unibs.view.fruitore.ViewRitiraProposte;
 import it.unibs.view.fruitore.ViewVisualizzaProposte;
 
 public class GestoreScambi {
+	private Model model;
+	private JFrame frame;
 	private ScambiHandler scambiHandler;
 	private GerarchieHandler gerarchieHandler;
-	private JFrame frame;
-	private Model model;
-	// Stack per gestire la navigazione
-	private Stack<Runnable> navigationStack = new Stack<>();
+	private Stack<Runnable> navigationStack = new Stack<>();// Stack per gestire la navigazione
 	
 	public GestoreScambi(Model model,JFrame frame) {
 		super();
@@ -33,6 +28,14 @@ public class GestoreScambi {
 		this.scambiHandler = new ScambiHandler(model);
 		this.gerarchieHandler = new GerarchieHandler(model);
 	}
+	
+	// Metodo generico per gestire la navigazione indietro
+	private void navigateBack() {
+	    if (!navigationStack.isEmpty()) {
+	        Runnable previousView = navigationStack.pop();
+	        previousView.run();
+	    }
+	}	
 
 	// #GESTORE SCAMBI-CONFIGURATORE
 	private void backHomeConfiguratore() {
@@ -70,39 +73,17 @@ public class GestoreScambi {
 		navigationStack.push(() -> sceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiAperti = scambiHandler.getScambiApertiFoglia(foglia);
 		viewProposte.visualizzaAperti(scambiAperti, foglia.getNome());
-//    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
 	}
 	private void visualizzaChiusi(ViewScambiCategoria viewProposte,Foglia foglia) {
 		navigationStack.push(() -> sceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiChiusi = scambiHandler.getScambiChiusiFoglia(foglia);
 		viewProposte.visualizzaChiusi(scambiChiusi, foglia.getNome());
-//    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
 	}
 	private void visualizzaRitirati(ViewScambiCategoria viewProposte,Foglia foglia) {
 		navigationStack.push(() -> sceltaScambi(viewProposte));
 		ArrayList<Proposta> scambiRitirati = scambiHandler.getScambiRitiratiFoglia(foglia);
 		viewProposte.visualizzaRitirati(scambiRitirati, foglia.getNome());
-//    	viewProposte.setBtnBackToSceltaListener(e -> navigateBack());
 	}
-	
-
-	// Metodo generico per gestire la navigazione indietro
-	private void navigateBack() {
-	    if (!navigationStack.isEmpty()) {
-	        Runnable previousView = navigationStack.pop();
-	        previousView.run();
-    }
-//	    else { // tolto per renderlo piú generico, fai un push all'inizio
-//	        // Fallback se non ci sono stati precedenti
-//	        backHomeConfiguratore();
-//	    }
-	}
-	
-	
-	
-	
-	
-	
 	
 	
 	// ## VISUALIZZA GLI SCAMBI COMPLETI
@@ -124,6 +105,8 @@ public class GestoreScambi {
 			return;
 		}
 		
+		viewContatta.setBtnHomeListener(e->backHomeConfiguratore());
+		viewContatta.setBtnSelezioneListener(e-> viewContatta.mostraDettagliScambio());
 		
 //		MyMenu menuScambio = view.menuSceltaScambio(scambiHandler.getNomiScambiCopleti());
 //		int scelta = menuScambio.scegli();
@@ -131,10 +114,7 @@ public class GestoreScambi {
 	}
 	
 	
-
-	
 	// # GESTORE SCAMBI-FRUITORE
-	
 	private Foglia richiesta;
 	private Foglia offerta;
 	private int oreRichiesta;

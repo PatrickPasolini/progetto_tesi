@@ -1,6 +1,5 @@
 package it.unibs.controller.accesso;
 
-import it.unibs.controller.ControllerConfiguratore;
 import it.unibs.controller.ControllerFruitore;
 import it.unibs.model.Model;
 import it.unibs.model.ModelAccesso;

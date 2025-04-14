@@ -6,14 +6,11 @@ import java.util.List;
 import java.util.Stack;
 
 import javax.swing.JFrame;
-import javax.swing.text.ViewFactory;
 
 import it.unibs.view.configuratore.ViewAddGerarchiaNonFoglia;
 import it.unibs.view.configuratore.ViewAddGerarchiaRadice;
 import it.unibs.view.configuratore.ViewFattori;
 import it.unibs.view.configuratore.ViewVisualizzaGerarchie;
-import it.unibs.view.console.View;
-import it.unibs.view.fruitore.ViewFormulaProposteScambio;
 import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;

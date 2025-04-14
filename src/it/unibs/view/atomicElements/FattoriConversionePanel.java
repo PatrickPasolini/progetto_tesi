@@ -16,7 +16,8 @@ import java.util.*;
  * Include uno scroll panel con header fisso.
  */
 public class FattoriConversionePanel extends JPanel {
-    private JTable tabella;
+	private static final long serialVersionUID = 1L;
+	private JTable tabella;
     private DefaultTableModel modelloTabella;
     private NestedMap<Foglia, Foglia, Double> mapFattori;
     private Foglia fogliaSelezionata;
@@ -39,7 +40,9 @@ public class FattoriConversionePanel extends JPanel {
         String[] colonne = {"Prestazione", "Fattore"};
         modelloTabella = new DefaultTableModel(colonne, 0);
         tabella = new JTable(modelloTabella) {
-            @Override
+			private static final long serialVersionUID = 1L;
+
+			@Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component comp = super.prepareRenderer(renderer, row, column);
                 
@@ -62,7 +65,9 @@ public class FattoriConversionePanel extends JPanel {
         
         // Crea lo scroll pane personalizzato
         scrollPane = new JScrollPane(tabella) {
-            @Override
+			private static final long serialVersionUID = 1L;
+
+			@Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -114,7 +119,9 @@ public class FattoriConversionePanel extends JPanel {
         for (int i = 0; i < tabella.getColumnCount(); i++) {
             final int colonna = i;
             tabella.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-                @Override
+				private static final long serialVersionUID = 1L;
+
+				@Override
                 public Component getTableCellRendererComponent(JTable table, Object value, 
                         boolean isSelected, boolean hasFocus, int row, int col) {
                     
@@ -155,7 +162,9 @@ public class FattoriConversionePanel extends JPanel {
         
         // Stile dell'header
         header.setDefaultRenderer(new DefaultTableCellRenderer() {
-            @Override
+			private static final long serialVersionUID = 1L;
+
+			@Override
             public Component getTableCellRendererComponent(JTable table, Object value,
                     boolean isSelected, boolean hasFocus, int row, int column) {
                 JLabel label = (JLabel) super.getTableCellRendererComponent(

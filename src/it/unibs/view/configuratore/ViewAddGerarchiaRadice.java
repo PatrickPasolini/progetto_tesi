@@ -137,7 +137,6 @@ public class ViewAddGerarchiaRadice extends BaseView {
 	public void visualizzaSceltaNodo(String nome, String campo, List<String> domini) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
-        int contentHeight = contentPanel.getHeight();
         
 		JLabel lblRadice = new JLabel("<html>" +
       	      							"<div align='center'>" +

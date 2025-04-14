@@ -3,7 +3,6 @@ package it.unibs.view.configuratore;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import it.unibs.domain.Comprensorio;
 import it.unibs.view.atomicElements.BaseView;
 import it.unibs.view.atomicElements.CircleHoverIconButton;
 import it.unibs.view.atomicElements.CustomScrollBarUI;
-import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewVisualizzaComprensori extends BaseView {
 	private static final long serialVersionUID = 1L;
