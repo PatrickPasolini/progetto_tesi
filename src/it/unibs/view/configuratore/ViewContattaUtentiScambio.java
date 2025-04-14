@@ -224,9 +224,5 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    sb.append("</div></html>");
 	    return sb.toString();
 	}
-
-	public void visualizzaScambiIsEmpty() {
-		
-	}
     
 }

@@ -1,18 +1,17 @@
 package it.unibs.controller.commands.configuratore;
 
+import it.unibs.controller.GestoreSalvataggio;
 import it.unibs.controller.commands.CommandUtente;
-import it.unibs.controllerGrasp.SalvaModificheHandler;
-import it.unibs.model.Model;
 
 public class SalvaModificheCommand implements CommandUtente {
-	private SalvaModificheHandler salvaHandler;
+	private GestoreSalvataggio gestoreSalvataggio;
 
-	public SalvaModificheCommand(Model model) {
-		this.salvaHandler = new SalvaModificheHandler(model);
+	public SalvaModificheCommand(GestoreSalvataggio gestoreSalvataggio) {
+		this.gestoreSalvataggio = gestoreSalvataggio;
 	}
 
 	@Override
 	public void execute() {
-		salvaHandler.salvaModifiche();		
+		gestoreSalvataggio.visualizzaSalvataggio();		
 	}
 }

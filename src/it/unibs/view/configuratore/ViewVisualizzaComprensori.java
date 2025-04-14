@@ -53,7 +53,6 @@ public class ViewVisualizzaComprensori extends BaseView {
         panel.setBackground(contentPanel.getBackground());
         if (listComprensori!=null) {
         	for (Comprensorio c : listComprensori) {
-    			System.out.println(c.stampaComprensorio().toString());
     			
     			JLabel lblComp = new JLabel();
                 String item = c.getName();

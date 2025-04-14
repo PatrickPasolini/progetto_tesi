@@ -2,11 +2,14 @@ package it.unibs.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 
 import it.unibs.controllerGrasp.ComprensoriHandler;
+import it.unibs.controllerGrasp.GerarchieHandler;
 import it.unibs.controllerGrasp.SalvaModificheHandler;
+import it.unibs.controllerGrasp.ScambiHandler;
 import it.unibs.domain.*;
 import it.unibs.model.Model;
 import it.unibs.view.configuratore.ViewNuovoComprensorio;
@@ -16,10 +19,12 @@ public class GestoreComprensoriConfiguratore {
 	private JFrame frame;
 	private Model model;
 	private List<String> comuni; 
+	private Comprensorio comprensorio ;
 	private ComprensoriHandler comprensoriHandler; 
 	private SalvaModificheHandler salvaHandler;
 	private ViewNuovoComprensorio viewNuovoComprensorio;
-	
+	private Stack<Runnable> navigationStack = new Stack<>();// Stack per gestire la navigazione
+
 	public GestoreComprensoriConfiguratore(Model model, JFrame frame) {
 		this.model=model; 
 		this.frame=frame;
@@ -28,13 +33,20 @@ public class GestoreComprensoriConfiguratore {
 		this.salvaHandler=new SalvaModificheHandler(model);
 	}
 
+	private void navigateBack() {
+	    if (!navigationStack.isEmpty()) {
+	        Runnable previousView = navigationStack.pop();
+	        previousView.run();
+	    }
+	}	
 	public void nuovoComprensorio() {
+		navigationStack.push(() -> backHome());
 		viewNuovoComprensorio = new ViewNuovoComprensorio(frame);
 		frame.getContentPane().add(viewNuovoComprensorio);
 		viewNuovoComprensorio.setLayout(null);
-		viewNuovoComprensorio.setBtnBackListeners(e-> backHome());
+		viewNuovoComprensorio.setBtnBackListeners(e-> navigateBack());
 		viewNuovoComprensorio.setBtnPlusListener(e -> aggiungiComune()); 
-		viewNuovoComprensorio.setBtnCreazioneListener(e -> aggiungiComprensorio());
+		viewNuovoComprensorio.setBtnCreazioneListener(e -> confermaAggiungiComprensorio());
 		viewNuovoComprensorio.setBtnHomeListener(e-> backHome());
 	}
 	
@@ -46,7 +58,9 @@ public class GestoreComprensoriConfiguratore {
         }
     }
 	
-	private void aggiungiComprensorio() {
+	
+	private void confermaAggiungiComprensorio() {
+		navigationStack.push(() -> nuovoComprensorio());
 		String name=viewNuovoComprensorio.getNomeComprensorio();
 		String placeholder = viewNuovoComprensorio.getPlaceholderComp();
 		
@@ -56,13 +70,29 @@ public class GestoreComprensoriConfiguratore {
 	    }
 		
 		if((!comprensoriHandler.checkNomeComprensorio(name))) {
-			comprensoriHandler.addComprensorio(new Comprensorio(name,comuni));
-			salvaHandler.salvaModifiche();	
-			viewNuovoComprensorio.setCreazioneEseguita(name);
+			comprensorio = new Comprensorio(name,comuni);
+			viewNuovoComprensorio.visualizzaConfermaCreazione(comprensorio);
 		}
 		else {
 			viewNuovoComprensorio.setCreazioneFallita_NomeNonUnivoco();
 		}
+		
+		viewNuovoComprensorio.setBtnConfermaCreazione(ev->{
+			boolean risposta = Boolean.parseBoolean(ev.getActionCommand());
+	        if (risposta) {
+	        	aggiungiComprensorio(comprensorio);
+	        }
+	        else {
+	        	backHome();
+	        }
+		});	
+		
+	}
+	
+	private void aggiungiComprensorio(Comprensorio comprensorio) {
+		comprensoriHandler.addComprensorio(comprensorio);
+		salvaHandler.salvaModifiche();
+		viewNuovoComprensorio.setCreazioneEseguita(comprensorio);
 	}
 	
 	private void backHome() {

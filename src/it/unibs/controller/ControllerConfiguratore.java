@@ -26,6 +26,7 @@ public class ControllerConfiguratore implements Controller {
 	private GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore;
 	private GestoreComprensoriConfiguratore gestoreComprensori;
 	private GestoreScambi gestoreScambi;
+	private GestoreSalvataggio gestoreSalvataggio;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
 	private JFrame frame;
 	
@@ -33,10 +34,11 @@ public class ControllerConfiguratore implements Controller {
 		this.model = model;
 		this.frame=frame;
 		frame.setResizable(false);
-		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model,frame);//
-		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model,frame);//
+		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model,frame);
+		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model,frame);
 		this.gestoreScambi = new GestoreScambi(model,frame);
-		
+		this.gestoreSalvataggio = new GestoreSalvataggio(model, frame);
+		 
 		inizializzaCommandsMenu();
 	}
 	public void setFrame(JFrame frame) {
@@ -47,7 +49,7 @@ public class ControllerConfiguratore implements Controller {
 		commandMenu.put(1, new AggiungiComprensorioCommand(gestoreComprensori));
 		commandMenu.put(2, new AggiungiGerarchiaCommand(gestoreGerarchieConfiguratore));
 		commandMenu.put(3, new VisualizzaFattoriCategoriaCommand(gestoreGerarchieConfiguratore));
-		commandMenu.put(4, new SalvaModificheCommand(model));
+		commandMenu.put(4, new SalvaModificheCommand(gestoreSalvataggio));
 		commandMenu.put(5, new StampaComprensoriCommand(gestoreComprensori));
 		commandMenu.put(6, new StampaGerachieCommand(gestoreGerarchieConfiguratore));
 		commandMenu.put(7, new VisualizzaScambiCategoriaCommand(gestoreScambi));

@@ -1,9 +1,6 @@
 package it.unibs.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 import javax.swing.JFrame;
 import it.unibs.controllerGrasp.GerarchieHandler;
@@ -40,12 +37,15 @@ public class GestoreScambi {
 	}	
 
 	// #GESTORE SCAMBI-CONFIGURATORE
+	
 	private void backHomeConfiguratore() {
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
 	}
 	
-	// ## VISUALIZZA PROPOSTE APERTE/CHIUSE/RITIRATE DI UNA PRESTAZIONE D'OPERA
+	/**
+	 * ## VISUALIZZA PROPOSTE APERTE/CHIUSE/RITIRATE DI UNA PRESTAZIONE D'OPERA
+	 */
 	public void visualizzaProposteFoglia() {
 		navigationStack.push(() -> backHomeConfiguratore());
 	    ViewScambiCategoria viewProposte = new ViewScambiCategoria(frame, gerarchieHandler.getGerarchie());
@@ -87,25 +87,13 @@ public class GestoreScambi {
 		viewProposte.visualizzaRitirati(scambiRitirati, foglia.getNome());
 	}
 	
-	
-	// ## VISUALIZZA GLI SCAMBI COMPLETI
 	/**
-	 * Metodo per visualizzare le mail e le informazioni deglu utenti di un insieme
-	 * di scambi chiusi
-	 * Se non ci sono scambi completi viene stampato un messaggio
-	 * Se ci sono scambi completi si sceglie lo scambio con un menu
-	 * @since 4 
+	 * ## VISUALIZZA GLI SCAMBI COMPLETI
 	 */
 	public void visualizzaScambiCompleti() {
-		List<Scambio> scambi = scambiHandler.getScambiCompleti();
 		ViewContattaUtentiScambio viewContatta = new ViewContattaUtentiScambio(frame,scambiHandler.getNomiScambiCopleti());	
 		frame.getContentPane().add(viewContatta);
 		viewContatta.setLayout(null);
-		
-		if(scambiHandler.getScambiCompleti().isEmpty()) {
-//			view.msgScambiCompletiVuoto();
-			return;
-		}
 		
 		viewContatta.setBtnHomeListener(e->backHomeConfiguratore());
 		viewContatta.setBtnSelezioneListener(e-> {
@@ -113,11 +101,10 @@ public class GestoreScambi {
 			Scambio scambioSelezionato = scambiHandler.getScambioCompleto(index);
 			viewContatta.mostraDettagliScambio(scambioSelezionato);
 		});
-		
 	}
 	
+	//# GESTORE SCAMBI-FRUITORE
 	
-	// # GESTORE SCAMBI-FRUITORE
 	private Foglia richiesta;
 	private Foglia offerta;
 	private int oreRichiesta;
@@ -127,14 +114,8 @@ public class GestoreScambi {
 		controllerFruitore.run();
 	}
 	/**
-	 * Permette al fruitore la formulazione di una proposta di scambio di prestazioni
-	 * richiedendo un quantitativo di ore di una prestazione 
-	 * e offrendo un altro tipo di prestazione
-	 * il sistema calcola le ore necessarie della prestazione offerta sulla base dei fdc
-	 * Se il fruitore conferma lo scambio viene salvato in forma persistente 
-	 *@since 3
+	 * ## CREAZIONE DI UNA PROPOSTA DI SCAMBIO 
 	 */
-	
 	public void creaProposta() {		
 		navigationStack.push(() -> backHomeFruitore());
 		ViewFormulaProposteScambio viewProposte = new ViewFormulaProposteScambio(frame, gerarchieHandler.getGerarchie());
@@ -179,9 +160,7 @@ public class GestoreScambi {
 	
 	
 	/**
-	 * Metodo per visualizzare tutte le proposte fatte dall'utente
-	 * @param gestoreScambi 
-	 * @since 4
+	 * ## VISUALIZZA PROPOSTE APERTE/CHIUSE/RITIRATE DELL'UTENTE
 	 */
 	public void visualizzaProposteUtente() {
 		navigationStack.push(() -> backHomeFruitore());
@@ -210,14 +189,8 @@ public class GestoreScambi {
 	}
 	
 	
-	
-	// ## RITIRO PROPOSTE
 	/**
-	 * Metodo per ritirare una proposta tra quelle aperte
-	 * dopo averla scelta viene chiesta conferma sul ritiro
-	 * @param gestoreScambi 
-	 * 
-	 * @since 4
+	 * ## RITIRO PROPOSTE
 	 */
 	public void ritiraProposta() {
 		navigationStack.push(() -> backHomeFruitore());
@@ -235,9 +208,8 @@ public class GestoreScambi {
 		else {
 			viewRitiraProposte.visualizzaNessunoScambioRitirabile();
 		}
-		
 	}
-	public void visualizzaConferma(ViewRitiraProposte viewRitiraProposte) {
+	private void visualizzaConferma(ViewRitiraProposte viewRitiraProposte) {
 		Proposta propDaRitirare = viewRitiraProposte.getPropostaSelezionata();
 		if(propDaRitirare!=null) { 
 			navigationStack.push(() -> ritiraProposta());
@@ -257,7 +229,6 @@ public class GestoreScambi {
 		else {
 			viewRitiraProposte.setSelezioneFallita();
 		}
-		
 	}
 	
 }
