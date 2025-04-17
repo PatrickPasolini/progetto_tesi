@@ -42,7 +42,7 @@ public class GestoreGerarchieConfiguratore {
 	    }
     }
 	private void backHome() {
-		gerarchieHandler.addGerarchia();
+		
 		navigationStack.clear();
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
@@ -91,12 +91,50 @@ public class GestoreGerarchieConfiguratore {
 	private void sceltaNodoACuiAggiungere(ViewAddGerarchia view,ViewAddGerarchiaRadice viewRadice ) {
 		List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
 		gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
-		view.visualizzaSceltaNodo(gerarchiaInCostruzione);
+		
 
 		view.setBtnContinuaListener(e->sceltaTipoNodo(view.getFogliaSelezionata(), viewRadice,view));
+		
+		if(view instanceof ViewAddGerarchiaFoglia){
+			ViewAddGerarchiaFoglia viewF = (ViewAddGerarchiaFoglia) view;
+			if(gerarchieHandler.isTerminabile()) {
+				viewF.setTerminabile(true);
+				viewF.setBtnTerminaListener(e->confermaTerminazione(viewF));
+			}
+			else {
+				viewF.setTerminabile(false);
+			}
+			viewF.visualizzaSceltaNodo(gerarchiaInCostruzione);
+		}
+		else {
+			view.visualizzaSceltaNodo(gerarchiaInCostruzione);
+		}
+	
 	}
 	
-	 /**
+	private void confermaTerminazione(ViewAddGerarchiaFoglia viewF) {
+		List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
+		gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
+		viewF.confermaTerminazione(gerarchiaInCostruzione);
+		
+		
+		viewFoglia.setBtnConfermaCreazione(e->{
+			boolean risposta = Boolean.parseBoolean(e.getActionCommand());
+	        if (risposta) {
+	        	viewFoglia.creazioneConclusa(gerarchiaInCostruzione);
+	        	gerarchieHandler.addGerarchia();
+	        	
+	        }
+	        else {
+	        	backHome();
+	        }
+		});	
+	}
+	
+	
+	
+	
+	/**
      * Aggiungere figli alla gerarchia in base alla scelta dell'utente
      * scelta = 1 -> aggiungi figlio non foglia
      * scelta = 2 -> aggiungi figlio foglia
@@ -188,9 +226,12 @@ public class GestoreGerarchieConfiguratore {
 			
 			inserimentoFdc(fogliaNew,fogliaOld);
 			sceltaNodoACuiAggiungere(viewFoglia,viewRadice);
+			
+			
 		});
 		
 	}
+	
 	
 	
 	private void inserimentoFdc(Foglia fogliaNew, Foglia fogliaOld) {

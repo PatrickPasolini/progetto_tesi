@@ -288,4 +288,32 @@ public class ModelGerarchie {
 	public double getFattore(Foglia richiesta, Foglia offerta) {
 		return mapFattori.get(richiesta, offerta);
 	}
+
+	/**
+	 * Verifica se la gerarchia è “terminabile”:
+	 * ogni nodo NonFoglia ha almeno un figlio (Categoria o Foglia).
+	 * 
+	 * @return true se ogni NonFoglia ha almeno un figlio, false altrimenti
+	 * @since 1X
+	 */
+	public boolean isTerminabile() {
+	    // Non ha radice  non è terminabile
+	    if (newGerarchia.getRadice() == null) {
+	        return false;
+	    }
+
+	    // Scorri tutte le categorie: consideriamo solo le NonFoglia
+	    for (Categoria c : newGerarchia.getCategorie()) {
+	        if (c instanceof NonFoglia) {
+	            NonFoglia nf = (NonFoglia) c;
+	            // qui presupponiamo che NonFoglia esponga i suoi figli:
+	            // List<Categoria> getFigli();
+	            if (nf.getChilds().isEmpty()) {
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
+	}
+
 }

@@ -39,8 +39,11 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 	private TextFieldWithPlaceholder nomeField;
 	private TextFieldWithPlaceholder descrizioneField;
 	private RoundedButton btnAvanti;
+	private RoundedButton btnTerminazione;
 	private RoundedButton btnNodo;
 	private RoundedButton btnFdc;
+	private RoundedButton btnSi;
+	private RoundedButton btnNo;
 	private NonFoglia categoria;
 	private NumericFieldWithPlaceholder fdcField;
 	
@@ -49,6 +52,8 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
     private CircleHoverIconButton btnHome;
 	private JTree tree;
 	private JLabel lblSceltaCategoria; 
+	
+	private boolean terminabile; 
 	
 	public ViewAddGerarchiaFoglia(JFrame frame, NonFoglia categoria) {
 		super(frame);
@@ -61,15 +66,19 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 		super.inizializzaComponenti();
 		lblRadice = new JLabel();
 		lblSceltaCategoria = new JLabel();
-		nomeField = new TextFieldWithPlaceholder("Nome categoria prestazione specifica");
+		nomeField = new TextFieldWithPlaceholder("Nome prestazione specifica");
 		descrizioneField = new TextFieldWithPlaceholder("Descrizione opzionale");
 		btnAvanti = new RoundedButton("Avanti", new Color(8, 102, 255));
+		btnTerminazione = new RoundedButton("Termina creazione", new Color(0, 143, 57));
 		btnFdc = new RoundedButton("Conferma fattore", new Color(8, 102, 255));
 		btnNodo= new RoundedButton("Conferma e prosegui", new Color(8, 102, 255));
+		
 		lblSceltaFoglia = new JLabel("Seleziona la prestazione d'opera che necessiti:");
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		
+		btnSi = new RoundedButton("Crea", new Color(0, 143, 57));
+		btnNo = new RoundedButton("Annulla", new Color(165, 32, 25));
 	}
 
 	@Override
@@ -110,6 +119,9 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
         btnAvanti.setForeground(Color.WHITE);
         contentPanel.add(btnAvanti);
         
+        
+        
+        
         btnBack.setBounds(45, 45, 90, 90);
         contentPanel.add(btnBack);
         
@@ -119,21 +131,47 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
         contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
-	
-//	public void visualizzaInserimentoFoglia() {
-//		nomeField.setPlaceholder("Nome della prestazione");
-//		
-//		revalidate();
-//		repaint();
-//	}
+	public void visualizzaSceltaNodo(List<Gerarchia> gerarchiaInCostruzione) {
+		super.visualizzaSceltaNodo(gerarchiaInCostruzione);
+	    int contentWidth = contentPanel.getWidth();
+        
+        if (terminabile) {
+        	contentPanel.remove(super.lblSceltaCategoria);
+        	contentPanel.remove(super.scrollPane);
+        	
+        	super.lblSceltaCategoria.setText("<html><div align='center'>" +
+					"Seleziona una categoria di prestazione a cui <br>" +
+					"aggiungere una categoria o una prestazione specifica<br>"
+					+ "oppure termina la creazione</div></html>");
+        	Dimension size = super.lblSceltaCategoria.getPreferredSize();
+        	super.lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
+            contentPanel.add(super.lblSceltaCategoria);
+        	
+            scrollPane.setBounds(contentPanel.getWidth()/2-400, size.height+50, 800, 650 - size.height - 50);
+            contentPanel.add(scrollPane);
+            
+        	btnTerminazione.setBorder(null);
+	   	    btnTerminazione.setMargin(new Insets(0, 10, 0, 0));
+	   	    btnTerminazione.setFont(new Font("Tahoma", Font.BOLD, 28));
+	   	    btnTerminazione.setBounds(contentWidth  - 400, 760, 350, 90);
+	   	    btnTerminazione.setForeground(Color.WHITE);
+	   	    contentPanel.add(btnTerminazione);
+	    }
+        
+	    contentPanel.revalidate();
+	    contentPanel.repaint();
+	}
 	
 	public void visualizzaSceltaFogliaFDC(List<Gerarchia> gerarchiaInCostruzione, Foglia foglia) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
 	    
 	    lblSceltaCategoria.setText("<html><div align='center'>" +
-				"Seleziona una prestazione specifica a cui <br>" +
-				"</div></html>");
+				"Selezionare una prestazione esistente<br>"
+				+ "con la quale impostare il fattore di conversione<br>"+
+				" relativo alla nuova prestazione "
+				+ "<span style='color:#085FFF;'>"+foglia.getNome()+
+				"</span></div></html>");
         lblSceltaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 55));
         Dimension size = lblSceltaCategoria.getPreferredSize();
         lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
@@ -154,17 +192,14 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         contentPanel.add(scrollPane);
-		
-		
-		
-		
+
 		btnNodo.setBorder(null);
 	    btnNodo.setMargin(new Insets(0, 10, 0, 0));
 	    btnNodo.setFont(new Font("Tahoma", Font.BOLD, 28));
 	    btnNodo.setBounds(contentWidth / 2 - 225, 760, 450, 90);
 	    btnNodo.setForeground(Color.WHITE);
 	    contentPanel.add(btnNodo);
-        
+	    
         btnBack.setBounds(45, 45, 90, 90);
         contentPanel.add(btnBack);
         
@@ -199,7 +234,7 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 				+ "</span><br>inserisci un valore compresto tra " + formattedMin 
 				+ " e " + formattedMax
 				+ "</div></html>");
-        lblSceltaCategoria.setFont(new Font("Tahoma", Font.BOLD, 55));
+        lblSceltaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 55));
         Dimension size = lblSceltaCategoria.getPreferredSize();
         lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
         contentPanel.add(lblSceltaCategoria);
@@ -229,6 +264,77 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 	    contentPanel.repaint();
 	}
 	
+	public void confermaTerminazione(List<Gerarchia> gerarchiaInCostruzione) {
+		contentPanel.removeAll();
+	    int contentWidth = contentPanel.getWidth();
+	    
+	    lblSceltaCategoria.setText("<html><div align='center'>" +
+				"Vuoi confermare la creazione<br> della seguente gerarchia<br>"
+				+ "</span></div></html>");
+        lblSceltaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 55));
+        Dimension size = lblSceltaCategoria.getPreferredSize();
+        lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 50, size.width, size.height);
+        contentPanel.add(lblSceltaCategoria);
+        
+        if (gerarchiaInCostruzione != null && !gerarchiaInCostruzione.isEmpty()) {
+	        tree = CustomTree.createUnifiedTree(gerarchiaInCostruzione,false,true);
+	        tree.setBackground(contentPanel.getBackground());
+	        tree.setToggleClickCount(1);
+	        tree.setEditable(false);
+        }
+        
+        JScrollPane scrollPane = new JScrollPane(tree);
+        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        scrollPane.setBackground(contentPanel.getBackground());
+        scrollPane.setBounds(contentPanel.getWidth()/2-400, size.height+50, 800, 450);
+        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+        contentPanel.add(scrollPane);
+
+        btnSi.setFont(new Font("Tahoma", Font.BOLD, 33));
+        btnSi.setBorder(null);
+        btnSi.setMargin(new Insets(0, 10, 0, 0));
+        btnSi.setForeground(Color.WHITE);
+        btnSi.setBounds(contentWidth / 2 - 260, size.height+550, 250, 120);
+	    contentPanel.add(btnSi);
+	    
+	    btnNo.setFont(new Font("Tahoma", Font.BOLD, 33));
+	    btnNo.setBorder(null);
+	    btnNo.setMargin(new Insets(0, 10, 0, 0));
+	    btnNo.setForeground(Color.WHITE);
+	    btnNo.setBounds(contentWidth / 2 + 10, size.height+550, 250, 120);
+	    contentPanel.add(btnNo);
+	    
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
+        
+        btnHome.setBounds(140, 45, 90, 90);
+        contentPanel.add(btnHome);
+        
+        contentPanel.revalidate();
+	    contentPanel.repaint();
+	}
+	
+	public void creazioneConclusa(List<Gerarchia> gerarchiaInCostruzione) {
+		confermaTerminazione(gerarchiaInCostruzione);
+
+		int contentWidth = contentPanel.getWidth();
+		lblSceltaCategoria.setText("<html><div align='center'>" +
+				"Creazione della seguente gerarchia <br>effettuata con successo<br>"
+				+ "</span></div></html>");
+		 Dimension size = lblSceltaCategoria.getPreferredSize();
+        lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
+        contentPanel.add(lblSceltaCategoria);
+		
+		
+		contentPanel.remove(btnNo);
+		contentPanel.remove(btnSi);
+		
+		revalidate();
+	    repaint();
+	}
+	
 	
 	
 	
@@ -246,6 +352,12 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 			btnAvanti.removeActionListener(al);
 		}
 		btnAvanti.addActionListener(listener);
+	}
+	public void setBtnTerminaListener(ActionListener listener) {
+		for (ActionListener al : btnTerminazione.getActionListeners()) {
+			btnTerminazione.removeActionListener(al);
+		}
+		btnTerminazione.addActionListener(listener);
 	}
 	public void setBtnNodoListener(ActionListener listener) {
 		for (ActionListener al : btnNodo.getActionListeners()) {
@@ -269,6 +381,21 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 	    revalidate();
 	    repaint();
 	}
+	public void setBtnConfermaCreazione(ActionListener listener) {
+	    for (ActionListener al : btnSi.getActionListeners()) {
+	        btnSi.removeActionListener(al);
+	    }
+	    for (ActionListener al : btnNo.getActionListeners()) {
+	        btnNo.removeActionListener(al);
+	    }
+	    btnSi.setActionCommand("true");
+	    btnNo.setActionCommand("false");
+	    btnSi.addActionListener(listener);
+	    btnNo.addActionListener(listener);
+	}
+	public void setTerminabile(boolean value) {
+		this.terminabile = value;
+	}
 	
 	public Foglia getFogliaSelezionataa() {
         // Recupera il percorso di selezione nel tree
@@ -287,6 +414,7 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
         }
         return null;
     }
+	
 	public String getNomeField() {
 		return nomeField.getText();
 	}

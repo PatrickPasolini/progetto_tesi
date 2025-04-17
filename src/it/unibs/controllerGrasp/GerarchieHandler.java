@@ -86,4 +86,8 @@ public class GerarchieHandler {
 		return model.getRadice(i);
 	}
 
+	public boolean isTerminabile() {
+		return model.isTerminabile();
+	}
+
 }

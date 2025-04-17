@@ -38,7 +38,7 @@ public class ViewAddGerarchia extends BaseView{
 	private JRadioButton rbPrestazione;
 	protected JLabel lblSceltaCategoria;  
 //	private ButtonGroup rbGroup;
-	
+	protected JScrollPane scrollPane ;
 	public ViewAddGerarchia(JFrame frame) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 	}
@@ -53,6 +53,7 @@ public class ViewAddGerarchia extends BaseView{
 		rbCategoria = new JRadioButton("Categoria di prestazione");
         rbPrestazione = new JRadioButton("Prestazione specifica");
 		btnContinua= new RoundedButton("Conferma scelta e prosegui", new Color(8, 102, 255));
+		
 //		rbGroup = new ButtonGroup();
 	}
 
@@ -66,7 +67,7 @@ public class ViewAddGerarchia extends BaseView{
 	    int contentWidth = contentPanel.getWidth();
         
 		
-        lblSceltaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 55));
+        lblSceltaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 50));
         Dimension size = lblSceltaCategoria.getPreferredSize();
         lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
         contentPanel.add(lblSceltaCategoria);
@@ -75,17 +76,20 @@ public class ViewAddGerarchia extends BaseView{
 	        tree = CustomTree.createUnifiedTree(gerarchiaInCostruzione,false,true);
 	        tree.setBackground(contentPanel.getBackground());
 	        tree.setEditable(false);
+	        
+	        
+	        scrollPane = new JScrollPane(tree);
+//	        scrollPane.setBorder(null);
+	        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        scrollPane.setBackground(contentPanel.getBackground());
+	        scrollPane.setBounds(contentPanel.getWidth()/2-400, size.height+50, 800, 650 - size.height - 50);
+	        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+	        scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+	        scrollPane.getVerticalScrollBar().setUnitIncrement(20); 
+	        contentPanel.add(scrollPane);
         }
         
-        JScrollPane scrollPane = new JScrollPane(tree);
-//        scrollPane.setBorder(null);
-        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentPanel.getWidth()/2-400, size.height+50, 800, 450);
-        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-        contentPanel.add(scrollPane);
+        
         
         rbCategoria.setFont(new Font("Tahoma", Font.PLAIN, 34));
         rbCategoria.setBounds(contentWidth/ 2 - 430, 650, 400, 100);
