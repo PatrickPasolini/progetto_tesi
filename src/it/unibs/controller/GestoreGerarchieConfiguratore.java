@@ -1,12 +1,12 @@
 package it.unibs.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
 import javax.swing.JFrame;
 
+import it.unibs.view.configuratore.ViewAddGerarchia;
+import it.unibs.view.configuratore.ViewAddGerarchiaFoglia;
 import it.unibs.view.configuratore.ViewAddGerarchiaNonFoglia;
 import it.unibs.view.configuratore.ViewAddGerarchiaRadice;
 import it.unibs.view.configuratore.ViewFattori;
@@ -26,12 +26,14 @@ public class GestoreGerarchieConfiguratore {
 	private Model model;
 
 	private Stack<Runnable> navigationStack = new Stack<>();
-	private ViewAddGerarchiaRadice viewRadice;
+
+	private ViewAddGerarchiaFoglia viewFoglia;
+	private ViewAddGerarchiaNonFoglia viewNonFoglia;
 	
 	public GestoreGerarchieConfiguratore(Model model, JFrame frame) {
 		this.model = model;
-		this.gerarchieHandler = new GerarchieHandler(model);
 		this.frame = frame;
+		this.gerarchieHandler = new GerarchieHandler(model);
 	}
 	private void navigateBack() {
 	    if (!navigationStack.isEmpty()) {
@@ -39,49 +41,24 @@ public class GestoreGerarchieConfiguratore {
 	        previousView.run();
 	    }
     }
-	
-	
 	private void backHome() {
+		gerarchieHandler.addGerarchia();
+		navigationStack.clear();
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
 	}
-	
-	
-	private NonFoglia radice;
-	private List<String> domini = new ArrayList<>();
-	/**
-	 * Menu per scegliere se continuare con la creazione o terminare prima che inizi la creazione
-	 * @since 1
-	 */
+
 	public void inizioCreazione() {
+		navigationStack.push(() -> backHomeConfiguratore());
+
 		gerarchieHandler.resetNewGerarchia();
-		viewRadice = new ViewAddGerarchiaRadice(frame);
+		ViewAddGerarchiaRadice viewRadice = new ViewAddGerarchiaRadice(frame);
 		frame.getContentPane().add(viewRadice);
 		viewRadice.setLayout(null);
 		
-		viewRadice.setBtnAvantiListener(e -> {
-			radice = addRadice();
-			gerarchieHandler.addRadice(radice);
-			viewRadice.visualizzaSceltaNodo(radice.getNome(),radice.getCampo(),radice.getDomini());
-		});
-		viewRadice.setBtnPlusListener(e -> addDominiNonFoglia()); 
-		
-		viewRadice.setBtnConfermaCreazione(e -> {
-            boolean foglia = Boolean.parseBoolean(e.getActionCommand());
-            
-            if (foglia) {
-            	
-			}
-            else {
-            	ViewAddGerarchiaNonFoglia viewNonFoglia = new ViewAddGerarchiaNonFoglia(frame,gerarchieHandler.getGerarchie());
-            	frame.getContentPane().add(viewNonFoglia);
-            	viewNonFoglia.setLayout(null);
-            	
-//            	viewNonFoglia.aggiornaAlbero(gerarchieHandler.getGerarchie());
-            }
-            
-
-		});
+		viewRadice.setBtnAvantiListener(e -> addRadice(viewRadice));
+		viewRadice.setBtnBackListeners(e-> navigateBack());
+		viewRadice.setBtnHomeListener(e->backHome());
 		
 //		gerarchieHandler.resetNewGerarchia();
 //		view.msgCreazioneGerarchia();
@@ -92,121 +69,168 @@ public class GestoreGerarchieConfiguratore {
 //		gerarchieHandler.addGerarchia();
 	}
 	
-	 /**
-     * Costruisce la gerarchia in modo ricorsivo partendo dalla Categoria fornita come parametro
-     * Se parent e' istanza di Foglia il metodo non fa niente
-     * Altrimenti, chiede l'inserimento di un figlio (Categoria) per ogni dominio di parent
-     * per poi chiamare costruisciGerarchia su ogni figlio (ricorsione)
-     * @param parent la categoria genitore
-     * @since 1
-     */
-	private void costruisciGerarchia(Categoria parent) {
-		if(parent instanceof Foglia)
+	private void addRadice(ViewAddGerarchiaRadice viewRadice) {
+		String nome = viewRadice.getRadiceField(); 
+		if (gerarchieHandler.checkNomeRadiceGerarchia(nome) 
+				|| nome.isEmpty() || nome.equals(viewRadice.getRadicePlaceholder())) {
+		    viewRadice.setNomeRadiceNonUnivoco(viewRadice);
 			return;
-		
-		for(String dominio : ((NonFoglia)parent).getDomini()) {
-			aggiungiFigli((NonFoglia) parent, dominio);
 		}
-		
-		for (Categoria child : parent.getChilds()) {
-            costruisciGerarchia(child);
-        }
+		else {
+			navigationStack.push(() -> inizioCreazione());
+			String descrizione = viewRadice.getDescrizioneField();
+			NonFoglia radice =  new NonFoglia(nome, "", descrizione);
+			gerarchieHandler.addRadice(radice);
+			
+			
+//			navigationStack.push(() -> addRadice());
+			sceltaNodoACuiAggiungere(viewRadice,viewRadice);
+		}
+	}
+	
+	private void sceltaNodoACuiAggiungere(ViewAddGerarchia view,ViewAddGerarchiaRadice viewRadice ) {
+		List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
+		gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
+		view.visualizzaSceltaNodo(gerarchiaInCostruzione);
+
+		view.setBtnContinuaListener(e->sceltaTipoNodo(view.getFogliaSelezionata(), viewRadice,view));
 	}
 	
 	 /**
-     * Metodo costituito da un meno che permette di aggiungere figli alla gerarchia in base alla scelta dell'utente
+     * Aggiungere figli alla gerarchia in base alla scelta dell'utente
      * scelta = 1 -> aggiungi figlio non foglia
      * scelta = 2 -> aggiungi figlio foglia
-     *
-     * @param parent       la categoria genitore 
-     * @param dominio il dominio della categoria genitore
-     * @since 1
      */
-	private void aggiungiFigli(NonFoglia parent, String dominio) {
-//	    int scelta = view.menuSceltaFigliGerarchia(parent, dominio).scegliNoExit();
-//
-//	    switch(scelta) {
-//	    	case 1:
-//	            addNonFoglia(parent);
-//	            break; 
-//	    	case 2:
-//	    		addFoglia(parent);
-//	    		break;
-//	    	default:
-//	    		break;
-//	    }    
-	}
-	
-	/**
-     * Aggiunge la radice della gerarchia, chiede l'inserimento di un nome, descrizone(facoltativa), campo 
-     * Controlla che il nome della radice sia univoco, per permettere alle gerarchie di essere distinte {@link Model#checkNomeRadiceGerarchia(String)}}
-     * @return la radice della gerarchia
-     * @since 1
-     */
-	private NonFoglia addRadice() {
-		String nome = viewRadice.getRadiceField();
-		String descrizione = viewRadice.getDescrizioneField();
-		String campo = viewRadice.getCampoField();
-		NonFoglia r =  new NonFoglia(nome, campo, descrizione);
-		for (String d : domini) {
-			r.addDominio(d);
+	private void sceltaTipoNodo(NonFoglia parent,ViewAddGerarchiaRadice viewRadice,ViewAddGerarchia view) {
+		int scelta = view.getTipoSelezionato();
+		System.out.println(scelta);
+		if (parent==null || scelta ==0) {
+			view.setSelezioneFallita();
+    		return;
 		}
-		return r;
 		
-//		String nome;
-//		do {
-//			view.msgNomeRadiceGerarchia();
-//			nome = InputDati.leggiStringaNonVuota("");
-//		} while (gerarchieHandler.checkNomeRadiceGerarchia(nome));
+		if(gerarchieHandler.getNewGerarchia().getRadice()==parent);
+			navigationStack.push(()->addRadice(viewRadice));
+		
+		switch(scelta) {
+    	case 1:
+            creazioneNonFoglia(parent,viewRadice);
+            break; 
+    	case 2:
+//    		addFoglia(parent);
+    		creazioneFoglia(parent,viewRadice);
+    		break;
+    	default:
+    		break;
+		}   
+		
+	}
+	private void creazioneFoglia(NonFoglia parent, ViewAddGerarchiaRadice viewRadice) {
+		
+		viewFoglia = new ViewAddGerarchiaFoglia(frame, parent);
+		frame.getContentPane().add(viewFoglia);
+		viewFoglia.setLayout(null);
+		
+		viewFoglia.setBtnAvantiListener(e->addFoglia(parent,viewRadice));
+		viewFoglia.setBtnHomeListener(e->backHome()); 
+		viewFoglia.setBtnBackListeners(e ->navigateBack());
+	}
+	private void addFoglia(NonFoglia parent, ViewAddGerarchiaRadice viewRadice) {
+		String nome = viewFoglia.getNomeField();
+		if (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome)
+				|| nome.isEmpty() || nome.equals(viewFoglia.getNomePlaceholder())) {
+			viewFoglia.setNomeNellaGerarchiaNonUnivoco(viewFoglia);
+			return;
+		}
+		else {
+			navigationStack.push(() -> creazioneNonFoglia(parent,viewRadice));
+			String descrizione = viewFoglia.getDescrizioneField();
+			Foglia fogliaNew =  new Foglia(nome,descrizione,gerarchieHandler.getNewGerarchia().getNomeRadice());
+			gerarchieHandler.getNewGerarchia().addCategoria(fogliaNew);
+			
+			sceltaFogliaFdc(parent,fogliaNew,viewRadice);
+		}
+//		Foglia fogliaNew = new Foglia(nome, descrizione,gerarchieHandler.getNewGerarchia().getNomeRadice());
+//		gerarchieHandler.getNewGerarchia().addCategoria(fogliaNew);
 //		
-//		view.msgDescrizioneCategoria();
-//		String descrizione = InputDati.leggiStringa("");
+//		inserisciFattoriConversione(fogliaNew);
 //		
-//		view.msgNomeCampoGerarchia();
-//		String campo = InputDati.leggiStringaNonVuota("");
-//		
-//		NonFoglia r =  new NonFoglia(nome, campo, descrizione);
-//		
-//		addDominiNonFoglia(r);
-//		
-//		return r;
+//		gerarchieHandler.getNewGerarchia().addFoglia(fogliaNew);
+//		parent.addChilds(fogliaNew);
 	}
 	
-	 /**
-     * Aggiunge una non foglia alla gerarchia, chiedendo all'Utente : nome,descrizione(facoltativa),campo
-     * Il nome della Categoria(sia Foglia che NonFoglia) deve essere univoco all'interno della gerarchia 
-     * 		{@link Gerarchia#checkNomeCategoria(String)}
-     * @param parent Categoria padre a cui aggiungere la categoria NonFoglia
-     * @since 1
-     */
-	private void addNonFoglia(NonFoglia parent) {
-//		String nome;
-//		do {
-//			view.msgNomeNuovaCategoria();
-//			nome = InputDati.leggiStringaNonVuota("");
-//		} while (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome));
-//		
-//		view.msgDescrizioneCategoria();
-//		String descrizione = InputDati.leggiStringa("");
-//		
-//		view.msgNomeCampoGerarchia();
-//		String campo = InputDati.leggiStringaNonVuota("");
-//		
-//		NonFoglia n = new NonFoglia(nome, campo, descrizione);
-//		addDominiNonFoglia(n);
-//		
-//		gerarchieHandler.getNewGerarchia().addCategoria(n);
-//		parent.addChilds(n);
+	private void sceltaFogliaFdc(NonFoglia parent, Foglia fogliaNew,ViewAddGerarchiaRadice viewRadice) {
+//		inserisciFattoriConversione(fogliaNew);
+//		viewFoglia.visualizzaSceltaFogliaFDC(gerarchiaInCostruzione);
+		gerarchieHandler.getNewGerarchia().addFoglia(fogliaNew);
+		parent.addChilds(fogliaNew); // forse aggiungendo dopo i fdc non va bene
+		
+		List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
+		gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
+		for (Gerarchia gerarchia : gerarchieHandler.getGerarchie()) {
+			gerarchiaInCostruzione.add(gerarchia);
+		}
+		
+		
+		viewFoglia.visualizzaSceltaFogliaFDC(gerarchiaInCostruzione, fogliaNew);
+		viewFoglia.setBtnNodoListener(e->visualizzaSceltaFogliaFdc(fogliaNew,viewRadice));
 	}
 	
-	 /**
-     * Aggiunge una foglia alla gerarchia, chiedendo all'Utente : nome,descrizione(facoltativa)
-     * e delega l'inserimento dei fattori al metodo {@link #inserisciFattoriConversione(Foglia)}
-     * Il nome della Categoria(sia Foglia che NonFoglia) deve essere univoco all'interno della gerarchia
-     * 		{@link Gerarchia#checkNomeCategoria(String)}
-     * @param parent Categoria padre a cui aggiungere la categoria Foglia
-     * @since 1
-     */
+	private void visualizzaSceltaFogliaFdc(Foglia fogliaNew,ViewAddGerarchiaRadice viewRadice) {
+		Foglia fogliaOld = viewFoglia.getFogliaSelezionataa();
+		//TODO controlla se non seleziona nulla
+		
+		double min = getFattoreMin(fogliaNew, fogliaOld);
+		double max = getFattoreMax(fogliaNew, fogliaOld);
+		viewFoglia.visualizzaSceltaFogliaFDC(fogliaNew.getNome(), fogliaOld.getNome(), min, max);
+		
+		viewFoglia.setBtnFdcListener(e->{
+			
+			inserimentoFdc(fogliaNew,fogliaOld);
+			sceltaNodoACuiAggiungere(viewFoglia,viewRadice);
+		});
+		
+	}
+	
+	
+	private void inserimentoFdc(Foglia fogliaNew, Foglia fogliaOld) {
+		double fattore = viewFoglia.getFdc();
+		gerarchieHandler.calcolaFattoriConversione(fogliaNew, fogliaOld, fattore);
+		
+	}
+	private void creazioneNonFoglia(NonFoglia parent,ViewAddGerarchiaRadice viewRadice) {
+		viewNonFoglia = new ViewAddGerarchiaNonFoglia(frame, parent);
+		frame.getContentPane().add(viewNonFoglia);
+		viewNonFoglia.setLayout(null);
+		
+		viewNonFoglia.setBtnAvantiListener(e->addNonFoglia(parent,viewRadice));
+		viewNonFoglia.setBtnHomeListener(e->backHome()); 
+		viewNonFoglia.setBtnBackListeners(e ->navigateBack());
+	}
+	
+	private void addNonFoglia(NonFoglia parent,ViewAddGerarchiaRadice viewRadice) {
+		String nome = viewNonFoglia.getNomeField();
+		if (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome)
+				|| nome.isEmpty() || nome.equals(viewNonFoglia.getNomePlaceholder())) {
+			viewNonFoglia.setNomeNellaGerarchiaNonUnivoco(viewNonFoglia);
+			return;
+		}
+		else {
+			navigationStack.push(() -> creazioneNonFoglia(parent,viewRadice));
+			
+			String descrizione = viewNonFoglia.getDescrizioneField();
+			NonFoglia n =  new NonFoglia(nome, "", descrizione);
+			gerarchieHandler.getNewGerarchia().addCategoria(n);
+			parent.addChilds(n);
+			
+			List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
+			gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
+			
+//			viewNonFoglia.visualizzaSceltaNodo(n.getNome(),gerarchiaInCostruzione);
+			sceltaNodoACuiAggiungere(viewNonFoglia, viewRadice);
+		}
+	}
+
 	private void addFoglia(NonFoglia parent) {
 //		String nome;
 //		do {
@@ -226,56 +250,20 @@ public class GestoreGerarchieConfiguratore {
 //		parent.addChilds(fogliaNew);
 	}
 	
-	/**
-     * Permette l'inserimento di almeno un dominio all'parametro NonFoglia, 
-     * per terminare l'inserimento e' richiesto all'utente di inserire il carattere '@'
-     * le String dominio devono essere diverse dal carattere '@'
-     * @param n Categoria NonFoglia a cui aggiungere i domini
-     * @since 1
-     */
-	private void addDominiNonFoglia() {
-		String dominio = viewRadice.getDominioDaAggiungere().trim();
-        
-		if (!dominio.isEmpty()&& !domini.contains(dominio) && !dominio.equals(viewRadice.getPlaceholderDominio())) {
-			domini.add(dominio);
-            viewRadice.aggiornaListaComuni(domini);
-		}
-		
-//		String d = "";
-//		view.msgInputDominiCampo(n);
-//		do {
-//			view.msgInputDominio();
-//			d = InputDati.leggiStringaNonVuota("");
-//			
-//			if (!d.equals("@")) {
-//	            n.addDominio(d);
-//	        } else if (n.dominiIsEmpty()) {
-//	        	view.msgInputDominiEmpty();
-//	            d = "";
-//	        }
-//			
-//		} while(!d.equals("@"));
+	private double getFattoreMin(Foglia fogliaNew, Foglia fogliaOld) {
+		gerarchieHandler.calcolaFattoriMinMax(fogliaNew, fogliaOld);
+		double min = gerarchieHandler.getFattoreMin();
+//		double max = gerarchieHandler.getFattoreMax();
+		return min;
 	}
+	private double getFattoreMax(Foglia fogliaNew, Foglia fogliaOld) {
+//		gerarchieHandler.calcolaFattoriMinMax(fogliaNew, fogliaOld);
+		double max = gerarchieHandler.getFattoreMax();
+		return max;
+	}
+
 	
-	/**
-	 * Permette l'inserimento dei fattori di conversione a fogliaNew
-	 * Se e' la prima foglia della nuova gerarchia e ne e' presente un altra gerarchia,
-	 * 		richiesto fdc all'interno della gerarchia  {@link #sceltaFogliaNewGerarchia()}
-	 * 
-	 * Se e' la prima foglia della nuova gerarchia e ne e' presente almeno un altra gerarchia,
-	 * 		richiesto fdc con una foglia di un'altra gerarchia {@link #sceltaRadiceFoglia()}
-	 * 
-	 * Se non e' la prima foglia della nuova gerarchia e ne e' presente almeno un altra gerarchia,
-	 * 		l'utente pu� scegliere verso quale foglia inserire il fdc (tra tutte le gerarchie)  {@link #sceltaAggiuntaFattori()}
-	 * 
-	 * I fdc devono essere compresi tra un min e un max definiti nel model per rispettare i requisiti 
-	 * Delega a {@link Model#calcolaFattoriConversione(Foglia, Foglia, double)} il calcolo dei fdc darivabili 
-	 * 
-	 * @return se fogliaNew e' la prima foglia in assoluto delle Gerarchie presenti nel main 
-	 * @param fogliaNew
-	 * @since 1
-	 */
-	private void inserisciFattoriConversione(Foglia fogliaNew) {
+	private void inserisciFattoriConversione(Foglia fogliaNew, Foglia fogliaOld) {
 //		Foglia fogliaOld = null;
 //		
 //		if(gerarchieHandler.getGerarchie().isEmpty() && gerarchieHandler.getNewGerarchia().foglieIsEmpty()) {

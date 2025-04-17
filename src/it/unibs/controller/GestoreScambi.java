@@ -39,6 +39,7 @@ public class GestoreScambi {
 	// #GESTORE SCAMBI-CONFIGURATORE
 	
 	private void backHomeConfiguratore() {
+		navigationStack.clear();
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
 	}
@@ -110,6 +111,7 @@ public class GestoreScambi {
 	private int oreRichiesta;
 	private int oreOfferta;
 	private void backHomeFruitore() {
+		navigationStack.clear();
 		ControllerFruitore controllerFruitore = new ControllerFruitore(model, frame);
 		controllerFruitore.run();
 	}

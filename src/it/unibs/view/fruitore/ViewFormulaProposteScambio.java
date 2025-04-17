@@ -96,7 +96,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 		btnConfermaRichiesta.addActionListener(event);
 	}
 	public int getOreRichiesta() {
-		return oreRichiestaField.getNumericValue();
+		return (int) oreRichiestaField.getNumericValue();
 	}
 	
 	public void visualizzaSceltaOfferta() {

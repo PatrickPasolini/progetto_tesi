@@ -41,7 +41,7 @@ public class ViewVisualizzaGerarchie extends BaseView{
         contentPanel.add(lblProposte);
         
 	    if (gerarchie != null && !gerarchie.isEmpty()) {
-	        JTree tree = CustomTree.createUnifiedTree(gerarchie,true);
+	        JTree tree = CustomTree.createUnifiedTree(gerarchie,true,false);
 	        tree.setBackground(contentPanel.getBackground());
 	        tree.setToggleClickCount(1);
 	        

@@ -45,7 +45,7 @@ public class ViewNavigaGerarchie extends BaseView{
         contentPanel.add(lblProposte);
         
 	    if (gerarchie != null && !gerarchie.isEmpty()) {
-	        JTree tree = CustomTree.createUnifiedTree(gerarchie,false);
+	        JTree tree = CustomTree.createUnifiedTree(gerarchie,false,false);
 	        tree.setBackground(contentPanel.getBackground());
 	        tree.setToggleClickCount(1);
 	        tree.addMouseListener(new MouseAdapter() {

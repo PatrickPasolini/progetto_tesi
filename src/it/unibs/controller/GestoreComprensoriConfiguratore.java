@@ -96,6 +96,7 @@ public class GestoreComprensoriConfiguratore {
 	}
 	
 	private void backHome() {
+		navigationStack.clear();
 		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
 		controllerConfiguratore.run();
 	}

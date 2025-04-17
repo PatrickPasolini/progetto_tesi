@@ -63,7 +63,7 @@ public class ViewSceltaFoglia extends BaseView {
         contentPanel.add(lblSceltaFoglia);
         
         if (gerarchie != null && !gerarchie.isEmpty()) {
-	        tree = CustomTree.createUnifiedTree(gerarchie,false);
+	        tree = CustomTree.createUnifiedTree(gerarchie,false,false);
 	        tree.setBackground(contentPanel.getBackground());
 	        tree.setToggleClickCount(1);
         }
