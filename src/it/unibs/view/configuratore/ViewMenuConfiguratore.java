@@ -30,7 +30,7 @@ public class ViewMenuConfiguratore extends BaseView {
 
 	@Override
 	protected void inizializzaComponenti() {
-		lblMenuConfiguratore = new JLabel("Menu Configuratore");
+		lblMenuConfiguratore = new JLabel("Menù Configuratore");
 		if (btnMenu!=null) {
 			for (int i=0;i<btnMenu.length;i++) {
 				btnMenu[i] = new RoundedButton(SCELTE_CONFIGURATORE[i], new Color(8, 102, 255));

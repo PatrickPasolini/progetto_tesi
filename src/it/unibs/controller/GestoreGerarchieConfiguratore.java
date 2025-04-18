@@ -26,7 +26,7 @@ public class GestoreGerarchieConfiguratore {
 	private Model model;
 
 	private Stack<Runnable> navigationStack = new Stack<>();
-
+	private ViewAddGerarchiaRadice viewRadice;
 	private ViewAddGerarchiaFoglia viewFoglia;
 	private ViewAddGerarchiaNonFoglia viewNonFoglia;
 	
@@ -52,13 +52,14 @@ public class GestoreGerarchieConfiguratore {
 		navigationStack.push(() -> backHomeConfiguratore());
 
 		gerarchieHandler.resetNewGerarchia();
-		ViewAddGerarchiaRadice viewRadice = new ViewAddGerarchiaRadice(frame);
+		viewRadice = new ViewAddGerarchiaRadice(frame);
 		frame.getContentPane().add(viewRadice);
 		viewRadice.setLayout(null);
 		
 		viewRadice.setBtnAvantiListener(e -> addRadice(viewRadice));
 		viewRadice.setBtnBackListeners(e-> navigateBack());
 		viewRadice.setBtnHomeListener(e->backHome());
+		
 		
 //		gerarchieHandler.resetNewGerarchia();
 //		view.msgCreazioneGerarchia();
@@ -69,32 +70,31 @@ public class GestoreGerarchieConfiguratore {
 //		gerarchieHandler.addGerarchia();
 	}
 	
-	private void addRadice(ViewAddGerarchiaRadice viewRadice) {
-		String nome = viewRadice.getRadiceField(); 
+	private void addRadice(ViewAddGerarchiaRadice view) {
+		String nome = view.getRadiceField(); 
 		if (gerarchieHandler.checkNomeRadiceGerarchia(nome) 
-				|| nome.isEmpty() || nome.equals(viewRadice.getRadicePlaceholder())) {
-		    viewRadice.setNomeRadiceNonUnivoco(viewRadice);
+				|| nome.isEmpty() || nome.equals(view.getRadicePlaceholder())) {
+		    view.setNomeRadiceNonUnivoco(view);
 			return;
 		}
 		else {
 			navigationStack.push(() -> inizioCreazione());
-			String descrizione = viewRadice.getDescrizioneField();
+			String descrizione = view.getDescrizioneField();
 			NonFoglia radice =  new NonFoglia(nome, "", descrizione);
 			gerarchieHandler.addRadice(radice);
 			
 			
-//			navigationStack.push(() -> addRadice());
-			sceltaNodoACuiAggiungere(viewRadice,viewRadice);
+			sceltaNodoACuiAggiungere(view);
 		}
 	}
 	
-	private void sceltaNodoACuiAggiungere(ViewAddGerarchia view,ViewAddGerarchiaRadice viewRadice ) {
+	private void sceltaNodoACuiAggiungere(ViewAddGerarchia view ) {
+		
+		
 		List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
 		gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
-		
+		view.setBtnContinuaListener(e->sceltaTipoNodo(view.getFogliaSelezionata(),view));
 
-		view.setBtnContinuaListener(e->sceltaTipoNodo(view.getFogliaSelezionata(), viewRadice,view));
-		
 		if(view instanceof ViewAddGerarchiaFoglia){
 			ViewAddGerarchiaFoglia viewF = (ViewAddGerarchiaFoglia) view;
 			if(gerarchieHandler.isTerminabile()) {
@@ -104,7 +104,9 @@ public class GestoreGerarchieConfiguratore {
 			else {
 				viewF.setTerminabile(false);
 			}
+			
 			viewF.visualizzaSceltaNodo(gerarchiaInCostruzione);
+
 		}
 		else {
 			view.visualizzaSceltaNodo(gerarchiaInCostruzione);
@@ -139,41 +141,47 @@ public class GestoreGerarchieConfiguratore {
      * scelta = 1 -> aggiungi figlio non foglia
      * scelta = 2 -> aggiungi figlio foglia
      */
-	private void sceltaTipoNodo(NonFoglia parent,ViewAddGerarchiaRadice viewRadice,ViewAddGerarchia view) {
+	private void sceltaTipoNodo(NonFoglia parent,ViewAddGerarchia view) {
+		
 		int scelta = view.getTipoSelezionato();
-		System.out.println(scelta);
 		if (parent==null || scelta ==0) {
 			view.setSelezioneFallita();
     		return;
 		}
 		
-		if(gerarchieHandler.getNewGerarchia().getRadice()==parent);
-			navigationStack.push(()->addRadice(viewRadice));
+		NonFoglia radice = (NonFoglia) gerarchieHandler.getNewGerarchia().getRadice();
+		if(radice == parent) {
+			System.out.println(parent.getNome());
+			navigationStack.push(()->sceltaNodoACuiAggiungere(view));
+		}
+			
 		
 		switch(scelta) {
     	case 1:
-            creazioneNonFoglia(parent,viewRadice);
+            creazioneNonFoglia(parent);
             break; 
     	case 2:
 //    		addFoglia(parent);
-    		creazioneFoglia(parent,viewRadice);
+    		creazioneFoglia(parent);
     		break;
     	default:
     		break;
 		}   
 		
 	}
-	private void creazioneFoglia(NonFoglia parent, ViewAddGerarchiaRadice viewRadice) {
+	private void creazioneFoglia(NonFoglia parent) {
+		 navigationStack.push(() -> sceltaNodoACuiAggiungere(viewNonFoglia != null ? viewNonFoglia : viewRadice));
+		    
 		
 		viewFoglia = new ViewAddGerarchiaFoglia(frame, parent);
 		frame.getContentPane().add(viewFoglia);
 		viewFoglia.setLayout(null);
 		
-		viewFoglia.setBtnAvantiListener(e->addFoglia(parent,viewRadice));
+		viewFoglia.setBtnAvantiListener(e->addFoglia(parent));
 		viewFoglia.setBtnHomeListener(e->backHome()); 
 		viewFoglia.setBtnBackListeners(e ->navigateBack());
 	}
-	private void addFoglia(NonFoglia parent, ViewAddGerarchiaRadice viewRadice) {
+	private void addFoglia(NonFoglia parent) {
 		String nome = viewFoglia.getNomeField();
 		if (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome)
 				|| nome.isEmpty() || nome.equals(viewFoglia.getNomePlaceholder())) {
@@ -181,12 +189,12 @@ public class GestoreGerarchieConfiguratore {
 			return;
 		}
 		else {
-			navigationStack.push(() -> creazioneNonFoglia(parent,viewRadice));
+			navigationStack.push(() -> creazioneFoglia(parent));
 			String descrizione = viewFoglia.getDescrizioneField();
 			Foglia fogliaNew =  new Foglia(nome,descrizione,gerarchieHandler.getNewGerarchia().getNomeRadice());
 			gerarchieHandler.getNewGerarchia().addCategoria(fogliaNew);
 			
-			sceltaFogliaFdc(parent,fogliaNew,viewRadice);
+			sceltaFogliaFdc(parent,fogliaNew);
 		}
 //		Foglia fogliaNew = new Foglia(nome, descrizione,gerarchieHandler.getNewGerarchia().getNomeRadice());
 //		gerarchieHandler.getNewGerarchia().addCategoria(fogliaNew);
@@ -197,9 +205,10 @@ public class GestoreGerarchieConfiguratore {
 //		parent.addChilds(fogliaNew);
 	}
 	
-	private void sceltaFogliaFdc(NonFoglia parent, Foglia fogliaNew,ViewAddGerarchiaRadice viewRadice) {
+	private void sceltaFogliaFdc(NonFoglia parent, Foglia fogliaNew) {
 //		inserisciFattoriConversione(fogliaNew);
 //		viewFoglia.visualizzaSceltaFogliaFDC(gerarchiaInCostruzione);
+		navigationStack.push(() -> addFoglia(parent));
 		gerarchieHandler.getNewGerarchia().addFoglia(fogliaNew);
 		parent.addChilds(fogliaNew); // forse aggiungendo dopo i fdc non va bene
 		
@@ -211,25 +220,32 @@ public class GestoreGerarchieConfiguratore {
 		
 		
 		viewFoglia.visualizzaSceltaFogliaFDC(gerarchiaInCostruzione, fogliaNew);
-		viewFoglia.setBtnNodoListener(e->visualizzaSceltaFogliaFdc(fogliaNew,viewRadice));
+		viewFoglia.setBtnNodoListener(e->visualizzaSceltaFogliaFdc(fogliaNew));
 	}
 	
-	private void visualizzaSceltaFogliaFdc(Foglia fogliaNew,ViewAddGerarchiaRadice viewRadice) {
-		Foglia fogliaOld = viewFoglia.getFogliaSelezionataa();
-		//TODO controlla se non seleziona nulla
-		
-		double min = getFattoreMin(fogliaNew, fogliaOld);
-		double max = getFattoreMax(fogliaNew, fogliaOld);
-		viewFoglia.visualizzaSceltaFogliaFDC(fogliaNew.getNome(), fogliaOld.getNome(), min, max);
-		
-		viewFoglia.setBtnFdcListener(e->{
-			
-			inserimentoFdc(fogliaNew,fogliaOld);
-			sceltaNodoACuiAggiungere(viewFoglia,viewRadice);
-			
-			
-		});
-		
+	private void visualizzaSceltaFogliaFdc(Foglia fogliaNew) {
+	    // Salva lo stato corrente per tornare indietro
+	    navigationStack.push(() -> {
+	        List<Gerarchia> gerarchiaInCostruzione = new ArrayList<>();
+	        gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
+	        for (Gerarchia gerarchia : gerarchieHandler.getGerarchie()) {
+	            gerarchiaInCostruzione.add(gerarchia);
+	        }
+	        viewFoglia.visualizzaSceltaFogliaFDC(gerarchiaInCostruzione, fogliaNew);
+	    });
+	    
+	    Foglia fogliaOld = viewFoglia.getFogliaSelezionataa();
+	    //TODO controlla se non seleziona nulla
+	    
+	    double min = getFattoreMin(fogliaNew, fogliaOld);
+	    double max = getFattoreMax(fogliaNew, fogliaOld);
+	    viewFoglia.visualizzaSceltaFogliaFDC(fogliaNew.getNome(), fogliaOld.getNome(), min, max);
+	    
+	    viewFoglia.setBtnFdcListener(e->{
+	        inserimentoFdc(fogliaNew, fogliaOld);
+	        sceltaNodoACuiAggiungere(viewFoglia);
+	    });
+	
 	}
 	
 	
@@ -239,17 +255,17 @@ public class GestoreGerarchieConfiguratore {
 		gerarchieHandler.calcolaFattoriConversione(fogliaNew, fogliaOld, fattore);
 		
 	}
-	private void creazioneNonFoglia(NonFoglia parent,ViewAddGerarchiaRadice viewRadice) {
+	private void creazioneNonFoglia(NonFoglia parent) {
 		viewNonFoglia = new ViewAddGerarchiaNonFoglia(frame, parent);
 		frame.getContentPane().add(viewNonFoglia);
 		viewNonFoglia.setLayout(null);
 		
-		viewNonFoglia.setBtnAvantiListener(e->addNonFoglia(parent,viewRadice));
+		viewNonFoglia.setBtnAvantiListener(e->addNonFoglia(parent));
 		viewNonFoglia.setBtnHomeListener(e->backHome()); 
 		viewNonFoglia.setBtnBackListeners(e ->navigateBack());
 	}
 	
-	private void addNonFoglia(NonFoglia parent,ViewAddGerarchiaRadice viewRadice) {
+	private void addNonFoglia(NonFoglia parent) {
 		String nome = viewNonFoglia.getNomeField();
 		if (gerarchieHandler.getNewGerarchia().checkNomeCategoria(nome)
 				|| nome.isEmpty() || nome.equals(viewNonFoglia.getNomePlaceholder())) {
@@ -257,7 +273,7 @@ public class GestoreGerarchieConfiguratore {
 			return;
 		}
 		else {
-			navigationStack.push(() -> creazioneNonFoglia(parent,viewRadice));
+			navigationStack.push(() -> creazioneNonFoglia(parent));
 			
 			String descrizione = viewNonFoglia.getDescrizioneField();
 			NonFoglia n =  new NonFoglia(nome, "", descrizione);
@@ -268,11 +284,11 @@ public class GestoreGerarchieConfiguratore {
 			gerarchiaInCostruzione.add(gerarchieHandler.getNewGerarchia());
 			
 //			viewNonFoglia.visualizzaSceltaNodo(n.getNome(),gerarchiaInCostruzione);
-			sceltaNodoACuiAggiungere(viewNonFoglia, viewRadice);
+			sceltaNodoACuiAggiungere(viewNonFoglia);
 		}
 	}
 
-	private void addFoglia(NonFoglia parent) {
+//	private void addFoglia(NonFoglia parent) {
 //		String nome;
 //		do {
 //			view.msgNomeNuovaCategoria();
@@ -289,7 +305,7 @@ public class GestoreGerarchieConfiguratore {
 //		
 //		gerarchieHandler.getNewGerarchia().addFoglia(fogliaNew);
 //		parent.addChilds(fogliaNew);
-	}
+//	}
 	
 	private double getFattoreMin(Foglia fogliaNew, Foglia fogliaOld) {
 		gerarchieHandler.calcolaFattoriMinMax(fogliaNew, fogliaOld);

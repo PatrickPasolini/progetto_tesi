@@ -342,10 +342,10 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 		btnHome.addActionListener(listener);
 	} 
 	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
+		for (ActionListener al : this.btnBack.getActionListeners()) {
+			this.btnBack.removeActionListener(al);
 		}
-		btnBack.addActionListener(btnListener);
+		this.btnBack.addActionListener(btnListener);
     }
 	public void setBtnAvantiListener(ActionListener listener) {
 		for (ActionListener al : btnAvanti.getActionListeners()) {

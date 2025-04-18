@@ -31,7 +31,7 @@ public class ViewMenuFruitore extends BaseView{
 
 		@Override
 		protected void inizializzaComponenti() {
-			lblMenuFruitore = new JLabel("Menu Fruitore");
+			lblMenuFruitore = new JLabel("Menù Fruitore");
 			if (btnMenu!=null) {
 				for (int i=0;i<btnMenu.length;i++) {
 					btnMenu[i] = new RoundedButton(SCELTE_FRUITORE[i], new Color(8, 102, 255));
