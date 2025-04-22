@@ -10,13 +10,13 @@ import it.unibs.view.atomicElements.RoundedButton;
 public class ViewMenuConfiguratore extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private final static String[] SCELTE_CONFIGURATORE = new String[]{
-			"Aggiungi comprensorio",
-			"Aggiungi gerarchia",
+			"Nuovo comprensorio",
+			"Nuova  gerarchia",
 			"Visualizza fattori di una prestazione",
 			"Salva Modifiche",
 			"Visualizza comprensori",
 			"Visualizza gerarchie",
-			"Visualizza scambi di una prestazione",
+			"Visualizza proposte di una prestazione",
 			"Contatta utenti di uno scambio"};
 	private JLabel lblMenuConfiguratore;
 	private RoundedButton[] btnMenu= new RoundedButton[SCELTE_CONFIGURATORE.length];

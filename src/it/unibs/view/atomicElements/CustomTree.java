@@ -56,17 +56,16 @@ public class CustomTree {
             Object userObj = node.getUserObject();
             String text;
             
-            // Check if the category is actually a leaf or non-leaf type
             boolean isActualLeaf = false;
             if (userObj instanceof Categoria) {
                 Categoria categoria = (Categoria) userObj;
                 text = categoria.getNome();
                 isActualLeaf = (categoria instanceof Foglia);
                 
-             // Set icon based on category type
+                // Let JTree handle the icons based on expanded state
                 if (!isActualLeaf) {
-                    // This is a NonFoglia type, set folder icon
-                    setIcon(arrowDownIcon);
+                    // This is a NonFoglia type, let JTree handle the icon based on expanded state
+                    setIcon(expanded ? getOpenIcon() : getClosedIcon());
                 } else {
                     // This is a Foglia type, no icon
                     setIcon(null);

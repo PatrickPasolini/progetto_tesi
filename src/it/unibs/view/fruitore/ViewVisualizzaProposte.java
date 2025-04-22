@@ -25,9 +25,9 @@ public class ViewVisualizzaProposte extends BaseView {
 	@Override
 	protected void inizializzaComponenti() {
 		lblProposte = new JLabel("Scegli che proposte visualizzare:");
-		bntAperti = new RoundedButton("Scambi aperti",new Color(8, 102, 255));
-		bntChiusi = new RoundedButton("Scambi chiusi", new Color(8, 102, 255));
-		bntRitirati = new RoundedButton("Scambi ritirati",new Color(8, 102, 255));
+		bntAperti = new RoundedButton("Proposte aperte",new Color(8, 102, 255));
+		bntChiusi = new RoundedButton("Proposte completate", new Color(8, 102, 255));
+		bntRitirati = new RoundedButton("Proposte ritirate",new Color(8, 102, 255));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
@@ -79,14 +79,13 @@ public class ViewVisualizzaProposte extends BaseView {
 	public void setBtnRitiratiListeners(ActionListener btnListener) {
 		bntRitirati.addActionListener(btnListener);
     }
-
 	public void visualizzaAperti(ArrayList<Proposta> scambiAperti, String nameUser) {
 		String txt;
 		if(scambiAperti.isEmpty()) {
 			txt = "<html><div align='center'>" + nameUser
 					+ "<br>Non hai nessuna proposta di scambio aperta </div></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi aperti di "+nameUser+":</div></span></html>";
+			txt = "<html><div align='center'>Proposte aperte di "+nameUser+":</div></span></html>";
 		}
 		visualizzaScambi(scambiAperti,txt);
 	}
@@ -94,9 +93,9 @@ public class ViewVisualizzaProposte extends BaseView {
 		String txt;
 		if(scambiChiusi.isEmpty()) {
 			txt = "<html><div align='center'>" + nameUser
-					+ "<br>Non hai nessuna proposta di scambio chiusa </div></html>";
+					+ "<br>Non hai nessuna proposta di scambio completate </div></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi chiusi di "+nameUser+":</div></span></html>";
+			txt = "<html><div align='center'>Proposte completate di "+nameUser+":</div></span></html>";
 		}
 		visualizzaScambi(scambiChiusi,txt);
 	}
@@ -106,7 +105,7 @@ public class ViewVisualizzaProposte extends BaseView {
 			txt = "<html><div align='center'>" + nameUser
 					+ "<br>Non hai nessuna proposta di scambio ritirata </div></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi ritirati di "+nameUser+":</div></span></html>";
+			txt = "<html><div align='center'>Proposte ritirate di "+nameUser+":</div></span></html>";
 		}
 		visualizzaScambi(scambiRitirati,txt);
 	}
@@ -144,7 +143,7 @@ public class ViewVisualizzaProposte extends BaseView {
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentWidth/2- 525 , 160, 1050, contentPanel.getHeight()-165 - size.height);
+        scrollPane.setBounds(contentWidth/2- 400 , 200, 1050, contentPanel.getHeight()-205 - size.height);
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());

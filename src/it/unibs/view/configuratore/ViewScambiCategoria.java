@@ -106,7 +106,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio aperta di<br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + "</div></span></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi aperti di <br><span style='color:#085FFF;'>" 
+			txt = "<html><div align='center'>Proposte aperte di <br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + " :</div></span></html>";
 		}
 		visualizzaScambi(scambiAperti,txt);
@@ -115,10 +115,10 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 	public void visualizzaChiusi(ArrayList<Proposta> scambiChiusi,String fogliaSelezionata) {
 		String txt;
 		if(scambiChiusi.isEmpty()) {
-			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio chiusa di<br><span style='color:#085FFF;'>" 
+			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio completate di<br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + "</div></span></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi chiusi di <br><span style='color:#085FFF;'>" 
+			txt = "<html><div align='center'>Proposte completate di <br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + " :</div></span></html>";
 		}
 		visualizzaScambi(scambiChiusi,txt);
@@ -130,7 +130,7 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio ritirata di<br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + "</div></span></html>";
 		}else {
-			txt = "<html><div align='center'>Scambi ritirati di <br><span style='color:#085FFF;'>" 
+			txt = "<html><div align='center'>Proposte ritirate di <br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + " :</div></span></html>";
 		}
 		visualizzaScambi(scambiRitirati,txt);

@@ -107,11 +107,12 @@ public class ViewRitiraProposte extends BaseView {
 	public void visualizzaConfermaRitiro (Proposta propDaRitirare) {
 		contentPanel.removeAll();
 	    int contentWidth = contentPanel.getWidth();
-	    String txtConferma = "<html><div align='center'>Vuoi confermare il ritiro della proposta selezionata:</div><br><br>"
-	    		+"richiesta:<b>" + propDaRitirare.getRichiesta().getNome() 
-	    		+ "</b>, di " + propDaRitirare.getOreRichiesta() + " ore<br>offerta: <b>" 
-	    		+ propDaRitirare.getOfferta().getNome() + "</b>, di " 
-	    		+ propDaRitirare.getOreOfferta() + " ore</html>";
+	    String txtConferma = "<html><div align='center'>Vuoi confermare il ritiro della proposta selezionata:</div><br><br>" +
+				"Richiesta: <span style='color:#085FFF;'><b>" + propDaRitirare.getRichiesta().getNome() + "</b></span>" +
+    	        " di <span style='color:#085FFF;'><b>"+ propDaRitirare.getOreRichiesta() + "</b></span> ore<br>" +
+    	        "Offerta: <span style='color:#085FFF;'><b>" + propDaRitirare.getOfferta().getNome() + "</b></span>" +
+    	        " di <span style='color:#085FFF;'><b>"+ propDaRitirare.getOreOfferta() + "</b></span> ore" +
+	    		 "</html>";
 	    
 	    
         JLabel lblScambio = new JLabel(txtConferma);
@@ -203,11 +204,12 @@ public class ViewRitiraProposte extends BaseView {
 	    int contentWidth = contentPanel.getWidth();
 	    
 	    String txtRitirato = "<html><div align='center'><span style='color:#008F39;'>"
-	    		+ "Ritiro della seguente proposta avvenuto con successo:</span></div><br><br>"
-	    		+"richiesta:<b>" + propRitirata.getRichiesta().getNome() 
-	    		+ "</b>, di " + propRitirata.getOreRichiesta() + " ore<br>offerta: <b>" 
-	    		+ propRitirata.getOfferta().getNome() + "</b>, di " 
-	    		+ propRitirata.getOreOfferta() + " ore</html>";
+	    		+ "<b>Ritiro della seguente proposta avvenuto con successo:</b></span></div><br><br>"+
+	    		"Richiesta: <span style='color:#085FFF;'><b>" + propRitirata.getRichiesta().getNome() + "</b></span>" +
+    	        " di <span style='color:#085FFF;'><b>"+ propRitirata.getOreRichiesta() + "</b></span> ore<br>" +
+    	        "Offerta: <span style='color:#085FFF;'><b>" + propRitirata.getOfferta().getNome() + "</b></span>" +
+    	        " di <span style='color:#085FFF;'><b>"+ propRitirata.getOreOfferta() + "</b></span> ore" +
+	    		 "</html>";
 	    
         JLabel lblScambio = new JLabel(txtRitirato);
     	lblScambio.setFont(new Font("Tahoma", Font.PLAIN, 50));

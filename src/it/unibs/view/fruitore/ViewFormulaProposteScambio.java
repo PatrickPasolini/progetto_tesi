@@ -134,7 +134,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         	      "<div align='center'>" +
         	        "Hai formulato la seguente proposta di scambio:<br><br>" +
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
-        	        " di: <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
+        	        " di <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +
         	        " di <span style='color:#085FFF;'><b>"+ oreOfferta + "</b></span> ore<br><br>" +
         	        "Vuoi confermare la creazione della proposta di scambio:" +
@@ -191,9 +191,9 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         	      "<div align='center'>" +
         	        "<span style='color:#008F39;'><b>Formulazione del seguente scambio<br> avvenuta con successo:</b></span><br><br>" +
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
-        	        " di: <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
+        	        " di <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +
-        	        " di: <span style='color:#085FFF;'><b>"+ oreOfferta + "</b></span> ore" +
+        	        " di <span style='color:#085FFF;'><b>"+ oreOfferta + "</b></span> ore" +
         	      "</div>" +
         	    "</html>"
         	);
