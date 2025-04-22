@@ -324,6 +324,7 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 				"Creazione della seguente gerarchia <br>effettuata con successo<br>"
 				+ "</span></div></html>");
 		 Dimension size = lblSceltaCategoria.getPreferredSize();
+		lblSceltaCategoria.setForeground(new Color(50, 205, 50));
         lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
         contentPanel.add(lblSceltaCategoria);
 		

@@ -164,7 +164,8 @@ public class ViewNuovoComprensorio extends BaseView {
 		
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds((contentWidth - size.width) / 2, size.height+100, size.width,400);
+		scrollPane.setBorder(null);
+        scrollPane.setBounds(contentWidth / 2 - 260, size.height+120, 520,400);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -236,12 +237,17 @@ public class ViewNuovoComprensorio extends BaseView {
         
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds((contentWidth - size2.width) / 2, 190+90, size2.width, 500);
+
+		scrollPane.setBorder(null);
+        scrollPane.setBounds(contentWidth / 2 - 260, 190+90, 520, 500);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		contentPanel.add(scrollPane);
         
+
+
+		
 		btnHome.setBounds(45, 45, 90, 90);
 		contentPanel.add(btnHome);
 		

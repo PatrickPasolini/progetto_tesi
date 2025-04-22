@@ -34,9 +34,9 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 				+ "</div></html>");
 		
 		lblScambi = new JLabel("Scegli che proposte visualizzare:");
-		bntAperti = new RoundedButton("Scambi aperti",new Color(8, 102, 255));
-		bntChiusi = new RoundedButton("Scambi chiusi", new Color(8, 102, 255));
-		bntRitirati = new RoundedButton("Scambi ritirati",new Color(8, 102, 255));
+		bntAperti = new RoundedButton("Proposte aperte",new Color(8, 102, 255));
+		bntChiusi = new RoundedButton("Proposte completate", new Color(8, 102, 255));
+		bntRitirati = new RoundedButton("Proposte ritirate",new Color(8, 102, 255));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
