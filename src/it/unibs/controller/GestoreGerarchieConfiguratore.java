@@ -25,15 +25,17 @@ public class GestoreGerarchieConfiguratore {
 	private JFrame frame;
 	private Model model;
 
+	ControllerConfiguratore controllerConfiguratore;
 	private Stack<Runnable> navigationStack = new Stack<>();
 	private ViewAddGerarchiaRadice viewRadice;
 	private ViewAddGerarchiaFoglia viewFoglia;
 	private ViewAddGerarchiaNonFoglia viewNonFoglia;
 	
-	public GestoreGerarchieConfiguratore(Model model, JFrame frame) {
+	public GestoreGerarchieConfiguratore(Model model, JFrame frame,ControllerConfiguratore controllerConfiguratore) {
 		this.model = model;
 		this.frame = frame;
 		this.gerarchieHandler = new GerarchieHandler(model);
+		this.controllerConfiguratore = controllerConfiguratore;
 	}
 	private void navigateBack() {
 	    if (!navigationStack.isEmpty()) {
@@ -41,12 +43,6 @@ public class GestoreGerarchieConfiguratore {
 	        previousView.run();
 	    }
     }
-	private void backHome() {
-		
-		navigationStack.clear();
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
-		controllerConfiguratore.run();
-	}
 
 	public void inizioCreazione() {
 		navigationStack.push(() -> backHomeConfiguratore());
@@ -58,7 +54,7 @@ public class GestoreGerarchieConfiguratore {
 		
 		viewRadice.setBtnAvantiListener(e -> addRadice(viewRadice));
 		viewRadice.setBtnBackListeners(e-> navigateBack());
-		viewRadice.setBtnHomeListener(e->backHome());
+		viewRadice.setBtnHomeListener(e->backHomeConfiguratore());
 		
 		
 //		gerarchieHandler.resetNewGerarchia();
@@ -128,7 +124,7 @@ public class GestoreGerarchieConfiguratore {
 	        	
 	        }
 	        else {
-	        	backHome();
+	        	backHomeConfiguratore();
 	        }
 		});	
 	}
@@ -178,7 +174,7 @@ public class GestoreGerarchieConfiguratore {
 		viewFoglia.setLayout(null);
 		
 		viewFoglia.setBtnAvantiListener(e->addFoglia(parent));
-		viewFoglia.setBtnHomeListener(e->backHome()); 
+		viewFoglia.setBtnHomeListener(e->backHomeConfiguratore()); 
 		viewFoglia.setBtnBackListeners(e ->navigateBack());
 	}
 	private void addFoglia(NonFoglia parent) {
@@ -261,7 +257,7 @@ public class GestoreGerarchieConfiguratore {
 		viewNonFoglia.setLayout(null);
 		
 		viewNonFoglia.setBtnAvantiListener(e->addNonFoglia(parent));
-		viewNonFoglia.setBtnHomeListener(e->backHome()); 
+		viewNonFoglia.setBtnHomeListener(e->backHomeConfiguratore()); 
 		viewNonFoglia.setBtnBackListeners(e ->navigateBack());
 	}
 	
@@ -412,7 +408,7 @@ public class GestoreGerarchieConfiguratore {
 		frame.getContentPane().add(viewFattori);
 		viewFattori.setLayout(null);
 		viewFattori.setBtnBackListeners(e-> navigateBack());
-		viewFattori.setBtnHomeListener(e->backHome());
+		viewFattori.setBtnHomeListener(e->backHomeConfiguratore());
 		viewFattori.setBtnContinuaListener(e->{
 			Foglia fogliaSelezionata = viewFattori.getFogliaSelezionata();
 			if(fogliaSelezionata!=null) {
@@ -436,11 +432,10 @@ public class GestoreGerarchieConfiguratore {
 		ViewVisualizzaGerarchie viewGerarchie = new ViewVisualizzaGerarchie(frame,gerarchieHandler.getGerarchie() );
 		frame.getContentPane().add(viewGerarchie);
 		viewGerarchie.setLayout(null);
-		viewGerarchie.setBtnHomeListener(e-> backHome());
+		viewGerarchie.setBtnBackListeners(e-> backHomeConfiguratore());
 		
 	}
 	private void backHomeConfiguratore() {
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
-		controllerConfiguratore.run();
+		 controllerConfiguratore.run();
 	}
 }

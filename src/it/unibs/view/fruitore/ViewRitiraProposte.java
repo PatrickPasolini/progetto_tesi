@@ -2,6 +2,7 @@ package it.unibs.view.fruitore;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -15,10 +16,12 @@ public class ViewRitiraProposte extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
 	private static final String HOME_PATH = "./Img/home.png";
+	private final Color COLOR_EVEN = new Color(250, 250, 250);
+    private final Color COLOR_ODD  = new Color(240, 240, 240);
+    
 	private JLabel lblRitira;
     private ArrayList<Proposta> scambiAperti;
     private RoundedButton btnRitira;
-    private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
     private RoundedButton btnSi;
 	private RoundedButton btnNo;
@@ -43,7 +46,6 @@ public class ViewRitiraProposte extends BaseView {
 		btnSi = new RoundedButton("Ritira", new Color(0, 143, 57));
 		btnNo = new RoundedButton("Annulla",new Color(165, 32, 25));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 
 	@Override
@@ -67,27 +69,93 @@ public class ViewRitiraProposte extends BaseView {
 	        aggiornaListaScambi(scambiAperti);
 	    }
 	    scambiList.setFont(new Font("Tahoma", Font.PLAIN, 30));
-	    scambiList.setBackground(contentPanel.getBackground());
-	    scambiList.setCellRenderer(new DefaultListCellRenderer() { //interlinea 
-			private static final long serialVersionUID = 1L;
-			@Override
-	        public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-	                boolean isSelected, boolean cellHasFocus) {
-	            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-	            label.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	            return label;
+	    scambiList.setBackground(Color.WHITE);
+	    scambiList.setCellRenderer(new ListCellRenderer<String>() {
+	        private final DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+	        private final Color COLOR_EVEN = new Color(250, 250, 250);
+	        private final Color COLOR_ODD  = new Color(240, 240, 240);
+	        private final int V_MARGIN = 10;  // spazio verticale tra le celle
+	        private final int H_MARGIN = 15; // spazio orizzontale tra le celle
+
+	        @Override
+	        public Component getListCellRendererComponent(JList<? extends String> list,
+	                                                      String value,
+	                                                      int index,
+	                                                      boolean isSelected,
+	                                                      boolean cellHasFocus) {
+	            // Ottengo il JLabel di base
+	            JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(
+	                list, value, index, isSelected, cellHasFocus);
+
+	           
+
+	            // Creo il pannello wrapper
+	            JPanel panel = new JPanel(new BorderLayout());
+	            panel.setOpaque(true);
+
+	            // Colore di sfondo zebra o selezione
+	            if (isSelected) {
+	                panel.setBackground(list.getSelectionBackground());
+	                label.setForeground(list.getSelectionForeground());
+	            } else {
+	                panel.setBackground((index % 2 == 0) ? COLOR_EVEN : COLOR_ODD);
+	                label.setBackground((index % 2 == 0) ? COLOR_EVEN : COLOR_ODD);
+	                label.setForeground(list.getForeground());
+	            }
+
+	            // Padding interno al testo
+	            label.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+
+	            // Margine esterno per separare le celle
+	            panel.setBorder(BorderFactory.createEmptyBorder(
+	                V_MARGIN, H_MARGIN, V_MARGIN, H_MARGIN));
+
+	            // Incapsulo il label
+	            panel.add(label, BorderLayout.CENTER);
+
+	            return panel;
 	        }
 	    });
-	    JScrollPane scrollPane = new JScrollPane(scambiList);
-	    scrollPane.setBorder(BorderFactory.createCompoundBorder(
-	            BorderFactory.createLineBorder(Color.BLACK, 1),
-	            BorderFactory.createEmptyBorder(10, 20, 10, 10)
-	    ));
+
+	    JScrollPane scrollPane = new JScrollPane(scambiList) {
+			private static final long serialVersionUID = 1L;
+			int cornerRadius = 25;
+			@Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                
+                // Disegna lo sfondo arrotondato
+                g2.setColor(Color.WHITE);
+                g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius));
+                
+                // Disegna il bordo arrotondato
+                g2.setColor(new Color(150, 150, 150));
+                g2.setStroke(new BasicStroke(2f));
+                g2.draw(new RoundRectangle2D.Double(1, 1, getWidth()-2, getHeight()-2, cornerRadius, cornerRadius));
+                
+                g2.dispose();
+                
+                // Permette la trasparenza per i componenti interni
+                paintChildren(g);
+            }
+        };
+//	    scrollPane.setBorder(BorderFactory.createCompoundBorder(
+//	            BorderFactory.createLineBorder(Color.BLACK, 1),
+//	            BorderFactory.createEmptyBorder(10, 10, 10, 10)
+//	    ));
 	    scrollPane.setBounds(contentWidth / 2 - 500, currentY+30, 1000, blockHeight * 5);
-	    scrollPane.setBackground(contentPanel.getBackground());
+	    scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        scrollPane.setBackground(new Color(0, 0, 0, 0));
 	    scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 	    scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 	    scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+	    
+	   
+	    
+	    
 	    contentPanel.add(scrollPane);
 
 	    btnRitira.setBorder(null);
@@ -169,12 +237,7 @@ public class ViewRitiraProposte extends BaseView {
 	public void setBtnRitiraListener(ActionListener listener) {
 		btnRitira.addActionListener(listener);
 	}
-	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
+
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	}

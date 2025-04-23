@@ -19,9 +19,8 @@ import it.unibs.view.atomicElements.CustomScrollBarUI;
 
 public class ViewVisualizzaComprensori extends BaseView {
 	private static final long serialVersionUID = 1L;
-	private static final String HOME_PATH = "./Img/home.png";
 	private  JLabel lblTitolo;
-    private CircleHoverIconButton btnBack;
+
 	private List<Comprensorio>  listComprensori;
 	public ViewVisualizzaComprensori(JFrame frame, List<Comprensorio> listComprensori) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
@@ -32,7 +31,6 @@ public class ViewVisualizzaComprensori extends BaseView {
 	@Override
 	protected void inizializzaComponenti() {
 		lblTitolo = new JLabel("Lista comprensori");
-		btnBack = new CircleHoverIconButton(HOME_PATH, 50);
 	}
 
 	@Override
@@ -86,10 +84,6 @@ public class ViewVisualizzaComprensori extends BaseView {
         
         revalidate();
         repaint();
-	}
-	
-	public void setBtnHomeListener(ActionListener listener) {
-		btnBack.addActionListener(listener);
 	}
 
 }

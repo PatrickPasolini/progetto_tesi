@@ -14,7 +14,6 @@ import it.unibs.view.atomicElements.FattoriConversionePanel;
 public class ViewFattori extends ViewSceltaFoglia {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblScambi;
-    private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
     
 	public ViewFattori(JFrame frame, List<Gerarchia> gerarchie) {
@@ -30,7 +29,6 @@ public class ViewFattori extends ViewSceltaFoglia {
 				+ "</div></html>");
 		lblScambi = new JLabel();
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 	
 	public void visualizzaFattori(NestedMap<Foglia, Foglia, Double> mapFattori, Foglia foglia) {
@@ -67,12 +65,5 @@ public class ViewFattori extends ViewSceltaFoglia {
 
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
-	} 
-	public void setBtnBackListeners(ActionListener btnListener) {
-		super.setBtnBackListeners(btnListener);
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
+	}
 }

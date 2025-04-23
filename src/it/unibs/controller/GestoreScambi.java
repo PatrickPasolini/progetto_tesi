@@ -18,14 +18,26 @@ public class GestoreScambi {
 	private JFrame frame;
 	private ScambiHandler scambiHandler;
 	private GerarchieHandler gerarchieHandler;
+	ControllerConfiguratore controllerConfiguratore;
+	ControllerFruitore controllerFruitore;
 	private Stack<Runnable> navigationStack = new Stack<>();// Stack per gestire la navigazione
 	
-	public GestoreScambi(Model model,JFrame frame) {
+	public GestoreScambi(Model model,JFrame frame,ControllerConfiguratore controllerConfiguratore) {
 		super();
 		this.model=model; 
 		this.frame=frame;
 		this.scambiHandler = new ScambiHandler(model);
 		this.gerarchieHandler = new GerarchieHandler(model);
+		this.controllerConfiguratore = controllerConfiguratore;
+	}
+	
+	public GestoreScambi(Model model,JFrame frame,ControllerFruitore controllerFruitore) {
+		super();
+		this.model=model; 
+		this.frame=frame;
+		this.scambiHandler = new ScambiHandler(model);
+		this.gerarchieHandler = new GerarchieHandler(model);
+		this.controllerFruitore = controllerFruitore;
 	}
 	
 	// Metodo generico per gestire la navigazione indietro
@@ -39,8 +51,7 @@ public class GestoreScambi {
 	// #GESTORE SCAMBI-CONFIGURATORE
 	
 	private void backHomeConfiguratore() {
-		navigationStack.clear();
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		navigationStack.clear(); 
 		controllerConfiguratore.run();
 	}
 	
@@ -96,7 +107,7 @@ public class GestoreScambi {
 		frame.getContentPane().add(viewContatta);
 		viewContatta.setLayout(null);
 		
-		viewContatta.setBtnHomeListener(e->backHomeConfiguratore());
+		viewContatta.setBtnBackListeners(e->backHomeConfiguratore());
 		viewContatta.setBtnSelezioneListener(e-> {
 			int index = viewContatta.getIndexScambioSelezionato();
 			Scambio scambioSelezionato = scambiHandler.getScambioCompleto(index);
@@ -112,7 +123,6 @@ public class GestoreScambi {
 	private int oreOfferta;
 	private void backHomeFruitore() {
 		navigationStack.clear();
-		ControllerFruitore controllerFruitore = new ControllerFruitore(model, frame);
 		controllerFruitore.run();
 	}
 	/**

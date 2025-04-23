@@ -21,14 +21,12 @@ import it.unibs.view.atomicElements.TextFieldWithPlaceholder;
 
 public class ViewNuovoComprensorio extends BaseView {
 	private static final long serialVersionUID = 1L;
-	private static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
 	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblNuovoComp;
 	private TextFieldWithPlaceholder comprensorioField;
 	private TextFieldWithPlaceholder comuneToAddField;
 	private RoundedButtonPlus btnPlus;
 	private RoundedButton btnConferma;
-	private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
     private RoundedButton btnSi;
 	private RoundedButton btnNo;
@@ -48,7 +46,6 @@ public class ViewNuovoComprensorio extends BaseView {
 		btnConferma = new RoundedButton("Conferma", new Color(8, 102, 255));	
 		listModel = new DefaultListModel<>();
 		comuniList = new JList<>(listModel);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		btnSi = new RoundedButton("Crea", new Color(0, 143, 57));
 		btnNo = new RoundedButton("Annulla",new Color(165, 32, 25));
@@ -93,8 +90,8 @@ public class ViewNuovoComprensorio extends BaseView {
 		scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 		contentPanel.add(scrollPane);
 
-		btnHome.setBounds(45, 45, 90, 90);
-		contentPanel.add(btnHome);
+		btnBack.setBounds(45, 45, 90, 90);
+		contentPanel.add(btnBack);
 		
         btnConferma.setBorder(null);
         btnConferma.setMargin(new Insets(0, 10, 0, 0));
@@ -204,7 +201,7 @@ public class ViewNuovoComprensorio extends BaseView {
 		
 		JLabel lblCreazione = new JLabel();
 		lblCreazione.setText("Creazione effettuata con successo");
-		lblCreazione.setForeground(new Color(50, 205, 50));
+		lblCreazione.setForeground(new Color(0,143,57));
 		lblCreazione.setFont(new Font("Tahoma", Font.BOLD, 50));
         Dimension size = lblCreazione.getPreferredSize();
         lblCreazione.setBounds((contentWidth - size.width) / 2, 60, size.width, 70);
@@ -262,12 +259,7 @@ public class ViewNuovoComprensorio extends BaseView {
 	    }
 	    comuneToAddField.setText("");
 	}
-	
-	
-	
-	public void setBtnBackListeners(ActionListener btnListener) {
-		btnBack.addActionListener(btnListener);
-    } 
+
 	public void setBtnPlusListener(ActionListener listener) {
 		btnPlus.addActionListener(listener);
 	}

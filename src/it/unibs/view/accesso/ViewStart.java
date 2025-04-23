@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import it.unibs.view.atomicElements.BaseView;
+import it.unibs.view.atomicElements.CircleHoverIconButton;
 import it.unibs.view.atomicElements.RoundedButton;
 
 public class ViewStart extends BaseView {
@@ -16,7 +17,7 @@ public class ViewStart extends BaseView {
     private JLabel lblAccesso;
     
     public ViewStart(JFrame frame) {
-    	super(frame,700,750);
+    	super(frame,950,750);
     }
     protected void inizializzaComponenti() {
     	lblAccesso = new JLabel("Accedi come:");
@@ -40,16 +41,16 @@ public class ViewStart extends BaseView {
         btnConfiguratore.setMargin(new Insets(0, 10, 0, 0));
         btnConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 30));
         btnConfiguratore.setForeground(Color.WHITE);
-        btnConfiguratore.setBounds(contentWidth / 2 - 220, contentHeight/2-120 , 440, 170);
+        btnConfiguratore.setBounds(contentWidth / 2 - 220, contentHeight/2-110 , 440, 170);
         contentPanel.add(btnConfiguratore);
      
         btnFruitore.setBorder(null);
         btnFruitore.setMargin(new Insets(0, 10, 0, 0));
         btnFruitore.setFont(new Font("Tahoma", Font.BOLD, 30));
         btnFruitore.setForeground(Color.WHITE);
-        btnFruitore.setBounds(contentWidth / 2 - 220, contentHeight/2 + 100 , 440, 170);
+        btnFruitore.setBounds(contentWidth / 2 - 220, contentHeight/2 + 110 , 440, 170);
         contentPanel.add(btnFruitore);
-
+        
         contentPanel.revalidate();
         contentPanel.repaint();
         contentPanel.requestFocusInWindow();

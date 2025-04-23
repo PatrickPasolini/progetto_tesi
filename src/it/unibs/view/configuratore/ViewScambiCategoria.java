@@ -19,7 +19,6 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 	private RoundedButton bntAperti;
 	private RoundedButton bntChiusi;
 	private RoundedButton bntRitirati;
-    private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
    
 	public ViewScambiCategoria(JFrame frame, List<Gerarchia> gerarchie) {
@@ -35,10 +34,9 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 		
 		lblScambi = new JLabel("Scegli che proposte visualizzare:");
 		bntAperti = new RoundedButton("Proposte aperte",new Color(8, 102, 255));
-		bntChiusi = new RoundedButton("Proposte completate", new Color(8, 102, 255));
+		bntChiusi = new RoundedButton("Scambi completati", new Color(8, 102, 255));
 		bntRitirati = new RoundedButton("Proposte ritirate",new Color(8, 102, 255));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 	
 	public void visualizzaSceltaScambi() {
@@ -82,14 +80,6 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
         repaint();
 	}
 	
-	public void setBtnBackListeners(ActionListener btnListener) {
-		super.setBtnBackListeners(btnListener);
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
-	
 	public void setBtnApertiListeners(ActionListener btnListener) {
 		bntAperti.addActionListener(btnListener);
     }
@@ -115,10 +105,10 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 	public void visualizzaChiusi(ArrayList<Proposta> scambiChiusi,String fogliaSelezionata) {
 		String txt;
 		if(scambiChiusi.isEmpty()) {
-			txt = "<html><div align='center'>Non é presente nessuna<br> proposta di scambio completate di<br><span style='color:#085FFF;'>" 
+			txt = "<html><div align='center'>Non é presente nessuno<br> scambio completato di<br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + "</div></span></html>";
 		}else {
-			txt = "<html><div align='center'>Proposte completate di <br><span style='color:#085FFF;'>" 
+			txt = "<html><div align='center'>Scambi completati di <br><span style='color:#085FFF;'>" 
 					+ fogliaSelezionata + " :</div></span></html>";
 		}
 		visualizzaScambi(scambiChiusi,txt);
@@ -163,7 +153,9 @@ public class ViewScambiCategoria extends ViewSceltaFoglia {
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setBackground(contentPanel.getBackground());
-        scrollPane.setBounds(contentWidth/2- 525 , size.height + 90, 1050, 500); 
+//        scrollPane.setBounds(contentWidth/2- 525 , size.height + 90, 1050, 500); 
+        scrollPane.setBounds(contentWidth/2- 380 , size.height + 90, 1050, contentPanel.getHeight()-205 - size.height);
+        
         scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());

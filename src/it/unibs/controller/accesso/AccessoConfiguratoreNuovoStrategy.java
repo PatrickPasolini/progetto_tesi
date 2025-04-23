@@ -15,7 +15,7 @@ public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     }
 	
     @Override
-    public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
+    public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view, ControllerAccesso controllerAccesso) {
     	 if (!(view instanceof ViewNewConfiguratore)) {
              System.out.println("Errore: vista non compatibile");
              return;
@@ -35,7 +35,7 @@ public class AccessoConfiguratoreNuovoStrategy  implements StrategyAccesso {
     		
     		//accesso
     		Model model = modelAccesso.getInizializzaModel();
-    		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, viewNewConf.getFrame());
+    		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, viewNewConf.getFrame(),controllerAccesso);
     		controllerConfiguratore.run();
     	}
     	else {

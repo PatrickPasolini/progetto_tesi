@@ -15,10 +15,8 @@ import it.unibs.view.atomicElements.*;
 
 public class ViewNavigaGerarchie extends BaseView{
 	private static final long serialVersionUID = 1L;
-	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
-    private CircleHoverIconButton btnBack;
 	private ActionListener leafDoubleClickListener;
 	private Categoria categoriaSelezionata;
 	
@@ -31,7 +29,6 @@ public class ViewNavigaGerarchie extends BaseView{
 	@Override
 	protected void inizializzaComponenti() {
 		lblProposte = new JLabel("Gerarchie:");
-		btnBack = new CircleHoverIconButton(HOME_PATH, 50);
 	}
 
 	@Override
@@ -41,7 +38,7 @@ public class ViewNavigaGerarchie extends BaseView{
 	    
 	    lblProposte.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblProposte.getPreferredSize();
-        lblProposte.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblProposte.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblProposte);
         
 	    if (gerarchie != null && !gerarchie.isEmpty()) {
@@ -74,7 +71,7 @@ public class ViewNavigaGerarchie extends BaseView{
 	        scrollPane.setBorder(null);
 	        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	        scrollPane.setBackground(contentPanel.getBackground());
-	        scrollPane.setBounds(contentPanel.getWidth()/2-400, 110, 800, contentPanel.getHeight()-140);
+	        scrollPane.setBounds(contentPanel.getWidth()/2-400, 140, 800, contentPanel.getHeight()-170);
 	        scrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
 	        scrollPane.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
 	        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -89,13 +86,6 @@ public class ViewNavigaGerarchie extends BaseView{
 	    contentPanel.repaint();
 	}
 
-	public void setBtnHomeListener(ActionListener listener) {
-		btnBack.addActionListener(listener); // Riaggiungiamo il listener
-	}
-	
-	public void setLeafDoubleClickListener(ActionListener listener) {
-	    this.leafDoubleClickListener = listener;
-	}
 	
 	public Categoria getCategoriaSelezionata() {
 	    return categoriaSelezionata;

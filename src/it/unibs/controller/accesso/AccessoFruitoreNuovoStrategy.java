@@ -15,7 +15,7 @@ public class AccessoFruitoreNuovoStrategy implements StrategyAccesso {
     }
 
 	@Override
-	public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
+	public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view, ControllerAccesso controllerAccesso) {
 		
 		if (!(view instanceof ViewNewFruitore)) {
             System.out.println("Errore: vista non compatibile");
@@ -39,7 +39,7 @@ public class AccessoFruitoreNuovoStrategy implements StrategyAccesso {
    			
    			//accesso
    			Model model = modelAccesso.getInizializzaModel();
-    		ControllerFruitore controllerFruitore = new ControllerFruitore(model, viewNewFru.getFrame());
+    		ControllerFruitore controllerFruitore = new ControllerFruitore(model, viewNewFru.getFrame(),controllerAccesso);
     		controllerFruitore.run();	
 		}
    		else {

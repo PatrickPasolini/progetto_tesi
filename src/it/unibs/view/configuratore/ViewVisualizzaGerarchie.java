@@ -11,10 +11,8 @@ import it.unibs.view.atomicElements.*;
 
 public class ViewVisualizzaGerarchie extends BaseView{
 	private static final long serialVersionUID = 1L;
-	private static final String HOME_PATH = "./Img/home.png";
 	private JLabel lblProposte;
 	private List<Gerarchia> gerarchie;
-    private CircleHoverIconButton btnBack;
 	private Categoria categoriaSelezionata;
 	
 	public ViewVisualizzaGerarchie(JFrame frame, List<Gerarchia> gerarchie) {
@@ -26,7 +24,6 @@ public class ViewVisualizzaGerarchie extends BaseView{
 	@Override
 	protected void inizializzaComponenti() {
 		lblProposte = new JLabel("Gerarchie:");
-		btnBack = new CircleHoverIconButton(HOME_PATH, 50);
 		}
 
 	@Override
@@ -62,10 +59,6 @@ public class ViewVisualizzaGerarchie extends BaseView{
 	    
 	    contentPanel.revalidate();
 	    contentPanel.repaint();
-	}
-
-	public void setBtnHomeListener(ActionListener listener) {
-		btnBack.addActionListener(listener); // Riaggiungiamo il listener
 	}
 	
 //	public void setLeafDoubleClickListener(ActionListener listener) {

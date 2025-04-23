@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import it.unibs.view.atomicElements.BaseView;
+import it.unibs.view.atomicElements.CircleHoverIconButton;
 import it.unibs.view.atomicElements.Combobox;
 import it.unibs.view.atomicElements.PasswordFieldWithPlaceholder;
 import it.unibs.view.atomicElements.RoundedButton;
@@ -26,7 +27,7 @@ public class ViewNewFruitore extends BaseView{
     private String[] nomiComprensori;
     
 	public ViewNewFruitore(JFrame frame,String[] nomiComprensori) {
-		super(frame,700,750);
+		super(frame,950,750);
 		this.typeUser = "Fruitore";
 		this.nomiComprensori=nomiComprensori;
 		inizializzaComponenti();
@@ -48,7 +49,8 @@ public class ViewNewFruitore extends BaseView{
     	}
 
     	btnCreazioneFruitore = new RoundedButton("Crea Fruitore", new Color(8, 102, 255));
-    }
+    	btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
+	}
 
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
@@ -112,6 +114,9 @@ public class ViewNewFruitore extends BaseView{
             btnCreazioneFruitore.addActionListener(btnCreazioneListener);
         }
         contentPanel.add(btnCreazioneFruitore);
+        
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         revalidate();
         repaint();

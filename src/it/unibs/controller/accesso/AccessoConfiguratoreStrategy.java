@@ -13,7 +13,7 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     }
 	
     @Override
-    public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
+    public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view,ControllerAccesso controllerAccesso) {
     	if (!(view instanceof ViewAccesso)) {
             System.out.println("Errore: vista non compatibile");
             return;
@@ -25,10 +25,9 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     	boolean isCredenzialiCorrette=modelAccesso.controllaAccessoConfiguratore(username, password);
 //    	if(isCredenzialiCorrette) {
     	if(true) {
-    		viewAccesso.setAccessoEseguito();
         	modelAccesso.setUser(username);
     		Model model = modelAccesso.getInizializzaModel();
-    		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, view.getFrame());
+    		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, view.getFrame(),controllerAccesso);
     		controllerConfiguratore.run();
 //    		modelAccesso.inizializzaConfiguratore(); //????????????????????????????
     		

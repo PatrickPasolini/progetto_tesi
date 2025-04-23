@@ -11,7 +11,7 @@ public class MainWithGUI {
 	public static final String PERSISTENCE = "./Data/persistenceVB.json"; //percorso file.json contenente i dati dell'applicazione
 	public static final String CREDENTIALS = "./Data/credentialsVB.json";//percorso file.json contenente le credenziali di accesso 
 	public static Persistence persistence;
-	static PersistenceLogin persistenceLogin;
+	public static PersistenceLogin persistenceLogin;
 	
 	private JFrame frame;
 	public static void main(String[] args) {

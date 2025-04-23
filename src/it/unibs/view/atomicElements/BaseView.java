@@ -1,6 +1,7 @@
 package it.unibs.view.atomicElements;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -16,11 +17,15 @@ public abstract class BaseView extends JPanel {
 	protected RoundedPanel contentPanel;
     private int maxContentWidth;
     private int maxContentHeight;
-	
+    protected static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
+	protected static final String HOME_PATH = "./Img/home.png";
+	public CircleHoverIconButton btnBack;
+    
 	public BaseView(JFrame frame, int maxContentWidth, int maxContentHeight) {
 		this.frame=frame;
 		this.maxContentWidth=maxContentWidth;
 		this.maxContentHeight=maxContentHeight; 
+		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 		inizializzaComponenti();
 		inizializzaBaseView();
 	}
@@ -69,4 +74,12 @@ public abstract class BaseView extends JPanel {
 	}
 	protected abstract void inizializzaComponenti();
 	protected abstract void aggiornaComponenti(int w,int h);
+	
+	public void setBtnBackListeners(ActionListener btnListener) {
+		for (ActionListener al : btnBack.getActionListeners()) {
+			btnBack.removeActionListener(al);
+		}
+		btnBack.addActionListener(btnListener);
+    }
+	
 }

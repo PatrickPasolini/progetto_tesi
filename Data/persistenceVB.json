@@ -40,6 +40,20 @@
         "Villaggio Violino",
         "Primo Maggio"
       ]
+    },
+    {
+      "name": "brescia",
+      "comuni": [
+        "comune1",
+        "comune2",
+        "comune3"
+      ]
+    },
+    {
+      "name": "aa",
+      "comuni": [
+        "a"
+      ]
     }
   ],
   "gerarchie": [
@@ -3091,6 +3105,37 @@
           "isConfiguratore": false
         }
       }
+    },
+    {
+      "richiesta": {
+        "id": 1407375300,
+        "nome": "Esercitazioni di Analisi 1",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 1407375301,
+        "nome": "Esercitazioni di Analisi 2",
+        "descrizione": ""
+      },
+      "oreRichiesta": 2,
+      "oreOfferta": 3,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
     }
   ],
   "scambiChiusi": [
@@ -3441,6 +3486,37 @@
           },
           "nome": "fruitore5",
           "password": "f5",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 1407375300,
+        "nome": "Esercitazioni di Analisi 1",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "oreRichiesta": 2,
+      "oreOfferta": 4,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
           "isConfiguratore": false
         }
       }

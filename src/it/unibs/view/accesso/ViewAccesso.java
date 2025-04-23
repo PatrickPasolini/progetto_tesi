@@ -15,13 +15,13 @@ public class ViewAccesso extends BaseView {
     private RoundedButton btnAccedi;
     private RoundedButton btnNuovoUtente;
     private ActionListener btnAccediListener;//da salvare fuori dal metodo perche' perderei il riferimento ridisegnando il contentPanel2
-    
+   
     private String typeUser;
     private boolean accessoFallito=false;
     
     public ViewAccesso(JFrame frame, String typeUser) {
-        super(frame,700,750);
-        this.typeUser = typeUser;
+    	super(frame,950,750);
+		this.typeUser = typeUser;
         aggiornaComponenti(frame.getWidth(), frame.getHeight());
     }
     
@@ -36,10 +36,7 @@ public class ViewAccesso extends BaseView {
     @Override
 	protected void aggiornaComponenti(int w, int h) {
         contentPanel.removeAll();
-        
-        // Calcola le dimensioni del pannello interno
         int contentWidth = contentPanel.getWidth();
-//        int contentHeight = contentPanel.getHeight();
         
         Color colorTxtAccesso;
         Color colorTxtPlaceholder;
@@ -63,20 +60,20 @@ public class ViewAccesso extends BaseView {
         
         userField.setColumns(10);
         userField.setMargin(new Insets(10, 10, 10, 10));
-        userField.setBounds(contentWidth / 2 - 185, 190, 370, 80);
+        userField.setBounds(contentWidth / 2 - 200, 190, 400, 80);
         userField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(userField); 
        
         pswField.setColumns(10);
         pswField.setMargin(new Insets(10, 10, 10, 10));
-        pswField.setBounds(contentWidth / 2 - 185, 310, 370, 80); 
+        pswField.setBounds(contentWidth / 2 - 200, 310, 400, 80); 
         pswField.setPlaceholderColor(colorTxtPlaceholder);
         contentPanel.add(pswField); 
         
         btnAccedi.setBorder(null);
         btnAccedi.setMargin(new Insets(0, 10, 0, 0));
         btnAccedi.setFont(new Font("Tahoma", Font.BOLD, 32));
-        btnAccedi.setBounds(contentWidth / 2 - 185, 430, 370, 90);
+        btnAccedi.setBounds(contentWidth / 2 - 200, 430, 400, 90);
         btnAccedi.setForeground(Color.WHITE);
         if (btnAccediListener != null) {
             btnAccedi.addActionListener(btnAccediListener); // Riaggiungiamo il listener
@@ -84,17 +81,20 @@ public class ViewAccesso extends BaseView {
         contentPanel.add(btnAccedi);
       
         JSeparator line = new JSeparator();
-        line.setBounds(contentWidth / 2 - 185, 540, 370, 10);
+        line.setBounds(contentWidth / 2 - 200, 540, 400, 10);
         line.setForeground(Color.DARK_GRAY);
         contentPanel.add(line);
         
         btnNuovoUtente.setText("Crea nuovo "+typeUser);
         btnNuovoUtente.setBorder(null);
         btnNuovoUtente.setMargin(new Insets(0, 10, 0, 0));
-        btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 24));
-        btnNuovoUtente.setBounds(contentWidth / 2 - 160, 560, 320, 80);
+        btnNuovoUtente.setFont(new Font("Tahoma", Font.BOLD, 26));
+        btnNuovoUtente.setBounds(contentWidth / 2 - 180, 560, 360, 90);
         btnNuovoUtente.setForeground(Color.white);
         contentPanel.add(btnNuovoUtente);
+        
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         revalidate();
         repaint();
@@ -108,13 +108,6 @@ public class ViewAccesso extends BaseView {
         contentPanel.requestFocusInWindow();
     }
     
-    //TODO DA ELIMINARE PERCHE SE ESEGUI L'ACCESSO APRI UN ALTRO FRAME 
-    public void setAccessoEseguito() {
-    	this.accessoFallito=false;
-    	aggiornaComponenti(frame.getWidth(), frame.getHeight());
-    }
-   
-    
     public void setButtonListeners(ActionListener accediListener, ActionListener registrazioneListener) {
         this.btnAccediListener = accediListener; // Salviamo il listener per il login
         if (btnAccedi != null) {
@@ -125,6 +118,7 @@ public class ViewAccesso extends BaseView {
             btnNuovoUtente.addActionListener(registrazioneListener); // Riaggiungiamo il listener
         }
     }
+    
 
     public String getUsername() {
     	return userField.getText();

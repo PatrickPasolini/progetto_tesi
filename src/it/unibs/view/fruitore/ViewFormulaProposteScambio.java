@@ -20,7 +20,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 	private RoundedButton btnConfermaOfferta;
 	private RoundedButton btnSi;
 	private RoundedButton btnNo;
-	private CircleHoverIconButton btnBack;
 	private CircleHoverIconButton btnHome;
 	private NumericFieldWithPlaceholder oreRichiestaField;
 	
@@ -37,7 +36,6 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
 		btnSi = new RoundedButton("Crea", new Color(0, 143, 57));
 		btnNo = new RoundedButton("Annulla", new Color(165, 32, 25));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
  
 	public void visualizzaRichiesta(Foglia richiesta) {
@@ -84,14 +82,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         contentPanel.revalidate();
 	    contentPanel.repaint();
 	}
-	
-	public void setBtnBackListeners(ActionListener btnListener) {
-		super.setBtnBackListeners(btnListener);
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
+
 	public void setBtnConfermaRichiestaListener(ActionListener event) {
 		btnConfermaRichiesta.addActionListener(event);
 	}

@@ -23,14 +23,17 @@ public class GestoreComprensoriConfiguratore {
 	private ComprensoriHandler comprensoriHandler; 
 	private SalvaModificheHandler salvaHandler;
 	private ViewNuovoComprensorio viewNuovoComprensorio;
+	ControllerConfiguratore controllerConfiguratore;
 	private Stack<Runnable> navigationStack = new Stack<>();// Stack per gestire la navigazione
 
-	public GestoreComprensoriConfiguratore(Model model, JFrame frame) {
+	
+	public GestoreComprensoriConfiguratore(Model model, JFrame frame,ControllerConfiguratore controllerConfiguratore ) {
 		this.model=model; 
 		this.frame=frame;
 		this.comuni = new ArrayList<>();
 		this.comprensoriHandler = new ComprensoriHandler(model);
 		this.salvaHandler=new SalvaModificheHandler(model);
+		this.controllerConfiguratore = controllerConfiguratore;
 	}
 
 	private void navigateBack() {
@@ -97,7 +100,7 @@ public class GestoreComprensoriConfiguratore {
 	
 	private void backHome() {
 		navigationStack.clear();
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+		
 		controllerConfiguratore.run();
 	}
 	
@@ -105,7 +108,7 @@ public class GestoreComprensoriConfiguratore {
 		ViewVisualizzaComprensori viewNuovoComprensorio = new ViewVisualizzaComprensori(frame,comprensoriHandler.getComprensori());
 		frame.getContentPane().add(viewNuovoComprensorio);
 		viewNuovoComprensorio.setLayout(null);
-		viewNuovoComprensorio.setBtnHomeListener(e-> backHome());
+		viewNuovoComprensorio.setBtnBackListeners(e-> backHome());
 	}
 
 }

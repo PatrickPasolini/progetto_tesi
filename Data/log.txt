@@ -183,3 +183,18 @@
 	Proposta di :fruitore1
 	richiesta:  [Ripetizioni di Programmazione Java, 5 ore]
 	offerta:  [Lezioni di solfeggio, 5 ore]
+----------------------------------------------------------
+2025.04.22 at 15:07:27 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Esercitazioni di Analisi 1, 2 ore]
+<br>	offerta:  [Esercitazioni di Analisi 2, 2 ore]
+----------------------------------------------------------
+2025.04.22 at 15:53:58 - scambio aperto: 
+	Proposta di :fruitore1
+	richiesta:  [Esercitazioni di Analisi 1, 2 ore]
+<br>	offerta:  [Lezioni di solfeggio, 2 ore]
+----------------------------------------------------------
+2025.04.22 at 15:55:02 - scambio ritirato: 
+	Proposta di :fruitore1
+	richiesta:  [Esercitazioni di Analisi 1, 2 ore]
+<br>	offerta:  [Lezioni di solfeggio, 2 ore]

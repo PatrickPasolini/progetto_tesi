@@ -24,7 +24,7 @@ public class ViewNewConfiguratore extends BaseView {
 	private ActionListener btnCreazioneListener;
 	    
 	public ViewNewConfiguratore(JFrame frame) {
-		super(frame,700,750);
+		super(frame,950,750);
 	}
 
 	@Override
@@ -82,6 +82,9 @@ public class ViewNewConfiguratore extends BaseView {
             btnCreazioneConfiguratore.addActionListener(btnCreazioneListener); // Riaggiungiamo il listener
         }
         contentPanel.add(btnCreazioneConfiguratore);
+        
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
         
         revalidate();
         repaint();

@@ -13,12 +13,10 @@ import it.unibs.domain.Gerarchia;
 import it.unibs.view.atomicElements.*;
 public class ViewSceltaFoglia extends BaseView {
 	private static final long serialVersionUID = 1L;
-	protected static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
-	protected static final String HOME_PATH = "./Img/home.png";
+	
 	protected JLabel lblSceltaFoglia;
 	private List<Gerarchia> gerarchie;
 	private RoundedButton btnContinua;
-    private CircleHoverIconButton btnBack;
 	private JTree tree;
 	
 	public ViewSceltaFoglia(JFrame frame, List<Gerarchia> gerarchie) {
@@ -91,13 +89,7 @@ public class ViewSceltaFoglia extends BaseView {
 	    revalidate();
 	    repaint();
 	}
-	
-	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
+
 	public void setBtnContinuaListener(ActionListener event) {
 		btnContinua.addActionListener(event);
 	}

@@ -17,7 +17,7 @@ public class ViewMenuConfiguratore extends BaseView {
 			"Visualizza comprensori",
 			"Visualizza gerarchie",
 			"Visualizza proposte di una prestazione",
-			"Contatta utenti di uno scambio"};
+			"Visualizza informazioni scambi"};
 	private JLabel lblMenuConfiguratore;
 	private RoundedButton[] btnMenu= new RoundedButton[SCELTE_CONFIGURATORE.length];
 	
@@ -49,7 +49,7 @@ public class ViewMenuConfiguratore extends BaseView {
         lblMenuConfiguratore.setForeground(new Color(43, 43, 43));
         lblMenuConfiguratore.setFont(new Font("Tahoma", Font.BOLD, 55));
         Dimension size = lblMenuConfiguratore.getPreferredSize();
-        lblMenuConfiguratore.setBounds((contentWidth - size.width) / 2, 20, size.width, 70);
+        lblMenuConfiguratore.setBounds((contentWidth - size.width) / 2, 50, size.width, 70);
         contentPanel.add(lblMenuConfiguratore);
         
         if (btnMenu!=null) {
@@ -61,18 +61,23 @@ public class ViewMenuConfiguratore extends BaseView {
     	        int widthButton=contentWidth/2-50;
     	        int heightButton=contentHeight/6; //100
     	        if (i>3) {
-    	        	btnMenu[i].setBounds(contentWidth/2+offset, 120+(offset+heightButton)*(i-4), widthButton, heightButton);
+    	        	btnMenu[i].setBounds(contentWidth/2+offset, 180+(offset+heightButton)*(i-4), widthButton, heightButton);
     	        }
     	        else 
-    	        	btnMenu[i].setBounds(contentWidth/2-widthButton-offset, 120+(heightButton+offset)*i, widthButton, heightButton);
+    	        	btnMenu[i].setBounds(contentWidth/2-widthButton-offset, 180+(heightButton+offset)*i, widthButton, heightButton);
     	        
     	        btnMenu[i].setForeground(Color.WHITE);
     	        contentPanel.add(btnMenu[i]);
     		}
 		}
+        
+        btnBack.setBounds(45, 45, 90, 90);
+        contentPanel.add(btnBack);
+        
 	}
 	
 	public void setButtonListeners(ActionListener btnListener,int i) {
         btnMenu[i].addActionListener(btnListener);
     }
+
 }

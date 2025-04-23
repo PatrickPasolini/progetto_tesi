@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 
+import it.unibs.controller.accesso.ControllerAccesso;
 import it.unibs.controller.commands.CommandUtente;
 import it.unibs.controller.commands.configuratore.AggiungiGerarchiaCommand;
 import it.unibs.controller.commands.configuratore.AggiungiComprensorioCommand;
@@ -15,6 +16,7 @@ import it.unibs.controller.commands.configuratore.VisualizzaFattoriCategoriaComm
 import it.unibs.controller.commands.configuratore.VisualizzaScambiCategoriaCommand;
 import it.unibs.controller.commands.configuratore.VisualizzaScambiCompletiCommand;
 import it.unibs.model.Model;
+import it.unibs.model.ModelAccesso;
 import it.unibs.view.configuratore.ViewMenuConfiguratore;
 
 /**
@@ -22,23 +24,23 @@ import it.unibs.view.configuratore.ViewMenuConfiguratore;
  * Consente di aggiungere comprensori e gerarchie, salvare dati e visualizzare informazioni.
  */
 public class ControllerConfiguratore implements Controller {
-	private Model model;
 	private GestoreGerarchieConfiguratore gestoreGerarchieConfiguratore;
 	private GestoreComprensoriConfiguratore gestoreComprensori;
 	private GestoreScambi gestoreScambi;
 	private GestoreSalvataggio gestoreSalvataggio;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
 	private JFrame frame;
+	private ControllerAccesso controllerAccesso;
 	
-	public ControllerConfiguratore(Model model,JFrame frame) {
-		this.model = model;
+	public ControllerConfiguratore(Model model,JFrame frame,ControllerAccesso controllerAccesso) {
 		this.frame=frame;
 		frame.setResizable(false);
-		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model,frame);
-		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model,frame);
-		this.gestoreScambi = new GestoreScambi(model,frame);
-		this.gestoreSalvataggio = new GestoreSalvataggio(model, frame);
-		 
+		this.gestoreGerarchieConfiguratore = new GestoreGerarchieConfiguratore(model,frame,this);
+		this.gestoreComprensori = new GestoreComprensoriConfiguratore(model,frame,this);
+		this.gestoreScambi = new GestoreScambi(model,frame, this);
+		this.gestoreSalvataggio = new GestoreSalvataggio(model, frame,this);
+		this.controllerAccesso = controllerAccesso; 
+		
 		inizializzaCommandsMenu();
 	}
 	public void setFrame(JFrame frame) {
@@ -64,6 +66,11 @@ public class ControllerConfiguratore implements Controller {
         for (Integer key : commandMenu.keySet()) {
             menuConfiguratore.setButtonListeners(e->sceltaMenuConfig(key),key-1);
         }
+        
+        menuConfiguratore.setBtnBackListeners(e->{
+     	    controllerAccesso.setFrame(frame);
+     	    controllerAccesso.run();
+        });
 	}
 	
 	public boolean sceltaMenuConfig(int scelta) {

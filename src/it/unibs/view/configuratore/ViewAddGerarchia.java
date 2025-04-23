@@ -29,7 +29,6 @@ import it.unibs.view.atomicElements.RoundedButton;
 public class ViewAddGerarchia extends BaseView{
 	protected static final String ARROWLEFT_PATH = "./Img/arrowLeft.png";
 	protected static final String HOME_PATH = "./Img/home.png";
-	protected CircleHoverIconButton btnBack;
 	protected CircleHoverIconButton btnHome;
 	protected JTree tree;
 	public RoundedButton btnAvanti;
@@ -46,7 +45,6 @@ public class ViewAddGerarchia extends BaseView{
 	@Override
 	protected void inizializzaComponenti() {
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 		lblSceltaCategoria = new JLabel("<html><div align='center'>" +
 					"Seleziona una categoria di prestazione a cui <br>" +
 					"aggiungere una categoria o una prestazione specifica</div></html>");
@@ -123,9 +121,6 @@ public class ViewAddGerarchia extends BaseView{
 	    contentPanel.repaint();
 	}
 	
-	
-	
-	
 	public void setSelezioneFallita() {
 		lblSceltaCategoria.setForeground(Color.RED);
 		
@@ -142,12 +137,6 @@ public class ViewAddGerarchia extends BaseView{
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	} 
-	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
 	
 	
 	/**

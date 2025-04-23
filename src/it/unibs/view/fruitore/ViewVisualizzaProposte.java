@@ -15,7 +15,6 @@ public class ViewVisualizzaProposte extends BaseView {
 	private RoundedButton bntAperti;
 	private RoundedButton bntChiusi;
 	private RoundedButton bntRitirati;
-    private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
 	public ViewVisualizzaProposte(JFrame frame) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
@@ -26,10 +25,9 @@ public class ViewVisualizzaProposte extends BaseView {
 	protected void inizializzaComponenti() {
 		lblProposte = new JLabel("Scegli che proposte visualizzare:");
 		bntAperti = new RoundedButton("Proposte aperte",new Color(8, 102, 255));
-		bntChiusi = new RoundedButton("Proposte completate", new Color(8, 102, 255));
+		bntChiusi = new RoundedButton("Scambi completati", new Color(8, 102, 255));
 		bntRitirati = new RoundedButton("Proposte ritirate",new Color(8, 102, 255));
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 	}
 
 	@Override
@@ -93,9 +91,9 @@ public class ViewVisualizzaProposte extends BaseView {
 		String txt;
 		if(scambiChiusi.isEmpty()) {
 			txt = "<html><div align='center'>" + nameUser
-					+ "<br>Non hai nessuna proposta di scambio completate </div></html>";
+					+ "<br>Non hai nessuno scambio completato </div></html>";
 		}else {
-			txt = "<html><div align='center'>Proposte completate di "+nameUser+":</div></span></html>";
+			txt = "<html><div align='center'>Scambi completati di "+nameUser+":</div></span></html>";
 		}
 		visualizzaScambi(scambiChiusi,txt);
 	}
@@ -168,12 +166,7 @@ public class ViewVisualizzaProposte extends BaseView {
         revalidate();
         repaint();
 	}
-	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : btnBack.getActionListeners()) {
-			btnBack.removeActionListener(al);
-		}
-		btnBack.addActionListener(btnListener);
-    }
+
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	}

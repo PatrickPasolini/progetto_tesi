@@ -10,9 +10,7 @@ import it.unibs.view.atomicElements.CircleHoverIconButton;
 
 public class ViewSalva extends BaseView {
 	private static final long serialVersionUID = 1L;
-	private static final String HOME_PATH = "./Img/home.png";
 	private  JLabel lblTitolo;
-    private CircleHoverIconButton btnBack;
     
 	public ViewSalva(JFrame frame) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
@@ -21,7 +19,6 @@ public class ViewSalva extends BaseView {
 	@Override
 	protected void inizializzaComponenti() {
 		lblTitolo = new JLabel("Lista comprensori");
-		btnBack = new CircleHoverIconButton(HOME_PATH, 50);
 	}
 
 	@Override
@@ -43,8 +40,5 @@ public class ViewSalva extends BaseView {
         revalidate();
         repaint();
 	}
-	
-	public void setBtnHomeListener(ActionListener listener) {
-		btnBack.addActionListener(listener);
-	}
+
 }

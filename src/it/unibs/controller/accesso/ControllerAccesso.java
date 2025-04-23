@@ -42,33 +42,36 @@ public class ControllerAccesso implements Controller {
 		return frame;
 	}
 
-	private void controlloAccesso(ActionEvent e) {
+	private void controlloAccesso(ActionEvent event) {
         StrategyAccesso strategyAccesso = strategieAccesso.get(scelta);
         if (strategyAccesso != null) {
-            strategyAccesso.eseguiAccesso(modelAccesso, currentView);
+            strategyAccesso.eseguiAccesso(modelAccesso, currentView,this);
         }
     }
     
-    private void accessoConfiguratore(ActionEvent e) {
+    private void accessoConfiguratore(ActionEvent event) {
         scelta = 1;
         currentView = new ViewAccesso(frame, "Configuratore");
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
+        currentView.setBtnBackListeners(e->run());
         ((ViewAccesso) currentView).setButtonListeners(this::controlloAccesso, this::accessoConfiguratoreNuovo);
     }
-    private void accessoConfiguratoreNuovo(ActionEvent e) {
+    private void accessoConfiguratoreNuovo(ActionEvent event) {
         scelta = 2;
     	currentView = new ViewNewConfiguratore(frame);
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
+        currentView.setBtnBackListeners(this::accessoConfiguratore);
         ((ViewNewConfiguratore) currentView).setButtonListeners(this::controlloAccesso);
     }
 
-    private void accessoFruitore(ActionEvent e) {
+    private void accessoFruitore(ActionEvent event) {
         scelta = 3;
         currentView = new ViewAccesso(frame, "Fruitore");
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
+        currentView.setBtnBackListeners(e->run());
         ((ViewAccesso) currentView).setButtonListeners(this::controlloAccesso, this::accessoFruitoreNuovo);
     }
     
@@ -77,6 +80,7 @@ public class ControllerAccesso implements Controller {
 		currentView = new ViewNewFruitore(frame, modelAccesso.getNomiComprensori());
         frame.getContentPane().add(currentView);
         currentView.setLayout(null);
+        currentView.setBtnBackListeners(this::accessoFruitore);
     	((ViewNewFruitore) currentView).setButtonListeners(this::controlloAccesso);
     }
 }

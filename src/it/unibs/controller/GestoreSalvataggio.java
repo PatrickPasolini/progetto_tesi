@@ -7,28 +7,27 @@ import it.unibs.model.Model;
 import it.unibs.view.configuratore.ViewSalva;
 
 public class GestoreSalvataggio {
-	private Model model;
 	private JFrame frame;
 	private SalvaModificheHandler salvaHandler;
+	ControllerConfiguratore controllerConfiguratore;
 	
-	public GestoreSalvataggio(Model model,JFrame frame) {
+	public GestoreSalvataggio(Model model,JFrame frame,ControllerConfiguratore controllerConfiguratore) {
 		super();
-		this.model=model; 
 		this.frame=frame;
 		this.salvaHandler = new SalvaModificheHandler(model);
+		this.controllerConfiguratore = controllerConfiguratore;
 	}
 	
 	public void visualizzaSalvataggio() {
 		ViewSalva viewSalva = new ViewSalva(frame);
 		frame.getContentPane().add(viewSalva);
 		viewSalva.setLayout(null);
-		viewSalva.setBtnHomeListener(e -> backHomeConfiguratore());
+		viewSalva.setBtnBackListeners(e -> backHomeConfiguratore());
 		
 		salvaHandler.salvaModifiche();
 	}
 	
-	private void backHomeConfiguratore() {
-		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, frame);
+	private void backHomeConfiguratore() { 
 		controllerConfiguratore.run();
 	}
 }

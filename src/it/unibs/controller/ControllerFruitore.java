@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 
+import it.unibs.controller.accesso.ControllerAccesso;
 import it.unibs.controller.commands.CommandUtente;
 import it.unibs.controller.commands.fruitore.CreaPropostaCommand;
 import it.unibs.controller.commands.fruitore.NavigazioneGerarchieCommand;
@@ -22,13 +23,14 @@ public class ControllerFruitore implements Controller{
 	private GestoreScambi gestoreScambi;
 	private Map<Integer, CommandUtente> commandMenu = new HashMap<>();
 	private JFrame frame;
+	private ControllerAccesso controllerAccesso;
 	
-	public ControllerFruitore(Model model,JFrame frame) {
+	public ControllerFruitore(Model model,JFrame frame,ControllerAccesso controllerAccesso) {
 //		this.model = model;
 		this.frame=frame;
-		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, frame);
-		this.gestoreScambi = new GestoreScambi(model,frame);
-		
+		this.gestoreGerarchieFruitore = new GestoreGerarchieFruitore(model, frame,this);
+		this.gestoreScambi = new GestoreScambi(model,frame,this);
+		this.controllerAccesso = controllerAccesso;
 		inizializzaCommandsMenu();
 	}
 	public void setFrame(JFrame frame) {
@@ -49,6 +51,10 @@ public class ControllerFruitore implements Controller{
         for (Integer key : commandMenu.keySet()) {
         	menuFruitore.setButtonListeners(e->sceltaMenuFruitore(key),key-1);
         }
+        menuFruitore.setBtnBackListeners(e->{
+     	    controllerAccesso.setFrame(frame);
+     	    controllerAccesso.run();
+        });
 	}
 
 	public boolean sceltaMenuFruitore(int scelta) {	

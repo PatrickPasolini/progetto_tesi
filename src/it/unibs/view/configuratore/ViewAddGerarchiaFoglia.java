@@ -48,7 +48,6 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 	private NumericFieldWithPlaceholder fdcField;
 	
 	private JLabel lblSceltaFoglia;
-    private CircleHoverIconButton btnBack;
     private CircleHoverIconButton btnHome;
 	private JTree tree;
 	private JLabel lblSceltaCategoria; 
@@ -74,7 +73,6 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 		btnNodo= new RoundedButton("Conferma e prosegui", new Color(8, 102, 255));
 		
 		lblSceltaFoglia = new JLabel("Seleziona la prestazione d'opera che necessiti:");
-		btnBack = new CircleHoverIconButton(ARROWLEFT_PATH, 50);
 		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
 		
 		btnSi = new RoundedButton("Crea", new Color(0, 143, 57));
@@ -321,10 +319,10 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 
 		int contentWidth = contentPanel.getWidth();
 		lblSceltaCategoria.setText("<html><div align='center'>" +
-				"Creazione della seguente gerarchia <br>effettuata con successo<br>"
+				"<b>Creazione della seguente gerarchia <br>effettuata con successo</b><br>"
 				+ "</span></div></html>");
 		 Dimension size = lblSceltaCategoria.getPreferredSize();
-		lblSceltaCategoria.setForeground(new Color(50, 205, 50));
+		lblSceltaCategoria.setForeground(new Color(0,143,57));
         lblSceltaCategoria.setBounds((contentWidth - size.width) / 2, 30, size.width, size.height);
         contentPanel.add(lblSceltaCategoria);
 		
@@ -342,12 +340,6 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
 	public void setBtnHomeListener(ActionListener listener) {
 		btnHome.addActionListener(listener);
 	} 
-	public void setBtnBackListeners(ActionListener btnListener) {
-		for (ActionListener al : this.btnBack.getActionListeners()) {
-			this.btnBack.removeActionListener(al);
-		}
-		this.btnBack.addActionListener(btnListener);
-    }
 	public void setBtnAvantiListener(ActionListener listener) {
 		for (ActionListener al : btnAvanti.getActionListeners()) {
 			btnAvanti.removeActionListener(al);

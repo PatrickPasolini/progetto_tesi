@@ -13,7 +13,7 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
     }
 
 	@Override
-	public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view) {
+	public void eseguiAccesso(ModelAccesso modelAccesso, BaseView view, ControllerAccesso controllerAccesso) {
 		
 		if (!(view instanceof ViewAccesso)) {
             System.out.println("Errore: vista non compatibile");
@@ -25,13 +25,12 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
     	String password=viewAccesso.getPassword();
     	boolean isCredenzialiCorrette=modelAccesso.controllaAccessoFruitore(username, password);
 //    	if(isCredenzialiCorrette) {
-    	if(true) {
-    		viewAccesso.setAccessoEseguito();
+		if(true) {
     		modelAccesso.setUser(username);
 
     		Model model = modelAccesso.getInizializzaModel();
     		
-    		ControllerFruitore controllerFruitore = new ControllerFruitore(model, view.getFrame());
+    		ControllerFruitore controllerFruitore = new ControllerFruitore(model, view.getFrame(),controllerAccesso);
     		controllerFruitore.run();
     	} 
     	else {
@@ -53,6 +52,8 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
 //		
 //		modelAccesso.inizializzaFruitore();	
 	}
+
+	
 	
 
 }

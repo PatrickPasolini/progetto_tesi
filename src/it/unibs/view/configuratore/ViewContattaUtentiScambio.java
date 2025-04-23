@@ -25,20 +25,17 @@ public class ViewContattaUtentiScambio extends BaseView {
     private JPanel dettagliScambioPanel;
     private RoundedButton selezionaButton;
     private JLabel titoloScambioLabel;
-    private CircleHoverIconButton btnHome;
-	protected static final String HOME_PATH = "./Img/home.png";
     
 	public ViewContattaUtentiScambio(JFrame frame, ArrayList<String> nomiScambi) {
 		super(frame,frame.getWidth()-200,frame.getHeight()-200);
 		this.nomiScambi = nomiScambi;
 		aggiornaComponenti(frame.getWidth(),frame.getHeight());
 	}
-
 	@Override
 	protected void inizializzaComponenti() {
-		btnHome = new CircleHoverIconButton(HOME_PATH, 50);
+		// TODO Auto-generated method stub
+		
 	}
-
 	@Override
 	protected void aggiornaComponenti(int w, int h) {
 	    contentPanel.removeAll();
@@ -69,8 +66,8 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    scrollPane.setBounds(300, 220, contentWidth-600, 600);
 	    contentPanel.add(scrollPane);
 	    
-	    btnHome.setBounds(45, 45, 90, 90);
-	    contentPanel.add(btnHome);
+	    btnBack.setBounds(45, 45, 90, 90);
+	    contentPanel.add(btnBack);
 	    
 	    JSeparator separator = new JSeparator();
 	    separator.setForeground(new Color(180, 180, 180));
@@ -79,10 +76,6 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    
 	    revalidate();
 	    repaint();
-	}
-	
-	public void setBtnHomeListener(ActionListener listener) {
-		btnHome.addActionListener(listener);
 	} 
 	
 	private JPanel createTopPanel() {
@@ -139,11 +132,9 @@ public class ViewContattaUtentiScambio extends BaseView {
 		selezionaButton.addActionListener(listener);
 	}
 	
-	
 	public int getIndexScambioSelezionato() {
 		return scambiComboBox.getSelectedIndex();
 	}
-
 
 	public void mostraDettagliScambio(Scambio scambioSelezionato) {
 	    dettagliScambioPanel.removeAll();
@@ -224,5 +215,7 @@ public class ViewContattaUtentiScambio extends BaseView {
 	    sb.append("</div></html>");
 	    return sb.toString();
 	}
+
+	
     
 }
