@@ -3136,6 +3136,161 @@
           "isConfiguratore": false
         }
       }
+    },
+    {
+      "richiesta": {
+        "id": 248630871,
+        "nome": "Ripetizioni di Fisica Meccanica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "oreRichiesta": 2,
+      "oreOfferta": 3,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 248630871,
+        "nome": "Ripetizioni di Fisica Meccanica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 1407375300,
+        "nome": "Esercitazioni di Analisi 1",
+        "descrizione": ""
+      },
+      "oreRichiesta": 3,
+      "oreOfferta": 3,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 248630871,
+        "nome": "Ripetizioni di Fisica Meccanica",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 1407375300,
+        "nome": "Esercitazioni di Analisi 1",
+        "descrizione": ""
+      },
+      "oreRichiesta": 3,
+      "oreOfferta": 3,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 1407375300,
+        "nome": "Esercitazioni di Analisi 1",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "oreRichiesta": 3,
+      "oreOfferta": 6,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
+    },
+    {
+      "richiesta": {
+        "id": 1407375300,
+        "nome": "Esercitazioni di Analisi 1",
+        "descrizione": ""
+      },
+      "offerta": {
+        "id": 383812416,
+        "nome": "Lezioni di solfeggio",
+        "descrizione": ""
+      },
+      "oreRichiesta": 3,
+      "oreOfferta": 6,
+      "fruitoreRichiedente": {
+        "type": "it.unibs.domain.Fruitore",
+        "data": {
+          "indirizzoMail": "fruitore1@studenti.unibs.it",
+          "comprensorioAppartenenza": {
+            "name": "Bassa Bresciana",
+            "comuni": [
+              "Brandico",
+              "Mairano",
+              "Dello"
+            ]
+          },
+          "nome": "fruitore1",
+          "password": "f1",
+          "isConfiguratore": false
+        }
+      }
     }
   ],
   "scambiChiusi": [

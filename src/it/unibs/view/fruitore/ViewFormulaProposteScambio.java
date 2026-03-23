@@ -180,7 +180,7 @@ public class ViewFormulaProposteScambio extends ViewSceltaFoglia {
         JLabel lblScambio = new JLabel(
         	    "<html>" +
         	      "<div align='center'>" +
-        	        "<span style='color:#008F39;'><b>Formulazione del seguente scambio<br> avvenuta con successo:</b></span><br><br>" +
+        	        "<span style='color:#008F39;'><b>Formulazione della seguente proposta<br> avvenuta con successo:</b></span><br><br>" +
         	        "Richiesta: <span style='color:#085FFF;'><b>" + richiesta.getNome() + "</b></span>" +
         	        " di <span style='color:#085FFF;'><b>"+ oreRichiesta + "</b></span> ore<br>" +
         	        "Offerta: <span style='color:#085FFF;'><b>" + offerta.getNome() + "</b></span>" +

@@ -23,8 +23,8 @@ public class AccessoConfiguratoreStrategy implements StrategyAccesso {
     	String username=viewAccesso.getUsername().toLowerCase();
     	String password=viewAccesso.getPassword();
     	boolean isCredenzialiCorrette=modelAccesso.controllaAccessoConfiguratore(username, password);
-//    	if(isCredenzialiCorrette) {
-    	if(true) {
+    	if(isCredenzialiCorrette) {
+//    	if(true) {
         	modelAccesso.setUser(username);
     		Model model = modelAccesso.getInizializzaModel();
     		ControllerConfiguratore controllerConfiguratore = new ControllerConfiguratore(model, view.getFrame(),controllerAccesso);

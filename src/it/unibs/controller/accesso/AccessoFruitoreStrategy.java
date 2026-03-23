@@ -24,8 +24,8 @@ public class AccessoFruitoreStrategy implements StrategyAccesso {
     	String username=viewAccesso.getUsername().toLowerCase();
     	String password=viewAccesso.getPassword();
     	boolean isCredenzialiCorrette=modelAccesso.controllaAccessoFruitore(username, password);
-//    	if(isCredenzialiCorrette) {
-		if(true) {
+    	if(isCredenzialiCorrette) {
+//		if(true) {
     		modelAccesso.setUser(username);
 
     		Model model = modelAccesso.getInizializzaModel();

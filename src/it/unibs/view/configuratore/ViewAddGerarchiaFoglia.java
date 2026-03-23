@@ -86,7 +86,7 @@ public class ViewAddGerarchiaFoglia extends ViewAddGerarchia {
         int contentHeight = contentPanel.getHeight();
         if(categoria!=null) {
         	 String  txt = "<html><div align='center'>" 
-     				+ "Inserisci i dati della categoria di prestazione<br>"
+     				+ "Inserisci i dati della prestazione specifica<br>"
      				+ "che stai aggiungendo alla categoria <span style='color:#085FFF;'>" + categoria.getNome()  
      				+ "</span></div></html>";
              
